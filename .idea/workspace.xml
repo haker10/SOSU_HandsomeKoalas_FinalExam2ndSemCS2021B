@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/be/Citizen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/be/CitizenTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/be/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/DatabaseConnector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/CategoryDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/StudentGetsCitizenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/UserTypeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/model/UserModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/view/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/view/loginView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -14,14 +48,27 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="28RWr8B7z0XVPNMmMTIyUm1FXqA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HandsomaKoalasTicketMaster" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -31,7 +78,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651180077258</updated>
+      <workItem from="1651253609118" duration="5677000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
