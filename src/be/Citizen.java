@@ -4,14 +4,12 @@ public class Citizen {
     int citizenId;
     int citizenTemplateId;
     String citizenGeneralInformation;
-    String citizenHealthConditions;
     String citizenFunctionalAbilities;
 
-    public Citizen(int citizenId, int citizenTemplateId, String citizenGeneralInformation, String citizenHealthConditions, String citizenFunctionalAbilities) {
+    public Citizen(int citizenId, int citizenTemplateId, String citizenGeneralInformation, String citizenFunctionalAbilities) {
         this.citizenId = citizenId;
         this.citizenTemplateId = citizenTemplateId;
         this.citizenGeneralInformation = citizenGeneralInformation;
-        this.citizenHealthConditions = citizenHealthConditions;
         this.citizenFunctionalAbilities = citizenFunctionalAbilities;
     }
 
@@ -27,16 +25,12 @@ public class Citizen {
         return citizenGeneralInformation;
     }
 
-    public String getCitizenHealthConditions() {
-        return citizenHealthConditions;
-    }
-
     public String getCitizenFunctionalAbilities() {
         return citizenFunctionalAbilities;
     }
 
     @Override
     public String toString() {
-        return "Citizen{" + "citizenId=" + citizenId + ", citizenTemplateId=" + citizenTemplateId + ", citizenGeneralInformation=" + citizenGeneralInformation + ", citizenHealthConditions=" + citizenHealthConditions + ", citizenFunctionalAbilities=" + citizenFunctionalAbilities + '}';
+        return "Citizen{" + "citizenId=" + citizenId + ", citizenTemplateId=" + citizenTemplateId + ", citizenGeneralInformation=" + citizenGeneralInformation + ", citizenFunctionalAbilities=" + citizenFunctionalAbilities + '}';
     }
 }

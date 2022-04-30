@@ -1,5 +1,5 @@
 package dal.dao;
 
-public class SchoolDAO {
+public class UserDataDAO {
     //
 }

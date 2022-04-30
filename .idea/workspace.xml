@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dal/dao/StudentInClassDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/be/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/Citizen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/be/CitizenTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/CitizenTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserTypeDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +66,7 @@
       <updated>1651180077258</updated>
       <workItem from="1651253609118" duration="5739000" />
       <workItem from="1651259794038" duration="61000" />
+      <workItem from="1651339446190" duration="4099000" />
     </task>
     <servers />
   </component>

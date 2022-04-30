@@ -3,14 +3,12 @@ package be;
 public class CitizenTemplate {
     int citizenTemplateId;
     String citizenTemplateGeneralInformation;
-    String citizenTemplateHealthConditions;
     String citizenTemplateFunctionalAbilities;
     int schoolId;
 
-    public CitizenTemplate(int citizenTemplateId, String citizenTemplateGeneralInformation, String citizenTemplateHealthConditions, String citizenTemplateFunctionalAbilities, int schoolId) {
+    public CitizenTemplate(int citizenTemplateId, String citizenTemplateGeneralInformation, String citizenTemplateFunctionalAbilities, int schoolId) {
         this.citizenTemplateId = citizenTemplateId;
         this.citizenTemplateGeneralInformation = citizenTemplateGeneralInformation;
-        this.citizenTemplateHealthConditions = citizenTemplateHealthConditions;
         this.citizenTemplateFunctionalAbilities = citizenTemplateFunctionalAbilities;
         this.schoolId = schoolId;
     }
@@ -23,10 +21,6 @@ public class CitizenTemplate {
         return citizenTemplateGeneralInformation;
     }
 
-    public String getCitizenTemplateHealthConditions() {
-        return citizenTemplateHealthConditions;
-    }
-
     public String getCitizenTemplateFunctionalAbilities() {
         return citizenTemplateFunctionalAbilities;
     }
@@ -37,6 +31,6 @@ public class CitizenTemplate {
 
     @Override
     public String toString() {
-        return "CitizenTemplate{" + "citizenTemplateId=" + citizenTemplateId + ", citizenTemplateGeneralInformation=" + citizenTemplateGeneralInformation + ", citizenTemplateHealthConditions=" + citizenTemplateHealthConditions + ", citizenTemplateFunctionalAbilities=" + citizenTemplateFunctionalAbilities + ", schoolId=" + schoolId + '}';
+        return "CitizenTemplate{" + "citizenTemplateId=" + citizenTemplateId + ", citizenTemplateGeneralInformation=" + citizenTemplateGeneralInformation + ", citizenTemplateFunctionalAbilities=" + citizenTemplateFunctionalAbilities + ", schoolId=" + schoolId + '}';
     }
 }
