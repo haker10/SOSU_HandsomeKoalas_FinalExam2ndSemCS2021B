@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/StudentInClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/StudentInClassDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserTypeDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +57,7 @@
       <updated>1651180077258</updated>
       <workItem from="1651253609118" duration="5739000" />
       <workItem from="1651259794038" duration="61000" />
-      <workItem from="1651339446190" duration="6350000" />
+      <workItem from="1651339446190" duration="6993000" />
     </task>
     <servers />
   </component>
