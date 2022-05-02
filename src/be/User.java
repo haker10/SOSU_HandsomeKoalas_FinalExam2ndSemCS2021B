@@ -2,13 +2,13 @@ package be;
 
 public class User {
     int userId;
-    String typeOfUser;
-    String school;
+    int typeOfUser;
+    int school;
     String name;
     String username;
     String password;
 
-    public User(int userId, String typeOfUser, String school, String name, String username, String password) {
+    public User(int userId, int typeOfUser, int school, String name, String username, String password) {
         this.userId = userId;
         this.typeOfUser = typeOfUser;
         this.school = school;
@@ -21,11 +21,11 @@ public class User {
         return userId;
     }
 
-    public String getTypeOfUser() {
+    public int getTypeOfUser() {
         return typeOfUser;
     }
 
-    public String getSchool() {
+    public int getSchool() {
         return school;
     }
 
