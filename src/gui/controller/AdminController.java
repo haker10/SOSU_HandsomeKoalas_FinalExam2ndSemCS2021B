@@ -42,11 +42,11 @@ public class AdminController implements Initializable {
 
     }
 
-    public void onClickmanageTeachers(ActionEvent actionEvent) {
+    public void onClickManageTeachers(ActionEvent actionEvent) {
         Stage currentStage = (Stage) teacherBtn.getScene().getWindow();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManager.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesTeachersView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
@@ -59,11 +59,11 @@ public class AdminController implements Initializable {
 
     }
 
-    public void onClickmanageSchools(ActionEvent actionEvent) {
+    public void onClickManageSchools(ActionEvent actionEvent) {
         Stage currentStage = (Stage) schoolBtn.getScene().getWindow();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesSchool.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesSchoolsView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
@@ -75,11 +75,11 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void onClickmanageStudents(ActionEvent actionEvent) {
+    public void onClickManageStudents(ActionEvent actionEvent) {
         Stage currentStage = (Stage) studentBtn.getScene().getWindow();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentManager.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesStudentsView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
@@ -91,11 +91,11 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void onClickmanageAdmins(ActionEvent actionEvent) {
+    public void onClickManageAdmins(ActionEvent actionEvent) {
         Stage currentStage = (Stage) adminBtn.getScene().getWindow();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManager.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesAdminsView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
