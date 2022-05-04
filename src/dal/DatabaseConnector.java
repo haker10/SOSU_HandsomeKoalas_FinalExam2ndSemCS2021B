@@ -12,7 +12,7 @@ public class DatabaseConnector {
     public DatabaseConnector() {
         dataSource = new SQLServerDataSource();
         dataSource.setServerName("10.176.111.31");
-        dataSource.setDatabaseName("HandsomeKoalas_TicketMaster");
+        dataSource.setDatabaseName("HandsomeKoalas_ExamProject");
         dataSource.setUser("CSe21B_10");
         dataSource.setPassword("CSe21B_10");
         dataSource.setPortNumber(1433);
