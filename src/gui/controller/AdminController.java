@@ -9,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import gui.model.UserModel;
 import javafx.fxml.Initializable;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -65,7 +63,7 @@ public class AdminController implements Initializable {
         Stage currentStage = (Stage) schoolBtn.getScene().getWindow();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/schoolManager.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminManagesSchool.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
