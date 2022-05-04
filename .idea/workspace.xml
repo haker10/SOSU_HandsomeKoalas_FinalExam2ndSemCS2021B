@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gui/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/controller/StudentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/view/adminView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/view/studentView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/DatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/loginView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,9 +44,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../HandsomaKoalasTicketMaster" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\justNiko_Rig\Desktop\School\GithubProjects\SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B\src\gui\view" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -90,6 +90,7 @@
       <workItem from="1651339446190" duration="6993000" />
       <workItem from="1651508567012" duration="2959000" />
       <workItem from="1651671374110" duration="2766000" />
+      <workItem from="1651678075764" duration="2982000" />
     </task>
     <servers />
   </component>
@@ -106,6 +107,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
