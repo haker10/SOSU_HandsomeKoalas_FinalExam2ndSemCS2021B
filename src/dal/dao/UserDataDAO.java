@@ -3,19 +3,19 @@ package dal.dao;
 import be.User;
 import dal.DatabaseConnector;
 
-<<<<<<< Updated upstream
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-=======
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> Stashed changes
+
 
 public class UserDataDAO {
 
-    static DatabaseConnector databaseConnector;
+     DatabaseConnector databaseConnector;
 
 
     //constructor
@@ -45,8 +45,6 @@ public class UserDataDAO {
 
         return user;
     }
-<<<<<<< Updated upstream
-=======
 
     public List<User> getAllAdmins() {
         List<User> allAdmins = new ArrayList<>();
@@ -136,7 +134,7 @@ public class UserDataDAO {
         }
         return student;
     }
-    public static void deleteStudent(int chosenStudentId) {
+    public void deleteStudent(int chosenStudentId) {
         String sql = "DELETE FROM UserData WHERE userId = ?";
 
         try(Connection connection = databaseConnector.getConnection()) {
@@ -148,24 +146,19 @@ public class UserDataDAO {
         }
     }
 
-    public static void editStudent(String studentName) {
-        User user = null;
-        String sql = "UPDATE UserData SET NAME=? WHERE UserId = ?";
+    public void editStudent(int userId, int school, String name, String username) {
+        String sql = "UPDATE UserData SET school = ?, name = ?, username = ? WHERE userID = ?";
 
-        try(Connection connection = databaseConnector.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, studentName);
+        try(Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, school);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, username);
+            preparedStatement.setInt(4, userId);
             preparedStatement.executeUpdate();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            while(resultSet.next()){
-                user = new User(studentName);
-            }
-        } catch (SQLException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-
-
->>>>>>> Stashed changes
 }

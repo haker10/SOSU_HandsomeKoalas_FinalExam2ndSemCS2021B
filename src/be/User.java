@@ -30,7 +30,7 @@ public class User {
     }
     public int setSchool(int school1){ school = school1; return 0; }
 
-    public String getUserName() {
+    public String getName() {
         return name;
     }
     public String setName(String name1){

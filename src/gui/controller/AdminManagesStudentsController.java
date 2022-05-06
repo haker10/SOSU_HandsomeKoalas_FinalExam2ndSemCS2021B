@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -17,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
+import java.sql.RowId;
 import java.util.ResourceBundle;
 
 
@@ -24,7 +26,6 @@ public class AdminManagesStudentsController implements Initializable {
 
 
     UserModel userModel;
-
     @FXML
     private TableColumn<User, Integer> schoolColumn;
 
@@ -49,22 +50,17 @@ public class AdminManagesStudentsController implements Initializable {
     int schoolId1;
 
     public AdminManagesStudentsController() {
-
-
         userModel = new UserModel();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentTableView.setEditable(true);
-
+        editStudentFromTableView();
         updateStudentTableView();
-        editNameFromTableView();
-        editUsernameFromTableView();
-        editSchoolFromTableView();
     }
 
-    public void editNameFromTableView(){
+    public void editStudentFromTableView(){
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
@@ -73,13 +69,17 @@ public class AdminManagesStudentsController implements Initializable {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setName(t.getNewValue());
+                        TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
+                        int row = pos.getRow();
+                        int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
+                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        userModel.editStudent(userId, school, name, username);
                     }
                 }
         );
-        String name = nameColumn.getText();
-        User result = userModel.editStudent(name);
-    }
-    public void editUsernameFromTableView(){
+
         usernameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         usernameColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
@@ -88,11 +88,17 @@ public class AdminManagesStudentsController implements Initializable {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setUsername(t.getNewValue());
+                        TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
+                        int row = pos.getRow();
+                        int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
+                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        userModel.editStudent(userId, school, name, username);
                     }
                 }
         );
-    }
-    public void editSchoolFromTableView(){
+
         schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         schoolColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<User, Integer>>() {
@@ -101,6 +107,13 @@ public class AdminManagesStudentsController implements Initializable {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setSchool(t.getNewValue());
+                        TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
+                        int row = pos.getRow();
+                        int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
+                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        userModel.editStudent(userId, school, name, username);
                     }
                 }
         );
@@ -135,13 +148,6 @@ public class AdminManagesStudentsController implements Initializable {
         }
     }
 
-     public void onClickEdit (ActionEvent actionEvent){
-
-     }
-
-
-
-
     public void onClickDelete(ActionEvent actionEvent) {
           JFrame jFrame = new JFrame();
         try{
@@ -149,7 +155,7 @@ public class AdminManagesStudentsController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
             }
             else {
-                UserModel.deleteStudent(studentTableView.getSelectionModel().getSelectedItem().getUserId());
+                userModel.deleteStudent(studentTableView.getSelectionModel().getSelectedItem().getUserId());
                 JOptionPane.showMessageDialog(jFrame, "USER DELETED !!");
                 updateStudentTableView();
             }

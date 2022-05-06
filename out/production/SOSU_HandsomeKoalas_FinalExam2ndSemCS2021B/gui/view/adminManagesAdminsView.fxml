@@ -11,21 +11,4 @@
             fx:controller="gui.controller.AdminManagesAdminsController"
             prefHeight="400.0" prefWidth="600.0">
 
-<<<<<<< Updated upstream
-=======
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesAdminsController">
-   <children>
-      <TableView fx:id="adminTableView" layoutX="23.0" layoutY="20.0" prefHeight="267.0" prefWidth="554.0">
-        <columns>
-          <TableColumn fx:id="schoolColumn" prefWidth="277.0" text="School" />
-          <TableColumn fx:id="nameColumn" prefWidth="276.0" text="Name" />
-        </columns>
-      </TableView>
-      <TextField fx:id="nameTxt" layoutX="348.0" layoutY="293.0" promptText="Name" />
-      <TextField fx:id="usernameTxt" layoutX="226.0" layoutY="331.0" promptText="Username" />
-      <PasswordField fx:id="passwordTxt" layoutX="226.0" layoutY="361.0" promptText="Password" />
-      <ChoiceBox fx:id="schoolChoiceBox" layoutX="118.0" layoutY="293.0" prefWidth="150.0" />
-      <Button layoutX="472.0" layoutY="344.0" mnemonicParsing="false" onAction="#createAdmin" text="Create" />
-   </children>
->>>>>>> Stashed changes
 </AnchorPane>

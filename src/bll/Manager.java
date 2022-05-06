@@ -1,15 +1,23 @@
 package bll;
 
 import be.User;
+import dal.dao.SchoolDAO;
 import dal.dao.UserDataDAO;
+import be.School;
+
+import java.util.List;
 
 public class Manager {
+
+    SchoolDAO schoolDAO;
+
 
     UserDataDAO userDataDAO;
 
     //constructor
     public Manager() {
         userDataDAO = new UserDataDAO();
+        schoolDAO = new SchoolDAO();
 
     }
 
@@ -17,8 +25,6 @@ public class Manager {
         return userDataDAO.login(username, password);
 
     }
-<<<<<<< Updated upstream
-=======
 
     public List<School> getAllSchools() {
         return schoolDAO.getAllSchools();
@@ -44,19 +50,15 @@ public class Manager {
         return userDataDAO.createStudent(schoolId, name, username, password);
     }
 
-    public int deleteStudent(int chosenStudentId) {
+    public void deleteStudent(int chosenStudentId) {
         try{
-            UserDataDAO.deleteStudent(chosenStudentId);
+            userDataDAO.deleteStudent(chosenStudentId);
         } catch(Exception e){
             e.printStackTrace();
         }
-        return 0;
     }
 
-    public void editStudent(String name) {
-        UserDataDAO.editStudent(name);
-    }
->>>>>>> Stashed changes
+    public void editStudent(int userId,int school, String name, String username) { userDataDAO.editStudent(userId,school, name, username); }
 }
 
 

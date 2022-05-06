@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesAdminsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/SchoolManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesSchoolsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesStudentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesAdminsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesSchool.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesSchoolsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/studentManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesStudentsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesTeachersView.fxml" afterDir="false" />
-    </list>
-=======
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +32,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="28RWr8B7z0XVPNMmMTIyUm1FXqA" />
   <component name="ProjectLevelVcsManager">
@@ -117,12 +104,9 @@
       <workItem from="1651671374110" duration="2766000" />
       <workItem from="1651678075764" duration="2982000" />
       <workItem from="1651682709551" duration="272000" />
-<<<<<<< Updated upstream
-=======
       <workItem from="1651742784022" duration="10314000" />
       <workItem from="1651774171976" duration="10471000" />
       <workItem from="1651852806781" duration="9337000" />
->>>>>>> Stashed changes
     </task>
     <servers />
   </component>

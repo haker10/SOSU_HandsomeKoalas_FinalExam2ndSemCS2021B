@@ -1,19 +1,20 @@
 package gui.model;
 
+import be.School;
 import be.User;
 import bll.Manager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class UserModel {
 
     static Manager manager;
 
-<<<<<<< Updated upstream
-=======
     private ObservableList<School> allSchools;
     private ObservableList<User> allAdmins;
     private ObservableList<User> allStudents;
 
->>>>>>> Stashed changes
+
     //constructor
     public UserModel() {
         manager = new Manager();
@@ -25,8 +26,6 @@ public class UserModel {
     public User login(String username, String password) {
         return manager.login(username, password);
     }
-<<<<<<< Updated upstream
-=======
 
     public ObservableList<School> getAllSchools() {
         allSchools = FXCollections.observableArrayList();
@@ -58,14 +57,12 @@ public class UserModel {
     public void createStudent(int schoolId, String name, String username, String password) {
         manager.createStudent(schoolId, name, username, password);
     }
-    public static int deleteStudent(int chosenStudentId) {
-        manager.deleteStudent(chosenStudentId);
-        return 0;
-    }
+    public void deleteStudent(int chosenStudentId) { manager.deleteStudent(chosenStudentId); }
 
-    public User editStudent(String name) {
-        manager.editStudent(name);
-        return null;
+
+
+    public void editStudent(int userId, int school, String name, String username) {
+        manager.editStudent(userId,school, name, username);
+
     }
->>>>>>> Stashed changes
 }
