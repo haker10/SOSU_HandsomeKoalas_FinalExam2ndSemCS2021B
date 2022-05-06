@@ -6,9 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.controller.AdminManagesTeachersController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="611.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesTeachersController">
+   <children>
+      <ChoiceBox fx:id="schoolChoiceBox" layoutX="26.0" layoutY="543.0" prefHeight="25.0" prefWidth="112.0" />
+      <Button layoutX="648.0" layoutY="543.0" mnemonicParsing="false" onAction="#addTeacher" text="Add" />
+      <TextField fx:id="newNameTxt" layoutX="147.0" layoutY="543.0" />
+      <TextField fx:id="newUserNameTxt" layoutX="307.0" layoutY="543.0" />
+      <TableView fx:id="teachersTableView" layoutX="26.0" layoutY="97.0" prefHeight="426.0" prefWidth="697.0">
+        <columns>
+          <TableColumn fx:id="schoolColumn" prefWidth="124.0" text="School" />
+          <TableColumn fx:id="nameColumn" minWidth="4.0" prefWidth="147.0" text="Name" />
+            <TableColumn fx:id="usernameColumn" prefWidth="160.0" text="User Name" />
+            <TableColumn fx:id="passwordColumn" prefWidth="122.0" text="Password" />
+            <TableColumn prefWidth="69.0" text="Column X" />
+            <TableColumn prefWidth="81.0" text="Column X" />
+        </columns>
+      </TableView>
+      <Button layoutX="56.0" layoutY="50.0" mnemonicParsing="false" onAction="#editTeacher" text="Edit" />
+      <Button layoutX="138.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteTeacher" text="Delete" />
+      <TextField fx:id="newPasswordTxt" layoutX="464.0" layoutY="543.0" prefHeight="25.0" prefWidth="149.0" />
+   </children>
 </AnchorPane>
