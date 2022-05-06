@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/be/School.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesSchoolsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesSchoolsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/be/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesAdminsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesAdminsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesSchoolsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesSchoolsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesAdminsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesAdminsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesSchoolsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesSchoolsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HandsomaKoalasTicketMaster" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -106,6 +99,7 @@
       <workItem from="1651678075764" duration="2982000" />
       <workItem from="1651682709551" duration="272000" />
       <workItem from="1651742784022" duration="10314000" />
+      <workItem from="1651860950582" duration="3892000" />
     </task>
     <servers />
   </component>
