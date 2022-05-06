@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     private TextField usernameTxt;
 
     UserModel userModel;
+    int schoolId1;
 
     //constructor
     public LoginController(){
@@ -57,6 +58,7 @@ public class LoginController implements Initializable {
            }
            else {
                if (result.getTypeOfUser() == 1) {
+                   schoolId1 = result.getSchool();
                    try{
                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/adminView.fxml"));
                        Stage stage = new Stage();
@@ -64,6 +66,7 @@ public class LoginController implements Initializable {
                        //stage.initStyle(StageStyle.TRANSPARENT);
                        stage.setScene(scene);
                        stage.show();
+                       stage.setUserData(schoolId1);
                        //scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
                        e.printStackTrace();
