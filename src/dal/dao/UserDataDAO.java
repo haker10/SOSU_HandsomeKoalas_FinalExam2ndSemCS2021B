@@ -99,6 +99,22 @@ public class UserDataDAO {
         }
     }
 
+    public void editStudent(int userId, int school, String name, String username, String password) {
+        String sql = "UPDATE UserData SET school = ?, name = ?, username = ?, password = ? WHERE userID = ?";
+
+        try(Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, school);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, userId);
+            preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /*public List<> getAllSchools() {
         List<School> allSchools = new ArrayList<>();
         String sql = "SELECT * FROM "

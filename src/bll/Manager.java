@@ -1,17 +1,21 @@
 package bll;
 
+import be.School;
 import be.User;
+import dal.dao.SchoolDAO;
 import dal.dao.UserDataDAO;
 
 import java.util.List;
 
 public class Manager {
 
+    SchoolDAO schoolDAO;
     UserDataDAO userDataDAO;
 
     //constructor
     public Manager(){
         userDataDAO = new UserDataDAO();
+        schoolDAO = new SchoolDAO();
 
     }
 
@@ -34,6 +38,14 @@ public class Manager {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void editStudent(int userId, int school, String name, String username, String password) {
+        userDataDAO.editStudent(userId, school, name, username, password);
+    }
+
+    public List<School> getAllSchools() {
+        return schoolDAO.getAllSchools();
     }
 
     /*public List<String> getAllSchools() {

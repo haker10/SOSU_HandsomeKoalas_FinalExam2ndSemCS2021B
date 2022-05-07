@@ -27,14 +27,23 @@ public class UserModel {
         allTeachers.addAll(manager.getAllTeachers());
         return allTeachers;
     }
+    public ObservableList<School> getAllSchools() {
+        allSchools = FXCollections.observableArrayList();
+        allSchools.addAll(manager.getAllSchools());
+        return allSchools;}
 
-    public void createTeacher(Integer school, String name, String username, String password) {
+
+        public void createTeacher(Integer school, String name, String username, String password) {
 
         manager.createTeacher(school, name, username, password);
     }
 
     public void deleteTeacher(int userId) {
         manager.deleteTeacher(userId);
+    }
+
+    public void editStudent(int userId, int school, String name, String username, String password) {
+        manager.editStudent(userId, school, name, username, password);
     }
 
    /* public ObservableList getAllSchools() {

@@ -45,4 +45,20 @@ public class User {
     public String toString() {
         return "User{" + "userId=" + userId + ", typeOfUser=" + typeOfUser + ", school=" + school + ", userName=" + name + ", username=" + username + ", password=" + password + '}';
     }
+
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    public void setUsername(String newUserName) {
+        username = newUserName;
+    }
+
+    public void setSchool(Integer newSchool) {
+        school = newSchool;
+    }
+
+    public void setPassword(String newPassword) {
+        password = newPassword;
+    }
 }
