@@ -115,8 +115,7 @@ public class CreateCitizenTemplateController implements Initializable {
     private ObservableList<Integer> score;
 
     CitizenTemplateModel citizenTemplateModel;
-    Stage currentStage = (Stage) twelvethInfoBtn.getScene().getWindow();
-    int citizenTemplateId =(Integer) currentStage.getUserData();
+
 
     public CreateCitizenTemplateController(){
         citizenTemplateModel = new CitizenTemplateModel();
@@ -134,8 +133,11 @@ public class CreateCitizenTemplateController implements Initializable {
     }
     public void OnClickfirstComboBox(ActionEvent event) {
 
+        Stage currentStage = (Stage) cLChoicebox.getScene().getWindow();
+        int citizenTemplateId = (Integer) currentStage.getUserData();
+
         if(firstComboBox.getSelectionModel().getSelectedItem().equals("Not Relevant")){
-            citizenTemplateModel.updateCitizenTemplate(null, "Function level", "Basic problems related to everyday life", "green", citizenTemplateId);
+            citizenTemplateModel.updateCitizenTemplate("Function level", "Basic problems related to everyday life", "green", citizenTemplateId);
 
         }
         else if(firstComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || firstComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){

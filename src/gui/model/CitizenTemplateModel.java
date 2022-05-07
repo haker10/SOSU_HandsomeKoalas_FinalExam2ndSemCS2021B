@@ -15,7 +15,7 @@ public class CitizenTemplateModel {
        return manager.createCitizenTemplate(schoolId1);
     }
 
-    public void updateCitizenTemplate(Object o, String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
-        manager.updateCitizenTemplate(o, categoryName, categoryExplanation,color, citizenTemplateId);
+    public void updateCitizenTemplate(String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
+        manager.updateCitizenTemplate(categoryName, categoryExplanation,color, citizenTemplateId);
     }
 }

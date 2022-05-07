@@ -58,8 +58,6 @@ public class TeacherController implements Initializable {
 
     public void handleCitizenTemplate(ActionEvent actionEvent) {
 
-
-
         Stage currentStage = (Stage) citizenTemplateBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         currentStage.close();

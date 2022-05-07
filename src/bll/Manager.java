@@ -92,8 +92,8 @@ public class Manager {
 
     }
 
-    public void updateCitizenTemplate(Object o, String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
-        healthConditionsCitizenTemplateDAO.updateCitizenTemplate(o, categoryName, categoryExplanation, color, citizenTemplateId);
+    public void updateCitizenTemplate(String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
+        healthConditionsCitizenTemplateDAO.updateCitizenTemplate(categoryName, categoryExplanation, color, citizenTemplateId);
     }
 }
 
