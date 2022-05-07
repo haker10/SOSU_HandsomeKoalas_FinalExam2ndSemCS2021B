@@ -21,4 +21,4 @@ public class School {
     public String toString() {
         return school;
     }
-}
+

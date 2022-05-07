@@ -4,9 +4,14 @@ import be.User;
 import dal.DatabaseConnector;
 
 
+import javax.swing.plaf.nimbus.State;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -49,12 +54,20 @@ public class UserDataDAO {
     public List<User> getAllAdmins() {
         List<User> allAdmins = new ArrayList<>();
         String sql = "SELECT * FROM UserData WHERE typeOfUser = ?";
-        try (Connection connection = databaseConnector.getConnection()) {
+
+       
+
+        try (Connection connection = databaseConnector.getConnection()){
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 1);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
+
             while (resultSet.next()) {
+
+            while (resultSet.next()){
+
                 int userID = resultSet.getInt("userID");
                 int school = resultSet.getInt("school");
                 String name = resultSet.getString("name");
@@ -63,11 +76,16 @@ public class UserDataDAO {
                 User user = new User(userID, 1, school, name, username, password);
                 allAdmins.add(user);
             }
-        } catch (Exception e) {
+
+      
+
+        } catch (Exception e){
+
             e.printStackTrace();
         }
         return allAdmins;
     }
+
      public User createAdmin ( int schoolId, String name, String username, String password) {
          User admin = null;
          String sql = "INSERT INTO UserData (typeOfUser, school, name, username, password) VALUES (?, ?, ?, ?, ?)";
@@ -119,12 +137,22 @@ public class UserDataDAO {
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, 3);
+
+
+    public User createAdmin(int schoolId, String name, String username, String password) {
+        User admin = null;
+        String sql = "INSERT INTO UserData (typeOfUser, school, name, username, password) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, 1);
+
             preparedStatement.setInt(2, schoolId);
             preparedStatement.setString(3, name);
             preparedStatement.setString(4, username);
             preparedStatement.setString(5, password);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
             while (resultSet.next()) {
                 int userID = resultSet.getInt(1);
                 student = new User(userID, 3, schoolId, name, username, password);
@@ -159,6 +187,16 @@ public class UserDataDAO {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
+            while (resultSet.next()){
+                int userID = resultSet.getInt(1);
+                admin = new User(userID, 1, schoolId, name, username, password);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return admin;
 
     }
 }

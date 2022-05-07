@@ -16,7 +16,11 @@ import java.util.ResourceBundle;
 public class TeacherController implements Initializable {
 
     @FXML
+
     private Button studentBtn;
+
+    private Button citizenTemplateBtn;
+
 
     UserModel userModel;
 
@@ -41,6 +45,22 @@ public class TeacherController implements Initializable {
             stage.setScene(scene);
             stage.show();
             stage.setUserData(schoolId1);
+            //scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void handleCitizenTemplate(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) citizenTemplateBtn.getScene().getWindow();
+        currentStage.close();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesCitizenTemplateView.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            //stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
             //scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();

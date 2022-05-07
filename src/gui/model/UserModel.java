@@ -15,6 +15,9 @@ public class UserModel {
     private ObservableList<User> allStudents;
 
 
+    private ObservableList<School> allSchools;
+    private ObservableList<User> allAdmins;
+
     //constructor
     public UserModel() {
         manager = new Manager();
@@ -49,6 +52,7 @@ public class UserModel {
 
 
 
+
     public ObservableList<User> getAllStudents() {
         allStudents = FXCollections.observableArrayList();
         allStudents.addAll(manager.getAllStudents());
@@ -65,4 +69,5 @@ public class UserModel {
         manager.editStudent(userId,school, name, username);
 
     }
+
 }
