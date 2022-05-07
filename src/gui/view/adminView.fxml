@@ -12,5 +12,6 @@
       <Button fx:id="schoolBtn" layoutX="321.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageSchools" text="Schools" />
       <Button fx:id="studentBtn" layoutX="176.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageStudents" text="Students" />
       <Button fx:id="adminBtn" layoutX="468.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageAdmins" text="Administrators" />
+      <Label fx:id="schoolId1Lbl" layoutX="257.0" layoutY="227.0" />
    </children>
 </AnchorPane>

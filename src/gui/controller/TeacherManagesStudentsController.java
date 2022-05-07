@@ -3,37 +3,30 @@ package gui.controller;
 import be.User;
 import gui.model.UserModel;
 import javafx.event.ActionEvent;
-
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
-import javax.swing.*;
-import javafx.event.EventHandler;
 import javafx.util.converter.IntegerStringConverter;
 
+import javax.swing.*;
 import java.net.URL;
-import java.sql.RowId;
 import java.util.ResourceBundle;
 
+public class TeacherManagesStudentsController implements Initializable {
 
-public class AdminManagesStudentsController implements Initializable {
 
-
-    UserModel userModel;
     @FXML
-    private TableColumn<User, Integer> schoolColumn;
+    private TextField filterTxt;
 
     @FXML
     private TextField nameTxt;
 
     @FXML
-    private TableColumn<User, String> nameColumn;
+    private TextField usernameTxt;
 
     @FXML
     private TextField passwordTxt;
@@ -42,22 +35,39 @@ public class AdminManagesStudentsController implements Initializable {
     private TableView<User> studentTableView;
 
     @FXML
-    private TableColumn<User, String> usernameColumn;
+    private TableColumn<User, Integer> schoolColumn;
 
     @FXML
-    private TextField usernameTxt;
+    private TableColumn<User, String> nameColumn;
+
+    @FXML
+    private TableColumn<User, String> usernameColumn;
+
+    UserModel userModel;
 
     int schoolId1;
-
-    public AdminManagesStudentsController() {
-        userModel = new UserModel();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentTableView.setEditable(true);
         editStudentFromTableView();
         updateStudentTableView();
+    }
+
+    public TeacherManagesStudentsController(){
+        userModel = new UserModel();
+    }
+
+    public void updateStudentTableView() {
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
+        try {
+            studentTableView.setItems(userModel.getAllStudents());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void editStudentFromTableView(){
@@ -119,18 +129,6 @@ public class AdminManagesStudentsController implements Initializable {
         );
     }
 
-    public void updateStudentTableView() {
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
-        try {
-            studentTableView.setItems(userModel.getAllStudents());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void onClickCreate(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
@@ -149,7 +147,7 @@ public class AdminManagesStudentsController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-          JFrame jFrame = new JFrame();
+        JFrame jFrame = new JFrame();
         try{
             if (studentTableView.getSelectionModel() == null){
                 JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
@@ -159,8 +157,8 @@ public class AdminManagesStudentsController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "USER DELETED !!");
                 updateStudentTableView();
             }
-            }catch (Exception e){
-              e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-  }
 }
