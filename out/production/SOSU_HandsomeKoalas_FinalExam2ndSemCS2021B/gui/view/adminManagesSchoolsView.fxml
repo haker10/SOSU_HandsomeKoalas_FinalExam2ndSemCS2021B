@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.controller.AdminManagesSchoolsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesSchoolsController">
+   <children>
+      <TextField fx:id="newSchoolTxt" layoutX="351.0" layoutY="14.0" promptText="New School" />
+      <Button layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onAction="#createNewSchool" text="Create" />
+      <ListView fx:id="schoolsListView" layoutX="30.0" layoutY="54.0" prefHeight="321.0" prefWidth="540.0" />
+   </children>
 </AnchorPane>
