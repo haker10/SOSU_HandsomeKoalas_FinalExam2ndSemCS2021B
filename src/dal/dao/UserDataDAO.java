@@ -114,9 +114,4 @@ public class UserDataDAO {
             e.printStackTrace();
         }
     }
-
-    /*public List<> getAllSchools() {
-        List<School> allSchools = new ArrayList<>();
-        String sql = "SELECT * FROM "
-    }*/
 }

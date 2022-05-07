@@ -47,8 +47,4 @@ public class Manager {
     public List<School> getAllSchools() {
         return schoolDAO.getAllSchools();
     }
-
-    /*public List<String> getAllSchools() {
-        return userDataDAO.getAllSchools();
-    }*/
 }

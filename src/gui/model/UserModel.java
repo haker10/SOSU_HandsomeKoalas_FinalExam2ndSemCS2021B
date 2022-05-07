@@ -46,9 +46,5 @@ public class UserModel {
         manager.editStudent(userId, school, name, username, password);
     }
 
-   /* public ObservableList getAllSchools() {
-        allSchools = FXCollections.observableArrayList();
-        allSchools.addAll(manager.getAllSchools());
-        return allSchools;
-    }*/
+
 }
