@@ -65,20 +65,22 @@ public class LoginController implements Initializable {
                        Scene scene = new Scene(root);
                        //stage.initStyle(StageStyle.TRANSPARENT);
                        stage.setScene(scene);
-                       stage.show();
                        stage.setUserData(schoolId1);
+                       stage.show();
                        //scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
                        e.printStackTrace();
                    }
                }
                else if (result.getTypeOfUser() == 2) {
+                   schoolId1 = result.getSchool();
                    try{
                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherView.fxml"));
                        Stage stage = new Stage();
                        Scene scene = new Scene(root);
                        //stage.initStyle(StageStyle.TRANSPARENT);
                        stage.setScene(scene);
+                       stage.setUserData(schoolId1);
                        stage.show();
                        //scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
@@ -86,6 +88,7 @@ public class LoginController implements Initializable {
                    }
                }
                else if (result.getTypeOfUser() == 3) {
+                   schoolId1 = result.getSchool();
                    try{
                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentView.fxml"));
                        Stage stage = new Stage();
