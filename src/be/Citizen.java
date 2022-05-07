@@ -4,7 +4,7 @@ public class Citizen {
     int citizenId;
     int citizenTemplateId;
 
-    public Citizen(int citizenId, int citizenTemplateId, String citizenGeneralInformation, String citizenFunctionalAbilities) {
+    public Citizen(int citizenId, int citizenTemplateId) {
         this.citizenId = citizenId;
         this.citizenTemplateId = citizenTemplateId;
     }

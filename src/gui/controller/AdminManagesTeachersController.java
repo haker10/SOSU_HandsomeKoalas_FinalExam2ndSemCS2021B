@@ -120,7 +120,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username, password);
+                        userModel.editTeacher(userId, school, name, username, password);
                     }
                 }
         );
@@ -140,7 +140,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username, password);
+                        userModel.editTeacher(userId, school, name, username, password);
                     }
                 }
         );
@@ -160,7 +160,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username, password);
+                        userModel.editTeacher(userId, school, name, username, password);
                     }
                 }
         );
@@ -179,7 +179,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username, password);
+                        userModel.editTeacher(userId, school, name, username, password);
                     }
                 }
         );

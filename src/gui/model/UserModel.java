@@ -13,20 +13,12 @@ public class UserModel {
     private ObservableList<School> allSchools;
     private ObservableList<User> allAdmins;
     private ObservableList<User> allStudents;
-
-
-    private ObservableList<School> allSchools;
-    private ObservableList<User> allAdmins;
-
     private ObservableList<User> allTeachers;
-    private ObservableList<School> allSchools;
 
     //constructor
     public UserModel() {
         manager = new Manager();
     }
-
-
 
 
     public User login(String username, String password) {
@@ -39,14 +31,9 @@ public class UserModel {
         allTeachers.addAll(manager.getAllTeachers());
         return allTeachers;
     }
-    public ObservableList<School> getAllSchools() {
-        allSchools = FXCollections.observableArrayList();
-        allSchools.addAll(manager.getAllSchools());
-        return allSchools;}
 
 
-        public void createTeacher(Integer school, String name, String username, String password) {
-
+    public void createTeacher(Integer school, String name, String username, String password) {
         manager.createTeacher(school, name, username, password);
     }
 
@@ -54,10 +41,13 @@ public class UserModel {
         manager.deleteTeacher(userId);
     }
 
-    public void editStudent(int userId, int school, String name, String username, String password) {
-        manager.editStudent(userId, school, name, username, password);
+    public void editStudent(int userId, int school, String name, String username) {
+        manager.editStudent(userId, school, name, username);
     }
 
+    public void editTeacher(int userId, int school, String name, String username, String password) {
+        manager.editTeacher(userId, school, name, username, password);
+    }
 
 
     public ObservableList<School> getAllSchools() {
@@ -80,9 +70,6 @@ public class UserModel {
         manager.createAdmin(schoolId, name, username, password);
     }
 
-
-
-
     public ObservableList<User> getAllStudents() {
         allStudents = FXCollections.observableArrayList();
         allStudents.addAll(manager.getAllStudents());
@@ -91,14 +78,11 @@ public class UserModel {
     public void createStudent(int schoolId, String name, String username, String password) {
         manager.createStudent(schoolId, name, username, password);
     }
-    public void deleteStudent(int chosenStudentId) { manager.deleteStudent(chosenStudentId); }
 
-
-
-    public void editStudent(int userId, int school, String name, String username) {
-        manager.editStudent(userId,school, name, username);
-
+    public void deleteStudent(int chosenStudentId) {
+        manager.deleteStudent(chosenStudentId);
     }
+
 
 
 }

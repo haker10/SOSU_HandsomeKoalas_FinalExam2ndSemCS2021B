@@ -33,17 +33,13 @@ public class User {
     public String getName() {
         return name;
     }
-    public String setName(String name1){
+    /*public String setName(String name1){
         name = name1;
         return null;
-    }
+    }*/
 
     public String getUsername() {
         return username;
-    }
-    public String setUsername(String username1) {
-        username = username1;
-        return null;
     }
 
     public String getPassword() {

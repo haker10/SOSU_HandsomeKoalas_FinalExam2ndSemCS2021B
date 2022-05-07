@@ -4,7 +4,7 @@ public class CitizenTemplate {
     int citizenTemplateId;
     int schoolId;
 
-    public CitizenTemplate(int citizenTemplateId, String citizenTemplateGeneralInformation, String citizenTemplateFunctionalAbilities, int schoolId) {
+    public CitizenTemplate(int citizenTemplateId, int schoolId) {
         this.citizenTemplateId = citizenTemplateId;
         this.schoolId = schoolId;
     }
