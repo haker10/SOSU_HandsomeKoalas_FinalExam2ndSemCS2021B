@@ -9,7 +9,14 @@
 
 
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
+
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/UserDataDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/UserModel.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
+
     </list>
 
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
@@ -72,6 +79,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -114,6 +122,10 @@
       <workItem from="1651678075764" duration="2982000" />
       <workItem from="1651682709551" duration="272000" />
 
+      <workItem from="1651852314513" duration="15792000" />
+      <workItem from="1651910594818" duration="3437000" />
+
+
       <workItem from="1651742784022" duration="10314000" />
       <workItem from="1651774171976" duration="10471000" />
       <workItem from="1651852806781" duration="9337000" />
@@ -124,6 +136,7 @@
       <workItem from="1651860950582" duration="3893000" />
 
       <workItem from="1651742784022" duration="10911000" />
+
 
 
     </task>
@@ -142,5 +155,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

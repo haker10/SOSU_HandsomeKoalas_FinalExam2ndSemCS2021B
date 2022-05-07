@@ -56,4 +56,22 @@ public class User {
     }
 
 
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    public void setUsername(String newUserName) {
+        username = newUserName;
+    }
+
+    public void setSchool(Integer newSchool) {
+        school = newSchool;
+    }
+
+    public void setPassword(String newPassword) {
+        password = newPassword;
+    }
+
+
+
 }
