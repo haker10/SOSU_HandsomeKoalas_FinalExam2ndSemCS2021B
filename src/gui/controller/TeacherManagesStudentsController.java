@@ -2,6 +2,9 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -52,6 +55,40 @@ public class TeacherManagesStudentsController implements Initializable {
         studentTableView.setEditable(true);
         editStudentFromTableView();
         updateStudentTableView();
+
+        ObservableList<User> userList = userModel.getAllStudents();
+        FilteredList<User> filteredData = null;
+        try {
+            filteredData = new FilteredList<>(userList, b -> true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        FilteredList<User> finalFilteredData = filteredData;
+        filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+            finalFilteredData.setPredicate(user -> {
+
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(studentTableView.comparatorProperty());
+
+        studentTableView.setItems(sortedData);
     }
 
     public TeacherManagesStudentsController(){

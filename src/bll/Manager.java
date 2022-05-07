@@ -1,10 +1,10 @@
 package bll;
 
+import be.CitizenTemplate;
 import be.School;
 import be.User;
 
-import dal.dao.SchoolDAO;
-import dal.dao.UserDataDAO;
+import dal.dao.*;
 
 import java.util.List;
 
@@ -12,11 +12,16 @@ public class Manager {
 
     SchoolDAO schoolDAO;
     UserDataDAO userDataDAO;
+    CitizenTemplateDAO citizenTemplateDAO;
+    HealthConditionsCitizenTemplateDAO healthConditionsCitizenTemplateDAO;
 
     //constructor
     public Manager() {
         userDataDAO = new UserDataDAO();
         schoolDAO = new SchoolDAO();
+        citizenTemplateDAO = new CitizenTemplateDAO();
+        healthConditionsCitizenTemplateDAO = new HealthConditionsCitizenTemplateDAO();
+
 
     }
 
@@ -82,6 +87,14 @@ public class Manager {
         userDataDAO.editStudent(userId, school, name, username);
     }
 
+    public CitizenTemplate createCitizenTemplate(int schoolId1) {
+       return citizenTemplateDAO.createCitizenTemplate(schoolId1);
+
+    }
+
+    public void updateCitizenTemplate(Object o, String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
+        healthConditionsCitizenTemplateDAO.updateCitizenTemplate(o, categoryName, categoryExplanation, color, citizenTemplateId);
+    }
 }
 
 
