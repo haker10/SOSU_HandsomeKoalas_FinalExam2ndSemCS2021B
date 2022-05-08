@@ -131,6 +131,8 @@ public class AdminManagesStudentsController implements Initializable {
 
     }
 
+
+
     public void onClickCreate(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();

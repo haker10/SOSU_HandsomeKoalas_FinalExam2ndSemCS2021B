@@ -14,6 +14,8 @@ public class Manager {
     UserDataDAO userDataDAO;
     CitizenTemplateDAO citizenTemplateDAO;
     HealthConditionsCitizenTemplateDAO healthConditionsCitizenTemplateDAO;
+    GeneralInformationCitizenTemplateDAO generalInformationCitizenTemplateDAO;
+    FunctionalAbilitesCitizenTemplateDAO functionalAbilitesCitizenTemplateDAO;
 
     //constructor
     public Manager() {
@@ -21,6 +23,9 @@ public class Manager {
         schoolDAO = new SchoolDAO();
         citizenTemplateDAO = new CitizenTemplateDAO();
         healthConditionsCitizenTemplateDAO = new HealthConditionsCitizenTemplateDAO();
+        generalInformationCitizenTemplateDAO = new GeneralInformationCitizenTemplateDAO();
+        functionalAbilitesCitizenTemplateDAO = new FunctionalAbilitesCitizenTemplateDAO();
+
 
 
     }
@@ -94,6 +99,14 @@ public class Manager {
 
     public void updateCitizenTemplate(String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
         healthConditionsCitizenTemplateDAO.updateCitizenTemplate(categoryName, categoryExplanation, color, citizenTemplateId);
+    }
+
+    public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
+        generalInformationCitizenTemplateDAO.updateGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
+    }
+
+    public void updateFunctionalAbilitiesCitizenTemplate(String functionalAbilitesName, String functionalAbilitesInfo, int functionalAbilitesScore, int citizenTemplateId) {
+        functionalAbilitesCitizenTemplateDAO.updateFunctionalAbilitiesCitizenTemplate(functionalAbilitesName, functionalAbilitesInfo, functionalAbilitesScore, citizenTemplateId);
     }
 }
 
