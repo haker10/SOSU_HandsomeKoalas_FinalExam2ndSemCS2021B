@@ -13,6 +13,7 @@ public class StudentController implements Initializable {
     public StudentController() {
           userModel = new UserModel();
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

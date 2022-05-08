@@ -1,6 +1,5 @@
 package gui.controller;
 
-import be.CitizenTemplate;
 import gui.model.CitizenTemplateModel;
 import gui.model.UserModel;
 import javafx.event.ActionEvent;
@@ -25,6 +24,7 @@ public class TeacherController implements Initializable {
 
 
     UserModel userModel;
+
     CitizenTemplateModel citizenTemplateModel;
 
     int schoolId1;

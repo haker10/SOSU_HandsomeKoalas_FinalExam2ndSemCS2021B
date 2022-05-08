@@ -6,6 +6,7 @@ import be.User;
 
 import dal.dao.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Manager {
@@ -97,16 +98,12 @@ public class Manager {
 
     }
 
-    public void updateCitizenTemplate(String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
-        healthConditionsCitizenTemplateDAO.updateCitizenTemplate(categoryName, categoryExplanation, color, citizenTemplateId);
-    }
-
     public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
         generalInformationCitizenTemplateDAO.updateGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
     }
 
-    public void updateFunctionalAbilitiesCitizenTemplate(String functionalAbilitesName, String functionalAbilitesInfo, int functionalAbilitesScore, int citizenTemplateId) {
-        functionalAbilitesCitizenTemplateDAO.updateFunctionalAbilitiesCitizenTemplate(functionalAbilitesName, functionalAbilitesInfo, functionalAbilitesScore, citizenTemplateId);
+    public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
+        functionalAbilitesCitizenTemplateDAO.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
     }
 }
 

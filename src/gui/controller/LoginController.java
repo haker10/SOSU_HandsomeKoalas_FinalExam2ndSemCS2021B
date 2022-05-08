@@ -29,6 +29,7 @@ public class LoginController implements Initializable {
     private TextField usernameTxt;
 
     UserModel userModel;
+
     int schoolId1;
 
     //constructor
@@ -95,6 +96,7 @@ public class LoginController implements Initializable {
                        Scene scene = new Scene(root);
                        //stage.initStyle(StageStyle.TRANSPARENT);
                        stage.setScene(scene);
+                       stage.setUserData(schoolId1);
                        stage.show();
                        //scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){

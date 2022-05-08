@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="758.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.VeryRelevantController">
+   <children>
+      <AnchorPane layoutX="112.0" layoutY="14.0" prefHeight="730.0" prefWidth="523.0">
+         <children>
+            <Label fx:id="categoryLbl" alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="523.0" text="ERNERING">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="subCategoryLbl" alignment="CENTER" layoutY="63.0" prefHeight="65.0" prefWidth="523.0" text="Problemer med vaske indtag" wrapText="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="profesionalNoteTxt" layoutX="92.0" layoutY="153.0" prefHeight="141.0" prefWidth="340.0" />
+            <Label alignment="CENTER" layoutX="195.0" layoutY="128.0" prefHeight="25.0" prefWidth="134.0" text="Profesional Note">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="187.0" layoutY="294.0" prefHeight="25.0" prefWidth="150.0" text="current assessment">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="currentAssessmentTxt" layoutX="92.0" layoutY="319.0" prefHeight="141.0" prefWidth="340.0" />
+            <TextArea fx:id="observationNoteTxt" layoutX="92.0" layoutY="543.0" prefHeight="141.0" prefWidth="340.0" />
+            <Label alignment="CENTER" layoutX="187.0" layoutY="518.0" prefHeight="25.0" prefWidth="150.0" text="Observation Note">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="datePicker" layoutX="21.0" layoutY="489.0" />
+            <Label alignment="CENTER" layoutX="214.0" layoutY="489.0" prefHeight="25.0" prefWidth="115.0" text="expected level">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="236.0" layoutY="691.0" mnemonicParsing="false" onAction="#OnClickSave" text="Save" />
+            <ComboBox fx:id="expectedLevelComboBox" layoutX="349.0" layoutY="489.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

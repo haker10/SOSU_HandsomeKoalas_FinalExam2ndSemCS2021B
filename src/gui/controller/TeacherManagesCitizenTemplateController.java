@@ -20,7 +20,9 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     private Button createBtn;
 
     CitizenTemplateModel citizenTemplateModel;
+
     CitizenTemplate citizenTemplate;
+
     int schoolId1;
 
 
@@ -31,7 +33,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         citizenTemplateModel = new CitizenTemplateModel();
-
     }
 
     public void onClickCreate(ActionEvent actionEvent) {

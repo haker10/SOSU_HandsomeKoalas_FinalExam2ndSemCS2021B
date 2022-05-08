@@ -3,6 +3,8 @@ package gui.model;
 import be.CitizenTemplate;
 import bll.Manager;
 
+import java.time.LocalDate;
+
 public class CitizenTemplateModel {
     Manager manager;
 
@@ -15,15 +17,12 @@ public class CitizenTemplateModel {
        return manager.createCitizenTemplate(schoolId1);
     }
 
-    public void updateCitizenTemplate(String categoryName, String categoryExplanation, String color, int citizenTemplateId) {
-        manager.updateCitizenTemplate(categoryName, categoryExplanation,color, citizenTemplateId);
-    }
-
     public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
         manager.updateGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
     }
 
-    public void updateFunctionalAbitiliesCitizenTemplate(String functionalAbilitesName, String functionalAbilitesInfo, Integer functionalAbilitesScore, int citizenTemplateId) {
-        manager.updateFunctionalAbilitiesCitizenTemplate(functionalAbilitesName, functionalAbilitesInfo, functionalAbilitesScore, citizenTemplateId);
+
+    public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
+        manager.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
     }
 }
