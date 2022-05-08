@@ -3,27 +3,15 @@ package gui.controller;
 import gui.model.CitizenTemplateModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -203,7 +191,7 @@ public class CreateCitizenTemplateController implements Initializable {
     String fa_subcategory3_6 = "The journey in different surroundings";
     String fa_subcategory3_7 = "Use means of transport";
     String fa_subcategory3_8 = "Endurance";
-    String fa_subcategory3_9 = "Muscle Strenght";
+    String fa_subcategory3_9 = "Muscle Strength";
 
     private ObservableList<String> fa_subcategory3_list = FXCollections.observableArrayList(fa_subcategory3_1, fa_subcategory3_2, fa_subcategory3_3, fa_subcategory3_4, fa_subcategory3_5, fa_subcategory3_6, fa_subcategory3_7, fa_subcategory3_8, fa_subcategory3_9);
 
@@ -215,7 +203,7 @@ public class CreateCitizenTemplateController implements Initializable {
     String fa_subcategories4_5 = "Energy and action";
     String fa_subcategories4_6 = "Memory";
     String fa_subcategories4_7 = "Emotional functions";
-    String fa_subcategories4_8 = "Overall cognitives functions";
+    String fa_subcategories4_8 = "Overall cognitive functions";
 
     private ObservableList<String> fa_subcategories4_list = FXCollections.observableArrayList(fa_subcategories4_1, fa_subcategories4_2, fa_subcategories4_3, fa_subcategories4_4, fa_subcategories4_5, fa_subcategories4_6, fa_subcategories4_7, fa_subcategories4_8);
 
@@ -309,12 +297,68 @@ public class CreateCitizenTemplateController implements Initializable {
     // Health Conditions
 
     public void OnClickHCCategory(ActionEvent event) {
-
+        if(hCCategoryComboBox.getValue() != null) {
+            String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
+            if (selectedCategory.equals(hc_category1)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory1_list);
+            } else if (selectedCategory.equals(hc_category2)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory2_list);
+            } else if (selectedCategory.equals(hc_category3)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory3_list);
+            } else if (selectedCategory.equals(hc_category4)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory4_list);
+            } else if (selectedCategory.equals(hc_category5)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory5_list);
+            } else if (selectedCategory.equals(hc_category6)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory6_list);
+            } else if (selectedCategory.equals(hc_category7)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory7_list);
+            } else if (selectedCategory.equals(hc_category8)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory8_list);
+            } else if (selectedCategory.equals(hc_category9)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory9_list);
+            } else if (selectedCategory.equals(hc_category10)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory10_list);
+            } else if (selectedCategory.equals(hc_category11)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory11_list);
+            } else if (selectedCategory.equals(hc_category12)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory12_list);
+            } else {
+                hCSubCategoryComboBox.setItems(null);
+            }
+        }
     }
 
-    public void OnClickRelevance(ActionEvent event) {
+    public void OnClickSaveRelevance(ActionEvent actionEvent) {
 
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenTemplateId = (Integer) currentStage.getUserData();
+
+        JFrame frame = new JFrame();
+
+        if(hCCategoryComboBox.getValue() == null || hCSubCategoryComboBox.getValue() == null || relevanceComboBox.getValue() == null) {
+            JOptionPane.showMessageDialog(frame, "Please fulfill all fields");
+        }
+        else {
+            String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
+            String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
+            String selectedRelevance = relevanceComboBox.getSelectionModel().getSelectedItem();
+            if (selectedRelevance.equals("Not relevant")) {
+                String professionalNote = "";
+                String assessmentNote = "";
+                String expectedLevel = "";
+                String observableNote = "";
+                LocalDate date = LocalDate.now();
+                citizenTemplateModel.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, selectedRelevance, professionalNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
+                hCCategoryComboBox.getSelectionModel().clearSelection();
+                hCSubCategoryComboBox.getSelectionModel().clearSelection();
+                relevanceComboBox.getSelectionModel().clearSelection();
+                JOptionPane.showMessageDialog(frame, "Saved");
+            }
+        }
     }
+
+
 
 
 
@@ -696,114 +740,122 @@ public class CreateCitizenTemplateController implements Initializable {
 
     // General Information
 
-    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
+        public void OnClickSaveGeneralInfo (ActionEvent actionEvent){
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         int citizenTemplateId = (Integer) currentStage.getUserData();
-        
-        ArrayList<String> generalInfoExplanation = new ArrayList<>();{
-        generalInfoExplanation.add("The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities.");
-        generalInfoExplanation.add("The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort.");
-        generalInfoExplanation.add("The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the\n" +
-                "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people.");
-        generalInfoExplanation.add("The roles that are particularly important for the citizen in relation to family, work and society.");
-        generalInfoExplanation.add("Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.");
-        generalInfoExplanation.add("Current or previous educational and / or professional background. For example, primary school, vocational education and higher education.");
-        generalInfoExplanation.add("A description of the citizen's experience of significant events, interests and chores throughout life.");
-        generalInfoExplanation.add("Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances.");
-        generalInfoExplanation.add("Health information");
-        generalInfoExplanation.add("Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use)");
-        generalInfoExplanation.add("A description of the home's physical" +
-                "framework and surroundings that are important" +
-                "for the citizen's everyday life and ability to function.");}
 
-        ArrayList<String> generalInfoEditable = new ArrayList<>();{
-        generalInfoEditable.add(masteryTxt.getText());
-        generalInfoEditable.add(motivationTxt.getText());
-        generalInfoEditable.add(resourcesTxt.getText());
-        generalInfoEditable.add(rollerTxt.getText());
-        generalInfoEditable.add(habitsTxt.getText());
-        generalInfoEditable.add(enJTxt.getText());
-        generalInfoEditable.add(lifeStoryTxt.getText());
-        generalInfoEditable.add(networkTxt.getText());
-        generalInfoEditable.add(healthInfoTxt.getText());
-        generalInfoEditable.add(assistiveDevicesTxt.getText());
-        generalInfoEditable.add(interiorOfHomeTxt.getText());}
+        ArrayList<String> generalInfoExplanation = new ArrayList<>();
+        {
+            generalInfoExplanation.add("The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities.");
+            generalInfoExplanation.add("The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort.");
+            generalInfoExplanation.add("The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the\n" +
+                    "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people.");
+            generalInfoExplanation.add("The roles that are particularly important for the citizen in relation to family, work and society.");
+            generalInfoExplanation.add("Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.");
+            generalInfoExplanation.add("Current or previous educational and / or professional background. For example, primary school, vocational education and higher education.");
+            generalInfoExplanation.add("A description of the citizen's experience of significant events, interests and chores throughout life.");
+            generalInfoExplanation.add("Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances.");
+            generalInfoExplanation.add("Health information");
+            generalInfoExplanation.add("Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use)");
+            generalInfoExplanation.add("A description of the home's physical" +
+                    "framework and surroundings that are important" +
+                    "for the citizen's everyday life and ability to function.");
+        }
 
-        ArrayList<String> generalInfoName = new ArrayList<>();{
-        generalInfoName.add("Mastery");
-        generalInfoName.add("Motivation");
-        generalInfoName.add("Resources");
-        generalInfoName.add("Roller");
-        generalInfoName.add("Habits");
-        generalInfoName.add("Education And Jobs");
-        generalInfoName.add("Life Story");
-        generalInfoName.add("Network");
-        generalInfoName.add("Health Information");
-        generalInfoName.add("Assistive Devices");
-        generalInfoName.add("The Interior of the Home");}
+        ArrayList<String> generalInfoEditable = new ArrayList<>();
+        {
+            generalInfoEditable.add(masteryTxt.getText());
+            generalInfoEditable.add(motivationTxt.getText());
+            generalInfoEditable.add(resourcesTxt.getText());
+            generalInfoEditable.add(rollerTxt.getText());
+            generalInfoEditable.add(habitsTxt.getText());
+            generalInfoEditable.add(enJTxt.getText());
+            generalInfoEditable.add(lifeStoryTxt.getText());
+            generalInfoEditable.add(networkTxt.getText());
+            generalInfoEditable.add(healthInfoTxt.getText());
+            generalInfoEditable.add(assistiveDevicesTxt.getText());
+            generalInfoEditable.add(interiorOfHomeTxt.getText());
+        }
 
-        for (int i = 0; i<generalInfoEditable.size(); i++){
-            citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoExplanation.get(i), generalInfoEditable.get(i), citizenTemplateId);
+        ArrayList<String> generalInfoName = new ArrayList<>();
+        {
+            generalInfoName.add("Mastery");
+            generalInfoName.add("Motivation");
+            generalInfoName.add("Resources");
+            generalInfoName.add("Roller");
+            generalInfoName.add("Habits");
+            generalInfoName.add("Education And Jobs");
+            generalInfoName.add("Life Story");
+            generalInfoName.add("Network");
+            generalInfoName.add("Health Information");
+            generalInfoName.add("Assistive Devices");
+            generalInfoName.add("The Interior of the Home");
+        }
+
+        for (int i = 0; i < generalInfoEditable.size(); i++) {
+            citizenTemplateModel.createGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoExplanation.get(i), generalInfoEditable.get(i), citizenTemplateId);
         }
 
     }
 
-    public void OnClickfirstInfoBtn(ActionEvent event) {
+        public void OnClickfirstInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities. !!");
     }
 
-    public void OnClicksecondInfoBtn(ActionEvent event) {
+        public void OnClicksecondInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort. !!");
     }
 
-    public  void OnClickthirdInfoBtn(ActionEvent event) {
+        public void OnClickthirdInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the " +
                 "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people. !!");
     }
 
-    public  void OnClickfourthInfoBtn(ActionEvent event) {
+        public void OnClickfourthInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "The roles that are particularly important for the citizen in relation to family, work and society. !!");
     }
 
-    public void OnClickfifthInfoBtn(ActionEvent event) {
+        public void OnClickfifthInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.  !!");
     }
 
-    public  void OnClicksixthInfoBtn(ActionEvent event) {
+        public void OnClicksixthInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "Current or previous educational and / or professional background. For example, primary school, vocational education and higher education. !!");
     }
 
-    public void OnClickseventhInfoBtn(ActionEvent event) {
+        public void OnClickseventhInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "A description of the citizen's experience of significant events, interests and chores throughout life. !!");
     }
 
-    public void OnClickeightInfoBtn(ActionEvent event) {
+        public void OnClickeightInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances. !!");
     }
 
-    public void OnClickninethInfoBtn(ActionEvent event) {
+        public void OnClickninethInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "Health information !!");
     }
 
-    public void OnClicktenthInfoBtn(ActionEvent event) {
+        public void OnClicktenthInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use) !!");
     }
 
-    public void OnClickeleventhInfoBtn(ActionEvent event) {
+        public void OnClickeleventhInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
     }
+
+
 
 }
 

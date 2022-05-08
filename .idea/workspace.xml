@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/be/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/createCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/createCitizenTemplateView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +128,7 @@
       <workItem from="1651955628593" duration="1313000" />
       <workItem from="1651956959346" duration="11402000" />
       <workItem from="1651968470085" duration="13911000" />
-      <workItem from="1652030437992" duration="6817000" />
+      <workItem from="1652030437992" duration="12167000" />
     </task>
     <servers />
   </component>
@@ -149,6 +146,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java</url>
+          <line>812</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

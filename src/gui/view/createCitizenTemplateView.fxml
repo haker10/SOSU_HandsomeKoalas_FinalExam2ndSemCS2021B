@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="910.0" prefWidth="1232.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateCitizenTemplateController">
+<AnchorPane prefHeight="910.0" prefWidth="1232.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.CreateCitizenTemplateController">
    <children>
       <Label layoutX="402.0" layoutY="51.0" prefHeight="58.0" prefWidth="347.0" text="CITIZEN TEMPLATE">
          <font>
@@ -19,12 +19,13 @@
       </Label>
       <AnchorPane layoutX="816.0" layoutY="95.0" prefHeight="200.0" prefWidth="402.0">
          <children>
-            <ComboBox fx:id="hCCategoryComboBox" layoutX="219.0" layoutY="43.0" onAction="#OnClickHCCategory" prefWidth="150.0" />
-            <ComboBox fx:id="hCSubCategoryComboBox" layoutX="219.0" layoutY="94.0" prefWidth="150.0" />
-            <ComboBox fx:id="relevanceComboBox" layoutX="219.0" layoutY="146.0" onAction="#OnClickRelevance" prefWidth="150.0" />
-            <Label layoutX="75.0" layoutY="47.0" text="Category" />
-            <Label layoutX="75.0" layoutY="98.0" prefHeight="17.0" prefWidth="70.0" text="SubCategory" />
-            <Label layoutX="75.0" layoutY="150.0" prefHeight="17.0" prefWidth="70.0" text="Relevance" />
+            <ComboBox fx:id="hCCategoryComboBox" layoutX="219.0" layoutY="22.0" onAction="#OnClickHCCategory" prefWidth="150.0" />
+            <ComboBox fx:id="hCSubCategoryComboBox" layoutX="219.0" layoutY="73.0" prefWidth="150.0" />
+            <ComboBox fx:id="relevanceComboBox" layoutX="219.0" layoutY="117.0" prefWidth="150.0" />
+            <Label layoutX="75.0" layoutY="26.0" text="Category" />
+            <Label layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="70.0" text="SubCategory" />
+            <Label layoutX="75.0" layoutY="121.0" prefHeight="17.0" prefWidth="70.0" text="Relevance" />
+            <Button layoutX="317.0" layoutY="161.0" mnemonicParsing="false" onAction="#OnClickSaveRelevance" text="Save" />
          </children></AnchorPane>
       <AnchorPane layoutX="53.0" layoutY="95.0" prefHeight="286.0" prefWidth="283.0">
          <children>
