@@ -81,7 +81,7 @@ public class VeryRelevantController implements Initializable {
             String assessmentNote;
             String expectedLevel;
             LocalDate date;
-            
+
             if(professionalNoteTxt.getText().isEmpty()){
                 professionalNote = "";
             }
