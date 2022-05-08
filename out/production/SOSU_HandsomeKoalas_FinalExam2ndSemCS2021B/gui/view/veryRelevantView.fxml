@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="758.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.VeryRelevantController">
+<AnchorPane prefHeight="758.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.VeryRelevantController">
    <children>
       <AnchorPane layoutX="112.0" layoutY="14.0" prefHeight="730.0" prefWidth="523.0">
          <children>
@@ -23,8 +22,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextArea fx:id="profesionalNoteTxt" layoutX="92.0" layoutY="153.0" prefHeight="141.0" prefWidth="340.0" />
-            <Label alignment="CENTER" layoutX="195.0" layoutY="128.0" prefHeight="25.0" prefWidth="134.0" text="Profesional Note">
+            <TextArea fx:id="professionalNoteTxt" layoutX="92.0" layoutY="153.0" prefHeight="141.0" prefWidth="340.0" />
+            <Label alignment="CENTER" layoutX="195.0" layoutY="128.0" prefHeight="25.0" prefWidth="134.0" text="Professional Note">
                <font>
                   <Font size="16.0" />
                </font>

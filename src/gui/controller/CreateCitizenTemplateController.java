@@ -346,7 +346,7 @@ public class CreateCitizenTemplateController implements Initializable {
             String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
             String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
             String selectedRelevance = relevanceComboBox.getSelectionModel().getSelectedItem();
-            String sendInformation = selectedCategory + "," + selectedSubCategory + "," + selectedRelevance;
+            String sendInformation = selectedCategory + "," + selectedSubCategory + "," + selectedRelevance + "," + citizenTemplateId;
             if (selectedRelevance.equals("Not relevant")) {
                 String professionalNote = "";
                 String assessmentNote = "";
