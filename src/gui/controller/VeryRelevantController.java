@@ -31,7 +31,7 @@ public class VeryRelevantController implements Initializable {
     private TextArea observationNoteTxt;
 
     @FXML
-    private TextArea profesionalNoteTxt;
+    private TextArea professionalNoteTxt;
 
     @FXML
     private Label subCategoryLbl;

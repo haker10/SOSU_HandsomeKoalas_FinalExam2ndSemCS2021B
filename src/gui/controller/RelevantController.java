@@ -14,7 +14,7 @@ public class RelevantController implements Initializable {
     @FXML
     private Label categoryLbl;
     @FXML
-    private TextArea profesionalNoteTxt;
+    private TextArea professionalNoteTxt;
     @FXML
     private Label subCategoryLbl;
 

@@ -3,6 +3,7 @@ package gui.controller;
 import gui.model.CitizenTemplateModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -343,6 +346,7 @@ public class CreateCitizenTemplateController implements Initializable {
             String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
             String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
             String selectedRelevance = relevanceComboBox.getSelectionModel().getSelectedItem();
+            String sendInformation = selectedCategory + "," + selectedSubCategory + "," + selectedRelevance;
             if (selectedRelevance.equals("Not relevant")) {
                 String professionalNote = "";
                 String assessmentNote = "";
@@ -354,6 +358,34 @@ public class CreateCitizenTemplateController implements Initializable {
                 hCSubCategoryComboBox.getSelectionModel().clearSelection();
                 relevanceComboBox.getSelectionModel().clearSelection();
                 JOptionPane.showMessageDialog(frame, "Saved");
+            }
+            else if (selectedRelevance.equals("Relevant")) {
+                try{
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    //stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+                    stage.setUserData(sendInformation);
+                    stage.show();
+                    //scene.setFill(Color.TRANSPARENT);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else if (selectedRelevance.equals("Very relevant")) {
+                try{
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/veryRelevantView.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    //stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+                    stage.setUserData(sendInformation);
+                    stage.show();
+                    //scene.setFill(Color.TRANSPARENT);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     }
