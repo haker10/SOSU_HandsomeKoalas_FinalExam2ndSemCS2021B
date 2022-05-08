@@ -29,125 +29,61 @@ import javax.swing.*;
 public class CreateCitizenTemplateController implements Initializable {
 
     @FXML
-    private Label firstLbl;
+    private TextArea enJTxt;
     @FXML
-    private Label secondLbl;
+    private TextArea assistiveDevicesTxt;
     @FXML
-    private Label thirdLbl;
+    private TextArea habitsTxt;
     @FXML
-    private Label fourthLbl;
+    private TextArea healthInfoTxt;
     @FXML
-    private Label fifthLbl;
+    private TextArea interiorOfHomeTxt;
     @FXML
-    private Label sixthLbl;
+    private TextArea lifeStoryTxt;
     @FXML
-    private Label seventLbl;
+    private TextArea masteryTxt;
     @FXML
-    private Label eightLbl;
+    private TextArea motivationTxt;
     @FXML
-    private Label ninethLbl;
+    private TextArea networkTxt;
     @FXML
-    private Label tenthLbl;
+    private TextArea resourcesTxt;
     @FXML
-    private Label eleventhLbl;
+    private TextArea rollerTxt;
+
     @FXML
-    private Label twelvethLbl;
+    private ComboBox<String> fACategoryComboBox;
     @FXML
-    private ChoiceBox<Integer> cLChoicebox;
+    private ComboBox<String> faSubCategoryComboBox;
     @FXML
-    private TextField cLTxt;
+    private ComboBox<Integer> presentLevelComboBox;
     @FXML
-    private TextField enJTxt;
+    private ComboBox<Integer> expectedLevelComboBox;
     @FXML
-    private ChoiceBox<Integer> mChoicebox;
+    private TextArea fAProfNoteTxt;
     @FXML
-    private ChoiceBox<Integer> mFChoicebox;
+    private ComboBox<String> performanceComboBox;
     @FXML
-    private TextField mFTxt;
+    private ComboBox<String> meaningOfPerformanceComboBox;
     @FXML
-    private TextField mTxt;
+    private TextArea wishesNGoalsTxt;
     @FXML
-    private ChoiceBox<Integer> pTChoicebox;
+    private TextArea observationNoteTxt;
     @FXML
-    private TextField pTTxt;
+    private DatePicker fADatePicker;
+
     @FXML
-    private ChoiceBox<Integer> sCChoicebox;
+    private ComboBox<String> hCCategoryComboBox;
     @FXML
-    private TextField sCTxt;
+    private ComboBox<String> hCSubCategoryComboBox;
     @FXML
-    private TextField assistiveDevicesTxt;
-    @FXML
-    private ComboBox<String> eightComboBox;
-    @FXML
-    private Button eightInfoBtn;
-    @FXML
-    private ComboBox<String> eleventhComboBox;
-    @FXML
-    private Button eleventhInfoBtn;
-    @FXML
-    private ComboBox<String> fifthComboBox;
-    @FXML
-    private Button fifthInfoBtn;
-    @FXML
-    private ComboBox<String> firstComboBox;
-    @FXML
-    private Button firstInfoBtn;
-    @FXML
-    private ComboBox<String> fourthComboBox;
-    @FXML
-    private Button fourthInfoBtn;
-    @FXML
-    private TextField habitsTxt;
-    @FXML
-    private TextField healthInfoTxt;
-    @FXML
-    private TextField interiorOfHomeTxt;
-    @FXML
-    private TextField lifeStoryTxt;
-    @FXML
-    private TextField masteryTxt;
-    @FXML
-    private TextField motivationTxt;
-    @FXML
-    private TextField networkTxt;
-    @FXML
-    private ComboBox<String> ninethComboBox;
-    @FXML
-    private Button ninethInfoBtn;
-    @FXML
-    private TextField resourcesTxt;
-    @FXML
-    private TextField rollerTxt;
-    @FXML
-    private ComboBox<String> secondComboBox;
-    @FXML
-    private Button secondInfoBtn;
-    @FXML
-    private ComboBox<String> seventComboBox;
-    @FXML
-    private Button seventhInfoBtn;
-    @FXML
-    private ComboBox<String> sixthComboBox;
-    @FXML
-    private Button sixthInfoBtn;
-    @FXML
-    private ComboBox<String> tenthComboBox;
-    @FXML
-    private Button tenthInfoBtn;
-    @FXML
-    private ComboBox<String> thirdComboBox;
-    @FXML
-    private Button thirdInfoBtn;
-    @FXML
-    private ComboBox<String> twelvethComboBox;
-    @FXML
-    private Button twelvethInfoBtn;
+    private ComboBox<String> relevanceComboBox;
+
 
     private ObservableList<String> relevance;
     private ObservableList<Integer> score;
 
     CitizenTemplateModel citizenTemplateModel;
-
 
     public CreateCitizenTemplateController(){
         citizenTemplateModel = new CitizenTemplateModel();
@@ -164,81 +100,28 @@ public class CreateCitizenTemplateController implements Initializable {
 
     }
 
-    public void OnClickSave(ActionEvent actionEvent) {
-
-        Stage currentStage = (Stage) cLChoicebox.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
-
-        ArrayList<String> functionalAbilitiesInfo = new ArrayList<>();
-        functionalAbilitiesInfo.add(sCTxt.getText());
-        functionalAbilitiesInfo.add(pTTxt.getText());
-        functionalAbilitiesInfo.add(mTxt.getText());
-        functionalAbilitiesInfo.add(mFTxt.getText());
-        functionalAbilitiesInfo.add(cLTxt.getText());
-
-       ArrayList<Integer> functionalAbilitiesScore = new ArrayList<>();
-       functionalAbilitiesScore.add(sCChoicebox.getValue());
-       functionalAbilitiesScore.add(pTChoicebox.getValue());
-       functionalAbilitiesScore.add(mChoicebox.getValue());
-       functionalAbilitiesScore.add(mFChoicebox.getValue());
-       functionalAbilitiesScore.add(cLChoicebox.getValue());
-
-       ArrayList<String> functionalAbilitiesName = new ArrayList<>();
-        functionalAbilitiesName.add("Self-care");
-        functionalAbilitiesName.add("Practical tasks");
-        functionalAbilitiesName.add("Mobility");
-        functionalAbilitiesName.add("Mental functions");
-        functionalAbilitiesName.add("Community life");
-
-       ArrayList<String> generalInfoExplantion = new ArrayList<>();
-        generalInfoExplantion.add(masteryTxt.getText());
-        generalInfoExplantion.add(motivationTxt.getText());
-        generalInfoExplantion.add(resourcesTxt.getText());
-        generalInfoExplantion.add(rollerTxt.getText());
-        generalInfoExplantion.add(habitsTxt.getText());
-        generalInfoExplantion.add(enJTxt.getText());
-        generalInfoExplantion.add(lifeStoryTxt.getText());
-        generalInfoExplantion.add(networkTxt.getText());
-        generalInfoExplantion.add(healthInfoTxt.getText());
-        generalInfoExplantion.add(assistiveDevicesTxt.getText());
-        generalInfoExplantion.add(interiorOfHomeTxt.getText());
-
-       ArrayList<String> generalInfoName = new ArrayList<>();
-        generalInfoName.add("Mastery");
-        generalInfoName.add("Motivation");
-        generalInfoName.add("Resources");
-        generalInfoName.add("Roller");
-        generalInfoName.add("Habits");
-        generalInfoName.add("Education And Jobs");
-        generalInfoName.add("Life Story");
-        generalInfoName.add("Network");
-        generalInfoName.add("Health Information");
-        generalInfoName.add("Assistive Devices");
-        generalInfoName.add("The Interior of the Home");
 
 
+    public void OnClickFACategory(ActionEvent event) {
 
+    }
 
+    public void OnClickHCCategory(ActionEvent event) {
 
+    }
 
-       if(sCChoicebox.getSelectionModel().isEmpty() || pTChoicebox.getSelectionModel().isEmpty() || mChoicebox.getSelectionModel().isEmpty() ||
-               mFChoicebox.getSelectionModel().isEmpty() || cLChoicebox.getSelectionModel().isEmpty()){
-           JFrame jFrame = new JFrame();
-           JOptionPane.showMessageDialog(jFrame, "Please fulfill all score Fields  !!");
-       }
-       else{
-           for (int i = 0; i<generalInfoExplantion.size(); i++){
-               citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoExplantion.get(i), "null", citizenTemplateId);
-           }
-           for (int i = 0; i<functionalAbilitiesInfo.size(); i++){
-               citizenTemplateModel.updateFunctionalAbitiliesCitizenTemplate(functionalAbilitiesName.get(i), functionalAbilitiesInfo.get(i), functionalAbilitiesScore.get(i), citizenTemplateId);
-           }
-       }
+    public void OnClickRelevance(ActionEvent event) {
+
+    }
+
+    public void OnClickSaveFunctionalAbilities(ActionEvent event) {
 
     }
 
 
-    public void OnClickfirstComboBox(ActionEvent event) {
+
+
+    /*public void OnClickfirstComboBox(ActionEvent event) {
 
         Stage currentStage = (Stage) cLChoicebox.getScene().getWindow();
         int citizenTemplateId = (Integer) currentStage.getUserData();
@@ -251,7 +134,7 @@ public class CreateCitizenTemplateController implements Initializable {
         }
         else if(firstComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || firstComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 //stage.initStyle(StageStyle.TRANSPARENT);
@@ -283,7 +166,7 @@ public class CreateCitizenTemplateController implements Initializable {
         }
         else if(secondComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || secondComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 //stage.initStyle(StageStyle.TRANSPARENT);
@@ -314,7 +197,7 @@ public class CreateCitizenTemplateController implements Initializable {
         }
         else if(thirdComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || thirdComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 //stage.initStyle(StageStyle.TRANSPARENT);
@@ -344,7 +227,7 @@ public class CreateCitizenTemplateController implements Initializable {
 
         } else if (fourthComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || fourthComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")) {
             try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/subcategoryView.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/view/relevantView.fxml")));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 //stage.initStyle(StageStyle.TRANSPARENT);
@@ -373,7 +256,7 @@ public class CreateCitizenTemplateController implements Initializable {
                 fifthLbl.setTextFill(Color.WHITE);
             } else if (fifthComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || fifthComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -405,7 +288,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(sixthComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || sixthComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -436,7 +319,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(seventComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || seventComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -465,7 +348,7 @@ public class CreateCitizenTemplateController implements Initializable {
             eightLbl.setTextFill(Color.WHITE);
         } else if (eightComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || eightComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 //stage.initStyle(StageStyle.TRANSPARENT);
@@ -495,7 +378,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(ninethComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || ninethComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -527,7 +410,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(tenthComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || tenthComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -559,7 +442,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(eleventhComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || eleventhComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -591,7 +474,7 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if(twelvethComboBox.getSelectionModel().getSelectedItem().equals("Relevant") || twelvethComboBox.getSelectionModel().getSelectedItem().equals("Very Relevant")){
                 try{
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/subcategoryView.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
                     //stage.initStyle(StageStyle.TRANSPARENT);
@@ -609,78 +492,115 @@ public class CreateCitizenTemplateController implements Initializable {
                     twelvethLbl.setTextFill(Color.WHITE);
                 }
             }
-    }
+    } */
 
+
+    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
+
+        Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
+        int citizenTemplateId = (Integer) currentStage.getUserData();
+        
+        ArrayList<String> generalInfoExplanation = new ArrayList<>();{
+        generalInfoExplanation.add("The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities.");
+        generalInfoExplanation.add("The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort.");
+        generalInfoExplanation.add("The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the\n" +
+                "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people.");
+        generalInfoExplanation.add("The roles that are particularly important for the citizen in relation to family, work and society.");
+        generalInfoExplanation.add("Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.");
+        generalInfoExplanation.add("Current or previous educational and / or professional background. For example, primary school, vocational education and higher education.");
+        generalInfoExplanation.add("A description of the citizen's experience of significant events, interests and chores throughout life.");
+        generalInfoExplanation.add("Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances.");
+        generalInfoExplanation.add("Health information");
+        generalInfoExplanation.add("Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use)");
+        generalInfoExplanation.add("A description of the home's physical" +
+                "framework and surroundings that are important" +
+                "for the citizen's everyday life and ability to function.");}
+
+        ArrayList<String> generalInfoEditable = new ArrayList<>();{
+        generalInfoEditable.add(masteryTxt.getText());
+        generalInfoEditable.add(motivationTxt.getText());
+        generalInfoEditable.add(resourcesTxt.getText());
+        generalInfoEditable.add(rollerTxt.getText());
+        generalInfoEditable.add(habitsTxt.getText());
+        generalInfoEditable.add(enJTxt.getText());
+        generalInfoEditable.add(lifeStoryTxt.getText());
+        generalInfoEditable.add(networkTxt.getText());
+        generalInfoEditable.add(healthInfoTxt.getText());
+        generalInfoEditable.add(assistiveDevicesTxt.getText());
+        generalInfoEditable.add(interiorOfHomeTxt.getText());}
+
+        ArrayList<String> generalInfoName = new ArrayList<>();{
+        generalInfoName.add("Mastery");
+        generalInfoName.add("Motivation");
+        generalInfoName.add("Resources");
+        generalInfoName.add("Roller");
+        generalInfoName.add("Habits");
+        generalInfoName.add("Education And Jobs");
+        generalInfoName.add("Life Story");
+        generalInfoName.add("Network");
+        generalInfoName.add("Health Information");
+        generalInfoName.add("Assistive Devices");
+        generalInfoName.add("The Interior of the Home");}
+
+        for (int i = 0; i<generalInfoEditable.size(); i++){
+            citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoExplanation.get(i), generalInfoEditable.get(i), citizenTemplateId);
+        }
+
+    }
 
     public void OnClickfirstInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Basic problems related to everyday life !!");
-
+        JOptionPane.showMessageDialog(jFrame, "The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities. !!");
     }
 
     public void OnClicksecondInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to mobility and movement !!");
-
+        JOptionPane.showMessageDialog(jFrame, "The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort. !!");
     }
 
     public  void OnClickthirdInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to food, drink and weight !!");
-
+        JOptionPane.showMessageDialog(jFrame, "The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the " +
+                "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people. !!");
     }
 
     public  void OnClickfourthInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to skin, flesh wounds, ulcers and mucous !!");
-
+        JOptionPane.showMessageDialog(jFrame, "The roles that are particularly important for the citizen in relation to family, work and society. !!");
     }
 
     public void OnClickfifthInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to speaking, understanding and reading !!");
-
+        JOptionPane.showMessageDialog(jFrame, "Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.  !!");
     }
 
     public  void OnClicksixthInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to emotions, absence of social skills, abuses and mental problems !!");
-
+        JOptionPane.showMessageDialog(jFrame, "Current or previous educational and / or professional background. For example, primary school, vocational education and higher education. !!");
     }
 
     public void OnClickseventhInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to breathing, the heart and the vascular system !!");
-
+        JOptionPane.showMessageDialog(jFrame, "A description of the citizen's experience of significant events, interests and chores throughout life. !!");
     }
 
     public void OnClickeightInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to sexual oragns and its dysfunctions !!");
-
+        JOptionPane.showMessageDialog(jFrame, "Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances. !!");
     }
 
     public void OnClickninethInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related with physical pain and all five senses !!");
-
+        JOptionPane.showMessageDialog(jFrame, "Health information !!");
     }
 
     public void OnClicktenthInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to inhability to sleep and so getting rest !!");
-
+        JOptionPane.showMessageDialog(jFrame, "Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use) !!");
     }
     public void OnClickeleventhInfoBtn(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to memory, perception, knowledge about treatments and cognitive problems !!");
-
-    }
-
-    public void OnClicktwelvethInfoBtn(ActionEvent event) {
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Problems related to urination, stool incontinence, stomach and intestine  !!");
-
+        JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
     }
 }
 
