@@ -361,6 +361,9 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if (selectedRelevance.equals("Relevant")) {
                 try{
+                    hCCategoryComboBox.getSelectionModel().clearSelection();
+                    hCSubCategoryComboBox.getSelectionModel().clearSelection();
+                    relevanceComboBox.getSelectionModel().clearSelection();
                     Parent root = FXMLLoader.load(getClass().getResource("/gui/view/relevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
@@ -375,6 +378,9 @@ public class CreateCitizenTemplateController implements Initializable {
             }
             else if (selectedRelevance.equals("Very relevant")) {
                 try{
+                    hCCategoryComboBox.getSelectionModel().clearSelection();
+                    hCSubCategoryComboBox.getSelectionModel().clearSelection();
+                    relevanceComboBox.getSelectionModel().clearSelection();
                     Parent root = FXMLLoader.load(getClass().getResource("/gui/view/veryRelevantView.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);

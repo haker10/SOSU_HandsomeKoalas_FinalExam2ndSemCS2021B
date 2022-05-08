@@ -12,14 +12,14 @@
    <children>
       <AnchorPane layoutX="112.0" layoutY="14.0" prefHeight="730.0" prefWidth="523.0">
          <children>
-            <Label fx:id="categoryLbl" alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="523.0" text="ERNERING">
+            <Label fx:id="categoryLbl" alignment="CENTER" layoutY="14.0" prefHeight="53.0" prefWidth="523.0">
                <font>
-                  <Font size="36.0" />
+                  <Font size="28.0" />
                </font>
             </Label>
-            <Label fx:id="subCategoryLbl" alignment="CENTER" layoutY="63.0" prefHeight="65.0" prefWidth="523.0" text="Problemer med vaske indtag" wrapText="true">
+            <Label fx:id="subCategoryLbl" alignment="CENTER" layoutY="63.0" prefHeight="65.0" prefWidth="523.0" wrapText="true">
                <font>
-                  <Font size="24.0" />
+                  <Font size="17.0" />
                </font>
             </Label>
             <TextArea fx:id="professionalNoteTxt" layoutX="92.0" layoutY="153.0" prefHeight="141.0" prefWidth="340.0" />

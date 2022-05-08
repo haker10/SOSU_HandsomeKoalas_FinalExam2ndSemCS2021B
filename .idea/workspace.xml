@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/RelevantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/RelevantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/VeryRelevantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/VeryRelevantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/relevantView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/relevantView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/veryRelevantView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/veryRelevantView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +128,7 @@
       <workItem from="1651955628593" duration="1313000" />
       <workItem from="1651956959346" duration="11402000" />
       <workItem from="1651968470085" duration="13911000" />
-      <workItem from="1652030437992" duration="12827000" />
+      <workItem from="1652030437992" duration="17687000" />
     </task>
     <servers />
   </component>
@@ -146,7 +152,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java</url>
-          <line>844</line>
+          <line>850</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
