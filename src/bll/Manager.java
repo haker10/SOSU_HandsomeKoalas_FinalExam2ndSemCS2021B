@@ -24,6 +24,7 @@ public class Manager {
     HealthConditionsCitizenDAO healthConditionsCitizenDAO;
     GeneralInformationCitizenDAO generalInformationCitizenDAO;
     FunctionalAbilitiesCitizenDAO functionalAbilitiesCitizenDAO;
+    StudentGetsCitizenDAO studentGetsCitizenDAO;
 
     //constructor
     public Manager() {
@@ -37,6 +38,7 @@ public class Manager {
         healthConditionsCitizenDAO = new HealthConditionsCitizenDAO();
         generalInformationCitizenDAO = new GeneralInformationCitizenDAO();
         functionalAbilitiesCitizenDAO = new FunctionalAbilitiesCitizenDAO();
+        studentGetsCitizenDAO = new StudentGetsCitizenDAO();
     }
 
     public User login(String username, String password) {
@@ -165,6 +167,14 @@ public class Manager {
         healthConditionsCitizenDAO.copyHealthConditionsCitizen(citizenId, citizenTemplateId);
         functionalAbilitiesCitizenDAO.copyFunctionalAbilitiesCitizen(citizenId, citizenTemplateId);
         generalInformationCitizenDAO.copyGeneralInformationCitizen(citizenId, citizenTemplateId);
+    }
+
+    public List<Citizen> getAllCitizen() {
+        return citizenDAO.getAllCitizen();
+    }
+
+    public void assignCitizenToStudent(int studentId, int citizenID) {
+        studentGetsCitizenDAO.assignCitizenToStudent(studentId, citizenID);
     }
 }
 

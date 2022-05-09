@@ -84,5 +84,7 @@ public class UserModel {
     }
 
 
-
+    public void assignCitizenToStudent(int studentId, int citizenID) {
+        manager.assignCitizenToStudent(studentId, citizenID);
+    }
 }

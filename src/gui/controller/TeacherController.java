@@ -61,6 +61,7 @@ public class TeacherController implements Initializable {
         Stage currentStage = (Stage) citizenTemplateBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         currentStage.close();
+
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesCitizenTemplateView.fxml"));
             Stage stage = new Stage();
@@ -68,6 +69,22 @@ public class TeacherController implements Initializable {
             //stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.setUserData(schoolId1);
+            stage.show();
+            //scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void onClickManageCitizen(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) studentBtn.getScene().getWindow();
+        currentStage.close();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesCitizenView.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            //stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
             stage.show();
             //scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){

@@ -9,5 +9,6 @@
       <Label layoutX="275.0" layoutY="183.0" text="TEACHER" />
       <Button fx:id="studentBtn" layoutX="196.0" layoutY="134.0" mnemonicParsing="false" onAction="#onClickManageStudents" prefHeight="25.0" prefWidth="65.0" text="Student" />
       <Button fx:id="citizenTemplateBtn" layoutX="51.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleCitizenTemplate" text="Citizen Template" />
+      <Button fx:id="citizenBtn" layoutX="398.0" layoutY="134.0" mnemonicParsing="false" onAction="#onClickManageCitizen" text="Citizen" />
    </children>
 </AnchorPane>

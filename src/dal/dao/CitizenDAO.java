@@ -4,10 +4,9 @@ import be.Citizen;
 import be.CitizenTemplate;
 import dal.DatabaseConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CitizenDAO {
 
@@ -33,5 +32,25 @@ public class CitizenDAO {
             e.printStackTrace();
         }
         return citizen;
+    }
+
+    public List<Citizen> getAllCitizen() {
+        List<Citizen> allCitizen = new ArrayList<>();
+        String sql = "SELECT * FROM Citizen";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            ResultSet resultSet = statement.getResultSet();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("citizenID");
+                int citizenID = resultSet.getInt("citizenTemplateID");
+                Citizen citizen = new Citizen(id, citizenID);
+                allCitizen.add(citizen);
+            }
+        } catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  allCitizen;
     }
 }
