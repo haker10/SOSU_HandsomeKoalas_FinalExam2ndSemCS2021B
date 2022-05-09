@@ -259,7 +259,6 @@ public class EditCitizenTemplateController implements Initializable {
 
     public EditCitizenTemplateController(){
         citizenTemplateModel = new CitizenTemplateModel();
-
     }
 
     @Override
@@ -369,31 +368,65 @@ public class EditCitizenTemplateController implements Initializable {
             hCExpectedLevelComboBox.setValue(healthConditions.get(3));
             hCObservationNoteTxt.setText(healthConditions.get(4));
             hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-            if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant")){
-                hCprofessionalNoteTxt.setDisable(true);
-                currentAssessmentTxt.setDisable(true);
-                hCdatePicker.setDisable(true);
-                hCObservationNoteTxt.setDisable(true);
-                expectedLevelComboBox.setDisable(true);
-            }
-            if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant")){
-                currentAssessmentTxt.setDisable(true);
-                hCdatePicker.setDisable(true);
-                hCObservationNoteTxt.setDisable(true);
-                expectedLevelComboBox.setDisable(true);
-            }
-            if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")){
-                hCprofessionalNoteTxt.setDisable(false);
-                currentAssessmentTxt.setDisable(false);
-                hCdatePicker.setDisable(false);
-                hCObservationNoteTxt.setDisable(false);
-                expectedLevelComboBox.setDisable(false);
-            }
             hCCategoryComboBox.setDisable(true);
             hCSubCategoryComboBox.setDisable(true);
         }catch(NullPointerException e){
             throw new Exception("Does not exist");
+        }
+    }
 
+    public void OnClickedHCRelevance(ActionEvent actionEvent) {
+
+        Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
+        int citizenTemplateId = (Integer) currentStage.getUserData();
+
+        healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateId);
+
+        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))){
+            hCprofessionalNoteTxt.setDisable(true);
+            currentAssessmentTxt.setDisable(true);
+            hCdatePicker.setDisable(true);
+            hCObservationNoteTxt.setDisable(true);
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)){
+            hCprofessionalNoteTxt.setDisable(true);
+            hCprofessionalNoteTxt.setText("");
+            currentAssessmentTxt.setDisable(true);
+            currentAssessmentTxt.setText("");
+            hCdatePicker.setDisable(true);
+            hCdatePicker.setValue(LocalDate.now());
+            hCObservationNoteTxt.setDisable(true);
+            hCObservationNoteTxt.setText("");
+            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+
+        if((relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) || (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && healthConditions.get(0).equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0))){
+            hCprofessionalNoteTxt.setDisable(false);
+            currentAssessmentTxt.setDisable(true);
+            hCdatePicker.setDisable(true);
+            hCObservationNoteTxt.setDisable(true);
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")){
+            currentAssessmentTxt.setDisable(true);
+            currentAssessmentTxt.setText("");
+            hCdatePicker.setDisable(true);
+            hCdatePicker.setValue(LocalDate.now());
+            hCObservationNoteTxt.setDisable(true);
+            hCObservationNoteTxt.setText("");
+            hCExpectedLevelComboBox.setDisable(true);
+            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+        }
+
+        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")){
+            hCprofessionalNoteTxt.setDisable(false);
+            currentAssessmentTxt.setDisable(false);
+            hCdatePicker.setDisable(false);
+            hCObservationNoteTxt.setDisable(false);
+            hCExpectedLevelComboBox.setItems(expectedLevelList);
+            hCExpectedLevelComboBox.setDisable(false);
         }
     }
 
@@ -468,7 +501,6 @@ public class EditCitizenTemplateController implements Initializable {
             faSubCategoryComboBox.setDisable(true);
         }catch(NullPointerException e){
             throw new Exception("Does not exist");
-
         }
     }
 
@@ -482,6 +514,7 @@ public class EditCitizenTemplateController implements Initializable {
         int citizenTemplateId = (Integer) currentStage.getUserData();
 
         ArrayList<String> generalInfoEditable = new ArrayList<>();
+
         {
             generalInfoEditable.add(masteryTxt.getText());
             generalInfoEditable.add(motivationTxt.getText());
@@ -558,6 +591,8 @@ public class EditCitizenTemplateController implements Initializable {
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
     }
+
+
 }
 
 

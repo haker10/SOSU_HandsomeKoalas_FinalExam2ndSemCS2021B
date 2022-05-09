@@ -137,6 +137,10 @@ public class Manager {
     public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
         healthConditionsCitizenTemplateDAO.updateHealthConditionsCitizenTemplate(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
     }
+
+    public void deleteCitizenTemplate(int citizenTemplateId) {
+        citizenTemplateDAO.deleteCitizenTemplate(citizenTemplateId);
+    }
 }
 
 

@@ -1,13 +1,10 @@
 package dal.dao;
 
 import be.CitizenTemplate;
-import be.User;
 import dal.DatabaseConnector;
-import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CitizenTemplateDAO {
@@ -54,5 +51,18 @@ public class CitizenTemplateDAO {
             e.printStackTrace();
         }
         return citizenTemplate;
+    }
+
+    public void deleteCitizenTemplate(int citizenTemplateId) {
+
+        String sql = "DELETE FROM CitizenTemplate WHERE citizenTemplateID = ?";
+
+        try(Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateId);
+            preparedStatement.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -51,8 +51,7 @@ public class GeneralInformationCitizenTemplateDAO {
 
     public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
         String sql = "UPDATE GeneralInformationCitizenTemplate SET generalInformationCitizenTemplateEditable = ? WHERE generalInformationCitizenTemplateName = ? and citizenTemplateId = ? ";
-        try(
-                Connection connection = databaseConnector.getConnection()){
+        try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, generalInfoEditable);
             preparedStatement.setString(2, generalInfoName);

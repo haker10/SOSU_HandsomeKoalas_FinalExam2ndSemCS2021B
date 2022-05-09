@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -95,13 +96,17 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
+        JFrame jFrame = new JFrame();
+        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+        citizenTemplateModel.deleteCitizenTemplate(citizenTemplateId);
+        JOptionPane.showMessageDialog(jFrame, "Citizen Template DELETED !!");
+        updateCitizenTemplateTV();
     }
+
+
 }
 
 
