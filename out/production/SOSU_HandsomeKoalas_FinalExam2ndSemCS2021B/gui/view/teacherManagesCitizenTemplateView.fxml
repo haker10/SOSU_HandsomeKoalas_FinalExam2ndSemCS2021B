@@ -7,15 +7,16 @@
 
 <AnchorPane prefHeight="382.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherManagesCitizenTemplateController">
    <children>
-      <Button fx:id="createBtn" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCreate" text="Create" />
-      <Button fx:id="editBtn" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickEdit" text="Edit" />
-      <Button fx:id="deleteBtn" layoutX="205.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
+      <Button fx:id="createBtn" layoutX="76.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCreate" text="Create" />
+      <Button fx:id="editBtn" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickEdit" text="Edit" />
+      <Button fx:id="deleteBtn" layoutX="179.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
       <TableView fx:id="citizenTemplateTV" layoutX="61.0" layoutY="55.0" prefHeight="317.0" prefWidth="338.0">
         <columns>
           <TableColumn fx:id="citizenTemplateIDColumn" prefWidth="153.0" text="ID" />
           <TableColumn fx:id="citizenTemplateSchoolColumn" prefWidth="184.0" text="School" />
         </columns>
       </TableView>
-      <Button fx:id="copyBtn" layoutX="266.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCopy" text="Copy" />
+      <Button fx:id="copyBtn" layoutX="237.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCopy" text="Copy" />
+      <Button fx:id="createCitizenBtn" layoutX="293.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCreateCitizen" text="Create Citizen" />
    </children>
 </AnchorPane>

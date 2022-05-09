@@ -1,5 +1,6 @@
 package bll;
 
+import be.Citizen;
 import be.CitizenTemplate;
 import be.School;
 import be.User;
@@ -16,18 +17,26 @@ public class Manager {
     SchoolDAO schoolDAO;
     UserDataDAO userDataDAO;
     CitizenTemplateDAO citizenTemplateDAO;
+    CitizenDAO citizenDAO;
     HealthConditionsCitizenTemplateDAO healthConditionsCitizenTemplateDAO;
     GeneralInformationCitizenTemplateDAO generalInformationCitizenTemplateDAO;
     FunctionalAbilitesCitizenTemplateDAO functionalAbilitesCitizenTemplateDAO;
+    HealthConditionsCitizenDAO healthConditionsCitizenDAO;
+    GeneralInformationCitizenDAO generalInformationCitizenDAO;
+    FunctionalAbilitiesCitizenDAO functionalAbilitiesCitizenDAO;
 
     //constructor
     public Manager() {
         userDataDAO = new UserDataDAO();
         schoolDAO = new SchoolDAO();
         citizenTemplateDAO = new CitizenTemplateDAO();
+        citizenDAO = new CitizenDAO();
         healthConditionsCitizenTemplateDAO = new HealthConditionsCitizenTemplateDAO();
         generalInformationCitizenTemplateDAO = new GeneralInformationCitizenTemplateDAO();
         functionalAbilitesCitizenTemplateDAO = new FunctionalAbilitesCitizenTemplateDAO();
+        healthConditionsCitizenDAO = new HealthConditionsCitizenDAO();
+        generalInformationCitizenDAO = new GeneralInformationCitizenDAO();
+        functionalAbilitiesCitizenDAO = new FunctionalAbilitiesCitizenDAO();
     }
 
     public User login(String username, String password) {
@@ -148,6 +157,14 @@ public class Manager {
         healthConditionsCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
         functionalAbilitesCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
         generalInformationCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
+    }
+
+    public void createCitizenFromTemplate(int citizenTemplateId) {
+        Citizen citizen = citizenDAO.createCitizenFromTemplate(citizenTemplateId);
+        int citizenId = citizen.getCitizenId();
+        healthConditionsCitizenDAO.copyHealthConditionsCitizen(citizenId, citizenTemplateId);
+        functionalAbilitiesCitizenDAO.copyFunctionalAbilitiesCitizen(citizenId, citizenTemplateId);
+        generalInformationCitizenDAO.copyGeneralInformationCitizen(citizenId, citizenTemplateId);
     }
 }
 

@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.CitizenTemplate;
+import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +36,8 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
 
     CitizenTemplateModel citizenTemplateModel;
 
+    CitizenModel citizenModel;
+
     CitizenTemplate citizenTemplate;
 
     int schoolId1;
@@ -47,6 +50,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         citizenTemplateModel = new CitizenTemplateModel();
+        citizenModel = new CitizenModel();
         updateCitizenTemplateTV();
 
     }
@@ -115,6 +119,13 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1);
         JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
         updateCitizenTemplateTV();
+    }
+
+    public void onClickCreateCitizen(ActionEvent actionEvent) {
+        JFrame jFrame = new JFrame();
+        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+        citizenModel.createCitizenFromTemplate(citizenTemplateId);
+        JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
     }
 }
 

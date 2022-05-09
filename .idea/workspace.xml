@@ -7,11 +7,12 @@
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
     </list>
@@ -133,7 +134,7 @@
       <workItem from="1652030437992" duration="18159000" />
       <workItem from="1652051219660" duration="489000" />
       <workItem from="1652081381369" duration="25242000" />
-      <workItem from="1652117025595" duration="12759000" />
+      <workItem from="1652117025595" duration="16159000" />
     </task>
     <servers />
   </component>
