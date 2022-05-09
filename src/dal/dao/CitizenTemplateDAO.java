@@ -1,12 +1,14 @@
 package dal.dao;
 
 import be.CitizenTemplate;
+import be.User;
 import dal.DatabaseConnector;
+import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class CitizenTemplateDAO {
     DatabaseConnector databaseConnector;
@@ -15,6 +17,25 @@ public class CitizenTemplateDAO {
         databaseConnector = new DatabaseConnector();
     }
 
+    public List<CitizenTemplate> getALlCitizenTemplates() {
+        List<CitizenTemplate> allCitizenTemplates = new ArrayList<>();
+        String sql = "SELECT * FROM CitizenTemplate";
+
+        try(Connection connection = databaseConnector.getConnection()){
+        Statement statement = connection.createStatement();
+        statement.execute(sql);
+        ResultSet resultSet = statement.getResultSet();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("citizenTemplateID");
+            int school = resultSet.getInt("school");
+            CitizenTemplate citizenTemplate = new CitizenTemplate(id, school);
+            allCitizenTemplates.add(citizenTemplate);
+        }
+       } catch(SQLException throwables) {
+            throwables.printStackTrace();
+       }
+          return  allCitizenTemplates;
+    }
 
     public CitizenTemplate createCitizenTemplate(int schoolId1) {
         CitizenTemplate citizenTemplate = null;

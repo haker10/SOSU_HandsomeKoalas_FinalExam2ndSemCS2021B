@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/VeryRelevantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/VeryRelevantController.java" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +121,8 @@
       <workItem from="1651956959346" duration="11402000" />
       <workItem from="1651968470085" duration="13911000" />
       <workItem from="1652030437992" duration="18159000" />
+      <workItem from="1652051219660" duration="489000" />
+      <workItem from="1652081381369" duration="25242000" />
     </task>
     <servers />
   </component>
@@ -140,18 +139,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java</url>
-          <line>850</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
