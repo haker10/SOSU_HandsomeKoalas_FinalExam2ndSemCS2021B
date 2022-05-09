@@ -88,4 +88,27 @@ public class HealthConditionsCitizenTemplateDAO {
             e.printStackTrace();
         }
     }
+
+    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
+        String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                String category = resultSet.getString("healthConditionsCitizenTemplateCategory");
+                String subCategory = resultSet.getString("healthConditionsCitizenTemplateSubCategory");
+                String relevance = resultSet.getString("healthConditionsCitizenTemplateColor");
+                String proffNote = resultSet.getString("healthConditionsCitizenTemplateProfessionalNote");
+                String assessmentNote = resultSet.getString("healthConditionsCitizenTemplateAssessmentNote");
+                String expectedLevel = resultSet.getString("healthConditionsCitizenTemplateExpectedLevel");
+                String observationNote = resultSet.getString("healthConditionsCitizenTemplateObservableNote");
+                LocalDate date = resultSet.getDate("healthConditionsCitizenTemplateDate").toLocalDate();
+                createHealthConditionsCitizenTemplate(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, date, newCitizenTemplateId);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -141,6 +141,14 @@ public class Manager {
     public void deleteCitizenTemplate(int citizenTemplateId) {
         citizenTemplateDAO.deleteCitizenTemplate(citizenTemplateId);
     }
+
+    public void copyCitizenTemplate(int citizenTemplateId, int schoolID) {
+        CitizenTemplate citizenTemplate = citizenTemplateDAO.createCitizenTemplate(schoolID);
+        int citizenTemplateId2 = citizenTemplate.getCitizenTemplateId();
+        healthConditionsCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
+        functionalAbilitesCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
+        generalInformationCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
+    }
 }
 
 

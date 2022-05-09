@@ -107,6 +107,15 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
 
+    public void onClickCopy(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) createBtn.getScene().getWindow();
+        schoolId1 = (Integer) currentStage.getUserData();
+        JFrame jFrame = new JFrame();
+        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+        citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1);
+        JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
+        updateCitizenTemplateTV();
+    }
 }
 
 

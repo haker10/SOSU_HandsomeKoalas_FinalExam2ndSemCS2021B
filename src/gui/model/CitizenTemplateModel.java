@@ -73,4 +73,8 @@ public class CitizenTemplateModel {
     public void deleteCitizenTemplate(int citizenTemplateId) {
         manager.deleteCitizenTemplate(citizenTemplateId);
     }
+
+    public void copyCitizenTemplate(int citizenTemplateId, int schoolID) {
+        manager.copyCitizenTemplate(citizenTemplateId, schoolID);
+    }
 }

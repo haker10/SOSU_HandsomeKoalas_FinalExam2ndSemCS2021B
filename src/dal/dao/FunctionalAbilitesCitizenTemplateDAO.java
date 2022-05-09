@@ -96,4 +96,29 @@ public class FunctionalAbilitesCitizenTemplateDAO {
                 e.printStackTrace();
        }
    }
+
+    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
+        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ?";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                String category = resultSet.getString("functionalAbilitiesCitizenTemplateCategoryName");
+                String subCategory = resultSet.getString("functionalAbilitiesCitizenTemplateSubCategoryName");
+                int score = Integer.parseInt(resultSet.getString("functionalAbilitiesCitizenTemplateScore"));
+                int expectedScore = Integer.parseInt(resultSet.getString("functionalAbilitiesCitizenTemplateExpectedScore"));
+                String professionalNote = resultSet.getString("functionalAbilitiesCitizenTemplateProfessionalNote");
+                String performance = resultSet.getString("functionalAbilitiesCitizenTemplatePerformance");
+                String limitation = resultSet.getString("functionalAbilitiesCitizenTemplateLimitation");
+                String goalsNote = resultSet.getString("functionalAbilitiesCitizenTemplateGoalsNote");
+                String observationNote = resultSet.getString("functionalAbilitiesCitizenTemplateObservationNote");
+                LocalDate date = resultSet.getDate("functionalAbilitiesCitizenTemplateDate").toLocalDate();
+                createFunctionalAbilitiesCitizenTemplate(category, subCategory, score, expectedScore, professionalNote, performance, limitation, goalsNote, observationNote, date, newCitizenTemplateId);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

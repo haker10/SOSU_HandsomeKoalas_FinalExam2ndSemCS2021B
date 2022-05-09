@@ -535,6 +535,6 @@ public class CreateCitizenTemplateController implements Initializable {
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
     }
-    
+
 }
 
