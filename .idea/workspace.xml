@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +125,7 @@
       <workItem from="1652030437992" duration="18159000" />
       <workItem from="1652051219660" duration="489000" />
       <workItem from="1652081381369" duration="25242000" />
-      <workItem from="1652117025595" duration="8777000" />
+      <workItem from="1652117025595" duration="9139000" />
     </task>
     <servers />
   </component>
