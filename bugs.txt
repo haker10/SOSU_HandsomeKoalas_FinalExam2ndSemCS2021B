@@ -1,0 +1,3 @@
+fix all filters on table views
+add all Jframes
+dont show ids on table views
