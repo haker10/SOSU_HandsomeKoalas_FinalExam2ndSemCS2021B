@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -24,8 +25,11 @@ import java.util.ResourceBundle;
 
 public class AdminManagesStudentsController implements Initializable {
 
+    @FXML
+    private Label schoolLbl;
 
     UserModel userModel;
+
     @FXML
     private TableColumn<User, Integer> schoolColumn;
 
@@ -58,6 +62,11 @@ public class AdminManagesStudentsController implements Initializable {
         studentTableView.setEditable(true);
         editStudentFromTableView();
         updateStudentTableView();
+        Platform.runLater(() -> {
+            Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
+            schoolId1 = (int) currentStage.getUserData();
+            schoolLbl.setText(userModel.getSchoolName(schoolId1));
+        });
     }
 
     public void editStudentFromTableView(){

@@ -12,8 +12,7 @@
       <Button fx:id="deleteBtn" layoutX="179.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
       <TableView fx:id="citizenTemplateTV" layoutX="61.0" layoutY="55.0" prefHeight="317.0" prefWidth="338.0">
         <columns>
-          <TableColumn fx:id="citizenTemplateIDColumn" prefWidth="153.0" text="ID" />
-          <TableColumn fx:id="citizenTemplateSchoolColumn" prefWidth="184.0" text="School" />
+          <TableColumn fx:id="citizenTemplateNameColumn" prefWidth="153.0" text="Name" />
         </columns>
       </TableView>
       <Button fx:id="copyBtn" layoutX="237.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickCopy" text="Copy" />

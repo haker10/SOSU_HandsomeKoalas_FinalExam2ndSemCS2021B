@@ -2,6 +2,7 @@ package gui.controller;
 
 import gui.model.CitizenTemplateModel;
 import gui.model.UserModel;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +10,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TeacherController implements Initializable {
+
+    @FXML
+    private Label schoolLbl;
 
     @FXML
     private Button studentBtn;
@@ -36,7 +41,13 @@ public class TeacherController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
+            schoolId1 = (int) currentStage.getUserData();
+            schoolLbl.setText(userModel.getSchoolName(schoolId1));
+        });
+    }
 
     public void onClickManageStudents(ActionEvent actionEvent) {
         Stage currentStage = (Stage) studentBtn.getScene().getWindow();
@@ -77,18 +88,6 @@ public class TeacherController implements Initializable {
     }
 
     public void onClickManageCitizen(ActionEvent actionEvent) {
-        Stage currentStage = (Stage) studentBtn.getScene().getWindow();
-        currentStage.close();
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesCitizenView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            //stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
-            //scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
     }
 }

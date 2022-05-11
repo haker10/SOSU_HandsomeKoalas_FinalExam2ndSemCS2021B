@@ -4,14 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminController">
    <children>
-      <Label layoutX="254.0" layoutY="192.0" text="ADMINISTRATOR" />
+      <Label layoutX="493.0" layoutY="14.0" text="ADMINISTRATOR" />
       <Button fx:id="teacherBtn" layoutX="22.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageTeachers" prefHeight="0.0" prefWidth="109.0" text="Teachers" />
       <Button fx:id="logoutBtn" layoutX="214.0" layoutY="273.0" mnemonicParsing="false" onAction="#onClickLogOutBtn" text="Log out" />
       <Button fx:id="schoolBtn" layoutX="321.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageSchools" text="Schools" />
       <Button fx:id="studentBtn" layoutX="176.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageStudents" text="Students" />
       <Button fx:id="adminBtn" layoutX="468.0" layoutY="125.0" mnemonicParsing="false" onAction="#onClickManageAdmins" text="Administrators" />
-      <Label fx:id="schoolId1Lbl" layoutX="257.0" layoutY="227.0" />
+      <Label fx:id="schoolLbl" layoutX="22.0" layoutY="14.0" />
    </children>
 </AnchorPane>

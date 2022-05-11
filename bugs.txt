@@ -1,7 +1,8 @@
-every user should have a label with their school
+//every user should have a label with their school
 fix all filters on table views
 add all Jframes
 dont show ids on table views (also, delete all table columns with "school")
 add name on citizen template and citizen on db
 when creating or copying citizen template, have textfield to receive name
 admin manages admin view --> school choice box only shows schools which are not assigned to any admin and have a label with school name
+resize windows 

@@ -176,6 +176,10 @@ public class Manager {
     public void assignCitizenToStudent(int studentId, int citizenID) {
         studentGetsCitizenDAO.assignCitizenToStudent(studentId, citizenID);
     }
+
+    public String getSchoolName(int schoolId1) {
+        return schoolDAO.getSchoolName(schoolId1);
+    }
 }
 
 

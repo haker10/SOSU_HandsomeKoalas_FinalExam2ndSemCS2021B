@@ -56,5 +56,19 @@ public class SchoolDAO {
         return newSchool;
     }
 
+    public String getSchoolName(int schoolId1) {
+        String schoolName = null;
+        String sql = "SELECT school FROM School WHERE schoolID = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, schoolId1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                schoolName = resultSet.getString("school");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }   return schoolName;
+    }
 }
 

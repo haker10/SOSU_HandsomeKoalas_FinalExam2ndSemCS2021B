@@ -21,6 +21,9 @@ import java.util.ResourceBundle;
 public class AdminController implements Initializable {
 
     @FXML
+    private Label schoolLbl;
+
+    @FXML
     private Button adminBtn;
 
     @FXML
@@ -45,6 +48,12 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+            Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
+            schoolId1 = (int) currentStage.getUserData();
+            schoolLbl.setText(userModel.getSchoolName(schoolId1));
+        });
+
     }
 
 
@@ -58,6 +67,7 @@ public class AdminController implements Initializable {
             //stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
+            stage.setUserData(schoolId1);
             //scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();

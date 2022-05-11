@@ -7,6 +7,23 @@
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bugs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/SchoolDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesStudentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesStudentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesStudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesStudentsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesTeachersView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesTeachersView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/adminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/studentView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/studentView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesStudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesStudentsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +144,7 @@
       <workItem from="1652051219660" duration="489000" />
       <workItem from="1652081381369" duration="25242000" />
       <workItem from="1652117025595" duration="17955000" />
-      <workItem from="1652296998817" duration="2520000" />
+      <workItem from="1652296998817" duration="6864000" />
     </task>
     <servers />
   </component>
