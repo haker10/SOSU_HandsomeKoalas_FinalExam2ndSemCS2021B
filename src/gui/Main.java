@@ -16,9 +16,9 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("../gui/view/loginView.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            //primaryStage.initStyle(StageStyle.TRANSPARENT);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
-            //scene.setFill(Color.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
 
         }
 

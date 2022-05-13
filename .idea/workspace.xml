@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bugs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/be/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/Citizen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/be/CitizenTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/be/CitizenTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +67,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\justNiko_Rig\Desktop\School\GithubProjects\SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B\src\images" />
       <recent name="C:\Users\justNiko_Rig\Desktop\School\GithubProjects\SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B\src\gui\view" />
     </key>
   </component>
@@ -138,6 +127,7 @@
       <workItem from="1652117025595" duration="17955000" />
       <workItem from="1652296998817" duration="7149000" />
       <workItem from="1652454872612" duration="13050000" />
+      <workItem from="1652473195097" duration="3270000" />
     </task>
     <servers />
   </component>
@@ -154,7 +144,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
