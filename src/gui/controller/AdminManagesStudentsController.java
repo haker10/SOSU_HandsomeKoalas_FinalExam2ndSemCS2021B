@@ -30,7 +30,7 @@ public class AdminManagesStudentsController implements Initializable {
 
     @FXML
     private TextField filterTxt;
-    
+
     @FXML
     private TableColumn<User, String> passwordColumn;
 

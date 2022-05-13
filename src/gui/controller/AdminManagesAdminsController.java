@@ -4,6 +4,9 @@ import be.School;
 import be.User;
 import gui.model.UserModel;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +22,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminManagesAdminsController implements Initializable {
+
+    @FXML
+    private TextField filterTxt;
 
     @FXML
     private Button deleteBtn;
@@ -88,6 +94,44 @@ public class AdminManagesAdminsController implements Initializable {
         updateAdminTableView();
         schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
         editAdminFromTableView();
+        filterAdminTableView();
+    }
+
+    public void filterAdminTableView() {
+
+        ObservableList<User> userList = userModel.getAllAdmins();
+        FilteredList<User> filteredData = null;
+        try {
+            filteredData = new FilteredList<>(userList, b -> true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        FilteredList<User> finalFilteredData = filteredData;
+        filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+            finalFilteredData.setPredicate(user -> {
+
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(adminTableView.comparatorProperty());
+
+        adminTableView.setItems(sortedData);
     }
 
     private void editAdminFromTableView() {

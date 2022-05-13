@@ -22,5 +22,7 @@
       <Button layoutX="671.0" layoutY="19.0" mnemonicParsing="false" onAction="#deleteTeacher" text="Delete" />
       <TextField fx:id="newPasswordTxt" layoutX="505.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
       <Label fx:id="schoolLbl" layoutX="26.0" layoutY="11.0" />
+      <TextField fx:id="filterTxt" layoutX="300.0" layoutY="16.0" />
+      <Label layoutX="259.0" layoutY="20.0" text="Filter" />
    </children>
 </AnchorPane>

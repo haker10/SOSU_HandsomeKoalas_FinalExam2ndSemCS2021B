@@ -6,6 +6,8 @@ import dal.dao.SchoolDAO;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,9 @@ import java.sql.RowId;
 import java.util.ResourceBundle;
 
 public class AdminManagesTeachersController implements Initializable {
+
+    @FXML
+    private TextField filterTxt;
 
     @FXML
     private Label schoolLbl;
@@ -80,7 +85,45 @@ public class AdminManagesTeachersController implements Initializable {
             updateTeacherTableView();
             teachersTableView.setEditable(true);
             editTeacherFromTableView();
+            filterTeacherTableView();
         });
+    }
+
+    public void filterTeacherTableView() {
+
+        ObservableList<User> userList = userModel.getAllTeachers(schoolId1);
+        FilteredList<User> filteredData = null;
+        try {
+            filteredData = new FilteredList<>(userList, b -> true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        FilteredList<User> finalFilteredData = filteredData;
+        filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+            finalFilteredData.setPredicate(user -> {
+
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(teachersTableView.comparatorProperty());
+
+        teachersTableView.setItems(sortedData);
     }
 
     public void addTeacher(ActionEvent event) {
