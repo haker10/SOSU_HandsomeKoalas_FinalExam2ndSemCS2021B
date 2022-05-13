@@ -13,7 +13,7 @@
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="326.0" text="Name" />
                 <TableColumn fx:id="usernameColumn" prefWidth="239.0" text="Username" />
-                <TableColumn fx:id="schoolColumn" prefWidth="263.0" text="School" />
+                <TableColumn fx:id="passwordColumn" prefWidth="263.0" text="Password" />
             </columns>
         </TableView>
         <TextField fx:id="usernameTxt" layoutX="90.0" layoutY="44.0" />

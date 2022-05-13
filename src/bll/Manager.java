@@ -49,16 +49,16 @@ public class Manager {
         return schoolDAO.getAllSchools();
     }
 
-    public List<User> getAllTeachers() {
-        return userDataDAO.getAllTeachers();
+    public List<User> getAllTeachers(int schoolId) {
+        return userDataDAO.getAllTeachers(schoolId);
     }
 
     public List<User> getAllAdmins() {
         return userDataDAO.getAllAdmins();
     }
 
-    public List<User> getAllStudents() {
-        return userDataDAO.getAllStudents();
+    public List<User> getAllStudents(int schoolId) {
+        return userDataDAO.getAllStudents(schoolId);
     }
 
 
@@ -78,29 +78,16 @@ public class Manager {
         return userDataDAO.createStudent(schoolId, name, username, password);
     }
 
-    public void deleteTeacher(int userId) {
+    public void deleteUser(int userId) {
         try {
-            userDataDAO.deleteTeacher(userId);
+            userDataDAO.deleteUser(userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteStudent(int chosenStudentId) {
-        try{
-            userDataDAO.deleteStudent(chosenStudentId);
-        } catch(Exception e){
-
-            e.printStackTrace();
-        }
-    }
-
-    public void editTeacher(int userId, int school, String name, String username, String password) {
-        userDataDAO.editTeacher(userId, school, name, username, password);
-    }
-
-    public void editStudent(int userId, int school, String name, String username) {
-        userDataDAO.editStudent(userId, school, name, username);
+    public void editUser(int userId, String name, String username, String password) {
+        userDataDAO.editUser(userId, name, username, password);
     }
 
     public CitizenTemplate createCitizenTemplate(int schoolId1) {
@@ -179,6 +166,10 @@ public class Manager {
 
     public String getSchoolName(int schoolId1) {
         return schoolDAO.getSchoolName(schoolId1);
+    }
+
+    public List<School> getAllSchoolsNotAssigned() {
+        return schoolDAO.getAllSchoolsNotAssigned();
     }
 }
 

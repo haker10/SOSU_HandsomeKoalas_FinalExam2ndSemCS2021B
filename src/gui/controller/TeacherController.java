@@ -19,6 +19,9 @@ import java.util.ResourceBundle;
 public class TeacherController implements Initializable {
 
     @FXML
+    private Button logoutBtn;
+
+    @FXML
     private Label schoolLbl;
 
     @FXML
@@ -89,5 +92,21 @@ public class TeacherController implements Initializable {
 
     public void onClickManageCitizen(ActionEvent actionEvent) {
 
+    }
+
+    public void onClickLogOutBtn(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
+        currentStage.close();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/loginView.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            // stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+            // scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

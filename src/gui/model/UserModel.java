@@ -14,6 +14,7 @@ public class UserModel {
     private ObservableList<User> allAdmins;
     private ObservableList<User> allStudents;
     private ObservableList<User> allTeachers;
+    private ObservableList<School> allSchoolsNotAssigned;
 
     //constructor
     public UserModel() {
@@ -26,9 +27,9 @@ public class UserModel {
     }
 
 
-    public ObservableList getAllTeachers() {
+    public ObservableList getAllTeachers(int schoolId) {
         allTeachers = FXCollections.observableArrayList();
-        allTeachers.addAll(manager.getAllTeachers());
+        allTeachers.addAll(manager.getAllTeachers(schoolId));
         return allTeachers;
     }
 
@@ -37,16 +38,12 @@ public class UserModel {
         manager.createTeacher(school, name, username, password);
     }
 
-    public void deleteTeacher(int userId) {
-        manager.deleteTeacher(userId);
+    public void deleteUser(int userId) {
+        manager.deleteUser(userId);
     }
 
-    public void editStudent(int userId, int school, String name, String username) {
-        manager.editStudent(userId, school, name, username);
-    }
-
-    public void editTeacher(int userId, int school, String name, String username, String password) {
-        manager.editTeacher(userId, school, name, username, password);
+    public void editUser(int userId, String name, String username, String password) {
+        manager.editUser(userId, name, username, password);
     }
 
 
@@ -70,17 +67,13 @@ public class UserModel {
         manager.createAdmin(schoolId, name, username, password);
     }
 
-    public ObservableList<User> getAllStudents() {
+    public ObservableList<User> getAllStudents(int schoolId) {
         allStudents = FXCollections.observableArrayList();
-        allStudents.addAll(manager.getAllStudents());
+        allStudents.addAll(manager.getAllStudents(schoolId));
         return allStudents;
     }
     public void createStudent(int schoolId, String name, String username, String password) {
         manager.createStudent(schoolId, name, username, password);
-    }
-
-    public void deleteStudent(int chosenStudentId) {
-        manager.deleteStudent(chosenStudentId);
     }
 
 
@@ -90,5 +83,11 @@ public class UserModel {
 
     public String getSchoolName(int schoolId1) {
         return manager.getSchoolName(schoolId1);
+    }
+
+    public ObservableList<School> getAllSchoolsNotAssigned() {
+        allSchoolsNotAssigned = FXCollections.observableArrayList();
+        allSchoolsNotAssigned.addAll(manager.getAllSchoolsNotAssigned());
+        return allSchoolsNotAssigned;
     }
 }

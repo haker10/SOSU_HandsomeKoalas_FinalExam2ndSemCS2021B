@@ -59,38 +59,30 @@ public class AdminManagesTeachersController implements Initializable {
         userModel = new UserModel();
     }
 
-    public void updatePlayListTableView(){
+    public void updateTeacherTableView(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         try {
-            teachersTableView.setItems(userModel.getAllTeachers());
-
+            teachersTableView.setItems(userModel.getAllTeachers(schoolId1));
         } catch (Exception e){
             e.printStackTrace();
         }
 
     }
 
-    private void loadData(){
-        updatePlayListTableView();
-
-    }
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        teachersTableView.setEditable(true);
-        loadData();
-        editTeacherFromTableView();
         Platform.runLater(() -> {
             Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
             schoolId1 = (int) currentStage.getUserData();
             schoolLbl.setText(userModel.getSchoolName(schoolId1));
+            updateTeacherTableView();
+            teachersTableView.setEditable(true);
+            editTeacherFromTableView();
         });
-
     }
+
     public void addTeacher(ActionEvent event) {
         JFrame jFrame = new JFrame();
         try{
@@ -99,7 +91,7 @@ public class AdminManagesTeachersController implements Initializable {
             else {
                 userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
                 JOptionPane.showMessageDialog(jFrame, "Teacher created");
-                updatePlayListTableView();
+                updateTeacherTableView();
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -122,7 +114,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editTeacher(userId, schoolId1, name, username, password);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
@@ -141,30 +133,11 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editTeacher(userId, schoolId1, name, username, password);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
 
-        /*schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        schoolColumn.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<User, Integer>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<User, Integer> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setSchool(t.getNewValue());
-                        TablePosition pos = teachersTableView.getSelectionModel().getSelectedCells().get(0);
-                        int row = pos.getRow();
-                        int userId = teachersTableView.getSelectionModel().getSelectedItem().getUserId();
-                        int school = schoolColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editTeacher(userId, school, name, username, password);
-                    }
-                }
-        );*/
         passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         passwordColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
@@ -179,7 +152,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editTeacher(userId, schoolId1, name, username, password);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
@@ -194,9 +167,9 @@ public class AdminManagesTeachersController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "Choose a Teacher!\nPlease try again");
             }
             else {
-                userModel.deleteTeacher(((User) teachersTableView.getSelectionModel().getSelectedItem()).getUserId());
+                userModel.deleteUser(((User) teachersTableView.getSelectionModel().getSelectedItem()).getUserId());
                 JOptionPane.showMessageDialog(jFrame, "Teacher deleted");
-                updatePlayListTableView();
+                updateTeacherTableView();
             }
         } catch (Exception e){
             e.printStackTrace();

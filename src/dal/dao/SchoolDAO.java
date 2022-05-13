@@ -70,5 +70,23 @@ public class SchoolDAO {
             e.printStackTrace();
         }   return schoolName;
     }
+
+    public List<School> getAllSchoolsNotAssigned() {
+        List<School> allSchoolsNotAssigned = new ArrayList();
+        String sql = "SELECT * FROM School WHERE schoolID NOT IN (SELECT school FROM UserData WHERE typeOfUser = ?)";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("schoolID");
+                String school = resultSet.getString("school");
+                School newSchool = new School(id, school);
+                allSchoolsNotAssigned.add(newSchool);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  return allSchoolsNotAssigned;
+    }
 }
 

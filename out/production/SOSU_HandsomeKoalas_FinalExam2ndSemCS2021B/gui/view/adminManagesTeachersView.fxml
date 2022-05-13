@@ -9,18 +9,18 @@
 
 <AnchorPane prefHeight="611.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesTeachersController">
    <children>
-      <Button layoutX="648.0" layoutY="543.0" mnemonicParsing="false" onAction="#addTeacher" text="Add" />
-      <TextField fx:id="newNameTxt" layoutX="147.0" layoutY="543.0" />
-      <TextField fx:id="newUserNameTxt" layoutX="307.0" layoutY="543.0" />
+      <Button layoutX="652.0" layoutY="572.0" mnemonicParsing="false" onAction="#addTeacher" text="Add" />
+      <TextField fx:id="newNameTxt" layoutX="26.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
+      <TextField fx:id="newUserNameTxt" layoutX="273.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
       <TableView fx:id="teachersTableView" layoutX="26.0" layoutY="54.0" prefHeight="469.0" prefWidth="697.0">
         <columns>
-          <TableColumn fx:id="nameColumn" minWidth="4.0" prefWidth="169.0" text="Name" />
-            <TableColumn fx:id="usernameColumn" prefWidth="163.0" text="User Name" />
-            <TableColumn fx:id="passwordColumn" prefWidth="191.0" text="Password" />
+          <TableColumn fx:id="nameColumn" minWidth="4.0" prefWidth="220.0" text="Name" />
+            <TableColumn fx:id="usernameColumn" prefWidth="229.0" text="User Name" />
+            <TableColumn fx:id="passwordColumn" prefWidth="247.0" text="Password" />
         </columns>
       </TableView>
-      <Button layoutX="350.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteTeacher" text="Delete" />
-      <TextField fx:id="newPasswordTxt" layoutX="464.0" layoutY="543.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label fx:id="schoolLbl" layoutX="709.0" layoutY="14.0" />
+      <Button layoutX="671.0" layoutY="19.0" mnemonicParsing="false" onAction="#deleteTeacher" text="Delete" />
+      <TextField fx:id="newPasswordTxt" layoutX="505.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
+      <Label fx:id="schoolLbl" layoutX="26.0" layoutY="11.0" />
    </children>
 </AnchorPane>

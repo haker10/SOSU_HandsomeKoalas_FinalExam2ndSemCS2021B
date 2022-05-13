@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -21,6 +22,8 @@ import java.util.ResourceBundle;
 
 public class TeacherManagesStudentsController implements Initializable {
 
+    @FXML
+    private TableColumn<User, String> passwordColumn;
 
     @FXML
     private TextField filterTxt;
@@ -38,9 +41,6 @@ public class TeacherManagesStudentsController implements Initializable {
     private TableView<User> studentTableView;
 
     @FXML
-    private TableColumn<User, Integer> schoolColumn;
-
-    @FXML
     private TableColumn<User, String> nameColumn;
 
     @FXML
@@ -52,11 +52,19 @@ public class TeacherManagesStudentsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
+        Stage currentStage = (Stage) nameTxt.getScene().getWindow();
+        schoolId1 = (Integer) currentStage.getUserData();
         studentTableView.setEditable(true);
         editStudentFromTableView();
         updateStudentTableView();
+        filterStudentTableView();
+        });
+    }
 
-        ObservableList<User> userList = userModel.getAllStudents();
+    public void filterStudentTableView() {
+
+        ObservableList<User> userList = userModel.getAllStudents(schoolId1);
         FilteredList<User> filteredData = null;
         try {
             filteredData = new FilteredList<>(userList, b -> true);
@@ -98,9 +106,9 @@ public class TeacherManagesStudentsController implements Initializable {
     public void updateStudentTableView() {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        schoolColumn.setCellValueFactory(new PropertyValueFactory<>("school"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         try {
-            studentTableView.setItems(userModel.getAllStudents());
+            studentTableView.setItems(userModel.getAllStudents(schoolId1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,10 +127,10 @@ public class TeacherManagesStudentsController implements Initializable {
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
-                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
@@ -138,29 +146,29 @@ public class TeacherManagesStudentsController implements Initializable {
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
-                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
 
-        schoolColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        schoolColumn.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<User, Integer>>() {
+        passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        passwordColumn.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
-                    public void handle(TableColumn.CellEditEvent<User, Integer> t) {
+                    public void handle(TableColumn.CellEditEvent<User, String> t) {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
-                        ).setSchool(t.getNewValue());
+                        ).setPassword(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
-                        int school = schoolColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
+                        String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editStudent(userId, school, name, username);
+                        userModel.editUser(userId, name, username, password);
                     }
                 }
         );
@@ -170,9 +178,8 @@ public class TeacherManagesStudentsController implements Initializable {
         JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
-        int schoolId = schoolId1;
         try {
-            userModel.createStudent(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+            userModel.createStudent(schoolId1, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
             nameTxt.clear();
             usernameTxt.clear();
             passwordTxt.clear();
@@ -190,8 +197,8 @@ public class TeacherManagesStudentsController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
             }
             else {
-                userModel.deleteStudent(studentTableView.getSelectionModel().getSelectedItem().getUserId());
-                JOptionPane.showMessageDialog(jFrame, "USER DELETED !!");
+                userModel.deleteUser(studentTableView.getSelectionModel().getSelectedItem().getUserId());
+                JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
                 updateStudentTableView();
             }
         }catch (Exception e){

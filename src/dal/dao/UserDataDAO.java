@@ -102,13 +102,14 @@ public class UserDataDAO {
         return admin;
     }
 
-    public List<User> getAllTeachers() {
+    public List<User> getAllTeachers(int schoolId) {
         List<User> allTeachers = new ArrayList<>();
-        String sql = "SELECT * FROM UserData WHERE typeOfUser = 2";
+        String sql = "SELECT * FROM UserData WHERE typeOfUser = 2 AND school = ?";
         try (Connection connection = databaseConnector.getConnection()){
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-            ResultSet resultSet = statement.getResultSet();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, schoolId);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
             while(resultSet.next()){
                 int userId = resultSet.getInt("userID");
                 int typeOfUser = resultSet.getInt("typeOfUser");
@@ -147,7 +148,7 @@ public class UserDataDAO {
         return user;
     }
 
-    public void deleteTeacher(int userId) {
+    public void deleteUser(int userId) {
         String sql = "DELETE FROM UserData WHERE userID = ?";
 
         try (Connection connection = databaseConnector.getConnection()) {
@@ -159,28 +160,13 @@ public class UserDataDAO {
         }
     }
 
-    public void editTeacher(int userId, int school, String name, String username, String password) {
-        String sql = "UPDATE UserData SET school = ?, name = ?, username = ?, password = ? WHERE userID = ?";
-
-        try(Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, school);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, username);
-            preparedStatement.setString(4, password);
-            preparedStatement.setInt(5, userId);
-            preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public List<User> getAllStudents() {
+    public List<User> getAllStudents(int schoolId) {
         List<User> allStudents = new ArrayList<>();
-        String sql = "SELECT * FROM UserData WHERE typeOfUser = ?";
+        String sql = "SELECT * FROM UserData WHERE typeOfUser = ? AND school = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 3);
+            preparedStatement.setInt(2, schoolId);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -220,31 +206,19 @@ public class UserDataDAO {
         }
         return student;
     }
-    public void deleteStudent(int chosenStudentId) {
-        String sql = "DELETE FROM UserData WHERE userId = ?";
+
+    public void editUser(int userId, String name, String username, String password) {
+        String sql = "UPDATE UserData SET name = ?, username = ?, password = ? WHERE userID = ?";
 
         try(Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, chosenStudentId);
-            preparedStatement.executeUpdate();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void editStudent(int userId, int school, String name, String username) {
-        String sql = "UPDATE UserData SET school = ?, name = ?, username = ? WHERE userID = ?";
-
-        try(Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, school);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, username);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
             preparedStatement.setInt(4, userId);
             preparedStatement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }
