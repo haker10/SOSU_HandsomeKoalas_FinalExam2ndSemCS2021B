@@ -191,15 +191,20 @@ public class AdminManagesStudentsController implements Initializable {
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         int schoolId = schoolId1;
-        try {
-            userModel.createStudent(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-            nameTxt.clear();
-            usernameTxt.clear();
-            passwordTxt.clear();
-            JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
-            updateStudentTableView();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (nameTxt.getText().isEmpty() || usernameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
+        }
+        else {
+            try {
+                userModel.createStudent(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+                nameTxt.clear();
+                usernameTxt.clear();
+                passwordTxt.clear();
+                JOptionPane.showMessageDialog(jFrame, "Student CREATED !!");
+                updateStudentTableView();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

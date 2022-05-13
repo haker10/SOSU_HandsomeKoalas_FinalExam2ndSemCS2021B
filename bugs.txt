@@ -8,3 +8,4 @@ add all Jframes
 add name on citizen template and citizen on db
 when creating or copying citizen template, have textfield to receive name
 resize windows 
+fix exceptions

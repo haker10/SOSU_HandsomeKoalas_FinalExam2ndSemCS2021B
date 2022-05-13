@@ -3,7 +3,6 @@ package gui.controller;
 import be.School;
 import be.User;
 import gui.model.UserModel;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -15,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.net.URL;
@@ -74,17 +72,24 @@ public class AdminManagesAdminsController implements Initializable {
     }
 
     public void createAdmin(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
         int schoolId = ((School) schoolChoiceBox.getValue()).getSchoolID();
-        try {
-            userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-            nameTxt.clear();
-            usernameTxt.clear();
-            passwordTxt.clear();
-            schoolChoiceBox.setValue(null);
-            schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
-            updateAdminTableView();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
+        }
+        else {
+            try {
+                userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+                JOptionPane.showMessageDialog(frame, "Admin created");
+                nameTxt.clear();
+                usernameTxt.clear();
+                passwordTxt.clear();
+                schoolChoiceBox.setValue(null);
+                schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
+                updateAdminTableView();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

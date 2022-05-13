@@ -178,15 +178,20 @@ public class TeacherManagesStudentsController implements Initializable {
         JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
-        try {
-            userModel.createStudent(schoolId1, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-            nameTxt.clear();
-            usernameTxt.clear();
-            passwordTxt.clear();
-            JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
-            updateStudentTableView();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(nameTxt.getText().isEmpty() || usernameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
+        }
+        else{
+            try {
+                userModel.createStudent(schoolId1, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+                nameTxt.clear();
+                usernameTxt.clear();
+                passwordTxt.clear();
+                JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
+                updateStudentTableView();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

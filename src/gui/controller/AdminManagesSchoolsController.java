@@ -45,6 +45,7 @@ public class AdminManagesSchoolsController implements Initializable {
                 JOptionPane.showMessageDialog(frame, "Please enter a school name");
             else {
                 userModel.createNewSchool(newSchoolTxt.getText());
+                JOptionPane.showMessageDialog(frame, "School created");
                 newSchoolTxt.setText("");
                 updateSchoolsTableView();
             }
