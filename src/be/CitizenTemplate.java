@@ -3,10 +3,12 @@ package be;
 public class CitizenTemplate {
     int citizenTemplateId;
     int schoolId;
+    String citizenTemplateName;
 
-    public CitizenTemplate(int citizenTemplateId, int schoolId) {
+    public CitizenTemplate(int citizenTemplateId, int schoolId, String citizenTemplateName) {
         this.citizenTemplateId = citizenTemplateId;
         this.schoolId = schoolId;
+        this.citizenTemplateName = citizenTemplateName;
     }
 
     public int getCitizenTemplateId() {
@@ -15,6 +17,10 @@ public class CitizenTemplate {
 
     public int getSchoolId() {
         return schoolId;
+    }
+
+    public String getCitizenTemplateName() {
+        return citizenTemplateName;
     }
 
     @Override

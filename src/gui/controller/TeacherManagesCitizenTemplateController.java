@@ -3,6 +3,7 @@ package gui.controller;
 import be.CitizenTemplate;
 import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -22,13 +24,15 @@ import java.util.ResourceBundle;
 
 public class TeacherManagesCitizenTemplateController implements Initializable {
 
+    @FXML
+    private TextField citizenTemplateNameTxt;
 
     @FXML
-    private TableColumn<CitizenTemplate, Integer> citizenTemplateIDColumn;
-    @FXML
-    private TableColumn<CitizenTemplate, Integer> citizenTemplateSchoolColumn;
+    private TableColumn<CitizenTemplate, String> citizenTemplateNameColumn;
+
     @FXML
     private TableView<CitizenTemplate> citizenTemplateTV;
+
     @FXML
     private Button createBtn;
 
@@ -49,17 +53,19 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        citizenTemplateModel = new CitizenTemplateModel();
-        citizenModel = new CitizenModel();
-        updateCitizenTemplateTV();
-
+        Platform.runLater(() -> {
+            Stage currentStage = (Stage) createBtn.getScene().getWindow();
+            schoolId1 = (Integer) currentStage.getUserData();
+            citizenTemplateModel = new CitizenTemplateModel();
+            citizenModel = new CitizenModel();
+            updateCitizenTemplateTV();
+        });
     }
 
     public void updateCitizenTemplateTV() {
-        citizenTemplateIDColumn.setCellValueFactory(new PropertyValueFactory<>("citizenTemplateId"));
-        citizenTemplateSchoolColumn.setCellValueFactory(new PropertyValueFactory<>("schoolId"));
+        citizenTemplateNameColumn.setCellValueFactory(new PropertyValueFactory<>("citizenTemplateName"));
         try {
-            citizenTemplateTV.setItems(citizenTemplateModel.getAllCitizenTemplates());
+            citizenTemplateTV.setItems(citizenTemplateModel.getAllCitizenTemplates(schoolId1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,9 +73,16 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
     public void onClickCreate(ActionEvent actionEvent) {
+        JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
-        citizenTemplate =  citizenTemplateModel.createCitizenTemplate(schoolId1);
+        if (citizenTemplateNameTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "Please enter a name for the citizen template");
+        }
+        else {
+            citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
+            JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
+        }
         int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
         currentStage.close();
         try{
@@ -116,7 +129,8 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         schoolId1 = (Integer) currentStage.getUserData();
         JFrame jFrame = new JFrame();
         int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1);
+        String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName() + "Copy";
+        citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1, citizenTemplateName);
         JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
         updateCitizenTemplateTV();
     }
@@ -124,7 +138,8 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     public void onClickCreateCitizen(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
         int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        citizenModel.createCitizenFromTemplate(citizenTemplateId);
+        String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName();
+        citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName);
         JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
     }
 }

@@ -3,8 +3,10 @@
 //admin manages admin view --> school choice box only shows schools which are not assigned to any admin and have a label with school name
 //fix all filters on table views
 //add all Jframes
+//add name on citizen template and citizen on db
+//when creating or copying citizen template, have textfield to receive name
 
-add name on citizen template and citizen on db
-when creating or copying citizen template, have textfield to receive name
+make tab pane for citizen view
 resize windows 
+
 fix exceptions

@@ -1,7 +1,6 @@
 package dal.dao;
 
 import be.Citizen;
-import be.CitizenTemplate;
 import dal.DatabaseConnector;
 
 import java.sql.*;
@@ -15,18 +14,20 @@ public class CitizenDAO {
     public CitizenDAO() {
         databaseConnector = new DatabaseConnector();
     }
-    public Citizen createCitizenFromTemplate(int citizenTemplateId) {
+
+    public Citizen createCitizenFromTemplate(int citizenTemplateId, String citizenName) {
         Citizen citizen = null;
 
-        String sql = "INSERT INTO Citizen(citizenTemplateID) VALUES (?)";
+        String sql = "INSERT INTO Citizen(citizenTemplateID, citizenName) VALUES (?,?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, citizenTemplateId);
+            preparedStatement.setString(2, citizenName);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while(resultSet.next()){
                 int citizenID = resultSet.getInt(1);
-                citizen = new Citizen(citizenID, citizenTemplateId);
+                citizen = new Citizen(citizenID, citizenTemplateId, citizenName);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -45,7 +46,8 @@ public class CitizenDAO {
             while (resultSet.next()) {
                 int id = resultSet.getInt("citizenID");
                 int citizenID = resultSet.getInt("citizenTemplateID");
-                Citizen citizen = new Citizen(id, citizenID);
+                String citizenName = resultSet.getString("citizenName");
+                Citizen citizen = new Citizen(id, citizenID, citizenName);
                 allCitizen.add(citizen);
             }
         } catch(SQLException throwables) {

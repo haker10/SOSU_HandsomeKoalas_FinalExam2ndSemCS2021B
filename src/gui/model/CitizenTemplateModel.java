@@ -19,8 +19,8 @@ public class CitizenTemplateModel {
     }
 
 
-    public CitizenTemplate createCitizenTemplate(int schoolId1) {
-       return manager.createCitizenTemplate(schoolId1);
+    public CitizenTemplate createCitizenTemplate(int schoolId1, String citizenTemplateName) {
+       return manager.createCitizenTemplate(schoolId1, citizenTemplateName);
     }
 
     public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
@@ -36,9 +36,9 @@ public class CitizenTemplateModel {
         manager.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, selectedRelevance, professionalNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
     }
 
-    public ObservableList<CitizenTemplate> getAllCitizenTemplates() {
+    public ObservableList<CitizenTemplate> getAllCitizenTemplates(int schoolId) {
         allCitizenTemplates = FXCollections.observableArrayList();
-        allCitizenTemplates.addAll(manager.getAllCitizenTemplates());
+        allCitizenTemplates.addAll(manager.getAllCitizenTemplates(schoolId));
         return allCitizenTemplates;
     }
 
@@ -73,7 +73,7 @@ public class CitizenTemplateModel {
         manager.deleteCitizenTemplate(citizenTemplateId);
     }
 
-    public void copyCitizenTemplate(int citizenTemplateId, int schoolID) {
-        manager.copyCitizenTemplate(citizenTemplateId, schoolID);
+    public void copyCitizenTemplate(int citizenTemplateId, int schoolID, String citizenTemplateName) {
+        manager.copyCitizenTemplate(citizenTemplateId, schoolID, citizenTemplateName);
     }
 }

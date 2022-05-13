@@ -16,8 +16,8 @@ public class CitizenModel {
         manager = new Manager();
     }
 
-    public void createCitizenFromTemplate(int citizenTemplateId) {
-        manager.createCitizenFromTemplate(citizenTemplateId);
+    public void createCitizenFromTemplate(int citizenTemplateId, String citizenName) {
+        manager.createCitizenFromTemplate(citizenTemplateId, citizenName);
     }
 
     public ObservableList<Citizen> getAllCitizen() {
