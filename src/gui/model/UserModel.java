@@ -76,11 +76,6 @@ public class UserModel {
         manager.createStudent(schoolId, name, username, password);
     }
 
-
-    public void assignCitizenToStudent(int studentId, int citizenID) {
-        manager.assignCitizenToStudent(studentId, citizenID);
-    }
-
     public String getSchoolName(int schoolId1) {
         return manager.getSchoolName(schoolId1);
     }

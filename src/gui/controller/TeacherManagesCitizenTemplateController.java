@@ -139,7 +139,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         JFrame jFrame = new JFrame();
         int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
         String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName();
-        citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName);
+        citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName, schoolId1);
         JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
     }
 }

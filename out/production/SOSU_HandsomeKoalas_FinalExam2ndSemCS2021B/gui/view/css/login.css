@@ -6,15 +6,18 @@
     -fx-background-color: #3E5C70;
     -fx-background-radius: 10;
 }
+
 .inputPane{
     -fx-background-color: #ED8923;
     -fx-background-radius: 25;
 }
+
 .buttonPane{
     -fx-background-color: #ED8923;
     -fx-background-radius: 25;
     -fx-opacity: 0.8;
 }
+
 .button{
     -fx-background-radius: 10;
     -fx-background-color: transparent;
@@ -23,13 +26,13 @@
     -fx-border-color: black;
 
 }
+
 .text-field:focused {
     -fx-background-radius: 10;
     -fx-border-width: 1;
     -fx-border-color: #3E5C70;
 }
+
 .xBtn{
     -fx-border-width: 1;
-
-
 }

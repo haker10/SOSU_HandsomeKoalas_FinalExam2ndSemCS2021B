@@ -12,6 +12,7 @@ public class StudentGetsCitizenDAO {
     public StudentGetsCitizenDAO() {
         databaseConnector = new DatabaseConnector();
     }
+
     public void assignCitizenToStudent(int studentId, int citizenID) {
         String sql = "INSERT INTO StudentGetsCitizen (studentID, citizenID) VALUES (?, ?)";
 

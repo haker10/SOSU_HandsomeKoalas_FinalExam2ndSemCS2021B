@@ -10,7 +10,7 @@
    <children>
       <AnchorPane layoutX="153.0" layoutY="73.0" prefHeight="426.0" prefWidth="564.0" styleClass="backgroundPane">
          <children>
-            <AnchorPane layoutX="158.0" layoutY="73.0" prefHeight="245.0" prefWidth="233.0" styleClass="inputPane">
+            <AnchorPane layoutX="158.0" layoutY="78.0" prefHeight="245.0" prefWidth="233.0" styleClass="inputPane">
                <children>
                   <TextField fx:id="usernameTxt" alignment="CENTER" layoutX="30.0" layoutY="80.0" prefHeight="25.0" prefWidth="174.0" promptText="Username">
                      <font>
@@ -24,9 +24,9 @@
                   </PasswordField>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="180.0" layoutY="309.0" prefHeight="58.0" prefWidth="190.0" styleClass="buttonPane">
+            <AnchorPane layoutX="177.0" layoutY="310.0" prefHeight="52.0" prefWidth="196.0" styleClass="buttonPane">
                <children>
-                  <Button fx:id="logInBtn" alignment="CENTER" layoutY="14.0" mnemonicParsing="false" onAction="#login" prefHeight="44.0" prefWidth="190.0" text="Log In">
+                  <Button fx:id="logInBtn" alignment="CENTER" layoutX="11.0" layoutY="19.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="174.0" text="Log In">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

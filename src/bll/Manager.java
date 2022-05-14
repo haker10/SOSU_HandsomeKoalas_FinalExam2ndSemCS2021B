@@ -75,7 +75,24 @@ public class Manager {
     }
 
     public User createStudent(int schoolId, String name, String username, String password) {
-        return userDataDAO.createStudent(schoolId, name, username, password);
+        List<CitizenTemplate> allTemplates = citizenTemplateDAO.getALlCitizenTemplates(schoolId);
+        User student = null;
+        if(allTemplates.size() == 0) {
+            student = userDataDAO.createStudent(schoolId, name, username, password);
+        }
+        else {
+            student = userDataDAO.createStudent(schoolId, name, username, password);
+            for (CitizenTemplate citizenTemplate : allTemplates) {
+                Citizen citizen = citizenDAO.createCitizenFromTemplate(citizenTemplate.getCitizenTemplateId(), citizenTemplate.getCitizenTemplateName());
+                int citizenId = citizen.getCitizenId();
+                healthConditionsCitizenDAO.copyHealthConditionsCitizen(citizenId, citizenTemplate.getCitizenTemplateId());
+                functionalAbilitiesCitizenDAO.copyFunctionalAbilitiesCitizen(citizenId, citizenTemplate.getCitizenTemplateId());
+                generalInformationCitizenDAO.copyGeneralInformationCitizen(citizenId, citizenTemplate.getCitizenTemplateId());
+                assignCitizenToStudent(student.getUserId(), citizenId);
+            }
+        }
+        return student;
+        // go to all citizen template from this school, create citizen copy, add citizen to student gets citizen
     }
 
     public void deleteUser(int userId) {
@@ -148,12 +165,16 @@ public class Manager {
         generalInformationCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
     }
 
-    public void createCitizenFromTemplate(int citizenTemplateId, String citizenName) {
-        Citizen citizen = citizenDAO.createCitizenFromTemplate(citizenTemplateId, citizenName);
-        int citizenId = citizen.getCitizenId();
-        healthConditionsCitizenDAO.copyHealthConditionsCitizen(citizenId, citizenTemplateId);
-        functionalAbilitiesCitizenDAO.copyFunctionalAbilitiesCitizen(citizenId, citizenTemplateId);
-        generalInformationCitizenDAO.copyGeneralInformationCitizen(citizenId, citizenTemplateId);
+    public void createCitizenFromTemplate(int citizenTemplateId, String citizenName, int schoolId) {
+        List<User> allStudents = getAllStudents(schoolId);
+        for (User student : allStudents) {
+            Citizen citizen = citizenDAO.createCitizenFromTemplate(citizenTemplateId, citizenName);
+            int citizenId = citizen.getCitizenId();
+            healthConditionsCitizenDAO.copyHealthConditionsCitizen(citizenId, citizenTemplateId);
+            functionalAbilitiesCitizenDAO.copyFunctionalAbilitiesCitizen(citizenId, citizenTemplateId);
+            generalInformationCitizenDAO.copyGeneralInformationCitizen(citizenId, citizenTemplateId);
+            assignCitizenToStudent(student.getUserId(), citizenId);
+        }
     }
 
     public List<Citizen> getAllCitizen() {
