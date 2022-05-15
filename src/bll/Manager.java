@@ -39,6 +39,7 @@ public class Manager {
         generalInformationCitizenDAO = new GeneralInformationCitizenDAO();
         functionalAbilitiesCitizenDAO = new FunctionalAbilitiesCitizenDAO();
         studentGetsCitizenDAO = new StudentGetsCitizenDAO();
+
     }
 
     public User login(String username, String password) {
@@ -191,6 +192,15 @@ public class Manager {
 
     public List<School> getAllSchoolsNotAssigned() {
         return schoolDAO.getAllSchoolsNotAssigned();
+    }
+
+    public ArrayList<Integer> getAllCitizenId(int studentId) {
+        return studentGetsCitizenDAO.getAllCitizenId(studentId);
+
+    }
+
+    public Citizen getNeededCitizen(int citizenId) {
+        return citizenDAO.getNeededCitizen(citizenId);
     }
 }
 

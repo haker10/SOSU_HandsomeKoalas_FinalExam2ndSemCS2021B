@@ -55,4 +55,25 @@ public class CitizenDAO {
         }
         return  allCitizen;
     }
+
+    public Citizen getNeededCitizen(int citizenId) {
+        String sql = "Select * FROM Citizen WHERE citizenID = ?";
+
+        Citizen citizen = null;
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenId);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            if (resultSet.next()) {
+                int citizenTemplateId = resultSet.getInt("citizenTemplateID");
+                String  name = resultSet.getString("citizenName");
+
+                citizen = new Citizen(citizenId, citizenTemplateId, name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return citizen;
+    }
 }

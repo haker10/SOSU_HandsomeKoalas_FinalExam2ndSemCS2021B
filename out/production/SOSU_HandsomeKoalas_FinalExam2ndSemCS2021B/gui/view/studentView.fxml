@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentController">
+<AnchorPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentController">
    <children>
-      <Label layoutX="535.0" layoutY="6.0" text="STUDENT" />
       <Label fx:id="schoolLbl" layoutX="14.0" layoutY="15.0" />
+      <TableView fx:id="citizenTV" layoutX="75.0" layoutY="116.0" prefHeight="215.0" prefWidth="380.0">
+        <columns>
+          <TableColumn fx:id="citizenNameColumn" prefWidth="379.0" text="Name" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="75.0" layoutY="32.0" prefHeight="83.0" prefWidth="380.0">
+         <children>
+            <TextField fx:id="filterTxt" layoutX="135.0" layoutY="30.0" />
+            <Label alignment="TOP_LEFT" layoutX="66.0" layoutY="32.0" prefHeight="20.0" prefWidth="51.0" text="Search">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="schoolLbl" layoutX="332.0" layoutY="6.0" prefHeight="17.0" prefWidth="34.0" />
+            <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnClickOpenView" text="Button" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

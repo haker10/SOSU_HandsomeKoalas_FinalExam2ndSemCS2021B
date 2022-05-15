@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/SchoolClassDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/StudentGetsCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/StudentGetsCitizenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/StudentInClassDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/UserModel.java" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,6 +129,8 @@
       <workItem from="1652454872612" duration="13050000" />
       <workItem from="1652473195097" duration="3270000" />
       <workItem from="1652513015150" duration="3193000" />
+      <workItem from="1652549548434" duration="11605000" />
+      <workItem from="1652607183489" duration="7008000" />
     </task>
     <servers />
   </component>
@@ -156,7 +147,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

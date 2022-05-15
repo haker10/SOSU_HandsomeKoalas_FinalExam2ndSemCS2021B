@@ -25,6 +25,6 @@ public class Citizen {
 
     @Override
     public String toString() {
-        return "Citizen{" + "citizenId=" + citizenId + ", citizenTemplateId=" + citizenTemplateId + '}';
+        return "Citizen{" + "citizenId=" + citizenId + ", citizenTemplateId=" + citizenTemplateId + ", citizenName=" + citizenName + '}';
     }
 }

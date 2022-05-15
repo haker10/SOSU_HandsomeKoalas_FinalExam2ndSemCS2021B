@@ -18,6 +18,7 @@ import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -34,6 +35,7 @@ public class LoginController implements Initializable {
     UserModel userModel;
 
     int schoolId1;
+    int studentId1;
 
     //constructor
     public LoginController(){
@@ -93,13 +95,15 @@ public class LoginController implements Initializable {
                }
                else if (result.getTypeOfUser() == 3) {
                    schoolId1 = result.getSchool();
+                   studentId1 = result.getUserId();
+                   String info = schoolId1 + "," + studentId1;
                    try{
                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentView.fxml"));
                        Stage stage = new Stage();
                        Scene scene = new Scene(root);
                        //stage.initStyle(StageStyle.TRANSPARENT);
                        stage.setScene(scene);
-                       stage.setUserData(schoolId1);
+                       stage.setUserData(info);
                        stage.show();
                        //scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){

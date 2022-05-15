@@ -10,3 +10,8 @@ make tab pane for citizen view
 resize windows 
 
 fix exceptions
+Fix To have only 1 username ; if existing give Exception;
+
+//Sprint review questions
+in editCitizenTemplate to have a "button delete" for HealthConditions -
+and FunctionalAbilities if for example they made a wrong category and they want to remove it !
