@@ -9,12 +9,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -286,14 +293,33 @@ public class StudentEditCitizenController implements Initializable{
         hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenColor"));
         fACategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenCategoryName"));
         fASubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenSubCategoryName"));
-        ObservableList<FunctionalAbilitie> hello = citizenModel.getALlFunctionalAbilities(citizenId);
-        System.out.println(hello);
         try {
             healthConditionTV.setItems(citizenModel.getAllHealthCondition(citizenId));
             functionalAbilitiesTV.setItems(citizenModel.getALlFunctionalAbilities(citizenId));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
+            @Override
+            protected void updateItem(HealthCondition item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty == true){
+                    setStyle("-fx-background-color: #DAD5D6");
+                    return;
+                }
+                if(item != null && item.getHealthConditionsCitizenColor().equals("Very relevant")) {
+                    setStyle("-fx-background-color: #C54B6C;");
+                }
+                else if(item != null && item.getHealthConditionsCitizenColor().equals("Relevant")){
+                    setStyle("-fx-background-color: #FFCCB6;");
+                }
+                else {
+                    setStyle("-fx-background-color: #8DA47E;");
+                }
+
+
+            }
+        });
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -325,7 +351,12 @@ public class StudentEditCitizenController implements Initializable{
             interiorOfHomeTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(10)));
 
             updateCitizenTableView();
-            healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
+            try {
+                OnDoubleClickTableViewRow();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+          /*  healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
                 @Override
                 protected void updateItem(HealthCondition item, boolean empty) {
                     super.updateItem(item, empty);
@@ -343,12 +374,76 @@ public class StudentEditCitizenController implements Initializable{
                         setStyle("-fx-background-color: #8DA47E;");
                     }
 
+
                 }
-            });
+            });*/
+
+
+
 
         });
 
 
+    }
+    public void OnDoubleClickTableViewRow() throws Exception{
+        healthConditionTV.setRowFactory(tv -> {
+            TableRow<HealthCondition> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    HealthCondition rowData = row.getItem();
+                    Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
+                    int citizenId = (Integer) currentStage.getUserData();
+                    try{
+                        healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(rowData.getHealthConditionsCitizenCategory(), rowData.getHealthConditionsCitizenSubCategory(), citizenId);
+                        hCCategoryComboBox.setValue(rowData.getHealthConditionsCitizenCategory());
+                        hCSubCategoryComboBox.setValue(rowData.getHealthConditionsCitizenSubCategory());
+                        relevanceComboBox.setValue(rowData.getHealthConditionsCitizenColor());
+                        hCprofessionalNoteTxt.setText(healthConditions.get(1));
+                        currentAssessmentTxt.setText(healthConditions.get(2));
+                        hCExpectedLevelComboBox.setValue(healthConditions.get(3));
+                        hCObservationNoteTxt.setText(healthConditions.get(4));
+                        hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
+                        hCCategoryComboBox.setDisable(true);
+                        hCSubCategoryComboBox.setDisable(true);
+                    }catch(NullPointerException e){
+                        try {
+                            throw new Exception("Does not exist");
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            });
+            return row ;
+        });
+        functionalAbilitiesTV.setRowFactory(tv -> {
+            TableRow<FunctionalAbilitie> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    FunctionalAbilitie rowData = row.getItem();
+                    Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+                    int citizenId = (Integer) currentStage.getUserData();
+                    try{
+                        functionalAbilities = (ArrayList<String>) citizenModel.getFunctionalInformationCitizen(rowData.getFunctionalAbilitiesCitizenCategoryName(),rowData.getFunctionalAbilitiesCitizenSubCategoryName(), citizenId);
+                        fACategoryComboBox.setValue(rowData.getFunctionalAbilitiesCitizenCategoryName());
+                        faSubCategoryComboBox.setValue(rowData.getFunctionalAbilitiesCitizenSubCategoryName());
+                        expectedLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(1)));
+                        fAProfNoteTxt.setText(functionalAbilities.get(2));
+                        performanceComboBox.setValue(functionalAbilities.get(3));
+                        meaningOfPerformanceComboBox.setValue(functionalAbilities.get(4));
+                        wishesNGoalsTxt.setText(functionalAbilities.get(5));
+                        observationNoteTxt.setText(functionalAbilities.get(6));
+                        fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
+                        fACategoryComboBox.setDisable(true);
+                        faSubCategoryComboBox.setDisable(true);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            return row ;
+        });
     }
     //Health Conditions
     public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
@@ -473,17 +568,18 @@ public class StudentEditCitizenController implements Initializable{
         LocalDate date = hCdatePicker.getValue();
         citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
         presentLevelComboBox.getSelectionModel().clearSelection();
-        expectedLevelComboBox.getSelectionModel().clearSelection();
-        fACategoryComboBox.setDisable(false);
-        faSubCategoryComboBox.setDisable(false);
-        fAProfNoteTxt.clear();
-        performanceComboBox.getSelectionModel().clearSelection();
-        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
-        wishesNGoalsTxt.clear();
-        observationNoteTxt.clear();
-        fADatePicker.setValue(LocalDate.now());
-        //fADatePicker.setValue(null);
+        hCCategoryComboBox.setDisable(false);
+        hCSubCategoryComboBox.setDisable(false);
+        hCdatePicker.setValue(LocalDate.now());
+        hCObservationNoteTxt.clear();
+        hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+        currentAssessmentTxt.clear();
+        hCprofessionalNoteTxt.clear();
+        relevanceComboBox.getSelectionModel().clearSelection();
+        hCSubCategoryComboBox.getSelectionModel().clearSelection();
+        hCCategoryComboBox.getSelectionModel().clearSelection();
         JOptionPane.showMessageDialog(frame, "Saved");
+        updateCitizenTableView();
     }
     //Functional Abilities
     public void OnClickFACategory(ActionEvent actionEvent) {
@@ -558,6 +654,8 @@ public class StudentEditCitizenController implements Initializable{
 
     public void OnClickPopImage(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
+        frame.add(new JLabel((Icon) new ImageIcon("/images/01234.png").getImage()));
+
     }
 
     //General Information

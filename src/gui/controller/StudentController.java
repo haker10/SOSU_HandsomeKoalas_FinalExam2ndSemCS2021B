@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -70,6 +67,7 @@ public class StudentController implements Initializable {
                 allNames.add(name.getCitizenName());
             }
             updateCitizenTableView();
+            OnDoubleClickTableViewRow();
         });
 
     }
@@ -83,21 +81,31 @@ public class StudentController implements Initializable {
 
     }
 
-    public void OnClickOpenView(ActionEvent actionEvent) {
-        int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
-        Stage currentStage = (Stage) citizenTV.getScene().getWindow();
-        currentStage.close();
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentEditCitizenView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.setUserData(citizenId);
-            stage.show();
-            scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public void OnDoubleClickTableViewRow(){
+        citizenTV.setRowFactory(tv -> {
+            TableRow<Citizen> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Citizen rowData = row.getItem();
+                    int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
+                    Stage currentStage = (Stage) citizenTV.getScene().getWindow();
+                    currentStage.close();
+                    try{
+                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentEditCitizenView.fxml"));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.setScene(scene);
+                        stage.setUserData(citizenId);
+                        stage.show();
+                        scene.setFill(Color.TRANSPARENT);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            return row ;
+        });
     }
 }
