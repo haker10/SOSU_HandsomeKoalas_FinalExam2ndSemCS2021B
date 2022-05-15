@@ -5,6 +5,8 @@ import dal.DatabaseConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneralInformationCitizenDAO {
 
@@ -41,6 +43,41 @@ public class GeneralInformationCitizenDAO {
             preparedStatement.setString(2,explanation);
             preparedStatement.setString(3, editable);
             preparedStatement.setInt(4, citizenId);
+            preparedStatement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public String getGeneralInfoCitizen(int citizenId, String generalInfoCitizenName) {
+        String editable = null;
+        String sql = "SELECT * FROM GeneralInformationCitizen WHERE citizenID = ? and generalInformationCitizenName = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,citizenId);
+            preparedStatement.setString(2,generalInfoCitizenName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                String text = resultSet.getString("generalInformationCitizenEditable");
+                editable = text;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return editable;
+    }
+
+
+
+    public void updateGeneralInfoCitizen(String generalInfoName, String generalInfoEditable, int citizenId) {
+        String sql = "UPDATE GeneralInformationCitizen SET generalInformationCitizenEditable = ? WHERE generalInformationCitizenName = ? and citizenId = ? ";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, generalInfoEditable);
+            preparedStatement.setString(2, generalInfoName);
+            preparedStatement.setInt(3, citizenId);
             preparedStatement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

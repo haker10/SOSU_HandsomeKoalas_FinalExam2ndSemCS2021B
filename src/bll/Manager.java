@@ -1,9 +1,6 @@
 package bll;
 
-import be.Citizen;
-import be.CitizenTemplate;
-import be.School;
-import be.User;
+import be.*;
 
 import dal.dao.*;
 import javafx.collections.ObservableList;
@@ -25,6 +22,7 @@ public class Manager {
     GeneralInformationCitizenDAO generalInformationCitizenDAO;
     FunctionalAbilitiesCitizenDAO functionalAbilitiesCitizenDAO;
     StudentGetsCitizenDAO studentGetsCitizenDAO;
+
 
     //constructor
     public Manager() {
@@ -201,6 +199,38 @@ public class Manager {
 
     public Citizen getNeededCitizen(int citizenId) {
         return citizenDAO.getNeededCitizen(citizenId);
+    }
+
+    public String getGeneralInfoCitizen(int citizenId, String generalInfoCitizenName) {
+        return generalInformationCitizenDAO.getGeneralInfoCitizen(citizenId, generalInfoCitizenName);
+    }
+
+    public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
+        return healthConditionsCitizenDAO.getHealthConditionCitizen(category, subCategory, citizenId);
+    }
+
+    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
+        healthConditionsCitizenDAO.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
+    }
+
+    public Object getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
+        return functionalAbilitiesCitizenDAO.getFunctionalInformationCitizen(category, subCategory, citizenId);
+    }
+
+    public void updateFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
+        functionalAbilitiesCitizenDAO.updateFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+    }
+
+    public void updateGeneralInfoCitizen(String generalInfoName, String generalInfoEditable, int citizenId) {
+        generalInformationCitizenDAO.updateGeneralInfoCitizen(generalInfoName, generalInfoEditable, citizenId);
+    }
+
+    public ObservableList<FunctionalAbilitie> getAllFunctionalAbilities(int citizenId) {
+        return functionalAbilitiesCitizenDAO.getAllFunctionalAbilities(citizenId);
+    }
+
+    public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
+        return healthConditionsCitizenDAO.getAllHealthCondition(citizenId);
     }
 }
 

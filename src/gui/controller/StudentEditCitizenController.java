@@ -1,15 +1,25 @@
 package gui.controller;
 
+import be.Citizen;
+import be.FunctionalAbilitie;
+import be.HealthCondition;
+import gui.model.CitizenModel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class StudentEditCitizenController implements Initializable{
@@ -19,7 +29,7 @@ public class StudentEditCitizenController implements Initializable{
     @FXML
     private TextArea currentAssessmentTxt;
     @FXML
-    private TableColumn<String, String> hCCategoryColumn;
+    private TableColumn<HealthCondition, String> hCCategoryColumn;
     @FXML
     private ComboBox<String> hCCategoryComboBox;
     @FXML
@@ -27,9 +37,9 @@ public class StudentEditCitizenController implements Initializable{
     @FXML
     private TextArea hCObservationNoteTxt;
     @FXML
-    private TableColumn<String, String> hCRelevanceColumn;
+    private TableColumn<HealthCondition, String> hCRelevanceColumn;
     @FXML
-    private TableColumn<String, String> hCSubCategoryColumn;
+    private TableColumn<HealthCondition, String> hCSubCategoryColumn;
     @FXML
     private ComboBox<String> hCSubCategoryComboBox;
     @FXML
@@ -37,7 +47,7 @@ public class StudentEditCitizenController implements Initializable{
     @FXML
     private TextArea hCprofessionalNoteTxt;
     @FXML
-    private TableView<String> healthConditionTV;
+    private TableView<HealthCondition> healthConditionTV;
 
     //Functional Abilities
     @FXML
@@ -53,7 +63,7 @@ public class StudentEditCitizenController implements Initializable{
     @FXML
     private ComboBox<Integer> expectedLevelComboBox;
     @FXML
-    private TableColumn<String, String> fACategoryColumn;
+    private TableColumn<FunctionalAbilitie, String> fACategoryColumn;
     @FXML
     private ComboBox<String> fACategoryComboBox;
     @FXML
@@ -61,11 +71,11 @@ public class StudentEditCitizenController implements Initializable{
     @FXML
     private TextArea fAProfNoteTxt;
     @FXML
-    private TableColumn<String, String> fASubCategoryColumn;
+    private TableColumn<FunctionalAbilitie, String> fASubCategoryColumn;
     @FXML
     private ComboBox<String> faSubCategoryComboBox;
     @FXML
-    private TableView<String> functionalAbilitiesTV;
+    private TableView<FunctionalAbilitie> functionalAbilitiesTV;
 
     //General Information
     @FXML
@@ -261,43 +271,323 @@ public class StudentEditCitizenController implements Initializable{
 
     ArrayList<String> functionalAbilities = new ArrayList<>();
     ArrayList<String> healthConditions = new ArrayList<>();
-
+    CitizenModel citizenModel;
 
     public StudentEditCitizenController(){
+        citizenModel = new CitizenModel();
 
+    }
+
+    public void updateCitizenTableView(){
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+        hCCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenCategory"));
+        hCSubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenSubCategory"));
+        hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenColor"));
+        fACategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenCategoryName"));
+        fASubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenSubCategoryName"));
+        ObservableList<FunctionalAbilitie> hello = citizenModel.getALlFunctionalAbilities(citizenId);
+        System.out.println(hello);
+        try {
+            healthConditionTV.setItems(citizenModel.getAllHealthCondition(citizenId));
+            functionalAbilitiesTV.setItems(citizenModel.getALlFunctionalAbilities(citizenId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        fACategoryComboBox.setItems(fa_category_list);
+        presentLevelComboBox.setItems(score);
+        expectedLevelComboBox.setItems(score);
+        performanceComboBox.setItems(fa_performance);
+        meaningOfPerformanceComboBox.setItems(fa_meaning_of_performance);
+        hCCategoryComboBox.setItems(hc_category_list);
+        relevanceComboBox.setItems(hc_relevance);
+        Platform.runLater(() -> {
+            Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+            int citizenId = (Integer) currentStage.getUserData();
+
+
+
+            //general information
+            masteryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(0)));
+            motivationTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(1)));
+            resourcesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(2)));
+            rollerTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(3)));
+            habitsTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(4)));
+            enJTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(5)));
+            lifeStoryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(6)));
+            networkTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(7)));
+            healthInfoTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(8)));
+            assistiveDevicesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(9)));
+            interiorOfHomeTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(10)));
+
+            updateCitizenTableView();
+            healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
+                @Override
+                protected void updateItem(HealthCondition item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty == true){
+                        setStyle("-fx-background-color: #DAD5D6");
+                        return;
+                    }
+                    if(item != null && item.getHealthConditionsCitizenColor().equals("Very relevant")) {
+                        setStyle("-fx-background-color: #C54B6C;");
+                    }
+                    else if(item != null && item.getHealthConditionsCitizenColor().equals("Relevant")){
+                        setStyle("-fx-background-color: #FFCCB6;");
+                    }
+                    else {
+                        setStyle("-fx-background-color: #8DA47E;");
+                    }
+
+                }
+            });
+
+        });
+
 
     }
     //Health Conditions
-    public void OnClickedHCSubCategory(ActionEvent actionEvent) {
+    public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+        try{
+            healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
+            relevanceComboBox.setValue(healthConditions.get(0));
+            hCprofessionalNoteTxt.setText(healthConditions.get(1));
+            currentAssessmentTxt.setText(healthConditions.get(2));
+            hCExpectedLevelComboBox.setValue(healthConditions.get(3));
+            hCObservationNoteTxt.setText(healthConditions.get(4));
+            hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
+            hCCategoryComboBox.setDisable(true);
+            hCSubCategoryComboBox.setDisable(true);
+        }catch(NullPointerException e){
+            throw new Exception("Does not exist");
+        }
     }
 
     public void OnClickedHCRelevance(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+
+        healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
+
+        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))){
+            hCprofessionalNoteTxt.setDisable(true);
+            currentAssessmentTxt.setDisable(true);
+            hCdatePicker.setDisable(true);
+            hCObservationNoteTxt.setDisable(true);
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)){
+            hCprofessionalNoteTxt.setDisable(true);
+            hCprofessionalNoteTxt.setText("");
+            currentAssessmentTxt.setDisable(true);
+            currentAssessmentTxt.setText("");
+            hCdatePicker.setDisable(true);
+            hCdatePicker.setValue(LocalDate.now());
+            hCObservationNoteTxt.setDisable(true);
+            hCObservationNoteTxt.setText("");
+            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+
+        if((relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) || (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && healthConditions.get(0).equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0))){
+            hCprofessionalNoteTxt.setDisable(false);
+            currentAssessmentTxt.setDisable(true);
+            hCdatePicker.setDisable(true);
+            hCObservationNoteTxt.setDisable(true);
+            hCExpectedLevelComboBox.setDisable(true);
+        }
+        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")){
+            currentAssessmentTxt.setDisable(true);
+            currentAssessmentTxt.setText("");
+            hCdatePicker.setDisable(true);
+            hCdatePicker.setValue(LocalDate.now());
+            hCObservationNoteTxt.setDisable(true);
+            hCObservationNoteTxt.setText("");
+            hCExpectedLevelComboBox.setDisable(true);
+            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+        }
+
+        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")){
+            hCprofessionalNoteTxt.setDisable(false);
+            currentAssessmentTxt.setDisable(false);
+            hCdatePicker.setDisable(false);
+            hCObservationNoteTxt.setDisable(false);
+            hCExpectedLevelComboBox.setItems(expectedLevelList);
+            hCExpectedLevelComboBox.setDisable(false);
+        }
     }
 
     public void OnClickHCCategory(ActionEvent actionEvent) {
+        if(hCCategoryComboBox.getValue() != null) {
+            String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
+            if (selectedCategory.equals(hc_category1)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory1_list);
+            } else if (selectedCategory.equals(hc_category2)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory2_list);
+            } else if (selectedCategory.equals(hc_category3)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory3_list);
+            } else if (selectedCategory.equals(hc_category4)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory4_list);
+            } else if (selectedCategory.equals(hc_category5)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory5_list);
+            } else if (selectedCategory.equals(hc_category6)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory6_list);
+            } else if (selectedCategory.equals(hc_category7)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory7_list);
+            } else if (selectedCategory.equals(hc_category8)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory8_list);
+            } else if (selectedCategory.equals(hc_category9)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory9_list);
+            } else if (selectedCategory.equals(hc_category10)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory10_list);
+            } else if (selectedCategory.equals(hc_category11)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory11_list);
+            } else if (selectedCategory.equals(hc_category12)) {
+                hCSubCategoryComboBox.setItems(hc_subcategory12_list);
+            } else {
+                hCSubCategoryComboBox.setItems(null);
+            }
+        }
+        hCExpectedLevelComboBox.equals(expectedLevelList);
     }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
+
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+
+        String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
+        String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
+        String relevance = relevanceComboBox.getSelectionModel().getSelectedItem();
+        String professionalNote = hCprofessionalNoteTxt.getText();
+        String currentAssessment = currentAssessmentTxt.getText();
+        String expectedLevel = hCExpectedLevelComboBox.getSelectionModel().getSelectedItem();
+        String observationNote = hCObservationNoteTxt.getText();
+        LocalDate date = hCdatePicker.getValue();
+        citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+        presentLevelComboBox.getSelectionModel().clearSelection();
+        expectedLevelComboBox.getSelectionModel().clearSelection();
+        fACategoryComboBox.setDisable(false);
+        faSubCategoryComboBox.setDisable(false);
+        fAProfNoteTxt.clear();
+        performanceComboBox.getSelectionModel().clearSelection();
+        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
+        wishesNGoalsTxt.clear();
+        observationNoteTxt.clear();
+        fADatePicker.setValue(LocalDate.now());
+        //fADatePicker.setValue(null);
+        JOptionPane.showMessageDialog(frame, "Saved");
     }
     //Functional Abilities
     public void OnClickFACategory(ActionEvent actionEvent) {
+
+        if(fACategoryComboBox.getValue() != null) {
+            String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
+            if (selectedCategory.equals(fa_category1)) {
+                faSubCategoryComboBox.setItems(fa_subcategory1_list);
+            } else if (selectedCategory.equals(fa_category2)) {
+                faSubCategoryComboBox.setItems(fa_subcategory2_list);
+            } else if (selectedCategory.equals(fa_category3)) {
+                faSubCategoryComboBox.setItems(fa_subcategory3_list);
+            } else if (selectedCategory.equals(fa_category4)) {
+                faSubCategoryComboBox.setItems(fa_subcategories4_list);
+            } else if (selectedCategory.equals(fa_category5)) {
+                faSubCategoryComboBox.setItems(fa_subcategories5_list);
+            } else {
+                faSubCategoryComboBox.setItems(null);
+            }
+        }
     }
 
-    public void OnClickedFASubCategory(ActionEvent actionEvent) {
+    public void OnClickedFASubCategory(ActionEvent actionEvent) throws Exception {
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+        try{
+            functionalAbilities = (ArrayList<String>) citizenModel.getFunctionalInformationCitizen(fACategoryComboBox.getSelectionModel().getSelectedItem(), faSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
+            presentLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(0)));
+            expectedLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(1)));
+            fAProfNoteTxt.setText(functionalAbilities.get(2));
+            performanceComboBox.setValue(functionalAbilities.get(3));
+            meaningOfPerformanceComboBox.setValue(functionalAbilities.get(4));
+            wishesNGoalsTxt.setText(functionalAbilities.get(5));
+            observationNoteTxt.setText(functionalAbilities.get(6));
+            fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
+            fACategoryComboBox.setDisable(true);
+            faSubCategoryComboBox.setDisable(true);
+        }catch(NullPointerException e){
+            throw new Exception("Does not exist");
+        }
     }
 
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+
+        String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
+        String selectedSubCategory = faSubCategoryComboBox.getSelectionModel().getSelectedItem();
+        int selectedPresentLevel = presentLevelComboBox.getSelectionModel().getSelectedIndex();
+        int selectedExpectedLevel = expectedLevelComboBox.getSelectionModel().getSelectedIndex();
+        String professionalNote = fAProfNoteTxt.getText();
+        String selectedPerformance = performanceComboBox.getSelectionModel().getSelectedItem();
+        String selectedMeaningOfPerformance = meaningOfPerformanceComboBox.getSelectionModel().getSelectedItem();
+        String wishesNGoals = wishesNGoalsTxt.getText();
+        String observationNote = observationNoteTxt.getText();
+        LocalDate date = fADatePicker.getValue();
+        citizenModel.updateFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+        presentLevelComboBox.getSelectionModel().clearSelection();
+        expectedLevelComboBox.getSelectionModel().clearSelection();
+        fACategoryComboBox.setDisable(false);
+        faSubCategoryComboBox.setDisable(false);
+        fAProfNoteTxt.clear();
+        performanceComboBox.getSelectionModel().clearSelection();
+        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
+        wishesNGoalsTxt.clear();
+        observationNoteTxt.clear();
+        fADatePicker.setValue(LocalDate.now());
+        //fADatePicker.setValue(null);
+        JOptionPane.showMessageDialog(frame, "Saved");
     }
 
     public void OnClickPopImage(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
     }
 
     //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
+
+        Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
+        int citizenId = (Integer) currentStage.getUserData();
+
+        ArrayList<String> generalInfoEditable = new ArrayList<>();
+
+        {
+            generalInfoEditable.add(masteryTxt.getText());
+            generalInfoEditable.add(motivationTxt.getText());
+            generalInfoEditable.add(resourcesTxt.getText());
+            generalInfoEditable.add(rollerTxt.getText());
+            generalInfoEditable.add(habitsTxt.getText());
+            generalInfoEditable.add(enJTxt.getText());
+            generalInfoEditable.add(lifeStoryTxt.getText());
+            generalInfoEditable.add(networkTxt.getText());
+            generalInfoEditable.add(healthInfoTxt.getText());
+            generalInfoEditable.add(assistiveDevicesTxt.getText());
+            generalInfoEditable.add(interiorOfHomeTxt.getText());
+        }
+
+        for (int i = 0; i < generalInfoEditable.size(); i++) {
+
+            citizenModel.updateGeneralInfoCitizen(generalInfoName.get(i), generalInfoEditable.get(i), citizenId);
+        }
+        JOptionPane.showMessageDialog(frame, "Saved");
 
     }
     public void OnClickfirstInfoBtn (ActionEvent event){

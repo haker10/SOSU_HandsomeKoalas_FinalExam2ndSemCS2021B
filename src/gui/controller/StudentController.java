@@ -84,6 +84,7 @@ public class StudentController implements Initializable {
     }
 
     public void OnClickOpenView(ActionEvent actionEvent) {
+        int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
         Stage currentStage = (Stage) citizenTV.getScene().getWindow();
         currentStage.close();
         try{
@@ -92,7 +93,7 @@ public class StudentController implements Initializable {
             Scene scene = new Scene(root);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
-            //stage.setUserData(info);
+            stage.setUserData(citizenId);
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
