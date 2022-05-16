@@ -145,9 +145,10 @@ public class FunctionalAbilitiesCitizenDAO {
                 String limitation = resultSet.getString("functionalAbilitiesCitizenLimitation");
                 String wishesNGoals = resultSet.getString("functionalAbilitiesCitizenGoalsNote");
                 String observationNote = resultSet.getString("functionalAbilitiesCitizenObservationNote");
-                Date date = resultSet.getDate("functionalAbilitiesCitizenTemplateDate");
-                //LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                FunctionalAbilitie functionalAbilitie = new FunctionalAbilitie(fAId, category, subcategory, score, expectedScore, proffNote, performance, limitation, wishesNGoals, observationNote, null, citizenId);
+                String date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
+                java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+                LocalDate localDate = sqlDate.toLocalDate();
+                FunctionalAbilitie functionalAbilitie = new FunctionalAbilitie(fAId, category, subcategory, score, expectedScore, proffNote, performance, limitation, wishesNGoals, observationNote, localDate, citizenId);
                 allFunctionalInfoCitizen.add(functionalAbilitie);
             }
         }catch (Exception e){

@@ -134,8 +134,10 @@ public class HealthConditionsCitizenDAO {
                 String assessmentNote = resultSet.getString("healthConditionsCitizenAssessmentNote");
                 String expectedLevel = resultSet.getString("healthConditionsCitizenExpectedLevel");
                 String observationNote = resultSet.getString("healthConditionsCitizenObservableNote");
-                //String date = resultSet.getString("healthConditionsCitizenDate");
-                HealthCondition healthCondition = new HealthCondition(hCId, category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, null, citizenId);
+                String date = resultSet.getString("healthConditionsCitizenDate");
+                java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+                LocalDate localDate = sqlDate.toLocalDate();
+                HealthCondition healthCondition = new HealthCondition(hCId, category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, localDate, citizenId);
                 allHealthConditionsCitizen.add(healthCondition);
             }
         }catch (Exception e){
