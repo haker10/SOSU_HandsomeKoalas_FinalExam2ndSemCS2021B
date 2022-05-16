@@ -316,8 +316,6 @@ public class StudentEditCitizenController implements Initializable{
                 else {
                     setStyle("-fx-background-color: #8DA47E;");
                 }
-
-
             }
         });
     }
@@ -356,31 +354,6 @@ public class StudentEditCitizenController implements Initializable{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-          /*  healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
-                @Override
-                protected void updateItem(HealthCondition item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty == true){
-                        setStyle("-fx-background-color: #DAD5D6");
-                        return;
-                    }
-                    if(item != null && item.getHealthConditionsCitizenColor().equals("Very relevant")) {
-                        setStyle("-fx-background-color: #C54B6C;");
-                    }
-                    else if(item != null && item.getHealthConditionsCitizenColor().equals("Relevant")){
-                        setStyle("-fx-background-color: #FFCCB6;");
-                    }
-                    else {
-                        setStyle("-fx-background-color: #8DA47E;");
-                    }
-
-
-                }
-            });*/
-
-
-
-
         });
 
 
@@ -390,6 +363,7 @@ public class StudentEditCitizenController implements Initializable{
             TableRow<HealthCondition> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    clearHC();
                     HealthCondition rowData = row.getItem();
                     Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
                     int citizenId = (Integer) currentStage.getUserData();
@@ -403,8 +377,6 @@ public class StudentEditCitizenController implements Initializable{
                         hCExpectedLevelComboBox.setValue(healthConditions.get(3));
                         hCObservationNoteTxt.setText(healthConditions.get(4));
                         hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-                        hCCategoryComboBox.setDisable(true);
-                        hCSubCategoryComboBox.setDisable(true);
                     }catch(NullPointerException e){
                         try {
                             throw new Exception("Does not exist");
@@ -420,6 +392,7 @@ public class StudentEditCitizenController implements Initializable{
             TableRow<FunctionalAbilitie> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    clearFA();
                     FunctionalAbilitie rowData = row.getItem();
                     Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
                     int citizenId = (Integer) currentStage.getUserData();
@@ -434,8 +407,6 @@ public class StudentEditCitizenController implements Initializable{
                         wishesNGoalsTxt.setText(functionalAbilities.get(5));
                         observationNoteTxt.setText(functionalAbilities.get(6));
                         fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
-                        fACategoryComboBox.setDisable(true);
-                        faSubCategoryComboBox.setDisable(true);
                     }catch(Exception e){
                         e.printStackTrace();
                     }
@@ -457,8 +428,6 @@ public class StudentEditCitizenController implements Initializable{
             hCExpectedLevelComboBox.setValue(healthConditions.get(3));
             hCObservationNoteTxt.setText(healthConditions.get(4));
             hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-            hCCategoryComboBox.setDisable(true);
-            hCSubCategoryComboBox.setDisable(true);
         }catch(NullPointerException e){
             throw new Exception("Does not exist");
         }
@@ -551,6 +520,16 @@ public class StudentEditCitizenController implements Initializable{
         }
         hCExpectedLevelComboBox.equals(expectedLevelList);
     }
+    public void clearHC(){
+        hCdatePicker.setValue(null);
+        hCObservationNoteTxt.clear();
+        hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+        currentAssessmentTxt.clear();
+        hCprofessionalNoteTxt.clear();
+        relevanceComboBox.getSelectionModel().clearSelection();
+        hCSubCategoryComboBox.getSelectionModel().clearSelection();
+        hCCategoryComboBox.getSelectionModel().clearSelection();
+    }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
@@ -568,16 +547,7 @@ public class StudentEditCitizenController implements Initializable{
         LocalDate date = hCdatePicker.getValue();
         citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
         presentLevelComboBox.getSelectionModel().clearSelection();
-        hCCategoryComboBox.setDisable(false);
-        hCSubCategoryComboBox.setDisable(false);
-        hCdatePicker.setValue(LocalDate.now());
-        hCObservationNoteTxt.clear();
-        hCExpectedLevelComboBox.getSelectionModel().clearSelection();
-        currentAssessmentTxt.clear();
-        hCprofessionalNoteTxt.clear();
-        relevanceComboBox.getSelectionModel().clearSelection();
-        hCSubCategoryComboBox.getSelectionModel().clearSelection();
-        hCCategoryComboBox.getSelectionModel().clearSelection();
+        clearHC();
         JOptionPane.showMessageDialog(frame, "Saved");
         updateCitizenTableView();
     }
@@ -615,8 +585,6 @@ public class StudentEditCitizenController implements Initializable{
             wishesNGoalsTxt.setText(functionalAbilities.get(5));
             observationNoteTxt.setText(functionalAbilities.get(6));
             fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
-            fACategoryComboBox.setDisable(true);
-            faSubCategoryComboBox.setDisable(true);
         }catch(NullPointerException e){
             throw new Exception("Does not exist");
         }
@@ -638,17 +606,7 @@ public class StudentEditCitizenController implements Initializable{
         String observationNote = observationNoteTxt.getText();
         LocalDate date = fADatePicker.getValue();
         citizenModel.updateFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
-        presentLevelComboBox.getSelectionModel().clearSelection();
-        expectedLevelComboBox.getSelectionModel().clearSelection();
-        fACategoryComboBox.setDisable(false);
-        faSubCategoryComboBox.setDisable(false);
-        fAProfNoteTxt.clear();
-        performanceComboBox.getSelectionModel().clearSelection();
-        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
-        wishesNGoalsTxt.clear();
-        observationNoteTxt.clear();
-        fADatePicker.setValue(LocalDate.now());
-        //fADatePicker.setValue(null);
+        clearFA();
         JOptionPane.showMessageDialog(frame, "Saved");
     }
 
@@ -656,6 +614,18 @@ public class StudentEditCitizenController implements Initializable{
         JFrame frame = new JFrame();
         frame.add(new JLabel((Icon) new ImageIcon("/images/01234.png").getImage()));
 
+    }
+    public void clearFA(){
+        fADatePicker.setValue(null);
+        observationNoteTxt.clear();
+        wishesNGoalsTxt.clear();
+        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
+        performanceComboBox.getSelectionModel().clearSelection();
+        fAProfNoteTxt.clear();
+        expectedLevelComboBox.getSelectionModel().clearSelection();
+        presentLevelComboBox.getSelectionModel().clearSelection();
+        faSubCategoryComboBox.getSelectionModel().clearSelection();
+        fACategoryComboBox.getSelectionModel().clearSelection();
     }
 
     //General Information
