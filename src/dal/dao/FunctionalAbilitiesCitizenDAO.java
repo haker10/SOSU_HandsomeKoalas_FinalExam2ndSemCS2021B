@@ -47,7 +47,7 @@ public class FunctionalAbilitiesCitizenDAO {
         }
     }
 
-    private void createFunctionalAbilitiesCitizen(String category, String subCategory, int score, int expectedScore, String professionalNote, String performance, String limitation, String goalsNote, String observationNote, LocalDate date, int citizenId) {
+    public void createFunctionalAbilitiesCitizen(String category, String subCategory, int score, int expectedScore, String professionalNote, String performance, String limitation, String goalsNote, String observationNote, LocalDate date, int citizenId) {
         String sql = "INSERT INTO FunctionalAbilitiesCitizen(functionalAbilitiesCitizenCategoryName, functionalAbilitiesCitizenSubCategoryName, functionalAbilitiesCitizenScore, functionalAbilitiesCitizenExpectedScore, functionalAbilitiesCitizenProfessionalNote, functionalAbilitiesCitizenPerformance, functionalAbilitiesCitizenLimitation, functionalAbilitiesCitizenGoalsNote, functionalAbilitiesCitizenObservationNote, functionalAbilitiesCitizenTemplateDate,  citizenID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class FunctionalAbilitiesCitizenDAO {
         }
     }
 
-    public Object getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
+    public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
         List<String> allFunctionalInfoCitizen = new ArrayList<>();
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ? and  functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ?";
 

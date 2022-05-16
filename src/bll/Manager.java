@@ -232,6 +232,10 @@ public class Manager {
     public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
         return healthConditionsCitizenDAO.getAllHealthCondition(citizenId);
     }
+
+    public void createFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
+        functionalAbilitiesCitizenDAO.createFunctionalAbilitiesCitizen(selectedCategory,selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+    }
 }
 
 
