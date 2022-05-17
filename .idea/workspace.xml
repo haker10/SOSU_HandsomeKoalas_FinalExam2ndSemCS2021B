@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/css/admin.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,6 +165,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

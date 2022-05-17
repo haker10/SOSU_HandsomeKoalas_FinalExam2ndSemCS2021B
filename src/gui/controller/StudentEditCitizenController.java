@@ -1,6 +1,5 @@
 package gui.controller;
 
-import be.Citizen;
 import be.FunctionalAbilitie;
 import be.HealthCondition;
 import gui.model.CitizenModel;
@@ -22,15 +21,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class StudentEditCitizenController implements Initializable{
+
     //Health Conditions
     @FXML
     private ComboBox<String> relevanceComboBox;
@@ -292,46 +289,8 @@ public class StudentEditCitizenController implements Initializable{
         citizenModel = new CitizenModel();
     }
 
-    public void updateCitizenTableView(){
-        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        info = (String) currentStage.getUserData();
-        String[] splitter = info.split(",");
-        int citizenId = Integer.parseInt(splitter[0]);
-        hCCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenCategory"));
-        hCSubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenSubCategory"));
-        hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenColor"));
-        fACategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenCategoryName"));
-        fASubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenSubCategoryName"));
-        try {
-            healthConditionTV.setItems(citizenModel.getAllHealthCondition(citizenId));
-            functionalAbilitiesTV.setItems(citizenModel.getALlFunctionalAbilities(citizenId));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        healthConditionTV.setRowFactory(tr -> new  TableRow<HealthCondition>(){
-            @Override
-            protected void updateItem(HealthCondition item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty == true){
-                    setStyle("-fx-background-color: #DAD5D6");
-                    return;
-                }
-                if(item != null && item.getHealthConditionsCitizenColor().equals("Very relevant")) {
-                    setStyle("-fx-background-color: #C54B6C;");
-                }
-                else if(item != null && item.getHealthConditionsCitizenColor().equals("Relevant")){
-                    setStyle("-fx-background-color: #FFCCB6;");
-                }
-                else {
-                    setStyle("-fx-background-color: #8DA47E;");
-                }
-            }
-        });
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //clearHC();
-        //clearFA();
         fACategoryComboBox.setItems(fa_category_list);
         presentLevelComboBox.setItems(score);
         expectedLevelComboBox.setItems(score);
@@ -345,9 +304,6 @@ public class StudentEditCitizenController implements Initializable{
             String[] splitter = info.split(",");
             int citizenId = Integer.parseInt(splitter[0]);
             String schoolName = splitter[1];
-
-
-
 
             schoolLbl.setText(schoolName);
 
@@ -373,9 +329,26 @@ public class StudentEditCitizenController implements Initializable{
                 e.printStackTrace();
             }
         });
-
-
     }
+
+    public void updateCitizenTableView(){
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
+        hCCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenCategory"));
+        hCSubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenSubCategory"));
+        hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenColor"));
+        fACategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenCategoryName"));
+        fASubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenSubCategoryName"));
+        try {
+            healthConditionTV.setItems(citizenModel.getAllHealthCondition(citizenId));
+            functionalAbilitiesTV.setItems(citizenModel.getALlFunctionalAbilities(citizenId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void OnDoubleClickTableViewRow() throws Exception{
         healthConditionTV.setRowFactory(tv -> {
             TableRow<HealthCondition> row = new TableRow<>();
@@ -420,7 +393,6 @@ public class StudentEditCitizenController implements Initializable{
                     fACategoryComboBox.getSelectionModel().clearSelection();
                     faSubCategoryComboBox.getSelectionModel().clearSelection();
                     FunctionalAbilitie rowData = row.getItem();
-
                     Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
                     info = (String) currentStage.getUserData();
                     String[] splitter = info.split(",");
@@ -440,12 +412,12 @@ public class StudentEditCitizenController implements Initializable{
                     }catch(Exception e){
                         e.printStackTrace();
                     }
-
                 }
             });
             return row ;
         });
     }
+
     //Health Conditions
     public void OnClickHCCategory(ActionEvent actionEvent) {
         if(hCCategoryComboBox.getValue() != null) {
@@ -482,7 +454,6 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
-        //relevanceComboBox.setDisable(false);
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -490,7 +461,6 @@ public class StudentEditCitizenController implements Initializable{
         if (hCCategoryComboBox.getValue() != null) {
             try {
                 hCdatePicker.setDisable(false);
-                //System.out.println(citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId));
                 healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
                 relevanceComboBox.setValue(healthConditions.get(0));
                 hCprofessionalNoteTxt.setText(healthConditions.get(1));
@@ -560,9 +530,7 @@ public class StudentEditCitizenController implements Initializable{
         }
     }
 
-
     public void clearHC(){
-
 
         hCCategoryComboBox.getSelectionModel().clearSelection();
         hCSubCategoryComboBox.getSelectionModel().clearSelection();
@@ -582,7 +550,6 @@ public class StudentEditCitizenController implements Initializable{
         hCObservationNoteTxt.setDisable(true);
         hCExpectedLevelComboBox.setDisable(true);
         hCdatePicker.setDisable(true);
-
 
     }
 
@@ -609,11 +576,12 @@ public class StudentEditCitizenController implements Initializable{
         else {
             citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
         }
-
         clearHC();
         JOptionPane.showMessageDialog(frame, "Saved");
         updateCitizenTableView();
     }
+
+
     //Functional Abilities
     public void OnClickFACategory(ActionEvent actionEvent) {
 
@@ -775,8 +743,8 @@ public class StudentEditCitizenController implements Initializable{
             citizenModel.updateGeneralInfoCitizen(generalInfoName.get(i), generalInfoEditable.get(i), citizenId);
         }
         JOptionPane.showMessageDialog(frame, "Saved");
-
     }
+
     public void OnClickfirstInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities. !!");
