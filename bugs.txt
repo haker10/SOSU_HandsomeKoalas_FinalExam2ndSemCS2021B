@@ -9,7 +9,8 @@
 //resize windows
 
 fix exceptions
-Fix To have only 1 username ; if existing give Exception;
+Fix To have only 1 username ; if existing give Exception; 1/4
+dynamic scene
 
 //Sprint review questions
 in editCitizenTemplate to have a "button delete" for HealthConditions

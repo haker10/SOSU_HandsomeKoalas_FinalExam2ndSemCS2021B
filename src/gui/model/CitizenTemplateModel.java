@@ -1,6 +1,8 @@
 package gui.model;
 
 import be.CitizenTemplate;
+import be.FunctionalAbilitieCT;
+import be.HealthConditionCT;
 import bll.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,4 +81,19 @@ public class CitizenTemplateModel {
         return manager.checkFunctionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
 
+    public ObservableList<HealthConditionCT> getAllHealthConditionTemplate(int citizenTemplateID) {
+        return manager.getAllHealthConditionTemplate(citizenTemplateID);
+    }
+
+    public ObservableList<FunctionalAbilitieCT> getALlFunctionalAbilitiesTemplate(int citizenTemplateID) {
+        return manager.getAllFunctionalAbilitiesTemplate(citizenTemplateID);
+    }
+
+    public boolean checkHealthConditionsTemplateId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        return manager.checkHealthConditionsTemplateId(selectedCategory, selectedSubCategory, citizenTemplateID);
+    }
+
+    public boolean checkFunctionalAbilitiesTemplateId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        return manager.checkFunctionalAbilitiesTemplateId(selectedCategory, selectedSubCategory, citizenTemplateID);
+    }
 }

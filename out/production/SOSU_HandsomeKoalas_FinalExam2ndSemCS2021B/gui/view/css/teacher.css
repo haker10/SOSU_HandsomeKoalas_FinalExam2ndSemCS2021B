@@ -205,5 +205,60 @@
     -fx-border-color: black;
     -fx-border-width: 1;
     -fx-text-fill: E8CFC9;
+}
 
+/*textArea*/
+
+.text-area{
+    -fx-background-color: #E8CFC9;
+    -fx-text-background-color: #2B2B2B;
+    -fx-text-fill: #2B2B2B;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: #3E5C70;
+}
+.text-area:focused {
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #3E5C70;
+}
+
+
+
+/*buttons*/
+
+.button{
+    -fx-background-radius: 10;
+    -fx-background-color: transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 25;
+    -fx-border-color: black;
+
+}
+
+
+/*comboBox*/
+
+.combo-box {
+    -fx-background-color:  #2B2B2B;
+    -fx-mark-color: #ED8923; // arrow color
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #2B2B2B;
+    -fx-text-fill: #E8CFC9;
+}
+.combo-box .list-cell:hover{
+    -fx-background-color: #ED8923;
+    -fx-text-fill: #2B2B2B;
+}
+.combo-box .context-menu { -fx-background-color: #2B2B2B; }
+.combo-box .menu-item:focused { -fx-background-color: #ED8923; }
+.combo-box .menu-item > .label { -fx-text-fill: #E8CFC9; }
+.combo-box .menu-item:focused > .label { -fx-text-fill:  #2B2B2B; }
+.combo-box .scroll-bar {
+    -fx-opacity: 0;
+}
+.combo-box .scroll-pane{
+    -fx-opacity: 0;
 }

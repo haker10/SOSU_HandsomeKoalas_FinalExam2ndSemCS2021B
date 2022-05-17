@@ -1,6 +1,10 @@
 package dal.dao;
 
+import be.FunctionalAbilitie;
+import be.FunctionalAbilitieCT;
 import dal.DatabaseConnector;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -162,5 +166,52 @@ public class FunctionalAbilitesCitizenTemplateDAO {
         }
         return false;
     }
-    
+
+    public ObservableList<FunctionalAbilitieCT> getAllFunctionalAbilities(int citizenTemplateID) {
+        ObservableList<FunctionalAbilitieCT> allFunctionalInfoCitizenTemplate = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int score = resultSet.getInt("functionalAbilitiesCitizenTemplateScore");
+                int fAId = resultSet.getInt("functionalAbilitiesCitizenTemplateID");
+                String category = resultSet.getString("functionalAbilitiesCitizenTemplateCategoryName");
+                String subcategory = resultSet.getString("functionalAbilitiesCitizenTemplateSubCategoryName");
+                int expectedScore = resultSet.getInt("functionalAbilitiesCitizenTemplateExpectedScore");
+                String proffNote = resultSet.getString("functionalAbilitiesCitizenTemplateProfessionalNote");
+                String performance = resultSet.getString("functionalAbilitiesCitizenTemplatePerformance");
+                String limitation = resultSet.getString("functionalAbilitiesCitizenTemplateLimitation");
+                String wishesNGoals = resultSet.getString("functionalAbilitiesCitizenTemplateGoalsNote");
+                String observationNote = resultSet.getString("functionalAbilitiesCitizenTemplateObservationNote");
+                String date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
+                java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+                LocalDate localDate = sqlDate.toLocalDate();
+                FunctionalAbilitieCT functionalAbilitieCT = new FunctionalAbilitieCT(fAId, category, subcategory, score, expectedScore, proffNote, performance, limitation, wishesNGoals, observationNote, localDate, citizenTemplateID);
+                allFunctionalInfoCitizenTemplate.add(functionalAbilitieCT);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return allFunctionalInfoCitizenTemplate;
+    }
+
+    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ? and  functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, selectedCategory);
+            preparedStatement.setString(3, selectedSubCategory);
+            preparedStatement.setInt(1, citizenTemplateID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

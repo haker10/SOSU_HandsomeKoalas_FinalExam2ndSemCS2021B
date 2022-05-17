@@ -80,11 +80,11 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
             updateCitizenTemplateTV();
         }
-        /*
+
         int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/createCitizenTemplateView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/editCitizenTemplateView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
@@ -94,7 +94,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             //scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void onClickEdit(ActionEvent actionEvent) {

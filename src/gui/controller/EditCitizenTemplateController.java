@@ -1,33 +1,95 @@
 package gui.controller;
 
+import be.FunctionalAbilitieCT;
+import be.HealthConditionCT;
 import gui.model.CitizenTemplateModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Spliterator;
 
-public class EditCitizenTemplateController implements Initializable {
+public class EditCitizenTemplateController implements Initializable{
 
+    //Health Conditions
     @FXML
-    private TextArea enJTxt;
+    private ComboBox<String> relevanceComboBox;
     @FXML
-    private TextArea assistiveDevicesTxt;
+    private TextArea currentAssessmentTxt;
     @FXML
-    private TextArea habitsTxt;
+    private TableColumn<HealthConditionCT, String> hCCategoryColumn;
+    @FXML
+    private ComboBox<String> hCCategoryComboBox;
+    @FXML
+    private ComboBox<String> hCExpectedLevelComboBox;
+    @FXML
+    private TextArea hCObservationNoteTxt;
+    @FXML
+    private TableColumn<HealthConditionCT, String> hCRelevanceColumn;
+    @FXML
+    private TableColumn<HealthConditionCT, String> hCSubCategoryColumn;
+    @FXML
+    private ComboBox<String> hCSubCategoryComboBox;
+    @FXML
+    private DatePicker hCdatePicker;
+    @FXML
+    private TextArea hCprofessionalNoteTxt;
+    @FXML
+    private TableView<HealthConditionCT> healthConditionTV;
+
+    //Functional Abilities
+    @FXML
+    private ComboBox<String> performanceComboBox;
+    @FXML
+    private ComboBox<Integer> presentLevelComboBox;
+    @FXML
+    private TextArea observationNoteTxt;
+    @FXML
+    private TextArea wishesNGoalsTxt;
+    @FXML
+    private ComboBox<String> meaningOfPerformanceComboBox;
+    @FXML
+    private ComboBox<Integer> expectedLevelComboBox;
+    @FXML
+    private TableColumn<FunctionalAbilitieCT, String> fACategoryColumn;
+    @FXML
+    private ComboBox<String> fACategoryComboBox;
+    @FXML
+    private DatePicker fADatePicker;
+    @FXML
+    private TextArea fAProfNoteTxt;
+    @FXML
+    private TableColumn<FunctionalAbilitieCT, String> fASubCategoryColumn;
+    @FXML
+    private ComboBox<String> faSubCategoryComboBox;
+    @FXML
+    private TableView<FunctionalAbilitieCT> functionalAbilitiesTV;
+
+    //General Information
+    @FXML
+    private TextArea rollerTxt;
+    @FXML
+    private TextArea resourcesTxt;
+    @FXML
+    private TextArea motivationTxt;
+    @FXML
+    private TextArea networkTxt;
     @FXML
     private TextArea healthInfoTxt;
     @FXML
@@ -37,51 +99,15 @@ public class EditCitizenTemplateController implements Initializable {
     @FXML
     private TextArea masteryTxt;
     @FXML
-    private TextArea motivationTxt;
+    private TextArea assistiveDevicesTxt;
     @FXML
-    private TextArea networkTxt;
+    private TextArea habitsTxt;
     @FXML
-    private TextArea resourcesTxt;
-    @FXML
-    private TextArea rollerTxt;
+    private TextArea enJTxt;
 
-    @FXML
-    private ComboBox<String> fACategoryComboBox;
-    @FXML
-    private ComboBox<String> faSubCategoryComboBox;
-    @FXML
-    private ComboBox<Integer> presentLevelComboBox;
-    @FXML
-    private ComboBox<Integer> expectedLevelComboBox;
-    @FXML
-    private TextArea fAProfNoteTxt;
-    @FXML
-    private ComboBox<String> performanceComboBox;
-    @FXML
-    private ComboBox<String> meaningOfPerformanceComboBox;
-    @FXML
-    private TextArea wishesNGoalsTxt;
-    @FXML
-    private TextArea observationNoteTxt;
-    @FXML
-    private DatePicker fADatePicker;
-
-    @FXML
-    private ComboBox<String> hCCategoryComboBox;
-    @FXML
-    private ComboBox<String> hCSubCategoryComboBox;
-    @FXML
-    private ComboBox<String> relevanceComboBox;
-    @FXML
-    private TextArea hCprofessionalNoteTxt;
-    @FXML
-    private TextArea currentAssessmentTxt;
-    @FXML
-    private DatePicker hCdatePicker;
-    @FXML
-    private ComboBox<String> hCExpectedLevelComboBox;
-    @FXML
-    private TextArea hCObservationNoteTxt;
+    String info;
+    private double xoffset;
+    private double yoffset;
 
     String hc_category1 = "Function level";
     String hc_subcategory1_1 = "Problems with personal care";
@@ -252,10 +278,8 @@ public class EditCitizenTemplateController implements Initializable {
     }
 
     ArrayList<String> functionalAbilities = new ArrayList<>();
-    ArrayList<String> healthConditions = new ArrayList<>();
-
+    ArrayList<String> healthConditions = new ArrayList<>(6);
     CitizenTemplateModel citizenTemplateModel;
-
 
     public EditCitizenTemplateController(){
         citizenTemplateModel = new CitizenTemplateModel();
@@ -263,7 +287,6 @@ public class EditCitizenTemplateController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         fACategoryComboBox.setItems(fa_category_list);
         presentLevelComboBox.setItems(score);
         expectedLevelComboBox.setItems(score);
@@ -273,22 +296,110 @@ public class EditCitizenTemplateController implements Initializable {
         relevanceComboBox.setItems(hc_relevance);
         Platform.runLater(() -> {
             Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-            int citizenTemplateId = (Integer) currentStage.getUserData();
-
+            int citizenTemplateID = (int) currentStage.getUserData();
 
             //general information
-            masteryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(0)));
-            motivationTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(1)));
-            resourcesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(2)));
-            rollerTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(3)));
-            habitsTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(4)));
-            enJTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(5)));
-            lifeStoryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(6)));
-            networkTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(7)));
-            healthInfoTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(8)));
-            assistiveDevicesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(9)));
-            interiorOfHomeTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName.get(10)));
+            masteryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(0)));
+            motivationTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(1)));
+            resourcesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(2)));
+            rollerTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(3)));
+            habitsTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(4)));
+            enJTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(5)));
+            lifeStoryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(6)));
+            networkTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(7)));
+            healthInfoTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(8)));
+            assistiveDevicesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(9)));
+            interiorOfHomeTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(10)));
 
+            updateCitizenTemplateTableView();
+            clearFA();
+            clearHC();
+            try {
+                OnDoubleClickTableViewRow();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void updateCitizenTemplateTableView(){
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenTemplateID = (int) currentStage.getUserData();
+        hCCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenTemplateCategory"));
+        hCSubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenTemplateSubCategory"));
+        hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenTemplateColor"));
+        fACategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenTemplateCategoryName"));
+        fASubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("functionalAbilitiesCitizenTemplateSubCategoryName"));
+        try {
+            healthConditionTV.setItems(citizenTemplateModel.getAllHealthConditionTemplate(citizenTemplateID));
+            functionalAbilitiesTV.setItems(citizenTemplateModel.getALlFunctionalAbilitiesTemplate(citizenTemplateID));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OnDoubleClickTableViewRow() throws Exception{
+        healthConditionTV.setRowFactory(tv -> {
+            TableRow<HealthConditionCT> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    hCCategoryComboBox.setDisable(false);
+                    hCSubCategoryComboBox.setDisable(false);
+                    hCCategoryComboBox.getSelectionModel().clearSelection();
+                    hCSubCategoryComboBox.getSelectionModel().clearSelection();
+                    HealthConditionCT rowData = row.getItem();
+                    Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
+                    int citizenTemplateID = (int) currentStage.getUserData();
+                    try{
+                        healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(rowData.getHealthConditionsCitizenTemplateCategory(), rowData.getHealthConditionsCitizenTemplateSubCategory(), citizenTemplateID);
+                        hCCategoryComboBox.setValue(rowData.getHealthConditionsCitizenTemplateCategory());
+                        hCSubCategoryComboBox.setValue(rowData.getHealthConditionsCitizenTemplateSubCategory());
+                        relevanceComboBox.setValue(rowData.getHealthConditionsCitizenTemplateColor());
+                        hCprofessionalNoteTxt.setText(healthConditions.get(1));
+                        currentAssessmentTxt.setText(healthConditions.get(2));
+                        hCExpectedLevelComboBox.setValue(healthConditions.get(3));
+                        hCObservationNoteTxt.setText(healthConditions.get(4));
+                        hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
+                    }catch(NullPointerException e){
+                        try {
+                            throw new Exception("Does not exist");
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            });
+            return row ;
+        });
+        functionalAbilitiesTV.setRowFactory(tv -> {
+            TableRow<FunctionalAbilitieCT> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    fACategoryComboBox.setDisable(false);
+                    faSubCategoryComboBox.setDisable(false);
+                    fACategoryComboBox.getSelectionModel().clearSelection();
+                    faSubCategoryComboBox.getSelectionModel().clearSelection();
+                    FunctionalAbilitieCT rowData = row.getItem();
+                    Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+                    int citizenTemplateID = (int) currentStage.getUserData();
+                    try{
+                        functionalAbilities = (ArrayList<String>) citizenTemplateModel.getFunctionalInformationCitizenTemplate(rowData.getFunctionalAbilitiesCitizenTemplateCategoryName(),rowData.getFunctionalAbilitiesCitizenTemplateSubCategoryName(), citizenTemplateID);
+                        fACategoryComboBox.setValue(rowData.getFunctionalAbilitiesCitizenTemplateCategoryName());
+                        faSubCategoryComboBox.setValue(rowData.getFunctionalAbilitiesCitizenTemplateSubCategoryName());
+                        presentLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(0)));
+                        expectedLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(1)));
+                        fAProfNoteTxt.setText(functionalAbilities.get(2));
+                        performanceComboBox.setValue(functionalAbilities.get(3));
+                        meaningOfPerformanceComboBox.setValue(functionalAbilities.get(4));
+                        wishesNGoalsTxt.setText(functionalAbilities.get(5));
+                        observationNoteTxt.setText(functionalAbilities.get(6));
+                        fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
         });
     }
 
@@ -324,7 +435,102 @@ public class EditCitizenTemplateController implements Initializable {
                 hCSubCategoryComboBox.setItems(null);
             }
         }
-            hCExpectedLevelComboBox.equals(expectedLevelList);
+        hCExpectedLevelComboBox.equals(expectedLevelList);
+    }
+
+    public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenTemplateID = (int) currentStage.getUserData();
+        if (hCCategoryComboBox.getValue() != null) {
+            try {
+                hCdatePicker.setDisable(false);
+                healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateID);
+                relevanceComboBox.setValue(healthConditions.get(0));
+                hCprofessionalNoteTxt.setText(healthConditions.get(1));
+                currentAssessmentTxt.setText(healthConditions.get(2));
+                hCExpectedLevelComboBox.setValue(healthConditions.get(3));
+                hCObservationNoteTxt.setText(healthConditions.get(4));
+                hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
+                hCCategoryComboBox.setDisable(true);
+                hCSubCategoryComboBox.setDisable(true);
+                relevanceComboBox.setDisable(false);
+            } catch (NullPointerException e) {
+                throw new Exception("Does not exist");
+            }
+        }
+    }
+
+    public void OnClickedHCRelevance(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
+        int citizenTemplateID = (int) currentStage.getUserData();
+        hCdatePicker.setDisable(false);
+
+        healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateID);
+        if(hCSubCategoryComboBox.getValue() != null) {
+            if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) {
+                hCprofessionalNoteTxt.setDisable(true);
+                currentAssessmentTxt.setDisable(true);
+                hCObservationNoteTxt.setDisable(true);
+                hCExpectedLevelComboBox.setDisable(true);
+            } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)) {
+                hCprofessionalNoteTxt.setDisable(true);
+                hCprofessionalNoteTxt.setText("");
+                currentAssessmentTxt.setDisable(true);
+                currentAssessmentTxt.setText("");
+                hCdatePicker.setDisable(true);
+                hCdatePicker.setValue(LocalDate.now());
+                hCObservationNoteTxt.setDisable(true);
+                hCObservationNoteTxt.setText("");
+                hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+                hCExpectedLevelComboBox.setDisable(true);
+            }
+
+            if ((relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) || (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && healthConditions.get(0).equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0))) {
+                hCprofessionalNoteTxt.setDisable(false);
+                currentAssessmentTxt.setDisable(true);
+                hCObservationNoteTxt.setDisable(true);
+                hCExpectedLevelComboBox.setItems(expectedLevelList);
+                hCExpectedLevelComboBox.setDisable(false);
+            } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")) {
+                currentAssessmentTxt.setDisable(true);
+                currentAssessmentTxt.setText("");
+                hCdatePicker.setValue(LocalDate.now());
+                hCObservationNoteTxt.setDisable(true);
+                hCObservationNoteTxt.setText("");
+                hCExpectedLevelComboBox.setItems(expectedLevelList);
+                hCExpectedLevelComboBox.setDisable(false);
+            }
+
+            if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")) {
+                hCprofessionalNoteTxt.setDisable(false);
+                currentAssessmentTxt.setDisable(false);
+                hCObservationNoteTxt.setDisable(false);
+                hCExpectedLevelComboBox.setItems(expectedLevelList);
+                hCExpectedLevelComboBox.setDisable(false);
+            }
+        }
+    }
+
+    public void clearHC(){
+
+        hCCategoryComboBox.getSelectionModel().clearSelection();
+        hCSubCategoryComboBox.getSelectionModel().clearSelection();
+        relevanceComboBox.getSelectionModel().clearSelection();
+        hCprofessionalNoteTxt.clear();
+        currentAssessmentTxt.clear();
+        hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+        hCObservationNoteTxt.clear();
+        hCdatePicker.setValue(LocalDate.now());
+
+        hCCategoryComboBox.setDisable(false);
+        hCSubCategoryComboBox.setDisable(false);
+
+        relevanceComboBox.setDisable(true);
+        hCprofessionalNoteTxt.setDisable(true);
+        currentAssessmentTxt.setDisable(true);
+        hCObservationNoteTxt.setDisable(true);
+        hCExpectedLevelComboBox.setDisable(true);
+        hCdatePicker.setDisable(true);
 
     }
 
@@ -332,7 +538,7 @@ public class EditCitizenTemplateController implements Initializable {
         JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
+        int citizenTemplateID = (int) currentStage.getUserData();
 
         String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
         String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
@@ -343,102 +549,19 @@ public class EditCitizenTemplateController implements Initializable {
         String observationNote = hCObservationNoteTxt.getText();
         LocalDate date = hCdatePicker.getValue();
 
-        if (citizenTemplateModel.checkHealtConditionsId(selectedCategory, selectedSubCategory, citizenTemplateId) == false) {
-            citizenTemplateModel.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateId);
+        if (citizenTemplateModel.checkHealthConditionsTemplateId(selectedCategory, selectedSubCategory, citizenTemplateID) == false){
+            citizenTemplateModel.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateID);
         }
         else {
-            citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateId);
+            citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateID);
         }
-        presentLevelComboBox.getSelectionModel().clearSelection();
-        expectedLevelComboBox.getSelectionModel().clearSelection();
-        fACategoryComboBox.setDisable(false);
-        faSubCategoryComboBox.setDisable(false);
-        fAProfNoteTxt.clear();
-        performanceComboBox.getSelectionModel().clearSelection();
-        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
-        wishesNGoalsTxt.clear();
-        observationNoteTxt.clear();
-        fADatePicker.setValue(LocalDate.now());
-        //fADatePicker.setValue(null);
+        clearHC();
         JOptionPane.showMessageDialog(frame, "Saved");
-    }
-
-    public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
-        Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
-        try{
-            healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateId);
-            relevanceComboBox.setValue(healthConditions.get(0));
-            hCprofessionalNoteTxt.setText(healthConditions.get(1));
-            currentAssessmentTxt.setText(healthConditions.get(2));
-            hCExpectedLevelComboBox.setValue(healthConditions.get(3));
-            hCObservationNoteTxt.setText(healthConditions.get(4));
-            hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-            hCCategoryComboBox.setDisable(true);
-            hCSubCategoryComboBox.setDisable(true);
-        }catch(NullPointerException e){
-            throw new Exception("Does not exist");
-        }
-    }
-
-    public void OnClickedHCRelevance(ActionEvent actionEvent) {
-
-        Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
-
-        healthConditions = (ArrayList<String>) citizenTemplateModel.getHealthConditionCitizenTemplate(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateId);
-
-        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))){
-            hCprofessionalNoteTxt.setDisable(true);
-            currentAssessmentTxt.setDisable(true);
-            hCdatePicker.setDisable(true);
-            hCObservationNoteTxt.setDisable(true);
-            hCExpectedLevelComboBox.setDisable(true);
-        }
-        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)){
-            hCprofessionalNoteTxt.setDisable(true);
-            hCprofessionalNoteTxt.setText("");
-            currentAssessmentTxt.setDisable(true);
-            currentAssessmentTxt.setText("");
-            hCdatePicker.setDisable(true);
-            hCdatePicker.setValue(LocalDate.now());
-            hCObservationNoteTxt.setDisable(true);
-            hCObservationNoteTxt.setText("");
-            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
-            hCExpectedLevelComboBox.setDisable(true);
-        }
-
-        if((relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) || (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && healthConditions.get(0).equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0))){
-            hCprofessionalNoteTxt.setDisable(false);
-            currentAssessmentTxt.setDisable(true);
-            hCdatePicker.setDisable(true);
-            hCObservationNoteTxt.setDisable(true);
-            hCExpectedLevelComboBox.setDisable(true);
-        }
-        else if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")){
-            currentAssessmentTxt.setDisable(true);
-            currentAssessmentTxt.setText("");
-            hCdatePicker.setDisable(true);
-            hCdatePicker.setValue(LocalDate.now());
-            hCObservationNoteTxt.setDisable(true);
-            hCObservationNoteTxt.setText("");
-            hCExpectedLevelComboBox.setDisable(true);
-            hCExpectedLevelComboBox.getSelectionModel().clearSelection();
-        }
-
-        if(relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")){
-            hCprofessionalNoteTxt.setDisable(false);
-            currentAssessmentTxt.setDisable(false);
-            hCdatePicker.setDisable(false);
-            hCObservationNoteTxt.setDisable(false);
-            hCExpectedLevelComboBox.setItems(expectedLevelList);
-            hCExpectedLevelComboBox.setDisable(false);
-        }
+        updateCitizenTemplateTableView();
     }
 
 
-
-    //FunctionalAbilities
+    //Functional Abilities
     public void OnClickFACategory(ActionEvent actionEvent) {
 
         if(fACategoryComboBox.getValue() != null) {
@@ -459,71 +582,120 @@ public class EditCitizenTemplateController implements Initializable {
         }
     }
 
-    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
-            JFrame frame = new JFrame();
-            Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-            int citizenTemplateId = (Integer) currentStage.getUserData();
-
-            String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
-            String selectedSubCategory = faSubCategoryComboBox.getSelectionModel().getSelectedItem();
-            int selectedPresentLevel = presentLevelComboBox.getSelectionModel().getSelectedIndex();
-            int selectedExpectedLevel = expectedLevelComboBox.getSelectionModel().getSelectedIndex();
-            String professionalNote = fAProfNoteTxt.getText();
-            String selectedPerformance = performanceComboBox.getSelectionModel().getSelectedItem();
-            String selectedMeaningOfPerformance = meaningOfPerformanceComboBox.getSelectionModel().getSelectedItem();
-            String wishesNGoals = wishesNGoalsTxt.getText();
-            String observationNote = observationNoteTxt.getText();
-            LocalDate date = fADatePicker.getValue();
-
-            if (citizenTemplateModel.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenTemplateId) == false){
-                citizenTemplateModel.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
-            }
-            else {
-                citizenTemplateModel.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
-            }
-            presentLevelComboBox.getSelectionModel().clearSelection();
-            expectedLevelComboBox.getSelectionModel().clearSelection();
-            fACategoryComboBox.setDisable(false);
-            faSubCategoryComboBox.setDisable(false);
-            fAProfNoteTxt.clear();
-            performanceComboBox.getSelectionModel().clearSelection();
-            meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
-            wishesNGoalsTxt.clear();
-            observationNoteTxt.clear();
-            fADatePicker.setValue(LocalDate.now());
-            //fADatePicker.setValue(null);
-            JOptionPane.showMessageDialog(frame, "Saved");
-
-    }
-
     public void OnClickedFASubCategory(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
-        try{
-            functionalAbilities = (ArrayList<String>) citizenTemplateModel.getFunctionalInformationCitizenTemplate(fACategoryComboBox.getSelectionModel().getSelectedItem(), faSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateId);
-            presentLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(0)));
-            expectedLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(1)));
-            fAProfNoteTxt.setText(functionalAbilities.get(2));
-            performanceComboBox.setValue(functionalAbilities.get(3));
-            meaningOfPerformanceComboBox.setValue(functionalAbilities.get(4));
-            wishesNGoalsTxt.setText(functionalAbilities.get(5));
-            observationNoteTxt.setText(functionalAbilities.get(6));
-            fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
-            fACategoryComboBox.setDisable(true);
-            faSubCategoryComboBox.setDisable(true);
-        }catch(NullPointerException e){
-            throw new Exception("Does not exist");
+        int citizenTemplateID = (int) currentStage.getUserData();
+
+        fADatePicker.setDisable(false);
+        observationNoteTxt.setDisable(false);
+        wishesNGoalsTxt.setDisable(false);
+        meaningOfPerformanceComboBox.setDisable(false);
+        performanceComboBox.setDisable(false);
+        fAProfNoteTxt.setDisable(false);
+        expectedLevelComboBox.setDisable(false);
+        presentLevelComboBox.setDisable(false);
+        if (fACategoryComboBox.getValue() != null) {
+            try {
+                functionalAbilities = (ArrayList<String>) citizenTemplateModel.getFunctionalInformationCitizenTemplate(fACategoryComboBox.getSelectionModel().getSelectedItem(), faSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenTemplateID);
+                presentLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(0)));
+                expectedLevelComboBox.setValue(Integer.valueOf(functionalAbilities.get(1)));
+                fAProfNoteTxt.setText(functionalAbilities.get(2));
+                performanceComboBox.setValue(functionalAbilities.get(3));
+                meaningOfPerformanceComboBox.setValue(functionalAbilities.get(4));
+                wishesNGoalsTxt.setText(functionalAbilities.get(5));
+                observationNoteTxt.setText(functionalAbilities.get(6));
+                fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
+            } catch (NullPointerException e) {
+                throw new Exception("Does not exist");
+            }
         }
     }
 
+    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
+        JFrame frame = new JFrame();
+        Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
+        int citizenTemplateID = (int) currentStage.getUserData();
 
 
-    //General Info
+
+        String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
+        String selectedSubCategory = faSubCategoryComboBox.getSelectionModel().getSelectedItem();
+        int selectedPresentLevel = presentLevelComboBox.getSelectionModel().getSelectedIndex();
+        int selectedExpectedLevel = expectedLevelComboBox.getSelectionModel().getSelectedIndex();
+        String professionalNote = fAProfNoteTxt.getText();
+        String selectedPerformance = performanceComboBox.getSelectionModel().getSelectedItem();
+        String selectedMeaningOfPerformance = meaningOfPerformanceComboBox.getSelectionModel().getSelectedItem();
+        String wishesNGoals = wishesNGoalsTxt.getText();
+        String observationNote = observationNoteTxt.getText();
+        LocalDate date = fADatePicker.getValue();
+
+        if(citizenTemplateModel.checkFunctionalAbilitiesTemplateId(selectedCategory, selectedSubCategory, citizenTemplateID) == false){
+            citizenTemplateModel.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateID);
+        }
+        else{
+            citizenTemplateModel.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateID);
+        }
+        clearFA();
+        updateCitizenTemplateTableView();
+        JOptionPane.showMessageDialog(frame, "Saved");
+    }
+
+    public void OnClickPopImage(ActionEvent actionEvent) {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/imageView.fxml"));
+            Stage stage = new Stage();
+            root.setOnMousePressed(event -> {
+                xoffset = event.getSceneX();
+                yoffset = event.getSceneY();
+
+            });
+            root.setOnMouseDragged(e->{
+                stage.setX(e.getSceneX()- xoffset);
+                stage.setY(e.getScreenY() - yoffset);
+            });
+
+            Scene scene = new Scene(root);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.setUserData(info);
+            stage.show();
+            scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void clearFA(){
+        fACategoryComboBox.getSelectionModel().clearSelection();
+        faSubCategoryComboBox.getSelectionModel().clearSelection();
+        presentLevelComboBox.getSelectionModel().clearSelection();
+        expectedLevelComboBox.getSelectionModel().clearSelection();
+        fAProfNoteTxt.clear();
+        performanceComboBox.getSelectionModel().clearSelection();
+        meaningOfPerformanceComboBox.getSelectionModel().clearSelection();
+        wishesNGoalsTxt.clear();
+        observationNoteTxt.clear();
+        fADatePicker.setValue(LocalDate.now());
+
+        fACategoryComboBox.setDisable(false);
+        faSubCategoryComboBox.setDisable(false);
+
+        presentLevelComboBox.setDisable(true);
+        expectedLevelComboBox.setDisable(true);
+        fAProfNoteTxt.setDisable(true);
+        performanceComboBox.setDisable(true);
+        meaningOfPerformanceComboBox.setDisable(true);
+        wishesNGoalsTxt.setDisable(true);
+        observationNoteTxt.setDisable(true);
+        fADatePicker.setDisable(true);
+    }
+
+    //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
-        int citizenTemplateId = (Integer) currentStage.getUserData();
+        int citizenTemplateID = (int) currentStage.getUserData();
 
         ArrayList<String> generalInfoEditable = new ArrayList<>();
 
@@ -543,7 +715,7 @@ public class EditCitizenTemplateController implements Initializable {
 
         for (int i = 0; i < generalInfoEditable.size(); i++) {
 
-                citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoEditable.get(i), citizenTemplateId);
+            citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoEditable.get(i), citizenTemplateID);
         }
         JOptionPane.showMessageDialog(frame, "Saved");
     }
@@ -604,7 +776,7 @@ public class EditCitizenTemplateController implements Initializable {
         JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
     }
 
-
+    public void OnClickXBtn(ActionEvent actionEvent) {
+        Platform.exit();
+    }
 }
-
-

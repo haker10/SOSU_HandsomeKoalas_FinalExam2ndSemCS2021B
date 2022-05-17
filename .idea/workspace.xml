@@ -6,8 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bugs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/CreateCitizenTemplateController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/EditCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/EditCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/RelevantController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/VeryRelevantController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/createCitizenTemplate1View.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/createCitizenTemplateView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/css/teacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/css/teacher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/editCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/editCitizenTemplateView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/relevantView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/veryRelevantView.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +63,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -166,6 +181,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

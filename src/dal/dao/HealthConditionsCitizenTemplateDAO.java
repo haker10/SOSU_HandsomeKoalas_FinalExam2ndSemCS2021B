@@ -1,6 +1,10 @@
 package dal.dao;
 
+import be.HealthCondition;
+import be.HealthConditionCT;
 import dal.DatabaseConnector;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -135,6 +139,52 @@ public class HealthConditionsCitizenTemplateDAO {
             preparedStatement.setString(2, category);
             preparedStatement.setString(3, subCategory);
             preparedStatement.setInt(1, citizenTemplateId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public ObservableList<HealthConditionCT> getAllHealthCondition(int citizenTemplateID) {
+        ObservableList<HealthConditionCT> allHealthConditionsCitizenTemplate = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int hCId = resultSet.getInt("healthConditionsCitizenTemplateID");
+                String category = resultSet.getString("healthConditionsCitizenTemplateCategory");
+                String subCategory = resultSet.getString("healthConditionsCitizenTemplateSubCategory");
+                String relevance = resultSet.getString("healthConditionsCitizenTemplateColor");
+                String proffNote = resultSet.getString("healthConditionsCitizenTemplateProfessionalNote");
+                String assessmentNote = resultSet.getString("healthConditionsCitizenTemplateAssessmentNote");
+                String expectedLevel = resultSet.getString("healthConditionsCitizenTemplateExpectedLevel");
+                String observationNote = resultSet.getString("healthConditionsCitizenTemplateObservableNote");
+                String date = resultSet.getString("healthConditionsCitizenTemplateDate");
+                java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+                LocalDate localDate = sqlDate.toLocalDate();
+                HealthConditionCT healthConditionCT = new HealthConditionCT(hCId, category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, localDate, citizenTemplateID);
+                allHealthConditionsCitizenTemplate.add(healthConditionCT);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return allHealthConditionsCitizenTemplate;
+    }
+
+    public boolean checkHealtConditionsId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, selectedCategory);
+            preparedStatement.setString(3, selectedSubCategory);
+            preparedStatement.setInt(1, citizenTemplateID);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 return true;

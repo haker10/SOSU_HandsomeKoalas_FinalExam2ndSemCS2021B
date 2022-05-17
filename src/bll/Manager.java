@@ -181,6 +181,14 @@ public class Manager {
         return functionalAbilitesCitizenTemplateDAO.checkFuntionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
 
+    public ObservableList<FunctionalAbilitieCT> getAllFunctionalAbilitiesTemplate(int citizenTemplateID) {
+        return functionalAbilitesCitizenTemplateDAO.getAllFunctionalAbilities(citizenTemplateID);
+    }
+
+    public boolean checkFunctionalAbilitiesTemplateId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        return functionalAbilitesCitizenTemplateDAO.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenTemplateID);
+    }
+
 
 
     //health conditions citizenTemplate
@@ -198,6 +206,14 @@ public class Manager {
 
     public boolean checkHealthConditionsCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
         return healthConditionsCitizenTemplateDAO.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    }
+
+    public ObservableList<HealthConditionCT> getAllHealthConditionTemplate(int citizenTemplateID) {
+        return healthConditionsCitizenTemplateDAO.getAllHealthCondition(citizenTemplateID);
+    }
+
+    public boolean checkHealthConditionsTemplateId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+        return healthConditionsCitizenTemplateDAO.checkHealtConditionsId(selectedCategory, selectedSubCategory, citizenTemplateID);
     }
 
 
