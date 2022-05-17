@@ -17,7 +17,6 @@ public class CitizenTemplateDAO {
     public List<CitizenTemplate> getALlCitizenTemplates(int schoolId) {
         List<CitizenTemplate> allCitizenTemplates = new ArrayList<>();
         String sql = "SELECT * FROM CitizenTemplate WHERE school = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, schoolId);
@@ -38,7 +37,6 @@ public class CitizenTemplateDAO {
 
     public CitizenTemplate createCitizenTemplate(int schoolId1, String citizenTemplateName) {
         CitizenTemplate citizenTemplate = null;
-
         String sql = "INSERT INTO CitizenTemplate(school, citizenTemplateName) VALUES (?,?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -57,9 +55,7 @@ public class CitizenTemplateDAO {
     }
 
     public void deleteCitizenTemplate(int citizenTemplateId) {
-
         String sql = "DELETE FROM CitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);

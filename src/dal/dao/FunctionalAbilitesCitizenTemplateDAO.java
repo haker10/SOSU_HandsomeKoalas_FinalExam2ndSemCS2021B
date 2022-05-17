@@ -105,7 +105,6 @@ public class FunctionalAbilitesCitizenTemplateDAO {
        String sql = "UPDATE FunctionalAbilitiesCitizenTemplate SET functionalAbilitiesCitizenTemplateScore = ?, functionalAbilitiesCitizenTemplateExpectedScore = ?, functionalAbilitiesCitizenTemplateProfessionalNote = ?, functionalAbilitiesCitizenTemplatePerformance = ?, functionalAbilitiesCitizenTemplateLimitation = ?, functionalAbilitiesCitizenTemplateGoalsNote = ?, functionalAbilitiesCitizenTemplateObservationNote = ?, functionalAbilitiesCitizenTemplateDate = ? WHERE functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ? and citizenTemplateID = ? ";
        try(Connection connection = databaseConnector.getConnection()){
            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
            preparedStatement.setInt(1,selectedPresentLevel);
            preparedStatement.setInt(2,selectedExpectedLevel);
            preparedStatement.setString(3, professionalNote);
@@ -125,7 +124,6 @@ public class FunctionalAbilitesCitizenTemplateDAO {
 
     public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
         String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);
@@ -150,14 +148,12 @@ public class FunctionalAbilitesCitizenTemplateDAO {
 
     public boolean checkFuntionalAbilitiesCTId(String category, String subCategory, int citizenTemplateId) {
         String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ? and  functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(2, category);
             preparedStatement.setString(3, subCategory);
             preparedStatement.setInt(1, citizenTemplateId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 return true;
             }

@@ -37,23 +37,15 @@ public class SchoolDAO {
         return allSchools;
     }
 
-    public School createNewSchool(String school) {
-        School newSchool = null;
+    public void createNewSchool(String school) {
         String sql = "INSERT INTO School (school) VALUES (?)";
-
         try(Connection connection = databaseConnector.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, school);
             preparedStatement.executeUpdate();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            while(resultSet.next()){
-                int id = resultSet.getInt(1);
-                newSchool = new School(id, school);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return newSchool;
     }
 
     public String getSchoolName(int schoolId1) {

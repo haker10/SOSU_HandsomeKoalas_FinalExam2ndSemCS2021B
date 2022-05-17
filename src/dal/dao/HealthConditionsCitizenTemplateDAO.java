@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class HealthConditionsCitizenTemplateDAO {
     DatabaseConnector databaseConnector;
@@ -90,10 +89,8 @@ public class HealthConditionsCitizenTemplateDAO {
 
     public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
         String sql = "UPDATE HealthConditionsCitizenTemplate SET healthConditionsCitizenTemplateColor = ?, healthConditionsCitizenTemplateProfessionalNote = ?, healthConditionsCitizenTemplateAssessmentNote = ?, healthConditionsCitizenTemplateExpectedLevel = ?, healthConditionsCitizenTemplateObservableNote = ?, healthConditionsCitizenTemplateDate = ? WHERE healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ? and citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
             preparedStatement.setString(1, relevance);
             preparedStatement.setString(2, proffNote);
             preparedStatement.setString(3, assessmentNote);
@@ -111,7 +108,6 @@ public class HealthConditionsCitizenTemplateDAO {
 
     public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);
@@ -134,14 +130,12 @@ public class HealthConditionsCitizenTemplateDAO {
 
     public boolean checkHealthConditionsCTId(String category, String subCategory, int citizenTemplateId) {
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(2, category);
             preparedStatement.setString(3, subCategory);
             preparedStatement.setInt(1, citizenTemplateId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 return true;
             }

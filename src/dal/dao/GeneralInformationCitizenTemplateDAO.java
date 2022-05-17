@@ -5,8 +5,6 @@ import dal.DatabaseConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.time.LocalDate;
 
 public class GeneralInformationCitizenTemplateDAO {
     DatabaseConnector databaseConnector;
@@ -38,7 +36,6 @@ public class GeneralInformationCitizenTemplateDAO {
              preparedStatement.setInt(1,citizenTemplateId);
              preparedStatement.setString(2,generalInfoCitizenTemplateName);
              ResultSet resultSet = preparedStatement.executeQuery();
-
              if(resultSet.next()){
                  String text = resultSet.getString("generalInformationCitizenTemplateEditable");
                  editable = text;
@@ -64,7 +61,6 @@ public class GeneralInformationCitizenTemplateDAO {
 
     public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
         String sql = "SELECT * FROM GeneralInformationCitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);

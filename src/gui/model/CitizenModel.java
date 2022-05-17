@@ -15,7 +15,6 @@ public class CitizenModel {
 
     Manager manager;
 
-    private ObservableList<Citizen> allCitizen;
     ArrayList<Integer> getAllCitizenID1;
 
 
@@ -28,7 +27,7 @@ public class CitizenModel {
     }
 
     public ObservableList<Citizen> getAllCitizen() {
-        allCitizen = FXCollections.observableArrayList();
+        ObservableList<Citizen> allCitizen = FXCollections.observableArrayList();
         allCitizen.addAll(manager.getAllCitizen());
         return allCitizen;
     }
@@ -38,12 +37,10 @@ public class CitizenModel {
         return getAllCitizenID1;
     }
 
-
     public Citizen getNeededCitizen(int citizenId) {
         return manager.getNeededCitizen(citizenId);
 
     }
-
 
     public String getGeneralInfoCitizen(int citizenId, String generalInfoCitizenName) {
         return manager.getGeneralInfoCitizen(citizenId, generalInfoCitizenName);
@@ -53,12 +50,12 @@ public class CitizenModel {
         return manager.getHealthConditionCitizen(category, subCategory, citizenId);
     }
 
-    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
-        manager.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
-    }
-
     public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
         return manager.getFunctionalInformationCitizen(category, subCategory, citizenId);
+    }
+
+    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
+        manager.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
     }
 
     public void updateFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
@@ -81,6 +78,10 @@ public class CitizenModel {
         manager.createFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
     }
 
+    public void createHealthConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+        manager.createHealtConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+    }
+
     public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenId) {
         return manager.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId);
     }
@@ -89,7 +90,4 @@ public class CitizenModel {
         return manager.checkHealthConditionsId(selectedCategory, selectedSubCategory, citizenId);
     }
 
-    public void createHealthConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
-        manager.createHealtConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
-    }
 }

@@ -23,7 +23,6 @@ public class Manager {
     FunctionalAbilitiesCitizenDAO functionalAbilitiesCitizenDAO;
     StudentGetsCitizenDAO studentGetsCitizenDAO;
 
-
     //constructor
     public Manager() {
         userDataDAO = new UserDataDAO();
@@ -37,40 +36,67 @@ public class Manager {
         generalInformationCitizenDAO = new GeneralInformationCitizenDAO();
         functionalAbilitiesCitizenDAO = new FunctionalAbilitiesCitizenDAO();
         studentGetsCitizenDAO = new StudentGetsCitizenDAO();
-
     }
 
+    //users
     public User login(String username, String password) {
         return userDataDAO.login(username, password);
     }
 
+    public void editUser(int userId, String name, String username, String password) {
+        userDataDAO.editUser(userId, name, username, password);
+    }
+
+    public void deleteUser(int userId) {
+        userDataDAO.deleteUser(userId);
+    }
+
+
+
+    //schools
     public List<School> getAllSchools() {
         return schoolDAO.getAllSchools();
     }
 
-    public List<User> getAllTeachers(int schoolId) {
-        return userDataDAO.getAllTeachers(schoolId);
+    public void createNewSchool(String school) {
+        schoolDAO.createNewSchool(school);
     }
 
+    public String getSchoolName(int schoolId1) {
+        return schoolDAO.getSchoolName(schoolId1);
+    }
+
+    public List<School> getAllSchoolsNotAssigned() {
+        return schoolDAO.getAllSchoolsNotAssigned();
+    }
+
+
+
+    //admins
     public List<User> getAllAdmins() {
         return userDataDAO.getAllAdmins();
     }
 
+    public void createAdmin(int schoolId, String name, String username, String password) {
+        userDataDAO.createAdmin(schoolId, name, username, password);
+    }
+
+
+
+    //teachers
+    public List<User> getAllTeachers(int schoolId) {
+        return userDataDAO.getAllTeachers(schoolId);
+    }
+
+    public void createTeacher(int school, String name, String username, String password) {
+        userDataDAO.createTeacher(school, name, username, password);
+    }
+
+
+
+    //students
     public List<User> getAllStudents(int schoolId) {
         return userDataDAO.getAllStudents(schoolId);
-    }
-
-
-    public User createTeacher(Integer school, String name, String username, String password) {
-        return userDataDAO.createTeacher(school, name, username, password);
-    }
-
-    public School createNewSchool(String school) {
-        return schoolDAO.createNewSchool(school);
-    }
-
-    public User createAdmin(int schoolId, String name, String username, String password) {
-        return userDataDAO.createAdmin(schoolId, name, username, password);
     }
 
     public User createStudent(int schoolId, String name, String username, String password) {
@@ -94,62 +120,15 @@ public class Manager {
         // go to all citizen template from this school, create citizen copy, add citizen to student gets citizen
     }
 
-    public void deleteUser(int userId) {
-        try {
-            userDataDAO.deleteUser(userId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void editUser(int userId, String name, String username, String password) {
-        userDataDAO.editUser(userId, name, username, password);
-    }
 
+    //citizenTemplate
     public CitizenTemplate createCitizenTemplate(int schoolId1, String citizenTemplateName) {
-       return citizenTemplateDAO.createCitizenTemplate(schoolId1, citizenTemplateName);
-
-    }
-
-    public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
-        generalInformationCitizenTemplateDAO.createGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
-    }
-
-    public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
-        functionalAbilitesCitizenTemplateDAO.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
-    }
-
-    public void createHealthConditionsCitizenTemplate(String selectedCategory, String selectedSubCategory, String selectedRelevance, String professionalNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
-        healthConditionsCitizenTemplateDAO.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, selectedRelevance, professionalNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
+        return citizenTemplateDAO.createCitizenTemplate(schoolId1, citizenTemplateName);
     }
 
     public List<CitizenTemplate> getAllCitizenTemplates(int schoolId) {
         return citizenTemplateDAO.getALlCitizenTemplates(schoolId);
-
-    }
-
-    public String getGeneralInfoCitizenTemplate(int citizenTemplateId, String generalInfoCitizenTemplateName) {
-       return generalInformationCitizenTemplateDAO.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoCitizenTemplateName);
-    }
-
-    public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
-        generalInformationCitizenTemplateDAO.updateGeneralInfoCitizenTemplate(generalInfoName, generalInfoEditable, citizenTemplateId);
-    }
-
-    public List<String> getFunctionalInformationCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
-        return functionalAbilitesCitizenTemplateDAO.getFunctionalInformationCitizenTemplate(category, subCategory, citizenTemplateId);
-    }
-
-    public void updateFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
-        functionalAbilitesCitizenTemplateDAO.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
-    }
-
-    public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
-        return healthConditionsCitizenTemplateDAO.getHealthConditionCitizenTemplate(category, subCategory, citizenTemplateId);
-    }
-
-    public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
-        healthConditionsCitizenTemplateDAO.updateHealthConditionsCitizenTemplate(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
     }
 
     public void deleteCitizenTemplate(int citizenTemplateId) {
@@ -164,6 +143,62 @@ public class Manager {
         generalInformationCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
     }
 
+
+
+    //general info citizenTemplate
+    public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
+        generalInformationCitizenTemplateDAO.createGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
+    }
+
+    public String getGeneralInfoCitizenTemplate(int citizenTemplateId, String generalInfoCitizenTemplateName) {
+        return generalInformationCitizenTemplateDAO.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoCitizenTemplateName);
+    }
+
+    public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
+        generalInformationCitizenTemplateDAO.updateGeneralInfoCitizenTemplate(generalInfoName, generalInfoEditable, citizenTemplateId);
+    }
+
+
+
+    //functional abilities citizenTemplate
+    public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
+        functionalAbilitesCitizenTemplateDAO.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
+    }
+
+    public List<String> getFunctionalInformationCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
+        return functionalAbilitesCitizenTemplateDAO.getFunctionalInformationCitizenTemplate(category, subCategory, citizenTemplateId);
+    }
+
+    public void updateFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
+        functionalAbilitesCitizenTemplateDAO.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
+    }
+
+    public boolean checkFunctionalAbilitiesCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return functionalAbilitesCitizenTemplateDAO.checkFuntionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    }
+
+
+
+    //health conditions citizenTemplate
+    public void createHealthConditionsCitizenTemplate(String selectedCategory, String selectedSubCategory, String selectedRelevance, String professionalNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
+        healthConditionsCitizenTemplateDAO.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, selectedRelevance, professionalNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
+    }
+
+    public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
+        return healthConditionsCitizenTemplateDAO.getHealthConditionCitizenTemplate(category, subCategory, citizenTemplateId);
+    }
+
+    public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
+        healthConditionsCitizenTemplateDAO.updateHealthConditionsCitizenTemplate(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenTemplateId);
+    }
+
+    public boolean checkHealthConditionsCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return healthConditionsCitizenTemplateDAO.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    }
+
+
+
+    //citizen
     public void createCitizenFromTemplate(int citizenTemplateId, String citizenName, int schoolId) {
         List<User> allStudents = getAllStudents(schoolId);
         for (User student : allStudents) {
@@ -180,37 +215,27 @@ public class Manager {
         return citizenDAO.getAllCitizen();
     }
 
-    public void assignCitizenToStudent(int studentId, int citizenID) {
-        studentGetsCitizenDAO.assignCitizenToStudent(studentId, citizenID);
-    }
-
-    public String getSchoolName(int schoolId1) {
-        return schoolDAO.getSchoolName(schoolId1);
-    }
-
-    public List<School> getAllSchoolsNotAssigned() {
-        return schoolDAO.getAllSchoolsNotAssigned();
-    }
-
-    public ArrayList<Integer> getAllCitizenId(int studentId) {
-        return studentGetsCitizenDAO.getAllCitizenId(studentId);
-
-    }
-
     public Citizen getNeededCitizen(int citizenId) {
         return citizenDAO.getNeededCitizen(citizenId);
     }
 
+
+
+    //general info citizen
+    //create
     public String getGeneralInfoCitizen(int citizenId, String generalInfoCitizenName) {
         return generalInformationCitizenDAO.getGeneralInfoCitizen(citizenId, generalInfoCitizenName);
     }
 
-    public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
-        return healthConditionsCitizenDAO.getHealthConditionCitizen(category, subCategory, citizenId);
+    public void updateGeneralInfoCitizen(String generalInfoName, String generalInfoEditable, int citizenId) {
+        generalInformationCitizenDAO.updateGeneralInfoCitizen(generalInfoName, generalInfoEditable, citizenId);
     }
 
-    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
-        healthConditionsCitizenDAO.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
+
+
+    //functional abilities citizen
+    public void createFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
+        functionalAbilitiesCitizenDAO.createFunctionalAbilitiesCitizen(selectedCategory,selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
     }
 
     public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
@@ -221,41 +246,48 @@ public class Manager {
         functionalAbilitiesCitizenDAO.updateFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
     }
 
-    public void updateGeneralInfoCitizen(String generalInfoName, String generalInfoEditable, int citizenId) {
-        generalInformationCitizenDAO.updateGeneralInfoCitizen(generalInfoName, generalInfoEditable, citizenId);
+    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenId) {
+        return functionalAbilitiesCitizenDAO.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId);
     }
 
     public ObservableList<FunctionalAbilitie> getAllFunctionalAbilities(int citizenId) {
         return functionalAbilitiesCitizenDAO.getAllFunctionalAbilities(citizenId);
     }
 
-    public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
-        return healthConditionsCitizenDAO.getAllHealthCondition(citizenId);
+
+
+    //health conditions citizen
+    public void createHealtConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+        healthConditionsCitizenDAO.createHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
     }
 
-    public void createFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
-        functionalAbilitiesCitizenDAO.createFunctionalAbilitiesCitizen(selectedCategory,selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+    public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
+        return healthConditionsCitizenDAO.getHealthConditionCitizen(category, subCategory, citizenId);
     }
 
-    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenId) {
-        return functionalAbilitiesCitizenDAO.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId);
+    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
+        healthConditionsCitizenDAO.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
     }
 
     public boolean checkHealthConditionsId(String selectedCategory, String selectedSubCategory, int citizenId) {
         return healthConditionsCitizenDAO.checkHealtConditionsId(selectedCategory, selectedSubCategory, citizenId);
     }
 
-    public void createHealtConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
-        healthConditionsCitizenDAO.createHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+    public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
+        return healthConditionsCitizenDAO.getAllHealthCondition(citizenId);
     }
 
-    public boolean checkHealthConditionsCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
-        return healthConditionsCitizenTemplateDAO.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+
+
+    //citizen assigned to student
+    public ArrayList<Integer> getAllCitizenId(int studentId) {
+        return studentGetsCitizenDAO.getAllCitizenId(studentId);
     }
 
-    public boolean checkFunctionalAbilitiesCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
-        return functionalAbilitesCitizenTemplateDAO.checkFuntionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    public void assignCitizenToStudent(int studentId, int citizenID) {
+        studentGetsCitizenDAO.assignCitizenToStudent(studentId, citizenID);
     }
+
 }
 
 

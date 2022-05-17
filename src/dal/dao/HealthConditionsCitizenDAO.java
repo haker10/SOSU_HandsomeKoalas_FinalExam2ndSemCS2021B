@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class HealthConditionsCitizenDAO {
 
     public void copyHealthConditionsCitizen(int citizenId, int citizenTemplateId) {
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);
@@ -63,6 +61,7 @@ public class HealthConditionsCitizenDAO {
             e.printStackTrace();
         }
     }
+
     public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
         List<String> allHealthConditionsCitizen = new ArrayList<>();
         String relevance = null;
@@ -95,8 +94,6 @@ public class HealthConditionsCitizenDAO {
                 allHealthConditionsCitizen.add(expectedLevel);
                 allHealthConditionsCitizen.add(observationNote);
                 allHealthConditionsCitizen.add(date);
-
-
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -120,10 +117,8 @@ public class HealthConditionsCitizenDAO {
 
     public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
         String sql = "UPDATE HealthConditionsCitizen SET healthConditionsCitizenColor = ?, healthConditionsCitizenProfessionalNote = ?, healthConditionsCitizenAssessmentNote = ?, healthConditionsCitizenExpectedLevel = ?, healthConditionsCitizenObservableNote = ?, healthConditionsCitizenDate = ? WHERE healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ? and citizenID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
             preparedStatement.setString(1, relevance);
             preparedStatement.setString(2, proffNote);
             preparedStatement.setString(3, assessmentNote);
@@ -141,9 +136,7 @@ public class HealthConditionsCitizenDAO {
 
     public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
         ObservableList<HealthCondition> allHealthConditionsCitizen = FXCollections.observableArrayList();
-
         String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenId);
@@ -172,14 +165,12 @@ public class HealthConditionsCitizenDAO {
 
     public boolean checkHealtConditionsId(String category, String subCategory, int citizenId) {
         String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ? and  healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(2, category);
             preparedStatement.setString(3, subCategory);
             preparedStatement.setInt(1, citizenId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 return true;
             }

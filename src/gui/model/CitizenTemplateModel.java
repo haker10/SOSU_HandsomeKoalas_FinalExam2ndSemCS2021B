@@ -2,7 +2,6 @@ package gui.model;
 
 import be.CitizenTemplate;
 import bll.Manager;
-import gui.controller.StudentEditCitizenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,8 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class CitizenTemplateModel {
-
-    private  ObservableList<CitizenTemplate> allCitizenTemplates;
 
     Manager manager;
 
@@ -28,7 +25,6 @@ public class CitizenTemplateModel {
         manager.createGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
     }
 
-
     public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
         manager.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
     }
@@ -38,15 +34,13 @@ public class CitizenTemplateModel {
     }
 
     public ObservableList<CitizenTemplate> getAllCitizenTemplates(int schoolId) {
-        allCitizenTemplates = FXCollections.observableArrayList();
+        ObservableList<CitizenTemplate> allCitizenTemplates = FXCollections.observableArrayList();
         allCitizenTemplates.addAll(manager.getAllCitizenTemplates(schoolId));
         return allCitizenTemplates;
     }
 
    public String getGeneralInfoCitizenTemplate(int citizenTemplateId, String generalInfoCitizenTemplateName) {
        return manager.getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoCitizenTemplateName);
-
-
     }
 
     public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
@@ -60,7 +54,6 @@ public class CitizenTemplateModel {
     public void updateFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {
         manager.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance,wishesNGoals, observationNote, date, citizenTemplateId);
     }
-
 
     public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
         return manager.getHealthConditionCitizenTemplate(category, subCategory, citizenTemplateId);
@@ -85,4 +78,5 @@ public class CitizenTemplateModel {
     public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
         return manager.checkFunctionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
+
 }

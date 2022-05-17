@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class FunctionalAbilitiesCitizenDAO {
 
     public void copyFunctionalAbilitiesCitizen(int citizenId, int citizenTemplateId) {
         String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);
@@ -134,7 +132,6 @@ public class FunctionalAbilitiesCitizenDAO {
         String sql = "UPDATE FunctionalAbilitiesCitizen SET functionalAbilitiesCitizenScore = ?, functionalAbilitiesCitizenExpectedScore = ?, functionalAbilitiesCitizenProfessionalNote = ?, functionalAbilitiesCitizenPerformance = ?, functionalAbilitiesCitizenLimitation = ?, functionalAbilitiesCitizenGoalsNote = ?, functionalAbilitiesCitizenObservationNote = ?, functionalAbilitiesCitizenTemplateDate = ? WHERE functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ? and citizenID = ? ";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
             preparedStatement.setInt(1,selectedPresentLevel);
             preparedStatement.setInt(2,selectedExpectedLevel);
             preparedStatement.setString(3, professionalNote);
@@ -155,12 +152,10 @@ public class FunctionalAbilitiesCitizenDAO {
     public ObservableList<FunctionalAbilitie> getAllFunctionalAbilities(int citizenId) {
         ObservableList<FunctionalAbilitie> allFunctionalInfoCitizen = FXCollections.observableArrayList();
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             while(resultSet.next()){
                 int score = resultSet.getInt("functionalAbilitiesCitizenScore");
                 int fAId = resultSet.getInt("functionalAbilitiesCitizenID");
@@ -186,14 +181,12 @@ public class FunctionalAbilitiesCitizenDAO {
 
     public boolean checkFunctionalAbilitiesId(String category, String subCategory, int citizenId) {
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ? and  functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ?";
-
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(2, category);
             preparedStatement.setString(3, subCategory);
             preparedStatement.setInt(1, citizenId);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if(resultSet.next()){
                 return true;
             }

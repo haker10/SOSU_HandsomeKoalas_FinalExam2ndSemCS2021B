@@ -17,7 +17,6 @@ public class CitizenDAO {
 
     public Citizen createCitizenFromTemplate(int citizenTemplateId, String citizenName) {
         Citizen citizen = null;
-
         String sql = "INSERT INTO Citizen(citizenTemplateID, citizenName) VALUES (?,?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -38,7 +37,6 @@ public class CitizenDAO {
     public List<Citizen> getAllCitizen() {
         List<Citizen> allCitizen = new ArrayList<>();
         String sql = "SELECT * FROM Citizen";
-
         try(Connection connection = databaseConnector.getConnection()){
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -58,7 +56,6 @@ public class CitizenDAO {
 
     public Citizen getNeededCitizen(int citizenId) {
         String sql = "Select * FROM Citizen WHERE citizenID = ?";
-
         Citizen citizen = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -68,7 +65,6 @@ public class CitizenDAO {
             if (resultSet.next()) {
                 int citizenTemplateId = resultSet.getInt("citizenTemplateID");
                 String  name = resultSet.getString("citizenName");
-
                 citizen = new Citizen(citizenId, citizenTemplateId, name);
             }
         } catch (Exception e) {

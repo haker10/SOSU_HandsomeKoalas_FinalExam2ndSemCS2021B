@@ -46,6 +46,8 @@ public class User {
         return "User{" + "userId=" + userId + ", typeOfUser=" + typeOfUser + ", school=" + school + ", userName=" + name + ", username=" + username + ", password=" + password + '}';
     }
 
+    // setters
+
     public void setName(String newName) {
         name = newName;
     }

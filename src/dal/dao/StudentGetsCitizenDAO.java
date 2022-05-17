@@ -1,12 +1,10 @@
 package dal.dao;
 
-import be.School;
 import dal.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class StudentGetsCitizenDAO {
@@ -19,7 +17,6 @@ public class StudentGetsCitizenDAO {
 
     public void assignCitizenToStudent(int studentId, int citizenID) {
         String sql = "INSERT INTO StudentGetsCitizen (studentID, citizenID) VALUES (?, ?)";
-
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, studentId);
@@ -32,9 +29,7 @@ public class StudentGetsCitizenDAO {
 
     public ArrayList<Integer> getAllCitizenId(int studentId) {
         ArrayList<Integer> allCitizenId = new ArrayList<>();
-
         String sql = "SELECT * FROM StudentGetsCitizen WHERE studentID = ?";
-
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,studentId);
@@ -47,8 +42,6 @@ public class StudentGetsCitizenDAO {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
         return allCitizenId;
-
     }
 }
