@@ -1,9 +1,6 @@
 package gui.controller;
 
-
-import be.User;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

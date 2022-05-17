@@ -33,7 +33,6 @@ public class TeacherController implements Initializable {
 
     int schoolId1;
 
-
     public TeacherController() {
           userModel = new UserModel();
           citizenTemplateModel = new CitizenTemplateModel();

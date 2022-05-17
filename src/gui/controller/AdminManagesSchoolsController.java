@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.School;
 import gui.model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,12 +18,17 @@ public class AdminManagesSchoolsController implements Initializable {
     private TextField newSchoolTxt;
 
     @FXML
-    private ListView schoolsListView;
+    private ListView<School> schoolsListView;
 
     UserModel userModel;
 
     public AdminManagesSchoolsController() {
         userModel = new UserModel();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        updateSchoolsTableView();
     }
 
     public void updateSchoolsTableView() {
@@ -31,11 +37,6 @@ public class AdminManagesSchoolsController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        updateSchoolsTableView();
     }
 
     public void createNewSchool(ActionEvent actionEvent) {
@@ -53,7 +54,6 @@ public class AdminManagesSchoolsController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

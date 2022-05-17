@@ -73,7 +73,7 @@ public class UserModel {
         manager.createTeacher(school, name, username, password);
     }
 
-    public ObservableList getAllTeachers(int schoolId) {
+    public ObservableList<User> getAllTeachers(int schoolId) {
         ObservableList<User> allTeachers = FXCollections.observableArrayList();
         allTeachers.addAll(manager.getAllTeachers(schoolId));
         return allTeachers;

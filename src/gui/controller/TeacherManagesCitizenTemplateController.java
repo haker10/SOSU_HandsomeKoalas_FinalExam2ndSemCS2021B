@@ -4,7 +4,6 @@ import be.CitizenTemplate;
 import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,8 +35,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     @FXML
     private Button createBtn;
 
-    ObservableList listOfCitizenTemplates;
-
     CitizenTemplateModel citizenTemplateModel;
 
     CitizenModel citizenModel;
@@ -45,7 +42,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     CitizenTemplate citizenTemplate;
 
     int schoolId1;
-
 
     public TeacherManagesCitizenTemplateController() {
         citizenTemplateModel = new CitizenTemplateModel();
@@ -69,9 +65,9 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
+    //might change this to only create in database and don't open create window, just edit to "create"
     public void onClickCreate(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
@@ -82,7 +78,9 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         else {
             citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
             JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
+            updateCitizenTemplateTV();
         }
+        /*
         int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
         currentStage.close();
         try{
@@ -96,7 +94,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             //scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void onClickEdit(ActionEvent actionEvent) {
@@ -142,6 +140,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName, schoolId1);
         JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
     }
+
 }
 
 

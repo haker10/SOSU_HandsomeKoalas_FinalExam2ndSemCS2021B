@@ -1,8 +1,6 @@
 package gui.controller;
 
-import be.School;
 import be.User;
-import dal.dao.SchoolDAO;
 import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -60,18 +58,6 @@ public class AdminManagesTeachersController implements Initializable {
         userModel = new UserModel();
     }
 
-    public void updateTeacherTableView(){
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-        try {
-            teachersTableView.setItems(userModel.getAllTeachers(schoolId1));
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -84,6 +70,16 @@ public class AdminManagesTeachersController implements Initializable {
         });
     }
 
+    public void updateTeacherTableView(){
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        try {
+            teachersTableView.setItems(userModel.getAllTeachers(schoolId1));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void filterTeacherTableView() {
 
@@ -95,25 +91,21 @@ public class AdminManagesTeachersController implements Initializable {
             e.printStackTrace();
         }
 
-
-
         FilteredList<User> finalFilteredData = filteredData;
         filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
             finalFilteredData.setPredicate(user -> {
-
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                if (user.getName().toLowerCase().contains(lowerCaseFilter) || user.getUsername().toLowerCase().contains(lowerCaseFilter) || user.getPassword().toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else
                     return false;
             });
         });
-
 
         SortedList<User> sortedData = new SortedList<>(filteredData);
 
@@ -126,7 +118,7 @@ public class AdminManagesTeachersController implements Initializable {
         JFrame jFrame = new JFrame();
         try{
             if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty())
-                JOptionPane.showMessageDialog(jFrame, "One field is empty!\nPlease try again!");
+                JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
             else {
                 userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
                 JOptionPane.showMessageDialog(jFrame, "Teacher created");
@@ -135,7 +127,6 @@ public class AdminManagesTeachersController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void editTeacherFromTableView() {
@@ -144,9 +135,8 @@ public class AdminManagesTeachersController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setName(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setName(t.getNewValue());
                         TablePosition pos = teachersTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = teachersTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -163,9 +153,8 @@ public class AdminManagesTeachersController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setUsername(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setUsername(t.getNewValue());
                         TablePosition pos = teachersTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = teachersTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -182,9 +171,8 @@ public class AdminManagesTeachersController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setPassword(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setPassword(t.getNewValue());
                         TablePosition pos = teachersTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = teachersTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -195,7 +183,6 @@ public class AdminManagesTeachersController implements Initializable {
                     }
                 }
         );
-
     }
 
     public void deleteTeacher(ActionEvent event) {
@@ -213,6 +200,6 @@ public class AdminManagesTeachersController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
+
 }

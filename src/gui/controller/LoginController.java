@@ -18,7 +18,6 @@ import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -118,10 +117,10 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void OnClickXBtn(ActionEvent actionEvent) {
         Platform.exit();
     }
+
 }

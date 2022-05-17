@@ -66,6 +66,6 @@ public class RelevantController implements Initializable {
             JOptionPane.showMessageDialog(frame, "Saved");
             currentStage.close();
         }
-
     }
+
 }

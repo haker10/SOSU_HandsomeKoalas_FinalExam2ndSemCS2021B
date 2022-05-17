@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class VeryRelevantController implements Initializable {
 
-
-
     @FXML
     private Label categoryLbl;
 
@@ -116,6 +114,5 @@ public class VeryRelevantController implements Initializable {
             currentStage.close();
         }
     }
-
 
 }

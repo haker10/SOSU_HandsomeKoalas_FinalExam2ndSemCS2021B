@@ -1,19 +1,16 @@
 //every user should have a label with their school
-//dont show ids on table views (also, delete all table columns with "school")
+//don't show ids on table views (also, delete all table columns with "school")
 //admin manages admin view --> school choice box only shows schools which are not assigned to any admin and have a label with school name
 //fix all filters on table views
-//add all Jframes
+//add all JFrames
 //add name on citizen template and citizen on db
-//when creating or copying citizen template, have textfield to receive name
-
-make tab pane for citizen view
-resize windows 
+//when creating or copying citizen template, have textField to receive name
+//make tab pane for citizen view
+//resize windows
 
 fix exceptions
 Fix To have only 1 username ; if existing give Exception;
-FILTERS DOES NOT WORK
-
 
 //Sprint review questions
-in editCitizenTemplate to have a "button delete" for HealthConditions -
-and FunctionalAbilities if for example they made a wrong category and they want to remove it !
+in editCitizenTemplate to have a "button delete" for HealthConditions
+and FunctionalAbilities if, for example, they made a wrong category and want to remove it !

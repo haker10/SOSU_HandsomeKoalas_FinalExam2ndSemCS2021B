@@ -13,16 +13,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import javax.swing.*;
 import javafx.event.EventHandler;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
-import java.sql.RowId;
 import java.util.ResourceBundle;
 
 
@@ -72,6 +68,17 @@ public class AdminManagesStudentsController implements Initializable {
         });
     }
 
+    public void updateStudentTableView() {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        try {
+            studentTableView.setItems(userModel.getAllStudents(schoolId1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void filterStudentTableView() {
 
         ObservableList<User> userList = userModel.getAllStudents(schoolId1);
@@ -82,25 +89,21 @@ public class AdminManagesStudentsController implements Initializable {
             e.printStackTrace();
         }
 
-
-
         FilteredList<User> finalFilteredData = filteredData;
         filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
             finalFilteredData.setPredicate(user -> {
-
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                if (user.getName().toLowerCase().contains(lowerCaseFilter) || user.getUsername().toLowerCase().contains(lowerCaseFilter) || user.getPassword().toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else
                     return false;
             });
         });
-
 
         SortedList<User> sortedData = new SortedList<>(filteredData);
 
@@ -115,9 +118,8 @@ public class AdminManagesStudentsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setName(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setName(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -134,9 +136,8 @@ public class AdminManagesStudentsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setUsername(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setUsername(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -153,9 +154,8 @@ public class AdminManagesStudentsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setPassword(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setPassword(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -167,20 +167,6 @@ public class AdminManagesStudentsController implements Initializable {
                 }
         );
     }
-
-    public void updateStudentTableView() {
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-        try {
-            studentTableView.setItems(userModel.getAllStudents(schoolId1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
 
     public void onClickCreate(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
@@ -215,8 +201,8 @@ public class AdminManagesStudentsController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
                 updateStudentTableView();
             }
-            }catch (Exception e){
-              e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-  }
 }

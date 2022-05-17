@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import javafx.util.converter.IntegerStringConverter;
 
 import javax.swing.*;
 import java.net.URL;
@@ -50,6 +49,10 @@ public class TeacherManagesStudentsController implements Initializable {
 
     int schoolId1;
 
+    public TeacherManagesStudentsController(){
+        userModel = new UserModel();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -62,6 +65,17 @@ public class TeacherManagesStudentsController implements Initializable {
         });
     }
 
+    public void updateStudentTableView() {
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        try {
+            studentTableView.setItems(userModel.getAllStudents(schoolId1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void filterStudentTableView() {
 
         ObservableList<User> userList = userModel.getAllStudents(schoolId1);
@@ -71,8 +85,6 @@ public class TeacherManagesStudentsController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
         FilteredList<User> finalFilteredData = filteredData;
         filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -84,7 +96,7 @@ public class TeacherManagesStudentsController implements Initializable {
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                if (user.getName().toLowerCase().contains(lowerCaseFilter) || user.getUsername().toLowerCase().contains(lowerCaseFilter) || user.getPassword().toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else
                     return false;
@@ -99,31 +111,14 @@ public class TeacherManagesStudentsController implements Initializable {
         studentTableView.setItems(sortedData);
     }
 
-    public TeacherManagesStudentsController(){
-        userModel = new UserModel();
-    }
-
-    public void updateStudentTableView() {
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-        try {
-            studentTableView.setItems(userModel.getAllStudents(schoolId1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void editStudentFromTableView(){
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setName(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setName(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -140,9 +135,8 @@ public class TeacherManagesStudentsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setUsername(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setUsername(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -159,9 +153,8 @@ public class TeacherManagesStudentsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setPassword(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setPassword(t.getNewValue());
                         TablePosition pos = studentTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = studentTableView.getSelectionModel().getSelectedItem().getUserId();

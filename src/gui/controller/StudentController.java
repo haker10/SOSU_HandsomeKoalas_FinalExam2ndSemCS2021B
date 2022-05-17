@@ -6,6 +6,8 @@ import gui.model.UserModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,10 +28,13 @@ public class StudentController implements Initializable {
 
     @FXML
     private TableColumn<Citizen, String> citizenNameColumn;
+
     @FXML
     private TextField filterTxt;
+
     @FXML
     private TableView<Citizen> citizenTV;
+
     @FXML
     private Label schoolLbl;
 
@@ -62,13 +67,14 @@ public class StudentController implements Initializable {
             schoolLbl.setText(userModel.getSchoolName(schoolId1));
             citizenId = citizenModel.getALlCitizenId(studentId);
 
-            for (int i = 0; i<citizenId.size(); i++){
-                Citizen name = citizenModel.getNeededCitizen(citizenId.get(i));
+            for (Integer integer : citizenId) {
+                Citizen name = citizenModel.getNeededCitizen(integer);
                 neededCitizen.add(name);
                 allNames.add(name.getCitizenName());
             }
             updateCitizenTableView();
             OnDoubleClickTableViewRow();
+            filterStudentTableView();
         });
 
     }
@@ -79,7 +85,39 @@ public class StudentController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public void filterStudentTableView() {
+
+        ObservableList<Citizen> citizenList = neededCitizen;
+        FilteredList<Citizen> filteredData = null;
+        try {
+            filteredData = new FilteredList<>(citizenList, b -> true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FilteredList<Citizen> finalFilteredData = filteredData;
+        filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+            finalFilteredData.setPredicate(citizen -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (citizen.getCitizenName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false;
+            });
+        });
+
+        SortedList<Citizen> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(citizenTV.comparatorProperty());
+
+        citizenTV.setItems(sortedData);
     }
 
     public void OnDoubleClickTableViewRow(){
@@ -87,7 +125,6 @@ public class StudentController implements Initializable {
             TableRow<Citizen> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Citizen rowData = row.getItem();
                     int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
                     infoToEdit = citizenId + "," + schoolLbl.getText();
                     Stage currentStage = (Stage) citizenTV.getScene().getWindow();
@@ -104,7 +141,6 @@ public class StudentController implements Initializable {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
                 }
             });
             return row ;
@@ -131,4 +167,5 @@ public class StudentController implements Initializable {
     public void OnClickXBtn(ActionEvent actionEvent) {
         Platform.exit();
     }
+
 }

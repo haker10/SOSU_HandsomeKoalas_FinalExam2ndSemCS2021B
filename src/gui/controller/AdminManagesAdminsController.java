@@ -25,9 +25,6 @@ public class AdminManagesAdminsController implements Initializable {
     private TextField filterTxt;
 
     @FXML
-    private Button deleteBtn;
-
-    @FXML
     private TableColumn<User, String> passwordColumn;
 
     @FXML
@@ -37,7 +34,7 @@ public class AdminManagesAdminsController implements Initializable {
     private Label schoolLbl;
 
     @FXML
-    private ChoiceBox schoolChoiceBox;
+    private ChoiceBox<School> schoolChoiceBox;
 
     @FXML
     private PasswordField passwordTxt;
@@ -60,6 +57,15 @@ public class AdminManagesAdminsController implements Initializable {
         userModel = new UserModel();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        adminTableView.setEditable(true);
+        updateAdminTableView();
+        schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
+        editAdminFromTableView();
+        filterAdminTableView();
+    }
+
     public void updateAdminTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -73,7 +79,7 @@ public class AdminManagesAdminsController implements Initializable {
 
     public void createAdmin(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
-        int schoolId = ((School) schoolChoiceBox.getValue()).getSchoolID();
+        int schoolId = schoolChoiceBox.getValue().getSchoolID();
         if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
         }
@@ -93,15 +99,6 @@ public class AdminManagesAdminsController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        adminTableView.setEditable(true);
-        updateAdminTableView();
-        schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
-        editAdminFromTableView();
-        filterAdminTableView();
-    }
-
     public void filterAdminTableView() {
 
         ObservableList<User> userList = userModel.getAllAdmins();
@@ -112,25 +109,21 @@ public class AdminManagesAdminsController implements Initializable {
             e.printStackTrace();
         }
 
-
-
         FilteredList<User> finalFilteredData = filteredData;
         filterTxt.textProperty().addListener((observable, oldValue, newValue) -> {
             finalFilteredData.setPredicate(user -> {
-
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (user.getName().toLowerCase().contains(lowerCaseFilter))
+                if (user.getName().toLowerCase().contains(lowerCaseFilter) || user.getUsername().toLowerCase().contains(lowerCaseFilter) || user.getPassword().toLowerCase().contains(lowerCaseFilter))
                     return true;
                 else
                     return false;
             });
         });
-
 
         SortedList<User> sortedData = new SortedList<>(filteredData);
 
@@ -145,9 +138,8 @@ public class AdminManagesAdminsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setName(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setName(t.getNewValue());
                         TablePosition pos = adminTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = adminTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -164,9 +156,8 @@ public class AdminManagesAdminsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setUsername(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setUsername(t.getNewValue());
                         TablePosition pos = adminTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = adminTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -183,9 +174,8 @@ public class AdminManagesAdminsController implements Initializable {
                 new EventHandler<TableColumn.CellEditEvent<User, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<User, String> t) {
-                        ((User) t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setPassword(t.getNewValue());
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setPassword(t.getNewValue());
                         TablePosition pos = adminTableView.getSelectionModel().getSelectedCells().get(0);
                         int row = pos.getRow();
                         int userId = adminTableView.getSelectionModel().getSelectedItem().getUserId();
@@ -207,12 +197,11 @@ public class AdminManagesAdminsController implements Initializable {
     public void onClickDelete(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
         try {
-
             if (adminTableView.getSelectionModel().getSelectedItem() == null){
-                JOptionPane.showMessageDialog(jFrame, "Choose a Teacher!\nPlease try again");
+                JOptionPane.showMessageDialog(jFrame, "Choose an Admin!\nPlease try again");
             }
             else {
-                userModel.deleteUser(((User) adminTableView.getSelectionModel().getSelectedItem()).getUserId());
+                userModel.deleteUser(adminTableView.getSelectionModel().getSelectedItem().getUserId());
                 JOptionPane.showMessageDialog(jFrame, "Admin deleted");
                 updateAdminTableView();
             }
