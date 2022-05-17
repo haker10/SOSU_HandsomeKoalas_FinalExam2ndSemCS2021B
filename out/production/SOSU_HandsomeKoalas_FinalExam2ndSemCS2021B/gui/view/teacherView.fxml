@@ -56,7 +56,7 @@
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/adminIcon.jpg" />
+                        <Image url="@../../images/templateIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

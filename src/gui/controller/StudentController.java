@@ -40,6 +40,7 @@ public class StudentController implements Initializable {
     ObservableList<String> allNames;
 
     String info;
+    String infoToEdit;
 
     public StudentController() {
           userModel = new UserModel();
@@ -88,6 +89,7 @@ public class StudentController implements Initializable {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Citizen rowData = row.getItem();
                     int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
+                    infoToEdit = citizenId + "," + schoolLbl.getText();
                     Stage currentStage = (Stage) citizenTV.getScene().getWindow();
                     currentStage.close();
                     try{
@@ -96,7 +98,7 @@ public class StudentController implements Initializable {
                         Scene scene = new Scene(root);
                         stage.initStyle(StageStyle.TRANSPARENT);
                         stage.setScene(scene);
-                        stage.setUserData(citizenId);
+                        stage.setUserData(infoToEdit);
                         stage.show();
                         scene.setFill(Color.TRANSPARENT);
                     }catch (Exception e){
@@ -107,5 +109,26 @@ public class StudentController implements Initializable {
             });
             return row ;
         });
+    }
+
+    public void onClickLogOutBtn(ActionEvent actionEvent) {
+        Stage currentStage = (Stage) citizenTV.getScene().getWindow();
+        currentStage.close();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/loginView.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.setUserData(citizenId);
+            stage.show();
+            scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void OnClickXBtn(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

@@ -46,12 +46,19 @@
 }
 
 
-/*Text focused*/
+/*Text*/
 
 .text-field:focused {
     -fx-background-radius: 10;
     -fx-border-width: 1;
     -fx-border-color: #3E5C70;
+
+}
+.text-field{
+    -fx-background-color: #2B2B2B;
+    -fx-text-background-color: #E8CFC9;
+    -fx-text-fill: #E8CFC9;
+    -fx-background-radius: 10;
 }
 
 
@@ -182,20 +189,13 @@
 .list-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color: linear-gradient(to right bottom, #3E5C70, #ED8923);
 }
-.text-field{
-    -fx-background-color: #2B2B2B;
-    -fx-text-background-color: #E8CFC9;
-    -fx-text-fill: #E8CFC9;
-    -fx-background-radius: 10;
-}
+
+/*choiceBox*/
+
 .choice-box {
     -fx-background-color:  #2B2B2B;
     -fx-mark-color: #ED8923; // arrow color
 }
-
-
-/*choiceBox*/
-
 .choice-box .context-menu { -fx-background-color: #2B2B2B; }
 .choice-box .menu-item:focused { -fx-background-color: #ED8923; }
 .choice-box .menu-item > .label { -fx-text-fill: #E8CFC9; }

@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
@@ -107,6 +108,13 @@ public class StudentEditCitizenController implements Initializable{
     private TextArea habitsTxt;
     @FXML
     private TextArea enJTxt;
+
+    @FXML
+    private Label schoolLbl;
+
+    String info;
+    private double xoffset;
+    private double yoffset;
 
     String hc_category1 = "Function level";
     String hc_subcategory1_1 = "Problems with personal care";
@@ -286,7 +294,9 @@ public class StudentEditCitizenController implements Initializable{
 
     public void updateCitizenTableView(){
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
         hCCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenCategory"));
         hCSubCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenSubCategory"));
         hCRelevanceColumn.setCellValueFactory(new PropertyValueFactory<>("healthConditionsCitizenColor"));
@@ -331,9 +341,15 @@ public class StudentEditCitizenController implements Initializable{
         relevanceComboBox.setItems(hc_relevance);
         Platform.runLater(() -> {
             Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-            int citizenId = (Integer) currentStage.getUserData();
+            info = (String) currentStage.getUserData();
+            String[] splitter = info.split(",");
+            int citizenId = Integer.parseInt(splitter[0]);
+            String schoolName = splitter[1];
 
 
+
+
+            schoolLbl.setText(schoolName);
 
             //general information
             masteryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(0)));
@@ -371,7 +387,9 @@ public class StudentEditCitizenController implements Initializable{
                     hCSubCategoryComboBox.getSelectionModel().clearSelection();
                     HealthCondition rowData = row.getItem();
                     Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
-                    int citizenId = (Integer) currentStage.getUserData();
+                    info = (String) currentStage.getUserData();
+                    String[] splitter = info.split(",");
+                    int citizenId = Integer.parseInt(splitter[0]);
                     try{
                         healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(rowData.getHealthConditionsCitizenCategory(), rowData.getHealthConditionsCitizenSubCategory(), citizenId);
                         hCCategoryComboBox.setValue(rowData.getHealthConditionsCitizenCategory());
@@ -402,8 +420,11 @@ public class StudentEditCitizenController implements Initializable{
                     fACategoryComboBox.getSelectionModel().clearSelection();
                     faSubCategoryComboBox.getSelectionModel().clearSelection();
                     FunctionalAbilitie rowData = row.getItem();
+
                     Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-                    int citizenId = (Integer) currentStage.getUserData();
+                    info = (String) currentStage.getUserData();
+                    String[] splitter = info.split(",");
+                    int citizenId = Integer.parseInt(splitter[0]);
                     try{
                         functionalAbilities = (ArrayList<String>) citizenModel.getFunctionalInformationCitizen(rowData.getFunctionalAbilitiesCitizenCategoryName(),rowData.getFunctionalAbilitiesCitizenSubCategoryName(), citizenId);
                         fACategoryComboBox.setValue(rowData.getFunctionalAbilitiesCitizenCategoryName());
@@ -463,7 +484,9 @@ public class StudentEditCitizenController implements Initializable{
     public void OnClickedHCSubCategory(ActionEvent actionEvent) throws Exception {
         //relevanceComboBox.setDisable(false);
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
         if (hCCategoryComboBox.getValue() != null) {
             try {
                 hCdatePicker.setDisable(false);
@@ -486,7 +509,9 @@ public class StudentEditCitizenController implements Initializable{
 
     public void OnClickedHCRelevance(ActionEvent actionEvent) {
         Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
         hCdatePicker.setDisable(false);
 
         healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
@@ -565,7 +590,9 @@ public class StudentEditCitizenController implements Initializable{
         JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
 
         String selectedCategory = hCCategoryComboBox.getSelectionModel().getSelectedItem();
         String selectedSubCategory = hCSubCategoryComboBox.getSelectionModel().getSelectedItem();
@@ -610,7 +637,9 @@ public class StudentEditCitizenController implements Initializable{
 
     public void OnClickedFASubCategory(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
         fADatePicker.setDisable(false);
         observationNoteTxt.setDisable(false);
         wishesNGoalsTxt.setDisable(false);
@@ -639,7 +668,9 @@ public class StudentEditCitizenController implements Initializable{
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
 
 
         String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
@@ -665,8 +696,28 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickPopImage(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
-        frame.add(new JLabel((Icon) new ImageIcon("/images/01234.png").getImage()));
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/imageView.fxml"));
+            Stage stage = new Stage();
+            root.setOnMousePressed(event -> {
+                xoffset = event.getSceneX();
+                yoffset = event.getSceneY();
+
+            });
+            root.setOnMouseDragged(e->{
+                stage.setX(e.getSceneX()- xoffset);
+                stage.setY(e.getScreenY() - yoffset);
+            });
+
+            Scene scene = new Scene(root);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.setUserData(info);
+            stage.show();
+            scene.setFill(Color.TRANSPARENT);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
     public void clearFA(){
@@ -699,7 +750,9 @@ public class StudentEditCitizenController implements Initializable{
         JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
-        int citizenId = (Integer) currentStage.getUserData();
+        info = (String) currentStage.getUserData();
+        String[] splitter = info.split(",");
+        int citizenId = Integer.parseInt(splitter[0]);
 
         ArrayList<String> generalInfoEditable = new ArrayList<>();
 
@@ -778,5 +831,9 @@ public class StudentEditCitizenController implements Initializable{
     public void OnClickeleventhInfoBtn (ActionEvent event){
         JFrame jFrame = new JFrame();
         JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
+    }
+
+    public void OnClickXBtn(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }
