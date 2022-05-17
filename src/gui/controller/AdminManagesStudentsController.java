@@ -35,11 +35,6 @@ public class AdminManagesStudentsController implements Initializable {
     private TableColumn<User, String> passwordColumn;
 
     @FXML
-    private Label schoolLbl;
-
-    UserModel userModel;
-
-    @FXML
     private TextField nameTxt;
 
     @FXML
@@ -57,6 +52,8 @@ public class AdminManagesStudentsController implements Initializable {
     @FXML
     private TextField usernameTxt;
 
+    UserModel userModel;
+
     int schoolId1;
 
     public AdminManagesStudentsController() {
@@ -66,9 +63,8 @@ public class AdminManagesStudentsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
+            Stage currentStage = (Stage) usernameTxt.getScene().getWindow();
             schoolId1 = (int) currentStage.getUserData();
-            schoolLbl.setText(userModel.getSchoolName(schoolId1));
             studentTableView.setEditable(true);
             editStudentFromTableView();
             updateStudentTableView();

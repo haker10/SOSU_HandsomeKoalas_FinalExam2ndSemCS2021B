@@ -11,6 +11,9 @@ resize windows
 
 fix exceptions
 Fix To have only 1 username ; if existing give Exception;
+filter on adminManagesTeacher and adminManagesStudents are not working for password column.
+when create new school it does NOT update the listview.
+
 
 //Sprint review questions
 in editCitizenTemplate to have a "button delete" for HealthConditions -

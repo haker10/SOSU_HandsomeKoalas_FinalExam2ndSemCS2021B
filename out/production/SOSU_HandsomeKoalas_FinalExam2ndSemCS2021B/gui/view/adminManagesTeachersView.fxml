@@ -5,24 +5,67 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="611.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesTeachersController">
-   <children>
-      <Button layoutX="652.0" layoutY="572.0" mnemonicParsing="false" onAction="#addTeacher" text="Add" />
-      <TextField fx:id="newNameTxt" layoutX="26.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
-      <TextField fx:id="newUserNameTxt" layoutX="273.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
-      <TableView fx:id="teachersTableView" layoutX="26.0" layoutY="54.0" prefHeight="469.0" prefWidth="697.0">
-        <columns>
-          <TableColumn fx:id="nameColumn" minWidth="4.0" prefWidth="220.0" text="Name" />
-            <TableColumn fx:id="usernameColumn" prefWidth="229.0" text="User Name" />
-            <TableColumn fx:id="passwordColumn" prefWidth="247.0" text="Password" />
-        </columns>
-      </TableView>
-      <Button layoutX="671.0" layoutY="19.0" mnemonicParsing="false" onAction="#deleteTeacher" text="Delete" />
-      <TextField fx:id="newPasswordTxt" layoutX="505.0" layoutY="543.0" prefHeight="25.0" prefWidth="218.0" />
-      <Label fx:id="schoolLbl" layoutX="26.0" layoutY="11.0" />
-      <TextField fx:id="filterTxt" layoutX="300.0" layoutY="16.0" />
-      <Label layoutX="259.0" layoutY="20.0" text="Filter" />
-   </children>
+<AnchorPane prefHeight="442.0" prefWidth="823.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesTeachersController">
+    <children>
+        <TableView fx:id="teachersTableView" prefHeight="442.0" prefWidth="571.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" minWidth="4.0" prefWidth="190.0" text="Name" />
+                <TableColumn fx:id="usernameColumn" prefWidth="190.0" text="Username" />
+                <TableColumn fx:id="passwordColumn" prefWidth="190.0" text="Password" />
+            </columns>
+        </TableView>
+        <AnchorPane layoutX="571.0" prefHeight="442.0" prefWidth="254.0" styleClass="Stage">
+            <children>
+                <TextField fx:id="filterTxt" layoutX="81.0" layoutY="24.0" />
+                <Label layoutX="33.0" layoutY="29.0" text="Filter">
+                    <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Button layoutX="76.0" layoutY="337.0" mnemonicParsing="false" onAction="#deleteTeacher" prefHeight="25.0" prefWidth="103.0" text="Delete" />
+                <TextField fx:id="newNameTxt" alignment="CENTER" layoutX="18.0" layoutY="131.0" prefHeight="25.0" prefWidth="218.0" promptText="Name">
+                    <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="newUserNameTxt" alignment="CENTER" layoutX="18.0" layoutY="162.0" prefHeight="25.0" prefWidth="218.0" promptText="Username">
+                    <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="newPasswordTxt" alignment="CENTER" layoutX="18.0" layoutY="196.0" prefHeight="25.0" prefWidth="218.0" promptText="Password">
+                    <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                    </font>
+                </TextField>
+                <Button layoutX="76.0" layoutY="227.0" mnemonicParsing="false" onAction="#addTeacher" prefHeight="25.0" prefWidth="103.0" text="Create" />
+                <Label alignment="CENTER" layoutX="50.0" layoutY="48.0" prefHeight="46.0" prefWidth="158.0" text="Create">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="108.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/arrowDownImage.png" />
+                    </image>
+                </ImageView>
+                <Label alignment="CENTER" layoutX="50.0" layoutY="257.0" prefHeight="52.0" prefWidth="158.0" text="Delete">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="108.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/arrowDownImage.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="schoolLbl" layoutX="23.0" layoutY="85.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

@@ -11,7 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,12 +25,6 @@ public class TeacherController implements Initializable {
 
     @FXML
     private Label schoolLbl;
-
-    @FXML
-    private Button studentBtn;
-
-    @FXML
-    private Button citizenTemplateBtn;
 
 
     UserModel userModel;
@@ -52,48 +48,6 @@ public class TeacherController implements Initializable {
         });
     }
 
-    public void onClickManageStudents(ActionEvent actionEvent) {
-        Stage currentStage = (Stage) studentBtn.getScene().getWindow();
-        schoolId1 = (Integer) currentStage.getUserData();
-        currentStage.close();
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesStudentsView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            //stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
-            stage.setUserData(schoolId1);
-            //scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void handleCitizenTemplate(ActionEvent actionEvent) {
-
-        Stage currentStage = (Stage) citizenTemplateBtn.getScene().getWindow();
-        schoolId1 = (Integer) currentStage.getUserData();
-        currentStage.close();
-
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherManagesCitizenTemplateView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            //stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.setUserData(schoolId1);
-            stage.show();
-            //scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void onClickManageCitizen(ActionEvent actionEvent) {
-
-    }
-
     public void onClickLogOutBtn(ActionEvent actionEvent) {
         Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
         currentStage.close();
@@ -101,12 +55,16 @@ public class TeacherController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/loginView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-            // stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
-            // scene.setFill(Color.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void OnClickXBtn(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

@@ -32,6 +32,11 @@
     -fx-border-width: 1;
     -fx-border-color: #3E5C70;
 }
+.text-field{
+    -fx-background-color: #2B2B2B;
+    -fx-text-background-color: #E8CFC9;
+    -fx-text-fill: #E8CFC9;
+}
 
 .xBtn{
     -fx-border-width: 1;

@@ -2,15 +2,77 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherController">
+<AnchorPane prefHeight="927.0" prefWidth="1199.0" styleClass="primaryStage" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherController">
    <children>
-      <Label layoutX="536.0" layoutY="14.0" text="TEACHER" />
-      <Button fx:id="studentBtn" layoutX="268.0" layoutY="62.0" mnemonicParsing="false" onAction="#onClickManageStudents" prefHeight="25.0" prefWidth="65.0" text="Student" />
-      <Button fx:id="citizenTemplateBtn" layoutX="248.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleCitizenTemplate" text="Citizen Template" />
-      <Button fx:id="citizenBtn" layoutX="274.0" layoutY="175.0" mnemonicParsing="false" onAction="#onClickManageCitizen" text="Citizen" />
-      <Label fx:id="schoolLbl" layoutX="14.0" layoutY="14.0" />
-      <Button fx:id="logoutBtn" layoutX="272.0" layoutY="330.0" mnemonicParsing="false" onAction="#onClickLogOutBtn" text="Log out" />
+      <Label layoutX="493.0" layoutY="14.0" />
+      <AnchorPane layoutX="182.0" layoutY="144.0" prefHeight="111.0" prefWidth="843.0" styleClass="topPane">
+         <children>
+            <Button fx:id="logoutBtn" layoutX="740.0" layoutY="44.0" mnemonicParsing="false" onAction="#onClickLogOutBtn" prefHeight="29.0" prefWidth="69.0" text="Log out">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="757.0" layoutY="12.0" mnemonicParsing="false" onAction="#OnClickXBtn" prefHeight="25.0" prefWidth="33.0">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/closeBtnIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <ImageView fitHeight="79.0" fitWidth="177.0" layoutX="323.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/teacherManagerLogo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="schoolLbl" alignment="CENTER" layoutX="31.0" layoutY="27.0" prefHeight="29.0" prefWidth="37.0" styleClass="schoolLbl" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="350.0" layoutY="-142.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="220.0" />
+      <TabPane fx:id="tabPane" layoutX="182.0" layoutY="224.0" prefHeight="405.0" prefWidth="843.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Student">
+               <content>
+                  <fx:include fx:id="students" source="teacherManagesStudentsView.fxml" />
+               </content>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/studentIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab text="CitizenTemplate">
+               <content>
+                  <fx:include fx:id="admin" source="teacherManagesCitizenTemplateView.fxml" />
+               </content>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/adminIcon.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+            <Tab disable="true" text="Citizen">
+               <content>
+               </content>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/teacherIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
+         </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

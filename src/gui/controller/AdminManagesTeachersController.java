@@ -10,7 +10,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -20,11 +19,8 @@ import javafx.stage.Stage;
 import javafx.event.EventHandler;
 
 import javax.swing.*;
-import javafx.event.EventHandler;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
-import java.sql.RowId;
 import java.util.ResourceBundle;
 
 public class AdminManagesTeachersController implements Initializable {
@@ -81,13 +77,13 @@ public class AdminManagesTeachersController implements Initializable {
         Platform.runLater(() -> {
             Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
             schoolId1 = (int) currentStage.getUserData();
-            schoolLbl.setText(userModel.getSchoolName(schoolId1));
             updateTeacherTableView();
             teachersTableView.setEditable(true);
             editTeacherFromTableView();
             filterTeacherTableView();
         });
     }
+
 
     public void filterTeacherTableView() {
 
