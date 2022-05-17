@@ -8,9 +8,14 @@
 //make tab pane for citizen view
 //resize windows
 
-fix exceptions
-Fix To have only 1 username ; if existing give Exception; 1/4
-dynamic scene
+fix exceptions - diogo
+Fix To have only 1 username ; if existing give Exception; 1/5 (schools) - diogo
+dynamic scene - niko
+when refresh table view, also refresh combo box (schools) - diogo
+make action event for filters - niko
+clear fields after creating users - diogo
+check delete citizenTemplate - diogo
+when closing citizen or citizenTemplate edit pages, go back to previous view - niko
 
 //Sprint review questions
 in editCitizenTemplate to have a "button delete" for HealthConditions
