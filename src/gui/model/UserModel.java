@@ -6,6 +6,8 @@ import bll.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class UserModel {
 
     static Manager manager;
@@ -28,6 +30,10 @@ public class UserModel {
 
     public void editUser(int userId, String name, String username, String password) {
         manager.editUser(userId, name, username, password);
+    }
+
+    public List<User> getAllUsernames() {
+        return manager.getAllUsernames();
     }
 
 

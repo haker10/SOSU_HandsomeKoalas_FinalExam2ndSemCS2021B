@@ -51,6 +51,10 @@ public class Manager {
         userDataDAO.deleteUser(userId);
     }
 
+    public List<User> getAllUsernames() {
+        return userDataDAO.getAllUsernames();
+    }
+
 
 
     //schools

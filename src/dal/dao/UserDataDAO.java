@@ -73,6 +73,29 @@ public class UserDataDAO {
         }
     }
 
+    public List<User> getAllUsernames() {
+        List<User> allUsers = new ArrayList<>();
+        String sql = "SELECT * FROM UserData";
+        try(Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int userID = resultSet.getInt("userID");
+                int typeOfUser = resultSet.getInt("typeOfUser");
+                int school = resultSet.getInt("school");
+                String name = resultSet.getString("name");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                User user = new User(userID, typeOfUser, school, name, username, password);
+                allUsers.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allUsers;
+    }
+
 
 
     //admins

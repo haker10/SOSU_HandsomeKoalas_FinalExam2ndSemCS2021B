@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminManagesAdminsController implements Initializable {
@@ -79,20 +80,30 @@ public class AdminManagesAdminsController implements Initializable {
 
     public void createAdmin(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
+        int count = 0;
         int schoolId = schoolChoiceBox.getValue().getSchoolID();
         if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
         }
         else {
             try {
-                userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-                JOptionPane.showMessageDialog(frame, "Admin created");
-                nameTxt.clear();
-                usernameTxt.clear();
-                passwordTxt.clear();
-                schoolChoiceBox.setValue(null);
-                schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
-                updateAdminTableView();
+                count = 0;
+                List<User> allUsers = userModel.getAllUsernames();
+                for (int i=0; i< allUsers.size();i++) {
+                    if (allUsers.get(i).getUsername().equals(usernameTxt.getText()))
+                        JOptionPane.showMessageDialog(frame, "Username already exists, please choose a new one");
+                        count ++;
+                }
+                if(count == 0) {
+                    userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+                    JOptionPane.showMessageDialog(frame, "Admin created");
+                    nameTxt.clear();
+                    usernameTxt.clear();
+                    passwordTxt.clear();
+                    schoolChoiceBox.setValue(null);
+                    schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
+                    updateAdminTableView();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
