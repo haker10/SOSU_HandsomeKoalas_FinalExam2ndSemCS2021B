@@ -466,6 +466,8 @@ public class StudentEditCitizenController implements Initializable{
         int citizenId = (Integer) currentStage.getUserData();
         if (hCCategoryComboBox.getValue() != null) {
             try {
+                hCdatePicker.setDisable(false);
+                //System.out.println(citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId));
                 healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
                 relevanceComboBox.setValue(healthConditions.get(0));
                 hCprofessionalNoteTxt.setText(healthConditions.get(1));
@@ -485,13 +487,13 @@ public class StudentEditCitizenController implements Initializable{
     public void OnClickedHCRelevance(ActionEvent actionEvent) {
         Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
         int citizenId = (Integer) currentStage.getUserData();
+        hCdatePicker.setDisable(false);
 
         healthConditions = (ArrayList<String>) citizenModel.getHealthConditionCitizen(hCCategoryComboBox.getSelectionModel().getSelectedItem(), hCSubCategoryComboBox.getSelectionModel().getSelectedItem(), citizenId);
         if(hCSubCategoryComboBox.getValue() != null) {
             if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) {
                 hCprofessionalNoteTxt.setDisable(true);
                 currentAssessmentTxt.setDisable(true);
-                hCdatePicker.setDisable(true);
                 hCObservationNoteTxt.setDisable(true);
                 hCExpectedLevelComboBox.setDisable(true);
             } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)) {
@@ -510,24 +512,22 @@ public class StudentEditCitizenController implements Initializable{
             if ((relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem().equals(healthConditions.get(0))) || (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && healthConditions.get(0).equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0))) {
                 hCprofessionalNoteTxt.setDisable(false);
                 currentAssessmentTxt.setDisable(true);
-                hCdatePicker.setDisable(true);
                 hCObservationNoteTxt.setDisable(true);
-                hCExpectedLevelComboBox.setDisable(true);
+                hCExpectedLevelComboBox.setItems(expectedLevelList);
+                hCExpectedLevelComboBox.setDisable(false);
             } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")) {
                 currentAssessmentTxt.setDisable(true);
                 currentAssessmentTxt.setText("");
-                hCdatePicker.setDisable(true);
                 hCdatePicker.setValue(LocalDate.now());
                 hCObservationNoteTxt.setDisable(true);
                 hCObservationNoteTxt.setText("");
-                hCExpectedLevelComboBox.setDisable(true);
-                hCExpectedLevelComboBox.getSelectionModel().clearSelection();
+                hCExpectedLevelComboBox.setItems(expectedLevelList);
+                hCExpectedLevelComboBox.setDisable(false);
             }
 
             if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")) {
                 hCprofessionalNoteTxt.setDisable(false);
                 currentAssessmentTxt.setDisable(false);
-                hCdatePicker.setDisable(false);
                 hCObservationNoteTxt.setDisable(false);
                 hCExpectedLevelComboBox.setItems(expectedLevelList);
                 hCExpectedLevelComboBox.setDisable(false);
@@ -575,7 +575,13 @@ public class StudentEditCitizenController implements Initializable{
         String expectedLevel = hCExpectedLevelComboBox.getSelectionModel().getSelectedItem();
         String observationNote = hCObservationNoteTxt.getText();
         LocalDate date = hCdatePicker.getValue();
-        citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+
+        if (citizenModel.checkHealthConditionsId(selectedCategory, selectedSubCategory, citizenId) == false){
+            citizenModel.createHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+        }
+        else {
+            citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+        }
 
         clearHC();
         JOptionPane.showMessageDialog(frame, "Saved");
@@ -647,7 +653,7 @@ public class StudentEditCitizenController implements Initializable{
         String observationNote = observationNoteTxt.getText();
         LocalDate date = fADatePicker.getValue();
 
-        if(citizenModel.getFunctionalInformationCitizen(selectedCategory, selectedSubCategory, citizenId) == null){
+        if(citizenModel.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId) == false){
             citizenModel.createFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
         }
         else{
@@ -686,7 +692,6 @@ public class StudentEditCitizenController implements Initializable{
         wishesNGoalsTxt.setDisable(true);
         observationNoteTxt.setDisable(true);
         fADatePicker.setDisable(true);
-
     }
 
     //General Information

@@ -42,6 +42,14 @@ public class FunctionalAbilitesCitizenTemplateDAO {
 
     public List<String> getFunctionalInformationCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
        List<String> allFunctionalInfoCitizenTemplate = new ArrayList<>();
+        int score = 1000;
+        int expectedScore;
+        String proffNote;
+        String performance;
+        String limitation;
+        String wishesNGoals;
+        String observationNote;
+        String date;
        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ? and  functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ?";
 
        try(Connection connection = databaseConnector.getConnection()){
@@ -52,14 +60,14 @@ public class FunctionalAbilitesCitizenTemplateDAO {
            ResultSet resultSet = preparedStatement.executeQuery();
 
            if(resultSet.next()){
-               int score = resultSet.getInt("functionalAbilitiesCitizenTemplateScore");
-               int expectedScore = resultSet.getInt("functionalAbilitiesCitizenTemplateExpectedScore");
-               String proffNote = resultSet.getString("functionalAbilitiesCitizenTemplateProfessionalNote");
-               String performance = resultSet.getString("functionalAbilitiesCitizenTemplatePerformance");
-               String limitation = resultSet.getString("functionalAbilitiesCitizenTemplateLimitation");
-               String wishesNGoals = resultSet.getString("functionalAbilitiesCitizenTemplateGoalsNote");
-               String observationNote = resultSet.getString("functionalAbilitiesCitizenTemplateObservationNote");
-               String date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
+               score = resultSet.getInt("functionalAbilitiesCitizenTemplateScore");
+               expectedScore = resultSet.getInt("functionalAbilitiesCitizenTemplateExpectedScore");
+               proffNote = resultSet.getString("functionalAbilitiesCitizenTemplateProfessionalNote");
+               performance = resultSet.getString("functionalAbilitiesCitizenTemplatePerformance");
+               limitation = resultSet.getString("functionalAbilitiesCitizenTemplateLimitation");
+               wishesNGoals = resultSet.getString("functionalAbilitiesCitizenTemplateGoalsNote");
+               observationNote = resultSet.getString("functionalAbilitiesCitizenTemplateObservationNote");
+               date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
                allFunctionalInfoCitizenTemplate.add(String.valueOf(score));
                allFunctionalInfoCitizenTemplate.add(String.valueOf(expectedScore));
                allFunctionalInfoCitizenTemplate.add(proffNote);
@@ -72,6 +80,24 @@ public class FunctionalAbilitesCitizenTemplateDAO {
        }catch (Exception e){
            e.printStackTrace();
        }
+        if (score == 1000){
+            score = 0;
+            expectedScore = 0;
+            proffNote = "";
+            performance = "";
+            limitation = "";
+            wishesNGoals = "";
+            observationNote = "";
+            date = LocalDate.now().toString();
+            allFunctionalInfoCitizenTemplate.add(String.valueOf(score));
+            allFunctionalInfoCitizenTemplate.add(String.valueOf(expectedScore));
+            allFunctionalInfoCitizenTemplate.add(proffNote);
+            allFunctionalInfoCitizenTemplate.add(performance);
+            allFunctionalInfoCitizenTemplate.add(limitation);
+            allFunctionalInfoCitizenTemplate.add(wishesNGoals);
+            allFunctionalInfoCitizenTemplate.add(observationNote);
+            allFunctionalInfoCitizenTemplate.add(date);
+        }
        return allFunctionalInfoCitizenTemplate;
     }
 
@@ -121,4 +147,24 @@ public class FunctionalAbilitesCitizenTemplateDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean checkFuntionalAbilitiesCTId(String category, String subCategory, int citizenTemplateId) {
+        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ? and  functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ?";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, category);
+            preparedStatement.setString(3, subCategory);
+            preparedStatement.setInt(1, citizenTemplateId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

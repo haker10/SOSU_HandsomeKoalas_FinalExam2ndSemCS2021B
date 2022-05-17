@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class HealthConditionsCitizenDAO {
         }
     }
 
-    private void createHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+    public void createHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
         String sql = "INSERT INTO HealthConditionsCitizen(healthConditionsCitizenCategory, healthConditionsCitizenSubCategory, healthConditionsCitizenColor, healthConditionsCitizenProfessionalNote, healthConditionsCitizenAssessmentNote, healthConditionsCitizenExpectedLevel, healthConditionsCitizenObservableNote, healthConditionsCitizenDate, citizenID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -64,6 +65,12 @@ public class HealthConditionsCitizenDAO {
     }
     public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
         List<String> allHealthConditionsCitizen = new ArrayList<>();
+        String relevance = null;
+        String proffNote = null;
+        String assessmentNote = null;
+        String expectedLevel = null;
+        String observationNote = null;
+        String date = null;
 
         String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ? and  healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ?";
 
@@ -75,21 +82,38 @@ public class HealthConditionsCitizenDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                String relevance = resultSet.getString("healthConditionsCitizenColor");
-                String proffNote = resultSet.getString("healthConditionsCitizenProfessionalNote");
-                String assessmentNote = resultSet.getString("healthConditionsCitizenAssessmentNote");
-                String expectedLevel = resultSet.getString("healthConditionsCitizenExpectedLevel");
-                String observationNote = resultSet.getString("healthConditionsCitizenObservableNote");
-                String date = resultSet.getString("healthConditionsCitizenDate");
+                relevance = resultSet.getString("healthConditionsCitizenColor");
+                proffNote = resultSet.getString("healthConditionsCitizenProfessionalNote");
+                assessmentNote = resultSet.getString("healthConditionsCitizenAssessmentNote");
+                expectedLevel = resultSet.getString("healthConditionsCitizenExpectedLevel");
+                observationNote = resultSet.getString("healthConditionsCitizenObservableNote");
+                date = resultSet.getString("healthConditionsCitizenDate");
+
                 allHealthConditionsCitizen.add(relevance);
                 allHealthConditionsCitizen.add(proffNote);
                 allHealthConditionsCitizen.add(assessmentNote);
                 allHealthConditionsCitizen.add(expectedLevel);
                 allHealthConditionsCitizen.add(observationNote);
                 allHealthConditionsCitizen.add(date);
+
+
             }
         }catch (Exception e){
             e.printStackTrace();
+        }
+        if (relevance == null) {
+            relevance = "Not relevant";
+            proffNote = "";
+            assessmentNote = "";
+            expectedLevel = "";
+            observationNote = "";
+            date = LocalDate.now().toString();
+            allHealthConditionsCitizen.add(relevance);
+            allHealthConditionsCitizen.add(proffNote);
+            allHealthConditionsCitizen.add(assessmentNote);
+            allHealthConditionsCitizen.add(expectedLevel);
+            allHealthConditionsCitizen.add(observationNote);
+            allHealthConditionsCitizen.add(date);
         }
         return allHealthConditionsCitizen;
     }
@@ -144,5 +168,24 @@ public class HealthConditionsCitizenDAO {
             e.printStackTrace();
         }
         return allHealthConditionsCitizen;
+    }
+
+    public boolean checkHealtConditionsId(String category, String subCategory, int citizenId) {
+        String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ? and  healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ?";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, category);
+            preparedStatement.setString(3, subCategory);
+            preparedStatement.setInt(1, citizenId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

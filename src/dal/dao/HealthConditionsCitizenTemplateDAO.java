@@ -38,6 +38,12 @@ public class HealthConditionsCitizenTemplateDAO {
 
     public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
         List<String> allHealthConditionsCitizenTemplate = new ArrayList<>();
+        String relevance = null;
+        String proffNote;
+        String assessmentNote;
+        String expectedLevel;
+        String observationNote;
+        String date;
 
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
 
@@ -49,12 +55,12 @@ public class HealthConditionsCitizenTemplateDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
-                String relevance = resultSet.getString("healthConditionsCitizenTemplateColor");
-                String proffNote = resultSet.getString("healthConditionsCitizenTemplateProfessionalNote");
-                String assessmentNote = resultSet.getString("healthConditionsCitizenTemplateAssessmentNote");
-                String expectedLevel = resultSet.getString("healthConditionsCitizenTemplateExpectedLevel");
-                String observationNote = resultSet.getString("healthConditionsCitizenTemplateObservableNote");
-                String date = resultSet.getString("healthConditionsCitizenTemplateDate");
+                relevance = resultSet.getString("healthConditionsCitizenTemplateColor");
+                proffNote = resultSet.getString("healthConditionsCitizenTemplateProfessionalNote");
+                assessmentNote = resultSet.getString("healthConditionsCitizenTemplateAssessmentNote");
+                expectedLevel = resultSet.getString("healthConditionsCitizenTemplateExpectedLevel");
+                observationNote = resultSet.getString("healthConditionsCitizenTemplateObservableNote");
+                date = resultSet.getString("healthConditionsCitizenTemplateDate");
                 allHealthConditionsCitizenTemplate.add(relevance);
                 allHealthConditionsCitizenTemplate.add(proffNote);
                 allHealthConditionsCitizenTemplate.add(assessmentNote);
@@ -64,6 +70,20 @@ public class HealthConditionsCitizenTemplateDAO {
             }
         }catch (Exception e){
             e.printStackTrace();
+        }
+        if (relevance == null){
+            relevance = "Not relevant";
+            proffNote = "";
+            assessmentNote = "";
+            expectedLevel = "";
+            observationNote = "";
+            date = LocalDate.now().toString();
+            allHealthConditionsCitizenTemplate.add(relevance);
+            allHealthConditionsCitizenTemplate.add(proffNote);
+            allHealthConditionsCitizenTemplate.add(assessmentNote);
+            allHealthConditionsCitizenTemplate.add(expectedLevel);
+            allHealthConditionsCitizenTemplate.add(observationNote);
+            allHealthConditionsCitizenTemplate.add(date);
         }
         return allHealthConditionsCitizenTemplate;
     }
@@ -110,5 +130,24 @@ public class HealthConditionsCitizenTemplateDAO {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public boolean checkHealthConditionsCTId(String category, String subCategory, int citizenTemplateId) {
+        String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
+
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, category);
+            preparedStatement.setString(3, subCategory);
+            preparedStatement.setInt(1, citizenTemplateId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

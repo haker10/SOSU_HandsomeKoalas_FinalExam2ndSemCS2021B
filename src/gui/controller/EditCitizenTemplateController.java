@@ -342,7 +342,13 @@ public class EditCitizenTemplateController implements Initializable {
         String expectedLevel = hCExpectedLevelComboBox.getSelectionModel().getSelectedItem();
         String observationNote = hCObservationNoteTxt.getText();
         LocalDate date = hCdatePicker.getValue();
-        citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateId);
+
+        if (citizenTemplateModel.checkHealtConditionsId(selectedCategory, selectedSubCategory, citizenTemplateId) == false) {
+            citizenTemplateModel.createHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateId);
+        }
+        else {
+            citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateId);
+        }
         presentLevelComboBox.getSelectionModel().clearSelection();
         expectedLevelComboBox.getSelectionModel().clearSelection();
         fACategoryComboBox.setDisable(false);
@@ -468,7 +474,13 @@ public class EditCitizenTemplateController implements Initializable {
             String wishesNGoals = wishesNGoalsTxt.getText();
             String observationNote = observationNoteTxt.getText();
             LocalDate date = fADatePicker.getValue();
-            citizenTemplateModel.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
+
+            if (citizenTemplateModel.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenTemplateId) == false){
+                citizenTemplateModel.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
+            }
+            else {
+                citizenTemplateModel.updateFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
+            }
             presentLevelComboBox.getSelectionModel().clearSelection();
             expectedLevelComboBox.getSelectionModel().clearSelection();
             fACategoryComboBox.setDisable(false);

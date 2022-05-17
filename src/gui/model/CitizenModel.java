@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CitizenModel {
 
@@ -56,7 +57,7 @@ public class CitizenModel {
         manager.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
     }
 
-    public Object getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
+    public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
         return manager.getFunctionalInformationCitizen(category, subCategory, citizenId);
     }
 
@@ -78,5 +79,17 @@ public class CitizenModel {
 
     public void createFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
         manager.createFunctionalAbilitiesCitizen(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+    }
+
+    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenId) {
+        return manager.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId);
+    }
+
+    public boolean checkHealthConditionsId(String selectedCategory, String selectedSubCategory, int citizenId) {
+        return manager.checkHealthConditionsId(selectedCategory, selectedSubCategory, citizenId);
+    }
+
+    public void createHealthConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+        manager.createHealtConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
     }
 }

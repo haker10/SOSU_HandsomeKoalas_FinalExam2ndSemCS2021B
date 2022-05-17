@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/EditCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/EditCitizenTemplateController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

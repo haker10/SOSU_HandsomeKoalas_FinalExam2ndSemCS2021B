@@ -213,7 +213,7 @@ public class Manager {
         healthConditionsCitizenDAO.updateHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observableNote, date, citizenId);
     }
 
-    public Object getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
+    public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
         return functionalAbilitiesCitizenDAO.getFunctionalInformationCitizen(category, subCategory, citizenId);
     }
 
@@ -235,6 +235,26 @@ public class Manager {
 
     public void createFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
         functionalAbilitiesCitizenDAO.createFunctionalAbilitiesCitizen(selectedCategory,selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenId);
+    }
+
+    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenId) {
+        return functionalAbilitiesCitizenDAO.checkFunctionalAbilitiesId(selectedCategory, selectedSubCategory, citizenId);
+    }
+
+    public boolean checkHealthConditionsId(String selectedCategory, String selectedSubCategory, int citizenId) {
+        return healthConditionsCitizenDAO.checkHealtConditionsId(selectedCategory, selectedSubCategory, citizenId);
+    }
+
+    public void createHealtConditionsCitizen(String selectedCategory, String selectedSubCategory, String relevance, String professionalNote, String currentAssessment, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+        healthConditionsCitizenDAO.createHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
+    }
+
+    public boolean checkHealthConditionsCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return healthConditionsCitizenTemplateDAO.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    }
+
+    public boolean checkFunctionalAbilitiesCTId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return functionalAbilitesCitizenTemplateDAO.checkFuntionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
 }
 

@@ -2,6 +2,7 @@ package gui.model;
 
 import be.CitizenTemplate;
 import bll.Manager;
+import gui.controller.StudentEditCitizenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -75,5 +76,13 @@ public class CitizenTemplateModel {
 
     public void copyCitizenTemplate(int citizenTemplateId, int schoolID, String citizenTemplateName) {
         manager.copyCitizenTemplate(citizenTemplateId, schoolID, citizenTemplateName);
+    }
+
+    public boolean checkHealtConditionsId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return manager.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
+    }
+
+    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) {
+        return manager.checkFunctionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
 }
