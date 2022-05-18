@@ -15,7 +15,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.net.URL;
@@ -84,7 +86,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
         currentStage.close();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/editCitizenTemplateView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             //stage.initStyle(StageStyle.TRANSPARENT);
@@ -100,14 +102,14 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     public void onClickEdit(ActionEvent actionEvent) {
         int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/editCitizenTemplateView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-            //stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.setUserData(citizenTemplateId);
             stage.show();
-            //scene.setFill(Color.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();
         }

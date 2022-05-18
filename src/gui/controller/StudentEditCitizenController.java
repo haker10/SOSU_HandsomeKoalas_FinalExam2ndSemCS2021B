@@ -802,6 +802,7 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickXBtn(ActionEvent actionEvent) {
-        Platform.exit();
+        Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
+        currentStage.close();
     }
 }

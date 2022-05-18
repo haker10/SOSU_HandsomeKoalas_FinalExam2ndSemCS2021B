@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="927.0" prefWidth="1199.0" styleClass="primaryStage" stylesheets="@css/student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentController">
+<AnchorPane  prefHeight="927.0" prefWidth="1199.0" styleClass="primaryStage" stylesheets="@css/student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentController">
    <children>
       <AnchorPane layoutX="272.0" layoutY="144.0" prefHeight="111.0" prefWidth="642.0" styleClass="topPane">
          <children>
-         <TextField fx:id="filterTxt" layoutX="299.0" layoutY="71.0" />
-         <Label alignment="TOP_LEFT" layoutX="226.0" layoutY="74.0" prefHeight="20.0" prefWidth="51.0" text="Search">
+         <TextField fx:id="filterTxt" layoutX="14.0" layoutY="72.0" />
+         <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="75.0" prefHeight="20.0" prefWidth="51.0" text="Search" textFill="#e8cfc9">
             <font>
                <Font size="14.0" />
             </font>

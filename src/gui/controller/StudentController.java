@@ -128,7 +128,6 @@ public class StudentController implements Initializable {
                     int citizenId = citizenTV.getSelectionModel().getSelectedItem().getCitizenId();
                     infoToEdit = citizenId + "," + schoolLbl.getText();
                     Stage currentStage = (Stage) citizenTV.getScene().getWindow();
-                    currentStage.close();
                     try{
                         Parent root = FXMLLoader.load(getClass().getResource("/gui/view/studentEditCitizenView.fxml"));
                         Stage stage = new Stage();

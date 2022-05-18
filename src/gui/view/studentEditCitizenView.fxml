@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="913.0" prefWidth="1215.0" styleClass="primaryStage" stylesheets="@css/student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentEditCitizenController">
+<AnchorPane  prefHeight="913.0" prefWidth="1215.0" styleClass="primaryStage" stylesheets="@css/student.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.StudentEditCitizenController">
    <children>
       <AnchorPane layoutX="129.0" layoutY="45.0" prefHeight="111.0" prefWidth="897.0" styleClass="topPane">
          <children>

@@ -184,13 +184,14 @@
     -fx-text-fill: #E8CFC9;
     -fx-background-radius: 10;
 }
+
+
+/*choiceBox*/
+
 .choice-box {
     -fx-background-color:  #2B2B2B;
     -fx-mark-color: #ED8923; // arrow color
 }
-
-
-/*choiceBox*/
 
 .choice-box .context-menu { -fx-background-color: #2B2B2B; }
 .choice-box .menu-item:focused { -fx-background-color: #ED8923; }
@@ -261,4 +262,8 @@
 }
 .combo-box .scroll-pane{
     -fx-opacity: 0;
+}
+.datePicker .arrow-button{
+    -fx-background-image: url("/images/calendarIcon.png");
+    -fx-background-color: #E8CFC9;
 }

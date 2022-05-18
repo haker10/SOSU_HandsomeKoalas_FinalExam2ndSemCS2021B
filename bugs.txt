@@ -16,6 +16,7 @@ make action event for filters - niko
 clear fields after creating users - diogo
 check delete citizenTemplate - diogo
 when closing citizen or citizenTemplate edit pages, go back to previous view - niko
+datepicker enabled on NOT RELEVANT. Make it Disable
 
 //Sprint review questions
 in editCitizenTemplate to have a "button delete" for HealthConditions

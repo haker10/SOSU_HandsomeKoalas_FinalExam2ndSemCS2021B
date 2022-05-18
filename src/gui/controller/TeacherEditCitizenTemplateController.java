@@ -25,7 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class EditCitizenTemplateController implements Initializable{
+public class TeacherEditCitizenTemplateController implements Initializable{
 
     //Health Conditions
     @FXML
@@ -281,7 +281,7 @@ public class EditCitizenTemplateController implements Initializable{
     ArrayList<String> healthConditions = new ArrayList<>(6);
     CitizenTemplateModel citizenTemplateModel;
 
-    public EditCitizenTemplateController(){
+    public TeacherEditCitizenTemplateController(){
         citizenTemplateModel = new CitizenTemplateModel();
     }
 
@@ -777,6 +777,7 @@ public class EditCitizenTemplateController implements Initializable{
     }
 
     public void OnClickXBtn(ActionEvent actionEvent) {
-        Platform.exit();
+        Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
+        currentStage.close();
     }
 }

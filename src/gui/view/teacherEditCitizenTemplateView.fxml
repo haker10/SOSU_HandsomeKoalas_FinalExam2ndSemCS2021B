@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="913.0" prefWidth="1215.0" styleClass="primaryStage" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.EditCitizenTemplateController">
+<AnchorPane  prefHeight="913.0" prefWidth="1215.0" styleClass="primaryStage" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherEditCitizenTemplateController">
     <children>
         <AnchorPane layoutX="129.0" layoutY="45.0" prefHeight="111.0" prefWidth="897.0" styleClass="topPane">
             <children>
@@ -26,9 +26,9 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <ImageView fitHeight="95.0" fitWidth="263.0" layoutX="378.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="99.0" fitWidth="183.0" layoutX="361.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/citizenLogo.png" />
+                        <Image url="@../../images/citizenTemplateLogo.png" />
                     </image>
                 </ImageView>
             </children>
@@ -60,7 +60,7 @@
                                         </Label>
                                         <TextArea fx:id="currentAssessmentTxt" layoutX="634.0" layoutY="254.0" prefHeight="141.0" prefWidth="236.0" />
                                         <Button layoutX="333.0" layoutY="597.0" mnemonicParsing="false" onAction="#OnClickSaveRelevance" text="Save" />
-                                        <DatePicker fx:id="hCdatePicker" layoutX="425.0" layoutY="550.0" />
+                                        <DatePicker fx:id="hCdatePicker" layoutX="425.0" layoutY="550.0" styleClass="datePicker" />
                                         <Label alignment="CENTER" layoutX="443.0" layoutY="489.0" prefHeight="25.0" prefWidth="115.0" text="expected level">
                                             <font>
                                                 <Font size="16.0" />
