@@ -7,16 +7,17 @@
 //when creating or copying citizen template, have textField to receive name
 //make tab pane for citizen view
 //resize windows
+//clear fields after creating users - diogo
+//datepicker enabled on NOT RELEVANT. Make it Disable - diogo
 
 fix exceptions - diogo
 Fix To have only 1 username ; if existing give Exception; 1/5 (schools) - diogo
 dynamic scene - niko
 when refresh table view, also refresh combo box (schools) - diogo
 make action event for filters - niko
-clear fields after creating users - diogo
-check delete citizenTemplate - diogo
+check delete citizenTemplate - diogo - if deleted citizenTemplate, it deletes the ID, and all citizens created from this template need that ID
 when closing citizen or citizenTemplate edit pages, go back to previous view - niko
-datepicker enabled on NOT RELEVANT. Make it Disable
+
 
 //Sprint review questions
 in editCitizenTemplate to have a "button delete" for HealthConditions
