@@ -472,6 +472,8 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                 currentAssessmentTxt.setDisable(true);
                 hCObservationNoteTxt.setDisable(true);
                 hCExpectedLevelComboBox.setDisable(true);
+                hCdatePicker.setDisable(true);
+                hCdatePicker.setValue(LocalDate.now());
             } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Not relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0)) {
                 hCprofessionalNoteTxt.setDisable(true);
                 hCprofessionalNoteTxt.setText("");

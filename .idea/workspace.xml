@@ -7,6 +7,9 @@
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesTeachersView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesTeachersView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +60,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/gui/view/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HandsomaKoalasTicketMaster" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -151,7 +154,7 @@
       <workItem from="1652820563340" duration="281000" />
       <workItem from="1652828575833" duration="4466000" />
       <workItem from="1652833081940" duration="374000" />
-      <workItem from="1653128440762" duration="1470000" />
+      <workItem from="1653128440762" duration="2917000" />
     </task>
     <servers />
   </component>

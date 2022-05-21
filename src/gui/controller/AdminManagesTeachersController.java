@@ -82,7 +82,6 @@ public class AdminManagesTeachersController implements Initializable {
     }
 
     public void filterTeacherTableView() {
-
         ObservableList<User> userList = userModel.getAllTeachers(schoolId1);
         FilteredList<User> filteredData = null;
         try {
