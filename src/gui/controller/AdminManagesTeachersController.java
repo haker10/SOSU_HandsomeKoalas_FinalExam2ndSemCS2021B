@@ -121,6 +121,9 @@ public class AdminManagesTeachersController implements Initializable {
                 JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
             else {
                 userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
+                newNameTxt.clear();
+                newUserNameTxt.clear();
+                newPasswordTxt.clear();
                 JOptionPane.showMessageDialog(jFrame, "Teacher created");
                 updateTeacherTableView();
             }
