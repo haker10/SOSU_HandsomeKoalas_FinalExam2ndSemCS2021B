@@ -76,6 +76,7 @@ public class AdminManagesTeachersController implements Initializable {
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         try {
             teachersTableView.setItems(userModel.getAllTeachers(schoolId1));
+            filterTeacherTableView();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -116,8 +117,10 @@ public class AdminManagesTeachersController implements Initializable {
     public void addTeacher(ActionEvent event) {
         JFrame jFrame = new JFrame();
         try{
-            if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty())
+            if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
+                filterTeacherTableView();
+            }
             else {
                 userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
                 newNameTxt.clear();
@@ -125,6 +128,7 @@ public class AdminManagesTeachersController implements Initializable {
                 newPasswordTxt.clear();
                 JOptionPane.showMessageDialog(jFrame, "Teacher created");
                 updateTeacherTableView();
+                filterTeacherTableView();
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -146,6 +150,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterTeacherTableView();
                     }
                 }
         );
@@ -164,6 +169,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterTeacherTableView();
                     }
                 }
         );
@@ -182,6 +188,7 @@ public class AdminManagesTeachersController implements Initializable {
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterTeacherTableView();
                     }
                 }
         );
@@ -193,11 +200,13 @@ public class AdminManagesTeachersController implements Initializable {
 
             if (teachersTableView.getSelectionModel().getSelectedItem() == null){
                 JOptionPane.showMessageDialog(jFrame, "Choose a Teacher!\nPlease try again");
+                filterTeacherTableView();
             }
             else {
-                userModel.deleteUser(((User) teachersTableView.getSelectionModel().getSelectedItem()).getUserId());
+                userModel.deleteUser(teachersTableView.getSelectionModel().getSelectedItem().getUserId());
                 JOptionPane.showMessageDialog(jFrame, "Teacher deleted");
                 updateTeacherTableView();
+                filterTeacherTableView();
             }
         } catch (Exception e){
             e.printStackTrace();

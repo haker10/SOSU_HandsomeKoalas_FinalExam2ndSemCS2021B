@@ -82,6 +82,7 @@ public class StudentController implements Initializable {
         citizenNameColumn.setCellValueFactory(new PropertyValueFactory<>("citizenName"));
         try {
             citizenTV.setItems(neededCitizen);
+            filterStudentTableView();
         } catch (Exception e){
             e.printStackTrace();
         }

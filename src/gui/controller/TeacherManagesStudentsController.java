@@ -71,6 +71,7 @@ public class TeacherManagesStudentsController implements Initializable {
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         try {
             studentTableView.setItems(userModel.getAllStudents(schoolId1));
+            filterStudentTableView();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,6 +127,7 @@ public class TeacherManagesStudentsController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterStudentTableView();
                     }
                 }
         );
@@ -144,6 +146,7 @@ public class TeacherManagesStudentsController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterStudentTableView();
                     }
                 }
         );
@@ -162,6 +165,7 @@ public class TeacherManagesStudentsController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         userModel.editUser(userId, name, username, password);
+                        filterStudentTableView();
                     }
                 }
         );
@@ -173,6 +177,7 @@ public class TeacherManagesStudentsController implements Initializable {
         schoolId1 = (Integer) currentStage.getUserData();
         if(nameTxt.getText().isEmpty() || usernameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
+            filterStudentTableView();
         }
         else{
             try {
@@ -182,6 +187,7 @@ public class TeacherManagesStudentsController implements Initializable {
                 passwordTxt.clear();
                 JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
                 updateStudentTableView();
+                filterStudentTableView();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -193,11 +199,13 @@ public class TeacherManagesStudentsController implements Initializable {
         try{
             if (studentTableView.getSelectionModel() == null){
                 JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
+                filterStudentTableView();
             }
             else {
                 userModel.deleteUser(studentTableView.getSelectionModel().getSelectedItem().getUserId());
                 JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
                 updateStudentTableView();
+                filterStudentTableView();
             }
         }catch (Exception e){
             e.printStackTrace();
