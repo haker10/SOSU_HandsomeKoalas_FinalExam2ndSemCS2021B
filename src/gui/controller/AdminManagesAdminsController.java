@@ -211,7 +211,7 @@ public class AdminManagesAdminsController implements Initializable {
         User user = adminTableView.getSelectionModel().getSelectedItem();
         int schoolId = user.getSchool();
         schoolLbl.setText(userModel.getSchoolName(schoolId));
-        filterAdminTableView();
+        //filterAdminTableView();
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
