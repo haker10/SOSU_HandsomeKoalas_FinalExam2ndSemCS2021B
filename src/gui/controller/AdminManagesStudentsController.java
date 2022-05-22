@@ -19,6 +19,7 @@ import javax.swing.*;
 import javafx.event.EventHandler;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -174,6 +175,7 @@ public class AdminManagesStudentsController implements Initializable {
 
     public void onClickCreate(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame();
+        int count = 0;
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         int schoolId = schoolId1;
@@ -183,13 +185,24 @@ public class AdminManagesStudentsController implements Initializable {
         }
         else {
             try {
-                userModel.createStudent(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-                nameTxt.clear();
-                usernameTxt.clear();
-                passwordTxt.clear();
-                JOptionPane.showMessageDialog(jFrame, "Student CREATED !!");
-                updateStudentTableView();
-                filterStudentTableView();
+                count = 0;
+                List<User> allUsers = userModel.getAllUsernames();
+                for(int i=0; i< allUsers.size();i++){
+                    if (allUsers.get(i).getUsername().equals(usernameTxt.getText())) {
+                        JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
+                        filterStudentTableView();
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    userModel.createStudent(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
+                    nameTxt.clear();
+                    usernameTxt.clear();
+                    passwordTxt.clear();
+                    JOptionPane.showMessageDialog(jFrame, "Student CREATED !!");
+                    updateStudentTableView();
+                    filterStudentTableView();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

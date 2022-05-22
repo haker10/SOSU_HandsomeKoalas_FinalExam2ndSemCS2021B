@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminManagesSchoolsController implements Initializable {
@@ -41,18 +42,29 @@ public class AdminManagesSchoolsController implements Initializable {
 
     public void createNewSchool(ActionEvent actionEvent) {
         JFrame frame = new JFrame();
-        try {
-            if (newSchoolTxt.getText().isEmpty())
-                JOptionPane.showMessageDialog(frame, "Please enter a school name");
-            else {
-                userModel.createNewSchool(newSchoolTxt.getText());
-                updateSchoolsTableView();
-                JOptionPane.showMessageDialog(frame, "School created");
-                newSchoolTxt.setText("");
-                updateSchoolsTableView();
+        int count = 0;
+        if (newSchoolTxt.getText().isEmpty())
+            JOptionPane.showMessageDialog(frame, "Please enter a school name");
+        else {
+            try {
+                count = 0;
+                List<School> allSchools = userModel.getAllSchools();
+                for (int i=0; i< allSchools.size();i++) {
+                    if (allSchools.get(i).getSchool().equals(newSchoolTxt.getText())) {
+                        JOptionPane.showMessageDialog(frame, "School already exists, please choose a new one");
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    userModel.createNewSchool(newSchoolTxt.getText());
+                    updateSchoolsTableView();
+                    JOptionPane.showMessageDialog(frame, "School created");
+                    newSchoolTxt.setText("");
+                    updateSchoolsTableView();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

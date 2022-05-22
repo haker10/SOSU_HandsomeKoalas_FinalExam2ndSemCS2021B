@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javax.swing.*;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminManagesTeachersController implements Initializable {
@@ -116,22 +117,33 @@ public class AdminManagesTeachersController implements Initializable {
 
     public void addTeacher(ActionEvent event) {
         JFrame jFrame = new JFrame();
-        try{
-            if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
-                filterTeacherTableView();
+        int count = 0;
+        if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
+            filterTeacherTableView();
+        } else {
+            try {
+                count = 0;
+                List<User> allUsers = userModel.getAllUsernames();
+                for (int i = 0; i < allUsers.size(); i++) {
+                    if (allUsers.get(i).getUsername().equals(newUserNameTxt.getText())) {
+                        JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
+                        filterTeacherTableView();
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
+                    newNameTxt.clear();
+                    newUserNameTxt.clear();
+                    newPasswordTxt.clear();
+                    JOptionPane.showMessageDialog(jFrame, "Teacher created");
+                    updateTeacherTableView();
+                    filterTeacherTableView();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else {
-                userModel.createTeacher(schoolId1, newNameTxt.getText(), newUserNameTxt.getText(), newPasswordTxt.getText());
-                newNameTxt.clear();
-                newUserNameTxt.clear();
-                newPasswordTxt.clear();
-                JOptionPane.showMessageDialog(jFrame, "Teacher created");
-                updateTeacherTableView();
-                filterTeacherTableView();
-            }
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
