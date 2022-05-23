@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,6 +150,9 @@
       <workItem from="1652833081940" duration="374000" />
       <workItem from="1653128440762" duration="3937000" />
       <workItem from="1653233657615" duration="4694000" />
+      <workItem from="1653248270497" duration="321000" />
+      <workItem from="1653311511244" duration="156000" />
+      <workItem from="1653336735348" duration="1866000" />
     </task>
     <servers />
   </component>
@@ -168,7 +169,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

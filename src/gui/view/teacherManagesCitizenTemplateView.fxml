@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="442.0" prefWidth="845.0" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherManagesCitizenTemplateController">
     <children>
-        <TableView fx:id="citizenTemplateTV" layoutY="2.0" prefHeight="442.0" prefWidth="571.0">
+        <TableView fx:id="citizenTemplateTV" prefHeight="442.0" prefWidth="571.0">
             <columns>
                 <TableColumn fx:id="citizenTemplateNameColumn" prefWidth="570.0" text="Name" />
             </columns>

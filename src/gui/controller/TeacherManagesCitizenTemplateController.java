@@ -89,11 +89,11 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root);
-            //stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);
             stage.setUserData(citizenTemplateID);
             stage.show();
-            //scene.setFill(Color.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
             e.printStackTrace();
         }

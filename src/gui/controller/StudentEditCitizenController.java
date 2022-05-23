@@ -110,8 +110,6 @@ public class StudentEditCitizenController implements Initializable{
     private Label schoolLbl;
 
     String info;
-    private double xoffset;
-    private double yoffset;
 
     String hc_category1 = "Function level";
     String hc_subcategory1_1 = "Problems with personal care";
@@ -511,7 +509,8 @@ public class StudentEditCitizenController implements Initializable{
                 currentAssessmentTxt.setDisable(true);
                 hCObservationNoteTxt.setDisable(true);
                 hCExpectedLevelComboBox.setItems(expectedLevelList);
-                hCExpectedLevelComboBox.setDisable(false);
+                hCExpectedLevelComboBox.setDisable(true);
+                hCdatePicker.setDisable(true);
             } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")) {
                 currentAssessmentTxt.setDisable(true);
                 currentAssessmentTxt.setText("");
@@ -519,7 +518,8 @@ public class StudentEditCitizenController implements Initializable{
                 hCObservationNoteTxt.setDisable(true);
                 hCObservationNoteTxt.setText("");
                 hCExpectedLevelComboBox.setItems(expectedLevelList);
-                hCExpectedLevelComboBox.setDisable(false);
+                hCExpectedLevelComboBox.setDisable(true);
+                hCdatePicker.setDisable(true);
             }
 
             if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")) {
@@ -669,16 +669,6 @@ public class StudentEditCitizenController implements Initializable{
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/imageView.fxml"));
             Stage stage = new Stage();
-            root.setOnMousePressed(event -> {
-                xoffset = event.getSceneX();
-                yoffset = event.getSceneY();
-
-            });
-            root.setOnMouseDragged(e->{
-                stage.setX(e.getSceneX()- xoffset);
-                stage.setY(e.getScreenY() - yoffset);
-            });
-
             Scene scene = new Scene(root);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);

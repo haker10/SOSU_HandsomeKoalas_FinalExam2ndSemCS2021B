@@ -18,8 +18,7 @@
 
 
 fix exceptions - diogo
-
-dynamic scene - niko - remove the ones done
+make citizenTemplate names unique
 
 
 

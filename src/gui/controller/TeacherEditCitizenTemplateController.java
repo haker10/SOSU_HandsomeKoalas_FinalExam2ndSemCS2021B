@@ -492,7 +492,8 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                 currentAssessmentTxt.setDisable(true);
                 hCObservationNoteTxt.setDisable(true);
                 hCExpectedLevelComboBox.setItems(expectedLevelList);
-                hCExpectedLevelComboBox.setDisable(false);
+                hCExpectedLevelComboBox.setDisable(true);
+                hCdatePicker.setDisable(true);
             } else if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Relevant") && relevanceComboBox.getSelectionModel().getSelectedItem() != healthConditions.get(0) && healthConditions.get(0).equals("Very relevant")) {
                 currentAssessmentTxt.setDisable(true);
                 currentAssessmentTxt.setText("");
@@ -500,7 +501,8 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                 hCObservationNoteTxt.setDisable(true);
                 hCObservationNoteTxt.setText("");
                 hCExpectedLevelComboBox.setItems(expectedLevelList);
-                hCExpectedLevelComboBox.setDisable(false);
+                hCExpectedLevelComboBox.setDisable(true);
+                hCdatePicker.setDisable(true);
             }
 
             if (relevanceComboBox.getSelectionModel().getSelectedItem().equals("Very relevant")) {

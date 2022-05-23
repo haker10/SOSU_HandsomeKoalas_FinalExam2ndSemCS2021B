@@ -29,9 +29,6 @@ public class AdminController implements Initializable {
 
     int schoolId1;
 
-    private double xoffset;
-    private double yoffset;
-
     public AdminController() {
         userModel = new UserModel();
     }
@@ -52,16 +49,6 @@ public class AdminController implements Initializable {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/loginView.fxml"));
             Stage stage = new Stage();
-            root.setOnMousePressed(event -> {
-                xoffset = event.getSceneX();
-                yoffset = event.getSceneY();
-
-            });
-            root.setOnMouseDragged(e->{
-                stage.setX(e.getSceneX()- xoffset);
-                stage.setY(e.getScreenY() - yoffset);
-            });
-
             Scene scene = new Scene(root);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setScene(scene);

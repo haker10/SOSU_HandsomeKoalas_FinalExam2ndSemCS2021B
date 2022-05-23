@@ -35,7 +35,7 @@ public class AdminManagesAdminsController implements Initializable {
     private Label schoolLbl;
 
     @FXML
-    private ChoiceBox<School> schoolChoiceBox;
+    public ChoiceBox<School> schoolChoiceBox;
 
     @FXML
     private PasswordField passwordTxt;
@@ -66,6 +66,10 @@ public class AdminManagesAdminsController implements Initializable {
         editAdminFromTableView();
         filterAdminTableView();
     }
+
+   /* public void updateSchoolComboBox(){
+        schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
+    } */
 
     public void updateAdminTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
