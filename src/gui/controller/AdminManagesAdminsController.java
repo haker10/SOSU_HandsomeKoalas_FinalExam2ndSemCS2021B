@@ -67,9 +67,9 @@ public class AdminManagesAdminsController implements Initializable {
         filterAdminTableView();
     }
 
-   /* public void updateSchoolComboBox(){
+    public void updateSchoolComboBox(){
         schoolChoiceBox.setItems(userModel.getAllSchoolsNotAssigned());
-    } */
+    }
 
     public void updateAdminTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

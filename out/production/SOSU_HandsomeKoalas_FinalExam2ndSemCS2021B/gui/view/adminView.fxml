@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  prefHeight="763.0" prefWidth="997.0" styleClass="primaryStage" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminController">
+<AnchorPane prefHeight="763.0" prefWidth="997.0" styleClass="primaryStage" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminController">
    <children>
       <AnchorPane layoutX="91.0" layoutY="102.0" prefHeight="111.0" prefWidth="823.0" styleClass="topPane">
          <children>
@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Tab>
-            <Tab text="Administrator">
+            <Tab onSelectionChanged="#updateSchoolComboBox" text="Administrator">
                <content>
                   <fx:include fx:id="admin" source="adminManagesAdminsView.fxml" />
                </content>

@@ -60,7 +60,6 @@ public class AdminManagesSchoolsController implements Initializable {
                 if (count == 0) {
                     userModel.createNewSchool(newSchoolTxt.getText());
                     updateSchoolsTableView();
-                    //adminManagesAdminsController.updateSchoolComboBox();
                     JOptionPane.showMessageDialog(frame, "School created");
                     newSchoolTxt.setText("");
                     updateSchoolsTableView();

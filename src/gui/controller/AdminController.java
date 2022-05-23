@@ -2,6 +2,7 @@ package gui.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +28,9 @@ public class AdminController implements Initializable {
 
     UserModel userModel;
 
+    @FXML
+    AdminManagesAdminsController adminController;
+
     int schoolId1;
 
     public AdminController() {
@@ -40,7 +44,6 @@ public class AdminController implements Initializable {
             schoolId1 = (int) currentStage.getUserData();
             schoolLbl.setText(userModel.getSchoolName(schoolId1));
         });
-
     }
 
     public void onClickLogOutBtn(ActionEvent actionEvent) {
@@ -62,5 +65,10 @@ public class AdminController implements Initializable {
     public void OnClickXBtn(ActionEvent actionEvent) {
         Platform.exit();
     }
+
+    public void adminTabSelected(Event event) {
+        adminController.updateSchoolComboBox();
+    }
+
 }
 
