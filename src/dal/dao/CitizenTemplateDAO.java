@@ -24,9 +24,8 @@ public class CitizenTemplateDAO {
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 int id = resultSet.getInt("citizenTemplateID");
-                int school = schoolId;
                 String citizenTemplateName = resultSet.getString("citizenTemplateName");
-                CitizenTemplate citizenTemplate = new CitizenTemplate(id, school, citizenTemplateName);
+                CitizenTemplate citizenTemplate = new CitizenTemplate(id, schoolId, citizenTemplateName);
                 allCitizenTemplates.add(citizenTemplate);
             }
        } catch(SQLException throwables) {
