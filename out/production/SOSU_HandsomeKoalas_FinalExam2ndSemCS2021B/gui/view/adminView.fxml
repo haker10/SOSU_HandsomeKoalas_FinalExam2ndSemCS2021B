@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Tab>
-            <Tab onSelectionChanged="#updateSchoolComboBox" text="Administrator">
+            <Tab onSelectionChanged="#adminTabSelected" text="Administrator">
                <content>
                   <fx:include fx:id="admin" source="adminManagesAdminsView.fxml" />
                </content>
