@@ -96,4 +96,8 @@ public class CitizenTemplateModel {
     public boolean checkFunctionalAbilitiesTemplateId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
         return manager.checkFunctionalAbilitiesTemplateId(selectedCategory, selectedSubCategory, citizenTemplateID);
     }
+
+    public String getCitizenTemplateName(int citizenTemplateID) {
+        return manager.getCitizenTemplateName(citizenTemplateID);
+    }
 }

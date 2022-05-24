@@ -90,4 +90,7 @@ public class CitizenModel {
         return manager.checkHealthConditionsId(selectedCategory, selectedSubCategory, citizenId);
     }
 
+    public String getCitizenName(int citizenId) {
+        return manager.getCitizenName(citizenId);
+    }
 }

@@ -147,6 +147,10 @@ public class Manager {
         generalInformationCitizenTemplateDAO.copyCitizenTemplate(citizenTemplateId, citizenTemplateId2);
     }
 
+    public String getCitizenTemplateName(int citizenTemplateID) {
+        return citizenTemplateDAO.getCitizenTemplateName(citizenTemplateID);
+    }
+
 
 
     //general info citizenTemplate
@@ -237,6 +241,10 @@ public class Manager {
 
     public Citizen getNeededCitizen(int citizenId) {
         return citizenDAO.getNeededCitizen(citizenId);
+    }
+
+    public String getCitizenName(int citizenId) {
+        return citizenDAO.getCitizenName(citizenId);
     }
 
 

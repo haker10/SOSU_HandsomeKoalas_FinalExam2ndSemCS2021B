@@ -27,6 +27,9 @@ import java.util.ResourceBundle;
 
 public class TeacherEditCitizenTemplateController implements Initializable{
 
+    @FXML
+    private Label citizenTemplateNameLbl;
+
     //Health Conditions
     @FXML
     private ComboBox<String> relevanceComboBox;
@@ -297,6 +300,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
         Platform.runLater(() -> {
             Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
             int citizenTemplateID = (int) currentStage.getUserData();
+            citizenTemplateNameLbl.setText(citizenTemplateModel.getCitizenTemplateName(citizenTemplateID));
 
             //general information
             masteryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(0)));

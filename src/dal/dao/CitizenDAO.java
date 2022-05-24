@@ -72,4 +72,21 @@ public class CitizenDAO {
         }
         return citizen;
     }
+
+    public String getCitizenName(int citizenId) {
+        String citizenName = null;
+        String sql = "SELECT * FROM Citizen WHERE citizenID = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenId);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                citizenName = resultSet.getString("citizenName");
+            }
+        } catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  citizenName;
+    }
 }

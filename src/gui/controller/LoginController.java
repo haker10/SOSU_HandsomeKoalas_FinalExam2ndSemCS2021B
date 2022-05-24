@@ -9,14 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,9 +47,15 @@ public class LoginController implements Initializable {
        currentStage.close();
        try {
            User result = userModel.login(username, password);
-           JFrame jFrame = new JFrame();
            if (result == null) {
-               JOptionPane.showMessageDialog(jFrame, "LOGIN FAILED !!");
+               Alert alert = new Alert(Alert.AlertType.NONE);
+               alert.setTitle("Error");
+               alert.setHeaderText("                    LOGIN FAILED !!");
+               alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+               alert.getDialogPane().getStyleClass().add("myDialog");
+               ButtonType okButton = new ButtonType("OK");
+               alert.getButtonTypes().setAll(okButton);
+               alert.showAndWait();
                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/loginView.fxml"));
                Stage stage = new Stage();
                Scene scene = new Scene(root);

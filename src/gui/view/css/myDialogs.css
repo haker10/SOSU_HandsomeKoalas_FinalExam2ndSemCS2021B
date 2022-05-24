@@ -1,0 +1,21 @@
+.myDialog{
+    -fx-background-color: linear-gradient(to right bottom, #3E5C70, #ED8923);
+}
+.myDialog > *.button-bar > *.container{
+    -fx-background-color: linear-gradient(to right bottom, #3E5C70, #ED8923);
+}
+/*.myDialog > *.label.content{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}*/
+.myDialog:header *.header-panel{
+    -fx-background-color: linear-gradient(to right bottom, #3E5C70, #ED8923);
+
+}
+.myDialog:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-background-color: linear-gradient(to right bottom, #3E5C70, #ED8923);
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+}

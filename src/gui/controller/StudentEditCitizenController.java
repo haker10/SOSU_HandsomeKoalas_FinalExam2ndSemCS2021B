@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 
 public class StudentEditCitizenController implements Initializable{
 
+    @FXML
+    private Label citizenNameLbl;
+
     //Health Conditions
     @FXML
     private ComboBox<String> relevanceComboBox;
@@ -302,6 +305,7 @@ public class StudentEditCitizenController implements Initializable{
             String[] splitter = info.split(",");
             int citizenId = Integer.parseInt(splitter[0]);
             String schoolName = splitter[1];
+            citizenNameLbl.setText(citizenModel.getCitizenName(citizenId));
 
             schoolLbl.setText(schoolName);
 

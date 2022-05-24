@@ -63,4 +63,21 @@ public class CitizenTemplateDAO {
             e.printStackTrace();
         }
     }
+
+    public String getCitizenTemplateName(int citizenTemplateID) {
+        String citizenTemplateName = null;
+        String sql = "SELECT * FROM CitizenTemplate WHERE citizenTemplateID = ?";
+        try(Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, citizenTemplateID);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                citizenTemplateName = resultSet.getString("citizenTemplateName");
+            }
+        } catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return  citizenTemplateName;
+    }
 }
