@@ -84,6 +84,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         }
 
         int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
+
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
             Stage stage = new Stage();

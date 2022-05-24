@@ -47,15 +47,21 @@ public class GeneralInformationCitizenTemplateDAO {
     }
 
     public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
-        String sql = "UPDATE GeneralInformationCitizenTemplate SET generalInformationCitizenTemplateEditable = ? WHERE generalInformationCitizenTemplateName = ? and citizenTemplateId = ? ";
-        try(Connection connection = databaseConnector.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, generalInfoEditable);
-            preparedStatement.setString(2, generalInfoName);
-            preparedStatement.setInt(3, citizenTemplateId);
-            preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
+        String editable = getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName);
+        if (editable == null) {
+            createGeneralInfoCitizenTemplate(generalInfoName, "", generalInfoEditable, citizenTemplateId);
+        }
+        else {
+            String sql = "UPDATE GeneralInformationCitizenTemplate SET generalInformationCitizenTemplateEditable = ? WHERE generalInformationCitizenTemplateName = ? and citizenTemplateId = ? ";
+            try (Connection connection = databaseConnector.getConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, generalInfoEditable);
+                preparedStatement.setString(2, generalInfoName);
+                preparedStatement.setInt(3, citizenTemplateId);
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

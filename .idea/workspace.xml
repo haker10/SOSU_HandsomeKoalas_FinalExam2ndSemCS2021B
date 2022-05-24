@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/GeneralInformationCitizenTemplateDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +158,8 @@
       <workItem from="1653248270497" duration="321000" />
       <workItem from="1653311511244" duration="156000" />
       <workItem from="1653336735348" duration="1866000" />
-      <workItem from="1653339074422" duration="6010000" />
+      <workItem from="1653339074422" duration="6178000" />
+      <workItem from="1653423722235" duration="1154000" />
     </task>
     <servers />
   </component>
