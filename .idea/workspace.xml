@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesAdminsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesAdminsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesSchoolsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesSchoolsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/adminManagesStudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/adminManagesStudentsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherManagesCitizenTemplateView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +171,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  prefHeight="739.0" prefWidth="987.0" styleClass="primaryStage" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherController">
+<AnchorPane prefHeight="739.0" prefWidth="987.0" styleClass="primaryStage" stylesheets="@css/teacher.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TeacherController">
    <children>
       <Label layoutX="493.0" layoutY="14.0" />
       <AnchorPane layoutX="76.0" layoutY="85.0" prefHeight="111.0" prefWidth="843.0" styleClass="topPane">
@@ -56,17 +56,6 @@
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/templateIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab disable="true" text="Citizen">
-               <content>
-               </content>
-               <graphic>
-                  <ImageView fitHeight="19.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/teacherIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

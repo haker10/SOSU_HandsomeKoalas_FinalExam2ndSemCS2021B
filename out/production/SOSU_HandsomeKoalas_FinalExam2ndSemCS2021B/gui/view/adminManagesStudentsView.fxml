@@ -5,12 +5,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="442.0" prefWidth="823.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesStudentsController">
+<AnchorPane prefHeight="442.0" prefWidth="823.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesStudentsController">
     <children>
         <TableView fx:id="studentTableView" prefHeight="442.0" prefWidth="571.0">
             <columns>
@@ -27,7 +25,14 @@
                         <Font name="Arial Bold Italic" size="14.0" />
                     </font>
                 </Label>
-                <Button layoutX="76.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="25.0" prefWidth="103.0" text="Delete" />
+                <Button layoutX="50.0" layoutY="364.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="53.0" prefWidth="158.0">
+               <graphic>
+                      <Label alignment="CENTER" prefHeight="52.0" prefWidth="158.0" text="Delete">
+                          <font>
+                              <Font name="System Bold" size="36.0" />
+                          </font>
+                      </Label>
+               </graphic></Button>
                 <TextField fx:id="nameTxt" alignment="CENTER" layoutX="18.0" layoutY="131.0" prefHeight="25.0" prefWidth="218.0" promptText="Name">
                     <font>
                         <Font name="Arial Bold Italic" size="12.0" />
@@ -43,27 +48,14 @@
                         <Font name="Arial Bold Italic" size="12.0" />
                     </font>
                 </TextField>
-                <Button layoutX="76.0" layoutY="227.0" mnemonicParsing="false" onAction="#onClickCreate" prefHeight="25.0" prefWidth="103.0" text="Create" />
-                <Label alignment="CENTER" layoutX="50.0" layoutY="48.0" prefHeight="46.0" prefWidth="158.0" text="Create">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="108.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../images/arrowDownImage.png" />
-                    </image>
-                </ImageView>
-                <Label alignment="CENTER" layoutX="50.0" layoutY="257.0" prefHeight="52.0" prefWidth="158.0" text="Delete">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="108.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../images/arrowDownImage.png" />
-                    </image>
-                </ImageView>
+                <Button layoutX="50.0" layoutY="235.0" mnemonicParsing="false" onAction="#onClickCreate" prefHeight="65.0" prefWidth="158.0">
+               <graphic>
+                      <Label alignment="CENTER" prefHeight="46.0" prefWidth="158.0" text="Create">
+                          <font>
+                              <Font name="System Bold" size="36.0" />
+                          </font>
+                      </Label>
+               </graphic></Button>
             </children>
         </AnchorPane>
     </children>

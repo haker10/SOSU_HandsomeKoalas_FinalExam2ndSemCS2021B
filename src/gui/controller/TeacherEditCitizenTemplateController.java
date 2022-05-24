@@ -724,62 +724,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
         JOptionPane.showMessageDialog(frame, "Saved");
     }
 
-    public void OnClickfirstInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "The citizen's conscious or unconscious handling of life / illness - both challenges and opportunities. !!");
-    }
-
-    public void OnClicksecondInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "The driving force behind the citizen acting in a certain way or embarking on / maintaining a task / effort. !!");
-    }
-
-    public void OnClickthirdInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "The physical or mental forces that the citizen has to a certain extent available and can utilize Physical forces can, for example, be in the " +
-                "form of physical health and strength. Mental forces can, for example, be in the form of mental health and strength, including thoughts and ways of relating to situations and other people. !!");
-    }
-
-    public void OnClickfourthInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "The roles that are particularly important for the citizen in relation to family, work and society. !!");
-    }
-
-    public void OnClickfifthInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Regular behavior that the citizen has learned through constant repetition and execution completely or partially unconsciously. Habits are, for example, the circadian rhythm, the way to be addressed, contact with fellow human beings and relationships, the way of looking at the world.  !!");
-    }
-
-    public void OnClicksixthInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Current or previous educational and / or professional background. For example, primary school, vocational education and higher education. !!");
-    }
-
-    public void OnClickseventhInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "A description of the citizen's experience of significant events, interests and chores throughout life. !!");
-    }
-
-    public void OnClickeightInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Persons who are close to the citizen and who provide practical and / or emotional support and care for the citizen. Networks can be public or private. A public network consists of personal helpers, health professionals and other professionals primarily caregivers. Private networks are family, relatives, friends and acquaintances. !!");
-    }
-
-    public void OnClickninethInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Health information !!");
-    }
-
-    public void OnClicktenthInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "Equipment, products and technology used by the citizen in daily activities, incl. those adapted or specially made for, implanted in, located on or near the person using them. (Including general items and aids and technology for personal use) !!");
-    }
-
-    public void OnClickeleventhInfoBtn (ActionEvent event){
-        JFrame jFrame = new JFrame();
-        JOptionPane.showMessageDialog(jFrame, "A description of the home's physical framework and surroundings that are important for the citizen's everyday life and ability to function. !!");
-    }
-
     public void OnClickXBtn(ActionEvent actionEvent) {
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         currentStage.close();

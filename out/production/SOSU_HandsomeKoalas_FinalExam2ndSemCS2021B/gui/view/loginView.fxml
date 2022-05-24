@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="571.0" prefWidth="860.0" styleClass="stagePane" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
+<AnchorPane prefHeight="443.0" prefWidth="574.0" styleClass="stagePane" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.LoginController">
    <children>
-      <AnchorPane layoutX="153.0" layoutY="73.0" prefHeight="426.0" prefWidth="564.0" styleClass="backgroundPane">
+      <AnchorPane layoutX="5.0" layoutY="9.0" prefHeight="426.0" prefWidth="564.0" styleClass="backgroundPane">
          <children>
             <AnchorPane layoutX="158.0" layoutY="78.0" prefHeight="245.0" prefWidth="233.0" styleClass="inputPane">
                <children>
