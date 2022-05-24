@@ -4,12 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="442.0" prefWidth="825.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesSchoolsController">
+<AnchorPane prefHeight="442.0" prefWidth="825.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesSchoolsController">
    <children>
       <AnchorPane layoutX="571.0" prefHeight="442.0" prefWidth="254.0" styleClass="Stage">
          <children>
@@ -17,17 +15,14 @@
                <font>
                   <Font name="Arial Bold Italic" size="12.0" />
                </font></TextField>
-            <Button layoutX="76.0" layoutY="290.0" mnemonicParsing="false" onAction="#createNewSchool" prefHeight="25.0" prefWidth="103.0" text="Create" />
-            <Label alignment="CENTER" layoutX="49.0" layoutY="24.0" prefHeight="66.0" prefWidth="158.0" text="Create">
-               <font>
-                  <Font name="System Bold" size="45.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="66.0" fitWidth="46.0" layoutX="105.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/arrowDownImage.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="49.0" layoutY="221.0" mnemonicParsing="false" onAction="#createNewSchool" prefHeight="60.0" prefWidth="158.0">
+               <graphic>
+                  <Label alignment="CENTER" prefHeight="66.0" prefWidth="158.0" text="Create">
+                     <font>
+                        <Font name="System Bold" size="45.0" />
+                     </font>
+                  </Label>
+               </graphic></Button>
          </children>
       </AnchorPane>
       <ListView fx:id="schoolsListView" prefHeight="442.0" prefWidth="571.0" />
