@@ -36,6 +36,11 @@
 .hCTab{
     -fx-background-color: linear-gradient(to bottom, #94c6e8, #3E5C70);
 }
+.tab-pane .tab:selected{
+    -fx-border-color: #E8CFC9;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
+}
 
 
 /*TableView Header*/
