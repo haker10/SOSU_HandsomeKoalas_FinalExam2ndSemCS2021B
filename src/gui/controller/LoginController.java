@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
            if (result == null) {
                Alert alert = new Alert(Alert.AlertType.NONE);
                alert.setTitle("Error");
-               alert.setHeaderText("                    LOGIN FAILED !!");
+               alert.setHeaderText("LOGIN FAILED !!");
                alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
                alert.getDialogPane().getStyleClass().add("myDialog");
                ButtonType okButton = new ButtonType("OK");

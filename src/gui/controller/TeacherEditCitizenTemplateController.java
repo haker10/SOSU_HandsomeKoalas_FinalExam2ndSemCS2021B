@@ -543,7 +543,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
     }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
@@ -564,7 +564,15 @@ public class TeacherEditCitizenTemplateController implements Initializable{
             citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateID);
         }
         clearHC();
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
         updateCitizenTemplateTableView();
     }
 
@@ -620,7 +628,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
     }
 
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
 
@@ -645,7 +653,15 @@ public class TeacherEditCitizenTemplateController implements Initializable{
         }
         clearFA();
         updateCitizenTemplateTableView();
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
     }
 
     public void OnClickPopImage(ActionEvent actionEvent) {
@@ -700,7 +716,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
 
     //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
@@ -725,7 +741,15 @@ public class TeacherEditCitizenTemplateController implements Initializable{
 
             citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoEditable.get(i), citizenTemplateID);
         }
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
     }
 
     public void OnClickXBtn(ActionEvent actionEvent) {

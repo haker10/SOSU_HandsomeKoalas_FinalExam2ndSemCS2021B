@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -173,12 +172,20 @@ public class TeacherManagesStudentsController implements Initializable {
     }
 
     public void onClickCreate(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
+        //JFrame jFrame = new JFrame();
         int count = 0;
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         if(nameTxt.getText().isEmpty() || usernameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
+            //JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all the fields");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
             filterStudentTableView();
         }
         else{
@@ -187,7 +194,15 @@ public class TeacherManagesStudentsController implements Initializable {
                 List<User> allUsers = userModel.getAllUsernames();
                 for (int i=0; i< allUsers.size();i++) {
                     if (allUsers.get(i).getUsername().equals(usernameTxt.getText())) {
-                        JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
+                        //JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Username already exists, please choose a new one");
+                        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                        alert.getDialogPane().getStyleClass().add("myDialog");
+                        ButtonType okButton = new ButtonType("OK");
+                        alert.getButtonTypes().setAll(okButton);
+                        alert.showAndWait();
                         filterStudentTableView();
                         count++;
                     }
@@ -197,7 +212,15 @@ public class TeacherManagesStudentsController implements Initializable {
                     nameTxt.clear();
                     usernameTxt.clear();
                     passwordTxt.clear();
-                    JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
+                    //JOptionPane.showMessageDialog(jFrame, "USER CREATED !!");
+                    Alert alert = new Alert(Alert.AlertType.NONE);
+                    alert.setTitle("Process confirmation");
+                    alert.setHeaderText("USER CREATED !!");
+                    alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                    alert.getDialogPane().getStyleClass().add("myDialog");
+                    ButtonType okButton = new ButtonType("OK");
+                    alert.getButtonTypes().setAll(okButton);
+                    alert.showAndWait();
                     updateStudentTableView();
                     filterStudentTableView();
                 }
@@ -208,15 +231,31 @@ public class TeacherManagesStudentsController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
+        //JFrame jFrame = new JFrame();
         try{
-            if (studentTableView.getSelectionModel() == null){
-                JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
+            if (studentTableView.getSelectionModel().getSelectedItem() == null){
+                //JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !! PLEASE TRY AGAIN!!");
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Error");
+                alert.setHeaderText("FIELD IS EMPTY !! PLEASE TRY AGAIN!!");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                alert.getDialogPane().getStyleClass().add("myDialog");
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
                 filterStudentTableView();
             }
             else {
                 userModel.deleteUser(studentTableView.getSelectionModel().getSelectedItem().getUserId());
-                JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
+                //JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Process confirmation");
+                alert.setHeaderText("Student DELETED !!");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                alert.getDialogPane().getStyleClass().add("myDialog");
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
                 updateStudentTableView();
                 filterStudentTableView();
             }

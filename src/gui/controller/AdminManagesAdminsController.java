@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -84,11 +83,19 @@ public class AdminManagesAdminsController implements Initializable {
     }
 
     public void createAdmin(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
         int count = 0;
-        int schoolId = schoolChoiceBox.getValue().getSchoolID();
-        if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
+
+        if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty() || schoolChoiceBox.getValue() == null){
+            //JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill in all the fields");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
             filterAdminTableView();
         }
         else {
@@ -97,14 +104,31 @@ public class AdminManagesAdminsController implements Initializable {
                 List<User> allUsers = userModel.getAllUsernames();
                 for (int i=0; i< allUsers.size();i++) {
                     if (allUsers.get(i).getUsername().equals(usernameTxt.getText())) {
-                        JOptionPane.showMessageDialog(frame, "Username already exists, please choose a new one");
+                        //JOptionPane.showMessageDialog(frame, "Username already exists, please choose a new one");
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Username already exists, please choose a new one");
+                        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                        alert.getDialogPane().getStyleClass().add("myDialog");
+                        ButtonType okButton = new ButtonType("OK");
+                        alert.getButtonTypes().setAll(okButton);
+                        alert.showAndWait();
                         filterAdminTableView();
                         count++;
                     }
                 }
                 if(count == 0) {
+                    int schoolId = schoolChoiceBox.getValue().getSchoolID();
                     userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-                    JOptionPane.showMessageDialog(frame, "Admin created");
+                    //JOptionPane.showMessageDialog(frame, "Admin created");
+                    Alert alert = new Alert(Alert.AlertType.NONE);
+                    alert.setTitle("Process confirmation");
+                    alert.setHeaderText("Admin created");
+                    alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                    alert.getDialogPane().getStyleClass().add("myDialog");
+                    ButtonType okButton = new ButtonType("OK");
+                    alert.getButtonTypes().setAll(okButton);
+                    alert.showAndWait();
                     nameTxt.clear();
                     usernameTxt.clear();
                     passwordTxt.clear();
@@ -219,15 +243,31 @@ public class AdminManagesAdminsController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
+        //JFrame jFrame = new JFrame();
         try {
             if (adminTableView.getSelectionModel().getSelectedItem() == null){
-                JOptionPane.showMessageDialog(jFrame, "Choose an Admin!\nPlease try again");
+                //JOptionPane.showMessageDialog(jFrame, "Choose an Admin!\nPlease try again");
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Error");
+                alert.setHeaderText("Choose an Admin! Please try again");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                alert.getDialogPane().getStyleClass().add("myDialog");
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
                 filterAdminTableView();
             }
             else {
                 userModel.deleteUser(adminTableView.getSelectionModel().getSelectedItem().getUserId());
-                JOptionPane.showMessageDialog(jFrame, "Admin deleted");
+                //JOptionPane.showMessageDialog(jFrame, "Admin deleted");
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Process confirmation");
+                alert.setHeaderText("Admin deleted");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                alert.getDialogPane().getStyleClass().add("myDialog");
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
                 updateAdminTableView();
                 filterAdminTableView();
             }

@@ -10,16 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -71,15 +67,31 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
 
     //might change this to only create in database and don't open create window, just edit to "create"
     public void onClickCreate(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
+        //JFrame jFrame = new JFrame();
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         if (citizenTemplateNameTxt.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(jFrame, "Please enter a name for the citizen template");
+            //JOptionPane.showMessageDialog(jFrame, "Please enter a name for the citizen template");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please enter a name for the citizen template");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
         }
         else {
             citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
-            JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
+            //JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Process confirmation");
+            alert.setHeaderText("Citizen Template created");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
             updateCitizenTemplateTV();
         }
 
@@ -116,31 +128,91 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
-        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        citizenTemplateModel.deleteCitizenTemplate(citizenTemplateId);
-        JOptionPane.showMessageDialog(jFrame, "Citizen Template DELETED !!");
-        updateCitizenTemplateTV();
+        //JFrame jFrame = new JFrame();
+        if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please choose a CitizenTemplate");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
+        else {
+            int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+            citizenTemplateModel.deleteCitizenTemplate(citizenTemplateId);
+            //JOptionPane.showMessageDialog(jFrame, "Citizen Template DELETED !!");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Process confirmation");
+            alert.setHeaderText("Citizen Template DELETED !!");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+            updateCitizenTemplateTV();
+        }
     }
 
 
     public void onClickCopy(ActionEvent actionEvent) {
-        Stage currentStage = (Stage) createBtn.getScene().getWindow();
-        schoolId1 = (Integer) currentStage.getUserData();
-        JFrame jFrame = new JFrame();
-        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName() + "Copy";
-        citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1, citizenTemplateName);
-        JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
-        updateCitizenTemplateTV();
+        if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please choose a CitizenTemplate");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
+        else {
+            Stage currentStage = (Stage) createBtn.getScene().getWindow();
+            schoolId1 = (Integer) currentStage.getUserData();
+            //JFrame jFrame = new JFrame();
+            int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+            String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName() + "Copy";
+            citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1, citizenTemplateName);
+            //JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Process confirmation");
+            alert.setHeaderText("Citizen Template COPIED !!");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+            updateCitizenTemplateTV();
+        }
     }
 
     public void onClickCreateCitizen(ActionEvent actionEvent) {
-        JFrame jFrame = new JFrame();
-        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName();
-        citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName, schoolId1);
-        JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
+        if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please choose a CitizenTemplate");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
+        else {
+            //JFrame jFrame = new JFrame();
+            int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+            String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName();
+            citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName, schoolId1);
+            //JOptionPane.showMessageDialog(jFrame, "Citizen CREATED !!");
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Process confirmation");
+            alert.setHeaderText("Citizen CREATED !!");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
     }
 
 }

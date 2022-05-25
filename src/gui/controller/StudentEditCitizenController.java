@@ -20,7 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -560,7 +559,7 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
@@ -583,7 +582,15 @@ public class StudentEditCitizenController implements Initializable{
             citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
         }
         clearHC();
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
         updateCitizenTableView();
     }
 
@@ -640,7 +647,7 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -666,7 +673,15 @@ public class StudentEditCitizenController implements Initializable{
         }
         clearFA();
         updateCitizenTableView();
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
     }
 
     public void OnClickPopImage(ActionEvent actionEvent) {
@@ -711,7 +726,7 @@ public class StudentEditCitizenController implements Initializable{
 
     //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
-        JFrame frame = new JFrame();
+        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         info = (String) currentStage.getUserData();
@@ -738,7 +753,15 @@ public class StudentEditCitizenController implements Initializable{
 
             citizenModel.updateGeneralInfoCitizen(generalInfoName.get(i), generalInfoEditable.get(i), citizenId);
         }
-        JOptionPane.showMessageDialog(frame, "Saved");
+        //JOptionPane.showMessageDialog(frame, "Saved");
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Process confirmation");
+        alert.setHeaderText("Saved");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("myDialog");
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
     }
 
     public void OnClickXBtn(ActionEvent actionEvent) {
