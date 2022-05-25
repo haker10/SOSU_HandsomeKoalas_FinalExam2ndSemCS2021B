@@ -33,6 +33,9 @@
     -fx-border-width: 1;
     -fx-border-radius: 10;
 }
+.hCTab{
+    -fx-background-color: linear-gradient(to bottom, #94c6e8, #3E5C70);
+}
 
 
 /*TableView Header*/
@@ -58,6 +61,8 @@
 .table-view .column-header {
     -fx-background-color:  linear-gradient(to bottom, #ED8923, #8d5207);
 }
+
+
 
 
 /*TableView Cells*/

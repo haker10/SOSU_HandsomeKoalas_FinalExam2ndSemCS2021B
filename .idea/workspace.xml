@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gui/view/css/myDialogs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesAdminsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesAdminsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesSchoolsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesSchoolsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesStudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesStudentsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesTeachersView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/adminManagesTeachersView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/loginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/studentEditCitizenView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/studentEditCitizenView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/teacherEditCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/teacherEditCitizenTemplateView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/teacherManagesStudentsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SOSU_HandsomeKoalas_FinalExam2ndSemCS2021B/gui/view/teacherManagesStudentsView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bll/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bll/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/CitizenTemplateDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/model/CitizenTemplateModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/studentEditCitizenView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/studentEditCitizenView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/view/teacherEditCitizenTemplateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/view/teacherEditCitizenTemplateView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,6 +155,7 @@
       <workItem from="1653336735348" duration="1866000" />
       <workItem from="1653339074422" duration="6178000" />
       <workItem from="1653423722235" duration="2592000" />
+      <workItem from="1653488889983" duration="2417000" />
     </task>
     <servers />
   </component>
@@ -192,7 +172,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
