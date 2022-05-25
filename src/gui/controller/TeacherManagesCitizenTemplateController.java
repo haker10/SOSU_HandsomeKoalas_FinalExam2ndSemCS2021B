@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.CitizenTemplate;
+import be.User;
 import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
 import javafx.application.Platform;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TeacherManagesCitizenTemplateController implements Initializable {
@@ -68,6 +70,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     //might change this to only create in database and don't open create window, just edit to "create"
     public void onClickCreate(ActionEvent actionEvent) {
         //JFrame jFrame = new JFrame();
+        int count = 0;
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         if (citizenTemplateNameTxt.getText().isEmpty()) {
@@ -80,34 +83,53 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
-        }
-        else {
-            citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
-            //JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
-            Alert alert = new Alert(Alert.AlertType.NONE);
-            alert.setTitle("Process confirmation");
-            alert.setHeaderText("Citizen Template created");
-            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
-            alert.getDialogPane().getStyleClass().add("myDialog");
-            ButtonType okButton = new ButtonType("OK");
-            alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();
-            updateCitizenTemplateTV();
-        }
-
-        int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
-
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.setUserData(citizenTemplateID);
-            stage.show();
-            scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
+        } else {
+            try {
+                count = 0;
+                List<CitizenTemplate> allCitizenTemplateNames = citizenTemplateModel.getAllCitizenTemplateNames();
+                for (int i = 0; i < allCitizenTemplateNames.size(); i++) {
+                    if (allCitizenTemplateNames.get(i).getCitizenTemplateName().equals(citizenTemplateNameTxt.getText())) {
+                        //JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("CitizenTemplate with this name already exists, please choose a new one");
+                        alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                        alert.getDialogPane().getStyleClass().add("myDialog");
+                        ButtonType okButton = new ButtonType("OK");
+                        alert.getButtonTypes().setAll(okButton);
+                        alert.showAndWait();
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
+                    //JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
+                    Alert alert = new Alert(Alert.AlertType.NONE);
+                    alert.setTitle("Process confirmation");
+                    alert.setHeaderText("Citizen Template created");
+                    alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+                    alert.getDialogPane().getStyleClass().add("myDialog");
+                    ButtonType okButton = new ButtonType("OK");
+                    alert.getButtonTypes().setAll(okButton);
+                    alert.showAndWait();
+                    updateCitizenTemplateTV();
+                    int citizenTemplateID = citizenTemplate.getCitizenTemplateId();
+                    try{
+                        Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.setScene(scene);
+                        stage.setUserData(citizenTemplateID);
+                        stage.show();
+                        scene.setFill(Color.TRANSPARENT);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package dal.dao;
 
 import be.CitizenTemplate;
+import be.User;
 import dal.DatabaseConnector;
 
 import java.sql.*;
@@ -79,5 +80,25 @@ public class CitizenTemplateDAO {
             throwables.printStackTrace();
         }
         return  citizenTemplateName;
+    }
+
+    public List<CitizenTemplate> getAllCitizenTemplateNames() {
+        List<CitizenTemplate> allCitizenTemplateNames = new ArrayList<>();
+        String sql = "SELECT * FROM CitizenTemplate";
+        try(Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                int citizenTemplateID = resultSet.getInt("citizenTemplateID");
+                int school = resultSet.getInt("school");
+                String citizenTemplateName = resultSet.getString("citizenTemplateName");
+                CitizenTemplate citizenTemplate = new CitizenTemplate(citizenTemplateID, school, citizenTemplateName);
+                allCitizenTemplateNames.add(citizenTemplate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allCitizenTemplateNames;
     }
 }

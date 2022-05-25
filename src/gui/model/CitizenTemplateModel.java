@@ -100,4 +100,8 @@ public class CitizenTemplateModel {
     public String getCitizenTemplateName(int citizenTemplateID) {
         return manager.getCitizenTemplateName(citizenTemplateID);
     }
+
+    public List<CitizenTemplate> getAllCitizenTemplateNames() {
+        return manager.getAllCitizenTemplateNames();
+    }
 }

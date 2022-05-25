@@ -151,6 +151,10 @@ public class Manager {
         return citizenTemplateDAO.getCitizenTemplateName(citizenTemplateID);
     }
 
+    public List<CitizenTemplate> getAllCitizenTemplateNames() {
+        return citizenTemplateDAO.getAllCitizenTemplateNames();
+    }
+
 
 
     //general info citizenTemplate
