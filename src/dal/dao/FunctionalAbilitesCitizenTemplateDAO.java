@@ -46,14 +46,14 @@ public class FunctionalAbilitesCitizenTemplateDAO {
 
     public List<String> getFunctionalInformationCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
        List<String> allFunctionalInfoCitizenTemplate = new ArrayList<>();
-        int score = 1000;
-        int expectedScore;
-        String proffNote;
-        String performance;
-        String limitation;
-        String wishesNGoals;
-        String observationNote;
-        String date;
+        int score = 0;
+        int expectedScore = 0;
+        String proffNote = "";
+        String performance = "";
+        String limitation = "";
+        String wishesNGoals = "";
+        String observationNote = "";
+        String date = LocalDate.now().toString();
        String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ? and  functionalAbilitiesCitizenTemplateCategoryName = ? and functionalAbilitiesCitizenTemplateSubCategoryName = ?";
 
        try(Connection connection = databaseConnector.getConnection()){
@@ -72,37 +72,20 @@ public class FunctionalAbilitesCitizenTemplateDAO {
                wishesNGoals = resultSet.getString("functionalAbilitiesCitizenTemplateGoalsNote");
                observationNote = resultSet.getString("functionalAbilitiesCitizenTemplateObservationNote");
                date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
-               allFunctionalInfoCitizenTemplate.add(String.valueOf(score));
-               allFunctionalInfoCitizenTemplate.add(String.valueOf(expectedScore));
-               allFunctionalInfoCitizenTemplate.add(proffNote);
-               allFunctionalInfoCitizenTemplate.add(performance);
-               allFunctionalInfoCitizenTemplate.add(limitation);
-               allFunctionalInfoCitizenTemplate.add(wishesNGoals);
-               allFunctionalInfoCitizenTemplate.add(observationNote);
-               allFunctionalInfoCitizenTemplate.add(date);
            }
        }catch (Exception e){
            e.printStackTrace();
        }
-        if (score == 1000){
-            score = 0;
-            expectedScore = 0;
-            proffNote = "";
-            performance = "";
-            limitation = "";
-            wishesNGoals = "";
-            observationNote = "";
-            date = LocalDate.now().toString();
-            allFunctionalInfoCitizenTemplate.add(String.valueOf(score));
-            allFunctionalInfoCitizenTemplate.add(String.valueOf(expectedScore));
-            allFunctionalInfoCitizenTemplate.add(proffNote);
-            allFunctionalInfoCitizenTemplate.add(performance);
-            allFunctionalInfoCitizenTemplate.add(limitation);
-            allFunctionalInfoCitizenTemplate.add(wishesNGoals);
-            allFunctionalInfoCitizenTemplate.add(observationNote);
-            allFunctionalInfoCitizenTemplate.add(date);
-        }
-       return allFunctionalInfoCitizenTemplate;
+        allFunctionalInfoCitizenTemplate.add(String.valueOf(score));
+        allFunctionalInfoCitizenTemplate.add(String.valueOf(expectedScore));
+        allFunctionalInfoCitizenTemplate.add(proffNote);
+        allFunctionalInfoCitizenTemplate.add(performance);
+        allFunctionalInfoCitizenTemplate.add(limitation);
+        allFunctionalInfoCitizenTemplate.add(wishesNGoals);
+        allFunctionalInfoCitizenTemplate.add(observationNote);
+        allFunctionalInfoCitizenTemplate.add(date);
+
+        return allFunctionalInfoCitizenTemplate;
     }
 
     public void updateFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) {

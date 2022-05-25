@@ -41,12 +41,12 @@ public class HealthConditionsCitizenTemplateDAO {
 
     public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
         List<String> allHealthConditionsCitizenTemplate = new ArrayList<>();
-        String relevance = null;
-        String proffNote;
-        String assessmentNote;
-        String expectedLevel;
-        String observationNote;
-        String date;
+        String relevance = "Not relevant";
+        String proffNote = "";
+        String assessmentNote = "";
+        String expectedLevel = "";
+        String observationNote = "";
+        String date = LocalDate.now().toString();
 
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
 
@@ -64,30 +64,18 @@ public class HealthConditionsCitizenTemplateDAO {
                 expectedLevel = resultSet.getString("healthConditionsCitizenTemplateExpectedLevel");
                 observationNote = resultSet.getString("healthConditionsCitizenTemplateObservableNote");
                 date = resultSet.getString("healthConditionsCitizenTemplateDate");
-                allHealthConditionsCitizenTemplate.add(relevance);
-                allHealthConditionsCitizenTemplate.add(proffNote);
-                allHealthConditionsCitizenTemplate.add(assessmentNote);
-                allHealthConditionsCitizenTemplate.add(expectedLevel);
-                allHealthConditionsCitizenTemplate.add(observationNote);
-                allHealthConditionsCitizenTemplate.add(date);
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        if (relevance == null){
-            relevance = "Not relevant";
-            proffNote = "";
-            assessmentNote = "";
-            expectedLevel = "";
-            observationNote = "";
-            date = LocalDate.now().toString();
-            allHealthConditionsCitizenTemplate.add(relevance);
-            allHealthConditionsCitizenTemplate.add(proffNote);
-            allHealthConditionsCitizenTemplate.add(assessmentNote);
-            allHealthConditionsCitizenTemplate.add(expectedLevel);
-            allHealthConditionsCitizenTemplate.add(observationNote);
-            allHealthConditionsCitizenTemplate.add(date);
-        }
+        allHealthConditionsCitizenTemplate.add(relevance);
+        allHealthConditionsCitizenTemplate.add(proffNote);
+        allHealthConditionsCitizenTemplate.add(assessmentNote);
+        allHealthConditionsCitizenTemplate.add(expectedLevel);
+        allHealthConditionsCitizenTemplate.add(observationNote);
+        allHealthConditionsCitizenTemplate.add(date);
+
         return allHealthConditionsCitizenTemplate;
     }
 

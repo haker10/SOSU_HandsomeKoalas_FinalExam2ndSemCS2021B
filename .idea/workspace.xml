@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a606e79e-9954-4bc5-834a-f7f02f239bc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesAdminsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesAdminsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesSchoolsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesSchoolsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesStudentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesStudentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/AdminManagesTeachersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/StudentEditCitizenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherEditCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesCitizenTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controller/TeacherManagesStudentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controller/TeacherManagesStudentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitesCitizenTemplateDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/FunctionalAbilitiesCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dal/dao/HealthConditionsCitizenTemplateDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

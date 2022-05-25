@@ -68,14 +68,14 @@ public class FunctionalAbilitiesCitizenDAO {
 
     public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
         List<String> allFunctionalInfoCitizen = new ArrayList<>();
-        int score = 1000;
-        int expectedScore;
-        String proffNote;
-        String performance;
-        String limitation;
-        String wishesNGoals;
-        String observationNote;
-        String date;
+        int score = 0;
+        int expectedScore = 0;
+        String proffNote = "";
+        String performance = "";
+        String limitation = "";
+        String wishesNGoals = "";
+        String observationNote = "";
+        String date = LocalDate.now().toString();
 
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ? and  functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ?";
 
@@ -95,36 +95,20 @@ public class FunctionalAbilitiesCitizenDAO {
                 wishesNGoals = resultSet.getString("functionalAbilitiesCitizenGoalsNote");
                 observationNote = resultSet.getString("functionalAbilitiesCitizenObservationNote");
                 date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
-                allFunctionalInfoCitizen.add(String.valueOf(score));
-                allFunctionalInfoCitizen.add(String.valueOf(expectedScore));
-                allFunctionalInfoCitizen.add(proffNote);
-                allFunctionalInfoCitizen.add(performance);
-                allFunctionalInfoCitizen.add(limitation);
-                allFunctionalInfoCitizen.add(wishesNGoals);
-                allFunctionalInfoCitizen.add(observationNote);
-                allFunctionalInfoCitizen.add(date);
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        if (score == 1000){
-            score = 0;
-            expectedScore = 0;
-            proffNote = "";
-            performance = "";
-            limitation = "";
-            wishesNGoals = "";
-            observationNote = "";
-            date = LocalDate.now().toString();
-            allFunctionalInfoCitizen.add(String.valueOf(score));
-            allFunctionalInfoCitizen.add(String.valueOf(expectedScore));
-            allFunctionalInfoCitizen.add(proffNote);
-            allFunctionalInfoCitizen.add(performance);
-            allFunctionalInfoCitizen.add(limitation);
-            allFunctionalInfoCitizen.add(wishesNGoals);
-            allFunctionalInfoCitizen.add(observationNote);
-            allFunctionalInfoCitizen.add(date);
-        }
+        allFunctionalInfoCitizen.add(String.valueOf(score));
+        allFunctionalInfoCitizen.add(String.valueOf(expectedScore));
+        allFunctionalInfoCitizen.add(proffNote);
+        allFunctionalInfoCitizen.add(performance);
+        allFunctionalInfoCitizen.add(limitation);
+        allFunctionalInfoCitizen.add(wishesNGoals);
+        allFunctionalInfoCitizen.add(observationNote);
+        allFunctionalInfoCitizen.add(date);
+
         return allFunctionalInfoCitizen;
     }
 
