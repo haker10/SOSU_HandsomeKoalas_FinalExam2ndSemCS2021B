@@ -15,14 +15,6 @@
 //make action event for filters - diogo
 //Fix To have only 1 username ; if existing give Exception; 1/5 (schools) - diogo
 //when closing citizen or citizenTemplate edit pages, go back to previous view - niko
-
+//make citizenTemplate names unique
 
 fix exceptions - diogo
-make citizenTemplate names unique
-
-
-
-
-//Sprint review questions
-in editCitizenTemplate to have a "button delete" for HealthConditions
-and FunctionalAbilities if, for example, they made a wrong category and want to remove it !
