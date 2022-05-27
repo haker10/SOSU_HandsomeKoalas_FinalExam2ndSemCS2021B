@@ -559,7 +559,6 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
@@ -582,7 +581,6 @@ public class StudentEditCitizenController implements Initializable{
             citizenModel.updateHealthConditionsCitizen(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenId);
         }
         clearHC();
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");
@@ -647,7 +645,6 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -673,7 +670,6 @@ public class StudentEditCitizenController implements Initializable{
         }
         clearFA();
         updateCitizenTableView();
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");
@@ -726,8 +722,6 @@ public class StudentEditCitizenController implements Initializable{
 
     //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
-
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -753,7 +747,6 @@ public class StudentEditCitizenController implements Initializable{
 
             citizenModel.updateGeneralInfoCitizen(generalInfoName.get(i), generalInfoEditable.get(i), citizenId);
         }
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");

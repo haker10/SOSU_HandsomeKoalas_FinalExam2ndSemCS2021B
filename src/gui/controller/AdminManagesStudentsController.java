@@ -173,13 +173,11 @@ public class AdminManagesStudentsController implements Initializable {
     }
 
     public void onClickCreate(ActionEvent actionEvent) {
-        //JFrame jFrame = new JFrame();
         int count = 0;
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         int schoolId = schoolId1;
         if (nameTxt.getText().isEmpty() || usernameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()) {
-            //JOptionPane.showMessageDialog(jFrame, "Please fill all the fields");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
             alert.setHeaderText("Please fill all the fields");
@@ -196,7 +194,6 @@ public class AdminManagesStudentsController implements Initializable {
                 List<User> allUsers = userModel.getAllUsernames();
                 for(int i=0; i< allUsers.size();i++){
                     if (allUsers.get(i).getUsername().equals(usernameTxt.getText())) {
-                        //JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
                         Alert alert = new Alert(Alert.AlertType.NONE);
                         alert.setTitle("Error");
                         alert.setHeaderText("Username already exists, please choose a new one");
@@ -214,7 +211,6 @@ public class AdminManagesStudentsController implements Initializable {
                     nameTxt.clear();
                     usernameTxt.clear();
                     passwordTxt.clear();
-                    //JOptionPane.showMessageDialog(jFrame, "Student CREATED !!");
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setTitle("Process confirmation");
                     alert.setHeaderText("Student CREATED !!");
@@ -233,10 +229,8 @@ public class AdminManagesStudentsController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        //JFrame jFrame = new JFrame();
         try{
             if (studentTableView.getSelectionModel().getSelectedItem() == null){
-                //JOptionPane.showMessageDialog(jFrame, "FIELD IS EMPTY !!\nPLEASE TRY AGAIN!!");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Error");
                 alert.setHeaderText("FIELD IS EMPTY !! PLEASE TRY AGAIN!!");
@@ -249,7 +243,6 @@ public class AdminManagesStudentsController implements Initializable {
             }
             else {
                 userModel.deleteUser(studentTableView.getSelectionModel().getSelectedItem().getUserId());
-                //JOptionPane.showMessageDialog(jFrame, "Student DELETED !!");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Process confirmation");
                 alert.setHeaderText("Student DELETED !!");

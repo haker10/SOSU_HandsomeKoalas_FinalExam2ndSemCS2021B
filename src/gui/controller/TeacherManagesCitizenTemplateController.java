@@ -1,7 +1,6 @@
 package gui.controller;
 
 import be.CitizenTemplate;
-import be.User;
 import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
 import javafx.application.Platform;
@@ -67,14 +66,11 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         }
     }
 
-    //might change this to only create in database and don't open create window, just edit to "create"
     public void onClickCreate(ActionEvent actionEvent) {
-        //JFrame jFrame = new JFrame();
         int count = 0;
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         if (citizenTemplateNameTxt.getText().isEmpty()) {
-            //JOptionPane.showMessageDialog(jFrame, "Please enter a name for the citizen template");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
             alert.setHeaderText("Please enter a name for the citizen template");
@@ -89,7 +85,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
                 List<CitizenTemplate> allCitizenTemplateNames = citizenTemplateModel.getAllCitizenTemplateNames();
                 for (int i = 0; i < allCitizenTemplateNames.size(); i++) {
                     if (allCitizenTemplateNames.get(i).getCitizenTemplateName().equals(citizenTemplateNameTxt.getText())) {
-                        //JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
                         Alert alert = new Alert(Alert.AlertType.NONE);
                         alert.setTitle("Error");
                         alert.setHeaderText("CitizenTemplate with this name already exists, please choose a new one");
@@ -103,7 +98,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
                 }
                 if (count == 0) {
                     citizenTemplate = citizenTemplateModel.createCitizenTemplate(schoolId1, citizenTemplateNameTxt.getText());
-                    //JOptionPane.showMessageDialog(jFrame, "Citizen Template created");
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setTitle("Process confirmation");
                     alert.setHeaderText("Citizen Template created");
@@ -150,7 +144,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        //JFrame jFrame = new JFrame();
         if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
@@ -164,7 +157,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         else {
             int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
             citizenTemplateModel.deleteCitizenTemplate(citizenTemplateId);
-            //JOptionPane.showMessageDialog(jFrame, "Citizen Template DELETED !!");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Process confirmation");
             alert.setHeaderText("Citizen Template DELETED !!");
@@ -192,11 +184,9 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         else {
             Stage currentStage = (Stage) createBtn.getScene().getWindow();
             schoolId1 = (Integer) currentStage.getUserData();
-            //JFrame jFrame = new JFrame();
             int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
             String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName() + "Copy";
             citizenTemplateModel.copyCitizenTemplate(citizenTemplateId, schoolId1, citizenTemplateName);
-            //JOptionPane.showMessageDialog(jFrame, "Citizen Template COPIED !!");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Process confirmation");
             alert.setHeaderText("Citizen Template COPIED !!");
@@ -221,7 +211,6 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
             alert.showAndWait();
         }
         else {
-            //JFrame jFrame = new JFrame();
             int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
             String citizenTemplateName = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateName();
             citizenModel.createCitizenFromTemplate(citizenTemplateId, citizenTemplateName, schoolId1);

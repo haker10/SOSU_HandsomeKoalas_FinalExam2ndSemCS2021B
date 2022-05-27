@@ -114,10 +114,8 @@ public class AdminManagesTeachersController implements Initializable {
     }
 
     public void addTeacher(ActionEvent event) {
-        //JFrame jFrame = new JFrame();
         int count = 0;
         if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
-            //JOptionPane.showMessageDialog(jFrame, "One of the fields is empty!\nPlease try again!");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
             alert.setHeaderText("One of the fields is empty! Please try again!");
@@ -133,7 +131,6 @@ public class AdminManagesTeachersController implements Initializable {
                 List<User> allUsers = userModel.getAllUsernames();
                 for (int i = 0; i < allUsers.size(); i++) {
                     if (allUsers.get(i).getUsername().equals(newUserNameTxt.getText())) {
-                        //JOptionPane.showMessageDialog(jFrame, "Username already exists, please choose a new one");
                         Alert alert = new Alert(Alert.AlertType.NONE);
                         alert.setTitle("Error");
                         alert.setHeaderText("Username already exists, please choose a new one");
@@ -151,7 +148,6 @@ public class AdminManagesTeachersController implements Initializable {
                     newNameTxt.clear();
                     newUserNameTxt.clear();
                     newPasswordTxt.clear();
-                    //JOptionPane.showMessageDialog(jFrame, "Teacher created");
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setTitle("Process confirmation");
                     alert.setHeaderText("Teacher created");
@@ -229,10 +225,8 @@ public class AdminManagesTeachersController implements Initializable {
     }
 
     public void deleteTeacher(ActionEvent event) {
-        //JFrame jFrame = new JFrame();
         try {
             if (teachersTableView.getSelectionModel().getSelectedItem() == null){
-                //JOptionPane.showMessageDialog(jFrame, "Choose a Teacher!\nPlease try again");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Error");
                 alert.setHeaderText("Choose a Teacher! Please try again");
@@ -245,7 +239,6 @@ public class AdminManagesTeachersController implements Initializable {
             }
             else {
                 userModel.deleteUser(teachersTableView.getSelectionModel().getSelectedItem().getUserId());
-                //JOptionPane.showMessageDialog(jFrame, "Teacher deleted");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Process confirmation");
                 alert.setHeaderText("Teacher deleted");

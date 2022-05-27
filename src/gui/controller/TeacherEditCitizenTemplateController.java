@@ -544,7 +544,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
     }
 
     public void OnClickSaveRelevance(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
@@ -565,7 +564,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
             citizenTemplateModel.updateHealthConditionsCitizenTemplate(selectedCategory, selectedSubCategory, relevance, professionalNote, currentAssessment, expectedLevel, observationNote, date, citizenTemplateID);
         }
         clearHC();
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");
@@ -629,7 +627,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
     }
 
     public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
 
@@ -654,7 +651,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
         }
         clearFA();
         updateCitizenTemplateTableView();
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");
@@ -717,7 +713,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
 
     //General Information
     public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
@@ -742,7 +737,6 @@ public class TeacherEditCitizenTemplateController implements Initializable{
 
             citizenTemplateModel.updateGeneralInfoCitizenTemplate(generalInfoName.get(i), generalInfoEditable.get(i), citizenTemplateID);
         }
-        //JOptionPane.showMessageDialog(frame, "Saved");
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Process confirmation");
         alert.setHeaderText("Saved");

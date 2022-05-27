@@ -44,10 +44,8 @@ public class AdminManagesSchoolsController implements Initializable {
     }
 
     public void createNewSchool(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
         int count = 0;
         if (newSchoolTxt.getText().isEmpty()) {
-            //JOptionPane.showMessageDialog(frame, "Please enter a school name");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
             alert.setHeaderText("Please enter a school name");
@@ -63,7 +61,6 @@ public class AdminManagesSchoolsController implements Initializable {
                 List<School> allSchools = userModel.getAllSchools();
                 for (int i=0; i< allSchools.size();i++) {
                     if (allSchools.get(i).getSchool().equals(newSchoolTxt.getText())) {
-                        //JOptionPane.showMessageDialog(frame, "School already exists, please choose a new one");
                         Alert alert = new Alert(Alert.AlertType.NONE);
                         alert.setTitle("Error");
                         alert.setHeaderText("School already exists, please choose a new one");
@@ -78,7 +75,6 @@ public class AdminManagesSchoolsController implements Initializable {
                 if (count == 0) {
                     userModel.createNewSchool(newSchoolTxt.getText());
                     updateSchoolsTableView();
-                    //JOptionPane.showMessageDialog(frame, "School created");
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setTitle("Process confirmation");
                     alert.setHeaderText("School created");

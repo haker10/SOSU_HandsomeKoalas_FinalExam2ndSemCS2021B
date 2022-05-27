@@ -83,11 +83,9 @@ public class AdminManagesAdminsController implements Initializable {
     }
 
     public void createAdmin(ActionEvent actionEvent) {
-        //JFrame frame = new JFrame();
         int count = 0;
 
         if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty() || schoolChoiceBox.getValue() == null){
-            //JOptionPane.showMessageDialog(frame, "Please fill in all the fields");
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
             alert.setHeaderText("Please fill in all the fields");
@@ -104,7 +102,6 @@ public class AdminManagesAdminsController implements Initializable {
                 List<User> allUsers = userModel.getAllUsernames();
                 for (int i=0; i< allUsers.size();i++) {
                     if (allUsers.get(i).getUsername().equals(usernameTxt.getText())) {
-                        //JOptionPane.showMessageDialog(frame, "Username already exists, please choose a new one");
                         Alert alert = new Alert(Alert.AlertType.NONE);
                         alert.setTitle("Error");
                         alert.setHeaderText("Username already exists, please choose a new one");
@@ -120,7 +117,6 @@ public class AdminManagesAdminsController implements Initializable {
                 if(count == 0) {
                     int schoolId = schoolChoiceBox.getValue().getSchoolID();
                     userModel.createAdmin(schoolId, nameTxt.getText(), usernameTxt.getText(), passwordTxt.getText());
-                    //JOptionPane.showMessageDialog(frame, "Admin created");
                     Alert alert = new Alert(Alert.AlertType.NONE);
                     alert.setTitle("Process confirmation");
                     alert.setHeaderText("Admin created");
@@ -239,14 +235,11 @@ public class AdminManagesAdminsController implements Initializable {
         User user = adminTableView.getSelectionModel().getSelectedItem();
         int schoolId = user.getSchool();
         schoolLbl.setText(userModel.getSchoolName(schoolId));
-        //filterAdminTableView();
     }
 
     public void onClickDelete(ActionEvent actionEvent) {
-        //JFrame jFrame = new JFrame();
         try {
             if (adminTableView.getSelectionModel().getSelectedItem() == null){
-                //JOptionPane.showMessageDialog(jFrame, "Choose an Admin!\nPlease try again");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Error");
                 alert.setHeaderText("Choose an Admin! Please try again");
@@ -259,7 +252,6 @@ public class AdminManagesAdminsController implements Initializable {
             }
             else {
                 userModel.deleteUser(adminTableView.getSelectionModel().getSelectedItem().getUserId());
-                //JOptionPane.showMessageDialog(jFrame, "Admin deleted");
                 Alert alert = new Alert(Alert.AlertType.NONE);
                 alert.setTitle("Process confirmation");
                 alert.setHeaderText("Admin deleted");
