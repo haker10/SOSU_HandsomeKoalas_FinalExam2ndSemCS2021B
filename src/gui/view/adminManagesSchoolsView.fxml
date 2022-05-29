@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="442.0" prefWidth="825.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesSchoolsController">
+<AnchorPane prefHeight="442.0" prefWidth="825.0" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.AdminManagesSchoolsController">
    <children>
       <AnchorPane layoutX="571.0" prefHeight="442.0" prefWidth="254.0" styleClass="Stage">
          <children>
