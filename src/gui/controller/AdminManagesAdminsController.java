@@ -92,7 +92,7 @@ public class AdminManagesAdminsController implements Initializable {
     }
 
     public void createAdmin(ActionEvent actionEvent) throws Exception {
-        int count = 0;
+        int count;
 
         if(usernameTxt.getText().isEmpty() || nameTxt.getText().isEmpty() || passwordTxt.getText().isEmpty() || schoolChoiceBox.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.NONE);

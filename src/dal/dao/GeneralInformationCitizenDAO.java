@@ -52,8 +52,7 @@ public class GeneralInformationCitizenDAO {
             preparedStatement.setString(2,generalInfoCitizenName);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                String text = resultSet.getString("generalInformationCitizenEditable");
-                editable = text;
+                editable = resultSet.getString("generalInformationCitizenEditable");
             }
         }
         return editable;

@@ -4,7 +4,6 @@ import be.Citizen;
 import be.FunctionalAbilitie;
 import be.HealthCondition;
 import bll.Manager;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
@@ -24,12 +23,6 @@ public class CitizenModel {
 
     public void createCitizenFromTemplate(int citizenTemplateId, String citizenName, int schoolId) throws Exception {
         manager.createCitizenFromTemplate(citizenTemplateId, citizenName, schoolId);
-    }
-
-    public ObservableList<Citizen> getAllCitizen() throws Exception {
-        ObservableList<Citizen> allCitizen = FXCollections.observableArrayList();
-        allCitizen.addAll(manager.getAllCitizen());
-        return allCitizen;
     }
 
     public ArrayList<Integer> getALlCitizenId(int studentId) throws Exception {

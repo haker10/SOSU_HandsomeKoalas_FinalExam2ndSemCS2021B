@@ -13,7 +13,6 @@ import gui.model.UserModel;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 

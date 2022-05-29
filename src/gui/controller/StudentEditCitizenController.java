@@ -118,12 +118,12 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory1_1 = "Problems with personal care";
     String hc_subcategory1_2 = "Problems with daily activities";
 
-    private ObservableList<String> hc_subcategory1_list = FXCollections.observableArrayList(hc_subcategory1_1, hc_subcategory1_2);
+    private final ObservableList<String> hc_subcategory1_list = FXCollections.observableArrayList(hc_subcategory1_1, hc_subcategory1_2);
 
     String hc_category2 = "Movement device";
     String hc_subcategory2_1 = "Problems with mobility and movement";
 
-    private ObservableList<String> hc_subcategory2_list = FXCollections.observableArrayList(hc_subcategory2_1);
+    private final ObservableList<String> hc_subcategory2_list = FXCollections.observableArrayList(hc_subcategory2_1);
 
     String hc_category3 = "Nutrition";
     String hc_subcategory3_1 = "Problems with fluid intake";
@@ -132,7 +132,7 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory3_4 = "Problems with obesity";
     String hc_subcategory3_5 = "Problems with underweight";
 
-    private ObservableList<String> hc_subcategory3_list = FXCollections.observableArrayList(hc_subcategory3_1, hc_subcategory3_2, hc_subcategory3_3, hc_subcategory3_4, hc_subcategory3_5);
+    private final ObservableList<String> hc_subcategory3_list = FXCollections.observableArrayList(hc_subcategory3_1, hc_subcategory3_2, hc_subcategory3_3, hc_subcategory3_4, hc_subcategory3_5);
 
     String hc_category4 = "Skin and mucous membranes";
     String hc_subcategory4_1 = "Problems with surgical wounds";
@@ -145,12 +145,12 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory4_8 = "Problems with trauma wounds";
     String hc_subcategory4_9 = "Other skin and mucous membrane problems";
 
-    private ObservableList<String> hc_subcategory4_list = FXCollections.observableArrayList(hc_subcategory4_1, hc_subcategory4_2, hc_subcategory4_3, hc_subcategory4_4, hc_subcategory4_5, hc_subcategory4_6, hc_subcategory4_7, hc_subcategory4_8, hc_subcategory4_9);
+    private final ObservableList<String> hc_subcategory4_list = FXCollections.observableArrayList(hc_subcategory4_1, hc_subcategory4_2, hc_subcategory4_3, hc_subcategory4_4, hc_subcategory4_5, hc_subcategory4_6, hc_subcategory4_7, hc_subcategory4_8, hc_subcategory4_9);
 
     String hc_category5 = "Communication";
     String hc_subcategory5_1 = "Problems with communication";
 
-    private ObservableList<String> hc_subcategory5_list = FXCollections.observableArrayList(hc_subcategory5_1);
+    private final ObservableList<String> hc_subcategory5_list = FXCollections.observableArrayList(hc_subcategory5_1);
 
     String hc_category6 = "Psychosocial conditions";
     String hc_subcategory6_1 = "Problems with socializing";
@@ -158,18 +158,18 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory6_3 = "Problems with abuse";
     String hc_subcategory6_4 = "Mental problems";
 
-    private ObservableList<String> hc_subcategory6_list = FXCollections.observableArrayList(hc_subcategory6_1, hc_subcategory6_2, hc_subcategory6_3, hc_subcategory6_4);
+    private final ObservableList<String> hc_subcategory6_list = FXCollections.observableArrayList(hc_subcategory6_1, hc_subcategory6_2, hc_subcategory6_3, hc_subcategory6_4);
 
     String hc_category7 = "Respiration and circulation";
     String hc_subcategory7_1 = "Respiratory problems";
     String hc_subcategory7_2 = "Circulatory problems";
 
-    private ObservableList<String> hc_subcategory7_list = FXCollections.observableArrayList(hc_subcategory7_1, hc_subcategory7_2);
+    private final ObservableList<String> hc_subcategory7_list = FXCollections.observableArrayList(hc_subcategory7_1, hc_subcategory7_2);
 
     String hc_category8 = "Sexuality";
     String hc_subcategory8_1 = "Problems with sexuality";
 
-    private ObservableList<String> hc_subcategory8_list = FXCollections.observableArrayList(hc_subcategory8_1);
+    private final ObservableList<String> hc_subcategory8_list = FXCollections.observableArrayList(hc_subcategory8_1);
 
     String hc_category9 = "Pain and sensory impressions";
     String hc_subcategory9_1 = "Acute pain";
@@ -181,13 +181,13 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory9_7 = "Problems with the sense of taste";
     String hc_subcategory9_8 = "Problems with the sense of touch";
 
-    private ObservableList<String> hc_subcategory9_list = FXCollections.observableArrayList(hc_subcategory9_1, hc_subcategory9_2, hc_subcategory9_3, hc_subcategory9_4, hc_subcategory9_5, hc_subcategory9_6, hc_subcategory9_7, hc_subcategory9_8);
+    private final ObservableList<String> hc_subcategory9_list = FXCollections.observableArrayList(hc_subcategory9_1, hc_subcategory9_2, hc_subcategory9_3, hc_subcategory9_4, hc_subcategory9_5, hc_subcategory9_6, hc_subcategory9_7, hc_subcategory9_8);
 
     String hc_category10 = "Sleep and rest";
     String hc_subcategory10_1 = "Circadian rhythm problems";
     String hc_subcategory10_2 = "Sleep problems";
 
-    private ObservableList<String> hc_subcategory10_list = FXCollections.observableArrayList(hc_subcategory10_1, hc_subcategory10_2);
+    private final ObservableList<String> hc_subcategory10_list = FXCollections.observableArrayList(hc_subcategory10_1, hc_subcategory10_2);
 
     String hc_category11 = "Knowledge and development";
     String hc_subcategory11_1 = "Memory problems";
@@ -195,7 +195,7 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory11_3 = "Problems with insight into treatment purposes";
     String hc_subcategory11_4 = "Cognitive problems";
 
-    private ObservableList<String> hc_subcategory11_list = FXCollections.observableArrayList(hc_subcategory11_1, hc_subcategory11_2, hc_subcategory11_3, hc_subcategory11_4);
+    private final ObservableList<String> hc_subcategory11_list = FXCollections.observableArrayList(hc_subcategory11_1, hc_subcategory11_2, hc_subcategory11_3, hc_subcategory11_4);
 
     String hc_category12 = "Separation of waste products";
     String hc_subcategory12_1 = "Problems with urination";
@@ -203,9 +203,9 @@ public class StudentEditCitizenController implements Initializable{
     String hc_subcategory12_3 = "Problems with stool incontinence";
     String hc_subcategory12_4 = "Stomach and intestinal problems";
 
-    private ObservableList<String> hc_subcategory12_list = FXCollections.observableArrayList(hc_subcategory12_1, hc_subcategory12_2, hc_subcategory12_3, hc_subcategory12_4);
+    private final ObservableList<String> hc_subcategory12_list = FXCollections.observableArrayList(hc_subcategory12_1, hc_subcategory12_2, hc_subcategory12_3, hc_subcategory12_4);
 
-    private ObservableList<String> hc_category_list = FXCollections.observableArrayList(hc_category1, hc_category2, hc_category3, hc_category4, hc_category5, hc_category6, hc_category7, hc_category8, hc_category9, hc_category10, hc_category11, hc_category12);
+    private final ObservableList<String> hc_category_list = FXCollections.observableArrayList(hc_category1, hc_category2, hc_category3, hc_category4, hc_category5, hc_category6, hc_category7, hc_category8, hc_category9, hc_category10, hc_category11, hc_category12);
 
     String fa_category1 = "Self-care";
     String fa_subcategory1_1 = "Wash";
@@ -217,7 +217,7 @@ public class StudentEditCitizenController implements Initializable{
     String fa_subcategory1_7 = "Take care of your own health";
     String fa_subcategory1_8 = "Food intake";
 
-    private ObservableList<String> fa_subcategory1_list = FXCollections.observableArrayList(fa_subcategory1_1, fa_subcategory1_2, fa_subcategory1_3, fa_subcategory1_4, fa_subcategory1_5, fa_subcategory1_6, fa_subcategory1_7, fa_subcategory1_8);
+    private final ObservableList<String> fa_subcategory1_list = FXCollections.observableArrayList(fa_subcategory1_1, fa_subcategory1_2, fa_subcategory1_3, fa_subcategory1_4, fa_subcategory1_5, fa_subcategory1_6, fa_subcategory1_7, fa_subcategory1_8);
 
     String fa_category2 = "Practical tasks";
     String fa_subcategory2_1 = "Perform daily routines";
@@ -225,7 +225,7 @@ public class StudentEditCitizenController implements Initializable{
     String fa_subcategory2_3 = "Cook";
     String fa_subcategory2_4 = "Do housework";
 
-    private ObservableList<String> fa_subcategory2_list = FXCollections.observableArrayList(fa_subcategory2_1, fa_subcategory2_2, fa_subcategory2_3, fa_subcategory2_4);
+    private final ObservableList<String> fa_subcategory2_list = FXCollections.observableArrayList(fa_subcategory2_1, fa_subcategory2_2, fa_subcategory2_3, fa_subcategory2_4);
 
     String fa_category3 = "Mobility";
     String fa_subcategory3_1 = "Change body position";
@@ -238,7 +238,7 @@ public class StudentEditCitizenController implements Initializable{
     String fa_subcategory3_8 = "Endurance";
     String fa_subcategory3_9 = "Muscle Strength";
 
-    private ObservableList<String> fa_subcategory3_list = FXCollections.observableArrayList(fa_subcategory3_1, fa_subcategory3_2, fa_subcategory3_3, fa_subcategory3_4, fa_subcategory3_5, fa_subcategory3_6, fa_subcategory3_7, fa_subcategory3_8, fa_subcategory3_9);
+    private final ObservableList<String> fa_subcategory3_list = FXCollections.observableArrayList(fa_subcategory3_1, fa_subcategory3_2, fa_subcategory3_3, fa_subcategory3_4, fa_subcategory3_5, fa_subcategory3_6, fa_subcategory3_7, fa_subcategory3_8, fa_subcategory3_9);
 
     String fa_category4 = "Mental functions";
     String fa_subcategories4_1 = "Acquire skills";
@@ -250,22 +250,22 @@ public class StudentEditCitizenController implements Initializable{
     String fa_subcategories4_7 = "Emotional functions";
     String fa_subcategories4_8 = "Overall cognitive functions";
 
-    private ObservableList<String> fa_subcategories4_list = FXCollections.observableArrayList(fa_subcategories4_1, fa_subcategories4_2, fa_subcategories4_3, fa_subcategories4_4, fa_subcategories4_5, fa_subcategories4_6, fa_subcategories4_7, fa_subcategories4_8);
+    private final ObservableList<String> fa_subcategories4_list = FXCollections.observableArrayList(fa_subcategories4_1, fa_subcategories4_2, fa_subcategories4_3, fa_subcategories4_4, fa_subcategories4_5, fa_subcategories4_6, fa_subcategories4_7, fa_subcategories4_8);
 
     String fa_category5 = "Community life";
     String fa_subcategories5_1 = "Have paid employment";
 
-    private ObservableList<String> fa_subcategories5_list = FXCollections.observableArrayList(fa_subcategories5_1);
+    private final ObservableList<String> fa_subcategories5_list = FXCollections.observableArrayList(fa_subcategories5_1);
 
-    private ObservableList<String> fa_category_list = FXCollections.observableArrayList(fa_category1, fa_category2, fa_category3, fa_category4, fa_category5);
+    private final ObservableList<String> fa_category_list = FXCollections.observableArrayList(fa_category1, fa_category2, fa_category3, fa_category4, fa_category5);
 
 
-    private ObservableList<String> hc_relevance = FXCollections.observableArrayList("Not relevant", "Relevant", "Very relevant");
-    private ObservableList<Integer> score = FXCollections.observableArrayList(0, 1, 2, 3, 4);
-    private ObservableList<String> fa_performance = FXCollections.observableArrayList("Self performed", "Self performed partly", "Does not perform itself", "Not relevant");
-    private ObservableList<String> fa_meaning_of_performance = FXCollections.observableArrayList("Does not experience limitations", "Experience limitations");
+    private final ObservableList<String> hc_relevance = FXCollections.observableArrayList("Not relevant", "Relevant", "Very relevant");
+    private final ObservableList<Integer> score = FXCollections.observableArrayList(0, 1, 2, 3, 4);
+    private final ObservableList<String> fa_performance = FXCollections.observableArrayList("Self performed", "Self performed partly", "Does not perform itself", "Not relevant");
+    private final ObservableList<String> fa_meaning_of_performance = FXCollections.observableArrayList("Does not experience limitations", "Experience limitations");
 
-    private ObservableList<String> expectedLevelList = FXCollections.observableArrayList("Disappeared", "Remains unchanged", "Got worse");
+    private final ObservableList<String> expectedLevelList = FXCollections.observableArrayList("Disappeared", "Remains unchanged", "Got worse");
 
     ArrayList<String> generalInfoName = new ArrayList<>();
     {
@@ -360,7 +360,7 @@ public class StudentEditCitizenController implements Initializable{
         }
     }
 
-    public void OnDoubleClickTableViewRow() throws Exception{
+    public void OnDoubleClickTableViewRow() {
         healthConditionTV.setRowFactory(tv -> {
             TableRow<HealthCondition> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

@@ -193,7 +193,7 @@ public class AdminManagesStudentsController implements Initializable {
     }
 
     public void onClickCreate(ActionEvent actionEvent) throws Exception {
-        int count = 0;
+        int count;
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         int schoolId = schoolId1;

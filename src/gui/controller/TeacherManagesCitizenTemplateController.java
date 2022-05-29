@@ -68,7 +68,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
     public void onClickCreate(ActionEvent actionEvent) {
-        int count = 0;
+        int count;
         Stage currentStage = (Stage) createBtn.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
         if (citizenTemplateNameTxt.getText().isEmpty()) {

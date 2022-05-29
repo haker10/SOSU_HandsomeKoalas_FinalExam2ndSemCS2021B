@@ -45,7 +45,7 @@ public class AdminManagesSchoolsController implements Initializable {
     }
 
     public void createNewSchool(ActionEvent actionEvent) {
-        int count = 0;
+        int count;
         if (newSchoolTxt.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");

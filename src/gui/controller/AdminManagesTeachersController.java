@@ -119,7 +119,7 @@ public class AdminManagesTeachersController implements Initializable {
     }
 
     public void addTeacher(ActionEvent event) throws Exception {
-        int count = 0;
+        int count;
         if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");

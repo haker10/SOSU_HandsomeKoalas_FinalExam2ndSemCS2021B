@@ -23,10 +23,6 @@ public class CitizenTemplateModel {
        return manager.createCitizenTemplate(schoolId1, citizenTemplateName);
     }
 
-    public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) throws Exception {
-        manager.createGeneralInfoCitizenTemplate(generalInfoName, generalInfoExplanation, generalInfoEditable, citizenTemplateId);
-    }
-
     public void createFunctionalAbilitiesCitizenTemplate(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenTemplateId) throws Exception {
         manager.createFunctionalAbilitiesCitizenTemplate(selectedCategory, selectedSubCategory, selectedPresentLevel, selectedExpectedLevel, professionalNote, selectedPerformance, selectedMeaningOfPerformance, wishesNGoals, observationNote, date, citizenTemplateId);
     }
@@ -71,14 +67,6 @@ public class CitizenTemplateModel {
 
     public void copyCitizenTemplate(int citizenTemplateId, int schoolID, String citizenTemplateName) throws Exception {
         manager.copyCitizenTemplate(citizenTemplateId, schoolID, citizenTemplateName);
-    }
-
-    public boolean checkHealtConditionsId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) throws Exception {
-        return manager.checkHealthConditionsCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
-    }
-
-    public boolean checkFunctionalAbilitiesId(String selectedCategory, String selectedSubCategory, int citizenTemplateId) throws Exception {
-        return manager.checkFunctionalAbilitiesCTId(selectedCategory, selectedSubCategory, citizenTemplateId);
     }
 
     public ObservableList<HealthConditionCT> getAllHealthConditionTemplate(int citizenTemplateID) throws Exception {

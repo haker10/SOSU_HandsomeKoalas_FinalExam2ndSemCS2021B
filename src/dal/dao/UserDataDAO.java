@@ -3,7 +3,6 @@ package dal.dao;
 import be.User;
 import dal.DatabaseConnector;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 

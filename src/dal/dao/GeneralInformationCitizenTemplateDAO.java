@@ -35,8 +35,7 @@ public class GeneralInformationCitizenTemplateDAO {
              preparedStatement.setString(2,generalInfoCitizenTemplateName);
              ResultSet resultSet = preparedStatement.executeQuery();
              if(resultSet.next()){
-                 String text = resultSet.getString("generalInformationCitizenTemplateEditable");
-                 editable = text;
+                 editable = resultSet.getString("generalInformationCitizenTemplateEditable");
              }
          }
          return editable;
