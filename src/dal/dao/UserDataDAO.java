@@ -25,7 +25,7 @@ public class UserDataDAO {
 
 
     //users
-    public User login(String username, String password) {
+    public User login(String username, String password) throws Exception{
         User user = null;
         String sql = "SELECT * FROM UserData WHERE username = ? and password = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -40,25 +40,21 @@ public class UserDataDAO {
                 String name = resultSet.getString("name");
                 user = new User(userID, typeOfUser, school, name, username, password);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return user;
     }
 
-    public void deleteUser(int userId) {
+    public void deleteUser(int userId) throws Exception{
         String sql = "DELETE FROM UserData WHERE userID = ?";
 
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, userId);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public void editUser(int userId, String name, String username, String password) {
+    public void editUser(int userId, String name, String username, String password) throws Exception{
         String sql = "UPDATE UserData SET name = ?, username = ?, password = ? WHERE userID = ?";
 
         try(Connection connection = databaseConnector.getConnection()) {
@@ -68,12 +64,10 @@ public class UserDataDAO {
             preparedStatement.setString(3, password);
             preparedStatement.setInt(4, userId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public List<User> getAllUsernames() {
+    public List<User> getAllUsernames() throws Exception{
         List<User> allUsers = new ArrayList<>();
         String sql = "SELECT * FROM UserData";
         try(Connection connection = databaseConnector.getConnection()) {
@@ -90,8 +84,6 @@ public class UserDataDAO {
                 User user = new User(userID, typeOfUser, school, name, username, password);
                 allUsers.add(user);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return allUsers;
     }
@@ -99,7 +91,7 @@ public class UserDataDAO {
 
 
     //admins
-    public void createAdmin(int schoolId, String name, String username, String password) {
+    public void createAdmin(int schoolId, String name, String username, String password) throws Exception{
         String sql = "INSERT INTO UserData (typeOfUser, school, name, username, password) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -109,12 +101,10 @@ public class UserDataDAO {
             preparedStatement.setString(4, username);
             preparedStatement.setString(5, password);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public List<User> getAllAdmins() {
+    public List<User> getAllAdmins() throws Exception{
         List<User> allAdmins = new ArrayList<>();
         String sql = "SELECT * FROM UserData WHERE typeOfUser = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -131,8 +121,6 @@ public class UserDataDAO {
                 User user = new User(userID, 1, school, name, username, password);
                 allAdmins.add(user);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return allAdmins;
     }
@@ -140,7 +128,7 @@ public class UserDataDAO {
 
 
     //teachers
-    public void createTeacher(Integer school, String name, String username, String password) {
+    public void createTeacher(Integer school, String name, String username, String password) throws Exception{
         String sql = "INSERT INTO UserData(typeOfUser, school, name, username, password) VALUES(2,?,?,?,?)";
 
         try(Connection connection = databaseConnector.getConnection()) {
@@ -150,12 +138,10 @@ public class UserDataDAO {
             preparedStatement.setString(3, username);
             preparedStatement.setString(4, password);
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
     }
 
-    public List<User> getAllTeachers(int schoolId) {
+    public List<User> getAllTeachers(int schoolId) throws Exception{
         List<User> allTeachers = new ArrayList<>();
         String sql = "SELECT * FROM UserData WHERE typeOfUser = 2 AND school = ?";
         try (Connection connection = databaseConnector.getConnection()){
@@ -173,8 +159,6 @@ public class UserDataDAO {
                 User teacher = new User(userId, typeOfUser, school, name, username, password);
                 allTeachers.add(teacher);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
         return allTeachers;
     }
@@ -182,7 +166,7 @@ public class UserDataDAO {
 
 
     //students
-    public User createStudent ( int schoolId, String name, String username, String password) {
+    public User createStudent ( int schoolId, String name, String username, String password) throws Exception{
         User student = null;
         String sql = "INSERT INTO UserData (typeOfUser, school, name, username, password) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -198,13 +182,11 @@ public class UserDataDAO {
                 int userID = resultSet.getInt(1);
                 student = new User(userID, 3, schoolId, name, username, password);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return student;
     }
 
-    public List<User> getAllStudents(int schoolId) {
+    public List<User> getAllStudents(int schoolId) throws Exception{
         List<User> allStudents = new ArrayList<>();
         String sql = "SELECT * FROM UserData WHERE typeOfUser = ? AND school = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -222,10 +204,7 @@ public class UserDataDAO {
                 User user = new User(userID, 3, school, name, username, password);
                 allStudents.add(user);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
         return allStudents;
     }
 

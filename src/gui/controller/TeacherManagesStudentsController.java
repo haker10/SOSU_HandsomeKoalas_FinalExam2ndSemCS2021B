@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -61,7 +62,11 @@ public class TeacherManagesStudentsController implements Initializable {
         studentTableView.setEditable(true);
         editStudentFromTableView();
         updateStudentTableView();
-        filterStudentTableView();
+            try {
+                filterStudentTableView();
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
         });
     }
 
@@ -73,18 +78,18 @@ public class TeacherManagesStudentsController implements Initializable {
             studentTableView.setItems(userModel.getAllStudents(schoolId1));
             filterStudentTableView();
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
-    public void filterStudentTableView() {
+    public void filterStudentTableView() throws Exception {
 
         ObservableList<User> userList = userModel.getAllStudents(schoolId1);
         FilteredList<User> filteredData = null;
         try {
             filteredData = new FilteredList<>(userList, b -> true);
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
 
         FilteredList<User> finalFilteredData = filteredData;
@@ -126,8 +131,13 @@ public class TeacherManagesStudentsController implements Initializable {
                         String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterStudentTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterStudentTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
@@ -145,8 +155,13 @@ public class TeacherManagesStudentsController implements Initializable {
                         String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterStudentTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterStudentTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
@@ -164,14 +179,19 @@ public class TeacherManagesStudentsController implements Initializable {
                         String password = passwordColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String name = nameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((studentTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterStudentTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterStudentTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
     }
 
-    public void onClickCreate(ActionEvent actionEvent) {
+    public void onClickCreate(ActionEvent actionEvent) throws Exception {
         int count = 0;
         Stage currentStage = (Stage) nameTxt.getScene().getWindow();
         schoolId1 = (Integer) currentStage.getUserData();
@@ -221,7 +241,7 @@ public class TeacherManagesStudentsController implements Initializable {
                     filterStudentTableView();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         }
     }
@@ -253,7 +273,7 @@ public class TeacherManagesStudentsController implements Initializable {
                 filterStudentTableView();
             }
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 }

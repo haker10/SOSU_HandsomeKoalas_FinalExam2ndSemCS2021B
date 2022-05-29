@@ -3,6 +3,7 @@ package gui.controller;
 import be.Citizen;
 import gui.model.CitizenModel;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,11 +65,21 @@ public class StudentController implements Initializable {
             String[] splitter = info.split(",");
             int schoolId1 = Integer.parseInt(splitter[0]);
             int studentId = Integer.parseInt(splitter[1]);
-            schoolLbl.setText(userModel.getSchoolName(schoolId1));
-            citizenId = citizenModel.getALlCitizenId(studentId);
+            try {
+                schoolLbl.setText(userModel.getSchoolName(schoolId1));
+                citizenId = citizenModel.getALlCitizenId(studentId);
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
+
 
             for (Integer integer : citizenId) {
-                Citizen name = citizenModel.getNeededCitizen(integer);
+                Citizen name = null;
+                try {
+                    name = citizenModel.getNeededCitizen(integer);
+                } catch (Exception e) {
+                    PopUp.showError(e.getMessage());
+                }
                 neededCitizen.add(name);
                 allNames.add(name.getCitizenName());
             }
@@ -84,7 +95,7 @@ public class StudentController implements Initializable {
             citizenTV.setItems(neededCitizen);
             filterStudentTableView();
         } catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -95,7 +106,7 @@ public class StudentController implements Initializable {
         try {
             filteredData = new FilteredList<>(citizenList, b -> true);
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
 
         FilteredList<Citizen> finalFilteredData = filteredData;
@@ -139,7 +150,7 @@ public class StudentController implements Initializable {
                         stage.show();
                         scene.setFill(Color.TRANSPARENT);
                     }catch (Exception e){
-                        e.printStackTrace();
+                        PopUp.showError(e.getMessage());
                     }
                 }
             });
@@ -160,7 +171,7 @@ public class StudentController implements Initializable {
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 

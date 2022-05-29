@@ -21,7 +21,7 @@ public class FunctionalAbilitiesCitizenDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public void copyFunctionalAbilitiesCitizen(int citizenId, int citizenTemplateId) {
+    public void copyFunctionalAbilitiesCitizen(int citizenId, int citizenTemplateId) throws Exception{
         String sql = "SELECT * FROM FunctionalAbilitiesCitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -40,12 +40,10 @@ public class FunctionalAbilitiesCitizenDAO {
                 LocalDate date = resultSet.getDate("functionalAbilitiesCitizenTemplateDate").toLocalDate();
                 createFunctionalAbilitiesCitizen(category, subCategory, score, expectedScore, professionalNote, performance, limitation, goalsNote, observationNote, date, citizenId);
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public void createFunctionalAbilitiesCitizen(String category, String subCategory, int score, int expectedScore, String professionalNote, String performance, String limitation, String goalsNote, String observationNote, LocalDate date, int citizenId) {
+    public void createFunctionalAbilitiesCitizen(String category, String subCategory, int score, int expectedScore, String professionalNote, String performance, String limitation, String goalsNote, String observationNote, LocalDate date, int citizenId) throws Exception{
         String sql = "INSERT INTO FunctionalAbilitiesCitizen(functionalAbilitiesCitizenCategoryName, functionalAbilitiesCitizenSubCategoryName, functionalAbilitiesCitizenScore, functionalAbilitiesCitizenExpectedScore, functionalAbilitiesCitizenProfessionalNote, functionalAbilitiesCitizenPerformance, functionalAbilitiesCitizenLimitation, functionalAbilitiesCitizenGoalsNote, functionalAbilitiesCitizenObservationNote, functionalAbilitiesCitizenTemplateDate,  citizenID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -61,12 +59,10 @@ public class FunctionalAbilitiesCitizenDAO {
             preparedStatement.setObject(10, date);
             preparedStatement.setInt(11, citizenId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) {
+    public List<String> getFunctionalInformationCitizen(String category, String subCategory, int citizenId) throws Exception{
         List<String> allFunctionalInfoCitizen = new ArrayList<>();
         int score = 0;
         int expectedScore = 0;
@@ -97,9 +93,8 @@ public class FunctionalAbilitiesCitizenDAO {
                 date = resultSet.getString("functionalAbilitiesCitizenTemplateDate");
 
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
+
         allFunctionalInfoCitizen.add(String.valueOf(score));
         allFunctionalInfoCitizen.add(String.valueOf(expectedScore));
         allFunctionalInfoCitizen.add(proffNote);
@@ -112,7 +107,7 @@ public class FunctionalAbilitiesCitizenDAO {
         return allFunctionalInfoCitizen;
     }
 
-    public void updateFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) {
+    public void updateFunctionalAbilitiesCitizen(String selectedCategory, String selectedSubCategory, int selectedPresentLevel, int selectedExpectedLevel, String professionalNote, String selectedPerformance, String selectedMeaningOfPerformance, String wishesNGoals, String observationNote, LocalDate date, int citizenId) throws Exception{
         String sql = "UPDATE FunctionalAbilitiesCitizen SET functionalAbilitiesCitizenScore = ?, functionalAbilitiesCitizenExpectedScore = ?, functionalAbilitiesCitizenProfessionalNote = ?, functionalAbilitiesCitizenPerformance = ?, functionalAbilitiesCitizenLimitation = ?, functionalAbilitiesCitizenGoalsNote = ?, functionalAbilitiesCitizenObservationNote = ?, functionalAbilitiesCitizenTemplateDate = ? WHERE functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ? and citizenID = ? ";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -128,12 +123,10 @@ public class FunctionalAbilitiesCitizenDAO {
             preparedStatement.setString(10, selectedSubCategory);
             preparedStatement.setInt(11, citizenId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public ObservableList<FunctionalAbilitie> getAllFunctionalAbilities(int citizenId) {
+    public ObservableList<FunctionalAbilitie> getAllFunctionalAbilities(int citizenId) throws Exception{
         ObservableList<FunctionalAbilitie> allFunctionalInfoCitizen = FXCollections.observableArrayList();
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -157,13 +150,11 @@ public class FunctionalAbilitiesCitizenDAO {
                 FunctionalAbilitie functionalAbilitie = new FunctionalAbilitie(fAId, category, subcategory, score, expectedScore, proffNote, performance, limitation, wishesNGoals, observationNote, localDate, citizenId);
                 allFunctionalInfoCitizen.add(functionalAbilitie);
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return allFunctionalInfoCitizen;
     }
 
-    public boolean checkFunctionalAbilitiesId(String category, String subCategory, int citizenId) {
+    public boolean checkFunctionalAbilitiesId(String category, String subCategory, int citizenId) throws Exception{
         String sql = "SELECT * FROM FunctionalAbilitiesCitizen WHERE citizenID = ? and  functionalAbilitiesCitizenCategoryName = ? and functionalAbilitiesCitizenSubCategoryName = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -174,8 +165,6 @@ public class FunctionalAbilitiesCitizenDAO {
             if(resultSet.next()){
                 return true;
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return false;
     }

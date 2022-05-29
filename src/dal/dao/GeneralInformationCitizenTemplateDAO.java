@@ -13,7 +13,7 @@ public class GeneralInformationCitizenTemplateDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) {
+    public void createGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoExplanation, String generalInfoEditable, int citizenTemplateId) throws Exception{
         String sql = "INSERT INTO GeneralInformationCitizenTemplate(generalInformationCitizenTemplateName, generalInformationCitizenTemplateExplanation, " +
                 "generalInformationCitizenTemplateEditable, citizenTemplateID) VALUES (?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
@@ -23,12 +23,10 @@ public class GeneralInformationCitizenTemplateDAO {
             preparedStatement.setString(3, generalInfoEditable);
             preparedStatement.setInt(4, citizenTemplateId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public String getGeneralInfoCitizenTemplate(int citizenTemplateId, String generalInfoCitizenTemplateName) {
+    public String getGeneralInfoCitizenTemplate(int citizenTemplateId, String generalInfoCitizenTemplateName) throws Exception{
          String editable = null;
          String sql = "SELECT * FROM GeneralInformationCitizenTemplate WHERE citizenTemplateID = ? and generalInformationCitizenTemplateName = ?";
          try(Connection connection = databaseConnector.getConnection()){
@@ -40,13 +38,11 @@ public class GeneralInformationCitizenTemplateDAO {
                  String text = resultSet.getString("generalInformationCitizenTemplateEditable");
                  editable = text;
              }
-         }catch(Exception e){
-             e.printStackTrace();
          }
          return editable;
     }
 
-    public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) {
+    public void updateGeneralInfoCitizenTemplate(String generalInfoName, String generalInfoEditable, int citizenTemplateId) throws Exception{
         String editable = getGeneralInfoCitizenTemplate(citizenTemplateId, generalInfoName);
         if (editable == null) {
             createGeneralInfoCitizenTemplate(generalInfoName, "", generalInfoEditable, citizenTemplateId);
@@ -59,13 +55,11 @@ public class GeneralInformationCitizenTemplateDAO {
                 preparedStatement.setString(2, generalInfoName);
                 preparedStatement.setInt(3, citizenTemplateId);
                 preparedStatement.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
 
-    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
+    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) throws Exception{
         String sql = "SELECT * FROM GeneralInformationCitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -77,8 +71,6 @@ public class GeneralInformationCitizenTemplateDAO {
                 String editable = resultSet.getString("generalInformationCitizenTemplateEditable");
                 createGeneralInfoCitizenTemplate(name, explanation, editable, newCitizenTemplateId);
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 }

@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.School;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +40,7 @@ public class AdminManagesSchoolsController implements Initializable {
         try {
             schoolsListView.setItems(userModel.getAllSchools());
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -87,7 +88,7 @@ public class AdminManagesSchoolsController implements Initializable {
                     updateSchoolsTableView();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         }
     }

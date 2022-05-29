@@ -2,6 +2,7 @@ package gui.controller;
 
 import gui.model.CitizenTemplateModel;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +44,11 @@ public class TeacherController implements Initializable {
         Platform.runLater(() -> {
             Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
             schoolId1 = (int) currentStage.getUserData();
-            schoolLbl.setText(userModel.getSchoolName(schoolId1));
+            try {
+                schoolLbl.setText(userModel.getSchoolName(schoolId1));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
         });
     }
 
@@ -59,7 +64,7 @@ public class TeacherController implements Initializable {
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 

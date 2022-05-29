@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -65,7 +66,11 @@ public class AdminManagesTeachersController implements Initializable {
             updateTeacherTableView();
             teachersTableView.setEditable(true);
             editTeacherFromTableView();
-            filterTeacherTableView();
+            try {
+                filterTeacherTableView();
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
         });
     }
 
@@ -77,17 +82,17 @@ public class AdminManagesTeachersController implements Initializable {
             teachersTableView.setItems(userModel.getAllTeachers(schoolId1));
             filterTeacherTableView();
         } catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
-    public void filterTeacherTableView() {
+    public void filterTeacherTableView() throws Exception {
         ObservableList<User> userList = userModel.getAllTeachers(schoolId1);
         FilteredList<User> filteredData = null;
         try {
             filteredData = new FilteredList<>(userList, b -> true);
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
 
         FilteredList<User> finalFilteredData = filteredData;
@@ -113,7 +118,7 @@ public class AdminManagesTeachersController implements Initializable {
         teachersTableView.setItems(sortedData);
     }
 
-    public void addTeacher(ActionEvent event) {
+    public void addTeacher(ActionEvent event) throws Exception {
         int count = 0;
         if (newNameTxt.getText().isEmpty() || newUserNameTxt.getText().isEmpty() || newPasswordTxt.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.NONE);
@@ -160,7 +165,7 @@ public class AdminManagesTeachersController implements Initializable {
                     filterTeacherTableView();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         }
     }
@@ -179,8 +184,13 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterTeacherTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterTeacherTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
@@ -198,8 +208,13 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterTeacherTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterTeacherTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
@@ -217,8 +232,13 @@ public class AdminManagesTeachersController implements Initializable {
                         String name = nameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String username = usernameColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
                         String password = passwordColumn.getCellObservableValue(((teachersTableView.getItems().get(row)))).getValue();
-                        userModel.editUser(userId, name, username, password);
-                        filterTeacherTableView();
+                        try {
+                            userModel.editUser(userId, name, username, password);
+                            filterTeacherTableView();
+                        } catch (Exception e) {
+                            PopUp.showError(e.getMessage());
+                        }
+
                     }
                 }
         );
@@ -251,7 +271,7 @@ public class AdminManagesTeachersController implements Initializable {
                 filterTeacherTableView();
             }
         } catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 

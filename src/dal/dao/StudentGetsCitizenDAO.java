@@ -15,19 +15,17 @@ public class StudentGetsCitizenDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public void assignCitizenToStudent(int studentId, int citizenID) {
+    public void assignCitizenToStudent(int studentId, int citizenID) throws Exception{
         String sql = "INSERT INTO StudentGetsCitizen (studentID, citizenID) VALUES (?, ?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, studentId);
             preparedStatement.setInt(2, citizenID);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public ArrayList<Integer> getAllCitizenId(int studentId) {
+    public ArrayList<Integer> getAllCitizenId(int studentId) throws Exception{
         ArrayList<Integer> allCitizenId = new ArrayList<>();
         String sql = "SELECT * FROM StudentGetsCitizen WHERE studentID = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -39,8 +37,6 @@ public class StudentGetsCitizenDAO {
                 int id = resultSet.getInt("citizenID");
                 allCitizenId.add(id);
             }
-        }catch (Exception e) {
-            e.printStackTrace();
         }
         return allCitizenId;
     }

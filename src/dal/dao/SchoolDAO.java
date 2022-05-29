@@ -18,7 +18,7 @@ public class SchoolDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public List<School> getAllSchools() {
+    public List<School> getAllSchools() throws Exception{
         List<School> allSchools = new ArrayList<>();
         String sql = "SELECT * FROM School";
         try(Connection connection = databaseConnector.getConnection()){
@@ -31,24 +31,20 @@ public class SchoolDAO {
                 School newSchool = new School(id, school);
                 allSchools.add(newSchool);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return allSchools;
     }
 
-    public void createNewSchool(String school) {
+    public void createNewSchool(String school) throws Exception{
         String sql = "INSERT INTO School (school) VALUES (?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, school);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public String getSchoolName(int schoolId1) {
+    public String getSchoolName(int schoolId1) throws Exception{
         String schoolName = null;
         String sql = "SELECT school FROM School WHERE schoolID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -58,12 +54,11 @@ public class SchoolDAO {
             while(resultSet.next()){
                 schoolName = resultSet.getString("school");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }   return schoolName;
+        }
+        return schoolName;
     }
 
-    public List<School> getAllSchoolsNotAssigned() {
+    public List<School> getAllSchoolsNotAssigned() throws Exception{
         List<School> allSchoolsNotAssigned = new ArrayList();
         String sql = "SELECT * FROM School WHERE schoolID NOT IN (SELECT school FROM UserData WHERE typeOfUser = ?)";
         try(Connection connection = databaseConnector.getConnection()){
@@ -76,9 +71,8 @@ public class SchoolDAO {
                 School newSchool = new School(id, school);
                 allSchoolsNotAssigned.add(newSchool);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }  return allSchoolsNotAssigned;
+        }
+        return allSchoolsNotAssigned;
     }
 }
 

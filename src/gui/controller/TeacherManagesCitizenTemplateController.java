@@ -3,6 +3,7 @@ package gui.controller;
 import be.CitizenTemplate;
 import gui.model.CitizenModel;
 import gui.model.CitizenTemplateModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +63,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         try {
             citizenTemplateTV.setItems(citizenTemplateModel.getAllCitizenTemplates(schoolId1));
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -118,32 +119,44 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
                         stage.show();
                         scene.setFill(Color.TRANSPARENT);
                     }catch (Exception e){
-                        e.printStackTrace();
+                        PopUp.showError(e.getMessage());
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         }
     }
 
     public void onClickEdit(ActionEvent actionEvent) {
-        int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.setUserData(citizenTemplateId);
-            stage.show();
-            scene.setFill(Color.TRANSPARENT);
-        }catch (Exception e){
-            e.printStackTrace();
+        if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please choose a CitizenTemplate");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/gui/view/css/myDialogs.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("myDialog");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
+        else {
+            int citizenTemplateId = citizenTemplateTV.getSelectionModel().getSelectedItem().getCitizenTemplateId();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/view/teacherEditCitizenTemplateView.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(scene);
+                stage.setUserData(citizenTemplateId);
+                stage.show();
+                scene.setFill(Color.TRANSPARENT);
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
         }
     }
 
-    public void onClickDelete(ActionEvent actionEvent) {
+    public void onClickDelete(ActionEvent actionEvent) throws Exception {
         if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
@@ -170,7 +183,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
     }
 
 
-    public void onClickCopy(ActionEvent actionEvent) {
+    public void onClickCopy(ActionEvent actionEvent) throws Exception {
         if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");
@@ -199,7 +212,7 @@ public class TeacherManagesCitizenTemplateController implements Initializable {
         }
     }
 
-    public void onClickCreateCitizen(ActionEvent actionEvent) {
+    public void onClickCreateCitizen(ActionEvent actionEvent) throws Exception {
         if(citizenTemplateTV.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Error");

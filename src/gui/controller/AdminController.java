@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -12,6 +13,7 @@ import gui.model.UserModel;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -42,7 +44,11 @@ public class AdminController implements Initializable {
         Platform.runLater(() -> {
             Stage currentStage = (Stage) schoolLbl.getScene().getWindow();
             schoolId1 = (int) currentStage.getUserData();
-            schoolLbl.setText(userModel.getSchoolName(schoolId1));
+            try {
+                schoolLbl.setText(userModel.getSchoolName(schoolId1));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
         });
     }
 
@@ -58,7 +64,7 @@ public class AdminController implements Initializable {
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -66,9 +72,8 @@ public class AdminController implements Initializable {
         Platform.exit();
     }
 
-    public void adminTabSelected(Event event) {
+    public void adminTabSelected(Event event) throws Exception {
         adminController.updateSchoolComboBox();
     }
-
 }
 

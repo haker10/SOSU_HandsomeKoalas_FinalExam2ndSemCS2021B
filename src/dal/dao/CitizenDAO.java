@@ -15,7 +15,7 @@ public class CitizenDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public Citizen createCitizenFromTemplate(int citizenTemplateId, String citizenName) {
+    public Citizen createCitizenFromTemplate(int citizenTemplateId, String citizenName) throws Exception{
         Citizen citizen = null;
         String sql = "INSERT INTO Citizen(citizenTemplateID, citizenName) VALUES (?,?)";
         try(Connection connection = databaseConnector.getConnection()){
@@ -28,13 +28,11 @@ public class CitizenDAO {
                 int citizenID = resultSet.getInt(1);
                 citizen = new Citizen(citizenID, citizenTemplateId, citizenName);
             }
-        }catch(Exception e){
-            e.printStackTrace();
         }
         return citizen;
     }
 
-    public List<Citizen> getAllCitizen() {
+    public List<Citizen> getAllCitizen() throws Exception{
         List<Citizen> allCitizen = new ArrayList<>();
         String sql = "SELECT * FROM Citizen";
         try(Connection connection = databaseConnector.getConnection()){
@@ -48,13 +46,11 @@ public class CitizenDAO {
                 Citizen citizen = new Citizen(id, citizenID, citizenName);
                 allCitizen.add(citizen);
             }
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
         }
         return  allCitizen;
     }
 
-    public Citizen getNeededCitizen(int citizenId) {
+    public Citizen getNeededCitizen(int citizenId) throws Exception{
         String sql = "Select * FROM Citizen WHERE citizenID = ?";
         Citizen citizen = null;
         try (Connection connection = databaseConnector.getConnection()) {
@@ -67,13 +63,11 @@ public class CitizenDAO {
                 String  name = resultSet.getString("citizenName");
                 citizen = new Citizen(citizenId, citizenTemplateId, name);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return citizen;
     }
 
-    public String getCitizenName(int citizenId) {
+    public String getCitizenName(int citizenId) throws Exception{
         String citizenName = null;
         String sql = "SELECT * FROM Citizen WHERE citizenID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -84,8 +78,6 @@ public class CitizenDAO {
             while (resultSet.next()) {
                 citizenName = resultSet.getString("citizenName");
             }
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
         }
         return  citizenName;
     }

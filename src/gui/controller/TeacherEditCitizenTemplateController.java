@@ -3,6 +3,7 @@ package gui.controller;
 import be.FunctionalAbilitieCT;
 import be.HealthConditionCT;
 import gui.model.CitizenTemplateModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -300,20 +301,29 @@ public class TeacherEditCitizenTemplateController implements Initializable{
         Platform.runLater(() -> {
             Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
             int citizenTemplateID = (int) currentStage.getUserData();
-            citizenTemplateNameLbl.setText(citizenTemplateModel.getCitizenTemplateName(citizenTemplateID));
+            try {
+                citizenTemplateNameLbl.setText(citizenTemplateModel.getCitizenTemplateName(citizenTemplateID));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
 
             //general information
-            masteryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(0)));
-            motivationTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(1)));
-            resourcesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(2)));
-            rollerTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(3)));
-            habitsTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(4)));
-            enJTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(5)));
-            lifeStoryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(6)));
-            networkTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(7)));
-            healthInfoTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(8)));
-            assistiveDevicesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(9)));
-            interiorOfHomeTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(10)));
+            try {
+                masteryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(0)));
+                motivationTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(1)));
+                resourcesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(2)));
+                rollerTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(3)));
+                habitsTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(4)));
+                enJTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(5)));
+                lifeStoryTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(6)));
+                networkTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(7)));
+                healthInfoTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(8)));
+                assistiveDevicesTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(9)));
+                interiorOfHomeTxt.setText(citizenTemplateModel.getGeneralInfoCitizenTemplate(citizenTemplateID, generalInfoName.get(10)));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
+
 
             updateCitizenTemplateTableView();
             clearFA();
@@ -321,7 +331,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
             try {
                 OnDoubleClickTableViewRow();
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         });
     }
@@ -338,7 +348,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
             healthConditionTV.setItems(citizenTemplateModel.getAllHealthConditionTemplate(citizenTemplateID));
             functionalAbilitiesTV.setItems(citizenTemplateModel.getALlFunctionalAbilitiesTemplate(citizenTemplateID));
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -364,12 +374,8 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                         hCExpectedLevelComboBox.setValue(healthConditions.get(3));
                         hCObservationNoteTxt.setText(healthConditions.get(4));
                         hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-                    }catch(NullPointerException e){
-                        try {
-                            throw new Exception("Does not exist");
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+                    }catch(Exception e){
+                        PopUp.showError(e.getMessage());
                     }
                 }
             });
@@ -399,7 +405,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                         observationNoteTxt.setText(functionalAbilities.get(6));
                         fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
                     }catch(Exception e){
-                        e.printStackTrace();
+                        PopUp.showError(e.getMessage());
                     }
                 }
             });
@@ -459,12 +465,12 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                 hCSubCategoryComboBox.setDisable(true);
                 relevanceComboBox.setDisable(false);
             } catch (NullPointerException e) {
-                throw new Exception("Does not exist");
+                PopUp.showError(e.getMessage());
             }
         }
     }
 
-    public void OnClickedHCRelevance(ActionEvent actionEvent) {
+    public void OnClickedHCRelevance(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
         hCdatePicker.setDisable(false);
@@ -543,7 +549,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
 
     }
 
-    public void OnClickSaveRelevance(ActionEvent actionEvent) {
+    public void OnClickSaveRelevance(ActionEvent actionEvent) throws Exception {
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
@@ -621,16 +627,14 @@ public class TeacherEditCitizenTemplateController implements Initializable{
                 observationNoteTxt.setText(functionalAbilities.get(6));
                 fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
             } catch (NullPointerException e) {
-                throw new Exception("Does not exist");
+                PopUp.showError(e.getMessage());
             }
         }
     }
 
-    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
+    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();
-
-
 
         String selectedCategory = fACategoryComboBox.getSelectionModel().getSelectedItem();
         String selectedSubCategory = faSubCategoryComboBox.getSelectionModel().getSelectedItem();
@@ -682,7 +686,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
 
     }
@@ -712,7 +716,7 @@ public class TeacherEditCitizenTemplateController implements Initializable{
     }
 
     //General Information
-    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
+    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) throws Exception {
 
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         int citizenTemplateID = (int) currentStage.getUserData();

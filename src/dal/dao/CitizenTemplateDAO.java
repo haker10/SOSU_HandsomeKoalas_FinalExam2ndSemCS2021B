@@ -1,7 +1,6 @@
 package dal.dao;
 
 import be.CitizenTemplate;
-import be.User;
 import dal.DatabaseConnector;
 
 import java.sql.*;
@@ -15,7 +14,7 @@ public class CitizenTemplateDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public List<CitizenTemplate> getALlCitizenTemplates(int schoolId) {
+    public List<CitizenTemplate> getALlCitizenTemplates(int schoolId) throws Exception{
         List<CitizenTemplate> allCitizenTemplates = new ArrayList<>();
         String sql = "SELECT * FROM CitizenTemplate WHERE school = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -29,13 +28,11 @@ public class CitizenTemplateDAO {
                 CitizenTemplate citizenTemplate = new CitizenTemplate(id, schoolId, citizenTemplateName);
                 allCitizenTemplates.add(citizenTemplate);
             }
-       } catch(SQLException throwables) {
-            throwables.printStackTrace();
-       }
-          return  allCitizenTemplates;
+        }
+        return  allCitizenTemplates;
     }
 
-    public CitizenTemplate createCitizenTemplate(int schoolId1, String citizenTemplateName) {
+    public CitizenTemplate createCitizenTemplate(int schoolId1, String citizenTemplateName) throws Exception{
         CitizenTemplate citizenTemplate = null;
         String sql = "INSERT INTO CitizenTemplate(school, citizenTemplateName) VALUES (?,?)";
         try(Connection connection = databaseConnector.getConnection()){
@@ -48,24 +45,20 @@ public class CitizenTemplateDAO {
                 int Id = resultSet.getInt(1);
                 citizenTemplate = new CitizenTemplate(Id, schoolId1, citizenTemplateName);
             }
-        }catch(Exception e){
-            e.printStackTrace();
         }
         return citizenTemplate;
     }
 
-    public void deleteCitizenTemplate(int citizenTemplateId) {
+    public void deleteCitizenTemplate(int citizenTemplateId) throws Exception{
         String sql = "DELETE FROM CitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, citizenTemplateId);
             preparedStatement.executeUpdate();
-        }catch(Exception e){
-            e.printStackTrace();
         }
     }
 
-    public String getCitizenTemplateName(int citizenTemplateID) {
+    public String getCitizenTemplateName(int citizenTemplateID) throws Exception{
         String citizenTemplateName = null;
         String sql = "SELECT * FROM CitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -76,13 +69,11 @@ public class CitizenTemplateDAO {
             while (resultSet.next()) {
                 citizenTemplateName = resultSet.getString("citizenTemplateName");
             }
-        } catch(SQLException throwables) {
-            throwables.printStackTrace();
         }
         return  citizenTemplateName;
     }
 
-    public List<CitizenTemplate> getAllCitizenTemplateNames() {
+    public List<CitizenTemplate> getAllCitizenTemplateNames() throws Exception{
         List<CitizenTemplate> allCitizenTemplateNames = new ArrayList<>();
         String sql = "SELECT * FROM CitizenTemplate";
         try(Connection connection = databaseConnector.getConnection()) {
@@ -96,8 +87,6 @@ public class CitizenTemplateDAO {
                 CitizenTemplate citizenTemplate = new CitizenTemplate(citizenTemplateID, school, citizenTemplateName);
                 allCitizenTemplateNames.add(citizenTemplate);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return allCitizenTemplateNames;
     }

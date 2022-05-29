@@ -3,6 +3,7 @@ package gui.controller;
 import be.FunctionalAbilitie;
 import be.HealthCondition;
 import gui.model.CitizenModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -304,22 +305,31 @@ public class StudentEditCitizenController implements Initializable{
             String[] splitter = info.split(",");
             int citizenId = Integer.parseInt(splitter[0]);
             String schoolName = splitter[1];
-            citizenNameLbl.setText(citizenModel.getCitizenName(citizenId));
+            try {
+                citizenNameLbl.setText(citizenModel.getCitizenName(citizenId));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
 
             schoolLbl.setText(schoolName);
 
             //general information
-            masteryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(0)));
-            motivationTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(1)));
-            resourcesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(2)));
-            rollerTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(3)));
-            habitsTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(4)));
-            enJTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(5)));
-            lifeStoryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(6)));
-            networkTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(7)));
-            healthInfoTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(8)));
-            assistiveDevicesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(9)));
-            interiorOfHomeTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(10)));
+            try {
+                masteryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(0)));
+                motivationTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(1)));
+                resourcesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(2)));
+                rollerTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(3)));
+                habitsTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(4)));
+                enJTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(5)));
+                lifeStoryTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(6)));
+                networkTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(7)));
+                healthInfoTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(8)));
+                assistiveDevicesTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(9)));
+                interiorOfHomeTxt.setText(citizenModel.getGeneralInfoCitizen(citizenId, generalInfoName.get(10)));
+            } catch (Exception e) {
+                PopUp.showError(e.getMessage());
+            }
+
 
             updateCitizenTableView();
             clearFA();
@@ -327,7 +337,7 @@ public class StudentEditCitizenController implements Initializable{
             try {
                 OnDoubleClickTableViewRow();
             } catch (Exception e) {
-                e.printStackTrace();
+                PopUp.showError(e.getMessage());
             }
         });
     }
@@ -346,7 +356,7 @@ public class StudentEditCitizenController implements Initializable{
             healthConditionTV.setItems(citizenModel.getAllHealthCondition(citizenId));
             functionalAbilitiesTV.setItems(citizenModel.getALlFunctionalAbilities(citizenId));
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
     }
 
@@ -374,12 +384,8 @@ public class StudentEditCitizenController implements Initializable{
                         hCExpectedLevelComboBox.setValue(healthConditions.get(3));
                         hCObservationNoteTxt.setText(healthConditions.get(4));
                         hCdatePicker.setValue(LocalDate.parse(healthConditions.get(5)));
-                    }catch(NullPointerException e){
-                        try {
-                            throw new Exception("Does not exist");
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+                    } catch (Exception e) {
+                        PopUp.showError(e.getMessage());
                     }
                 }
             });
@@ -411,7 +417,7 @@ public class StudentEditCitizenController implements Initializable{
                         observationNoteTxt.setText(functionalAbilities.get(6));
                         fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
                     }catch(Exception e){
-                        e.printStackTrace();
+                        PopUp.showError(e.getMessage());
                     }
                 }
             });
@@ -473,12 +479,12 @@ public class StudentEditCitizenController implements Initializable{
                 hCSubCategoryComboBox.setDisable(true);
                 relevanceComboBox.setDisable(false);
             } catch (NullPointerException e) {
-                throw new Exception("Does not exist");
+                PopUp.showError(e.getMessage());
             }
         }
     }
 
-    public void OnClickedHCRelevance(ActionEvent actionEvent) {
+    public void OnClickedHCRelevance(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) hCCategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -558,7 +564,7 @@ public class StudentEditCitizenController implements Initializable{
 
     }
 
-    public void OnClickSaveRelevance(ActionEvent actionEvent) {
+    public void OnClickSaveRelevance(ActionEvent actionEvent) throws Exception {
 
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
@@ -639,12 +645,12 @@ public class StudentEditCitizenController implements Initializable{
                 observationNoteTxt.setText(functionalAbilities.get(6));
                 fADatePicker.setValue(LocalDate.parse(functionalAbilities.get(7)));
             } catch (NullPointerException e) {
-                throw new Exception("Does not exist");
+                PopUp.showError(e.getMessage());
             }
         }
     }
 
-    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) {
+    public void OnClickSaveFunctionalAbilities(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) fACategoryComboBox.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");
@@ -691,7 +697,7 @@ public class StudentEditCitizenController implements Initializable{
             stage.show();
             scene.setFill(Color.TRANSPARENT);
         }catch (Exception e){
-            e.printStackTrace();
+            PopUp.showError(e.getMessage());
         }
 
     }
@@ -721,7 +727,7 @@ public class StudentEditCitizenController implements Initializable{
     }
 
     //General Information
-    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) {
+    public void OnClickSaveGeneralInfo(ActionEvent actionEvent) throws Exception {
         Stage currentStage = (Stage) masteryTxt.getScene().getWindow();
         info = (String) currentStage.getUserData();
         String[] splitter = info.split(",");

@@ -21,7 +21,7 @@ public class HealthConditionsCitizenDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public void copyHealthConditionsCitizen(int citizenId, int citizenTemplateId) {
+    public void copyHealthConditionsCitizen(int citizenId, int citizenTemplateId) throws Exception{
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -38,12 +38,10 @@ public class HealthConditionsCitizenDAO {
                 LocalDate date = resultSet.getDate("healthConditionsCitizenTemplateDate").toLocalDate();
                 createHealthConditionsCitizen(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, date, citizenId);
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public void createHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observationNote, LocalDate date, int citizenId) {
+    public void createHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observationNote, LocalDate date, int citizenId) throws Exception{
         String sql = "INSERT INTO HealthConditionsCitizen(healthConditionsCitizenCategory, healthConditionsCitizenSubCategory, healthConditionsCitizenColor, healthConditionsCitizenProfessionalNote, healthConditionsCitizenAssessmentNote, healthConditionsCitizenExpectedLevel, healthConditionsCitizenObservableNote, healthConditionsCitizenDate, citizenID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -57,12 +55,10 @@ public class HealthConditionsCitizenDAO {
             preparedStatement.setObject(8, date);
             preparedStatement.setInt(9, citizenId);
             preparedStatement.executeUpdate();
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) {
+    public Object getHealthConditionCitizen(String category, String subCategory, int citizenId) throws Exception{
         List<String> allHealthConditionsCitizen = new ArrayList<>();
         String relevance = "Not relevant";
         String proffNote = "";
@@ -88,9 +84,8 @@ public class HealthConditionsCitizenDAO {
                 observationNote = resultSet.getString("healthConditionsCitizenObservableNote");
                 date = resultSet.getString("healthConditionsCitizenDate");
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
+
         allHealthConditionsCitizen.add(relevance);
         allHealthConditionsCitizen.add(proffNote);
         allHealthConditionsCitizen.add(assessmentNote);
@@ -101,7 +96,7 @@ public class HealthConditionsCitizenDAO {
         return allHealthConditionsCitizen;
     }
 
-    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) {
+    public void updateHealthConditionsCitizen(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenId) throws Exception{
         String sql = "UPDATE HealthConditionsCitizen SET healthConditionsCitizenColor = ?, healthConditionsCitizenProfessionalNote = ?, healthConditionsCitizenAssessmentNote = ?, healthConditionsCitizenExpectedLevel = ?, healthConditionsCitizenObservableNote = ?, healthConditionsCitizenDate = ? WHERE healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ? and citizenID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -115,12 +110,10 @@ public class HealthConditionsCitizenDAO {
             preparedStatement.setString(8, subCategory);
             preparedStatement.setInt(9, citizenId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) {
+    public ObservableList<HealthCondition> getAllHealthCondition(int citizenId) throws Exception{
         ObservableList<HealthCondition> allHealthConditionsCitizen = FXCollections.observableArrayList();
         String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -143,13 +136,11 @@ public class HealthConditionsCitizenDAO {
                 HealthCondition healthCondition = new HealthCondition(hCId, category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, localDate, citizenId);
                 allHealthConditionsCitizen.add(healthCondition);
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return allHealthConditionsCitizen;
     }
 
-    public boolean checkHealtConditionsId(String category, String subCategory, int citizenId) {
+    public boolean checkHealtConditionsId(String category, String subCategory, int citizenId) throws Exception{
         String sql = "SELECT * FROM HealthConditionsCitizen WHERE citizenID = ? and  healthConditionsCitizenCategory = ? and healthConditionsCitizenSubCategory = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -160,8 +151,6 @@ public class HealthConditionsCitizenDAO {
             if(resultSet.next()){
                 return true;
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return false;
     }

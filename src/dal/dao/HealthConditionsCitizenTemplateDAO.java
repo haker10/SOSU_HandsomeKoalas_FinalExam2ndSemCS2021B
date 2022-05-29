@@ -1,6 +1,5 @@
 package dal.dao;
 
-import be.HealthCondition;
 import be.HealthConditionCT;
 import dal.DatabaseConnector;
 import javafx.collections.FXCollections;
@@ -20,7 +19,7 @@ public class HealthConditionsCitizenTemplateDAO {
         databaseConnector = new DatabaseConnector();
     }
 
-    public void createHealthConditionsCitizenTemplate(String selectedCategory, String selectedSubCategory, String selectedRelevance, String professionalNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
+    public void createHealthConditionsCitizenTemplate(String selectedCategory, String selectedSubCategory, String selectedRelevance, String professionalNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) throws Exception{
         String sql = "INSERT INTO HealthConditionsCitizenTemplate(healthConditionsCitizenTemplateCategory, healthConditionsCitizenTemplateSubCategory, healthConditionsCitizenTemplateColor, healthConditionsCitizenTemplateProfessionalNote, healthConditionsCitizenTemplateAssessmentNote, healthConditionsCitizenTemplateExpectedLevel, healthConditionsCitizenTemplateObservableNote, healthConditionsCitizenTemplateDate, citizenTemplateID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -34,12 +33,10 @@ public class HealthConditionsCitizenTemplateDAO {
             preparedStatement.setObject(8, date);
             preparedStatement.setInt(9, citizenTemplateId);
             preparedStatement.executeUpdate();
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) {
+    public List<String> getHealthConditionCitizenTemplate(String category, String subCategory, int citizenTemplateId) throws Exception{
         List<String> allHealthConditionsCitizenTemplate = new ArrayList<>();
         String relevance = "Not relevant";
         String proffNote = "";
@@ -66,9 +63,8 @@ public class HealthConditionsCitizenTemplateDAO {
                 date = resultSet.getString("healthConditionsCitizenTemplateDate");
 
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
+
         allHealthConditionsCitizenTemplate.add(relevance);
         allHealthConditionsCitizenTemplate.add(proffNote);
         allHealthConditionsCitizenTemplate.add(assessmentNote);
@@ -79,7 +75,7 @@ public class HealthConditionsCitizenTemplateDAO {
         return allHealthConditionsCitizenTemplate;
     }
 
-    public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) {
+    public void updateHealthConditionsCitizenTemplate(String category, String subCategory, String relevance, String proffNote, String assessmentNote, String expectedLevel, String observableNote, LocalDate date, int citizenTemplateId) throws Exception{
         String sql = "UPDATE HealthConditionsCitizenTemplate SET healthConditionsCitizenTemplateColor = ?, healthConditionsCitizenTemplateProfessionalNote = ?, healthConditionsCitizenTemplateAssessmentNote = ?, healthConditionsCitizenTemplateExpectedLevel = ?, healthConditionsCitizenTemplateObservableNote = ?, healthConditionsCitizenTemplateDate = ? WHERE healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ? and citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -93,12 +89,10 @@ public class HealthConditionsCitizenTemplateDAO {
             preparedStatement.setString(8, subCategory);
             preparedStatement.setInt(9, citizenTemplateId);
             preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) {
+    public void copyCitizenTemplate(int citizenTemplateId, int newCitizenTemplateId) throws Exception{
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -115,12 +109,10 @@ public class HealthConditionsCitizenTemplateDAO {
                 LocalDate date = resultSet.getDate("healthConditionsCitizenTemplateDate").toLocalDate();
                 createHealthConditionsCitizenTemplate(category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, date, newCitizenTemplateId);
             }
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
-    public boolean checkHealthConditionsCTId(String category, String subCategory, int citizenTemplateId) {
+    public boolean checkHealthConditionsCTId(String category, String subCategory, int citizenTemplateId) throws Exception{
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -131,13 +123,11 @@ public class HealthConditionsCitizenTemplateDAO {
             if(resultSet.next()){
                 return true;
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return false;
     }
 
-    public ObservableList<HealthConditionCT> getAllHealthCondition(int citizenTemplateID) {
+    public ObservableList<HealthConditionCT> getAllHealthCondition(int citizenTemplateID) throws Exception{
         ObservableList<HealthConditionCT> allHealthConditionsCitizenTemplate = FXCollections.observableArrayList();
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ?";
         try(Connection connection = databaseConnector.getConnection()){
@@ -160,13 +150,11 @@ public class HealthConditionsCitizenTemplateDAO {
                 HealthConditionCT healthConditionCT = new HealthConditionCT(hCId, category, subCategory, relevance, proffNote, assessmentNote, expectedLevel, observationNote, localDate, citizenTemplateID);
                 allHealthConditionsCitizenTemplate.add(healthConditionCT);
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
         return allHealthConditionsCitizenTemplate;
     }
 
-    public boolean checkHealtConditionsId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) {
+    public boolean checkHealtConditionsId(String selectedCategory, String selectedSubCategory, int citizenTemplateID) throws Exception{
         String sql = "SELECT * FROM HealthConditionsCitizenTemplate WHERE citizenTemplateID = ? and  healthConditionsCitizenTemplateCategory = ? and healthConditionsCitizenTemplateSubCategory = ?";
         try(Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.User;
 import gui.model.UserModel;
+import gui.view.util.PopUp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class LoginController implements Initializable {
                        stage.show();
                        scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
-                       e.printStackTrace();
+                       PopUp.showError(e.getMessage());
                    }
                }
                else if (result.getTypeOfUser() == 2) {
@@ -92,7 +93,7 @@ public class LoginController implements Initializable {
                        stage.show();
                        scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
-                       e.printStackTrace();
+                       PopUp.showError(e.getMessage());
                    }
                }
                else if (result.getTypeOfUser() == 3) {
@@ -109,12 +110,12 @@ public class LoginController implements Initializable {
                        stage.show();
                        scene.setFill(Color.TRANSPARENT);
                    }catch (Exception e){
-                       e.printStackTrace();
+                       PopUp.showError(e.getMessage());
                    }
                }
            }
        } catch (Exception e) {
-           e.printStackTrace();
+           PopUp.showError(e.getMessage());
        }
     }
 
